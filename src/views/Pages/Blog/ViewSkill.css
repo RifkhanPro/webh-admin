@@ -1,0 +1,35 @@
+
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48%;
+}
+
+.image img{
+    width: 100%;
+    height: 100%;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48%;
+
+}
+
+.no-respond{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 50px;
+}
