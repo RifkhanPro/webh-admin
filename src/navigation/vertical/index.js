@@ -44,15 +44,15 @@ export default [
     navLink: '/posts'
   },
   {
-    id: 'addUser',
-    title: 'Add User',
-    icon: <Mail size={20} />,
-    navLink: '/addUser'
-  },
-  {
     id: 'allUsers',
     title: 'All User',
     icon: <Mail size={20} />,
-    navLink: '/allUsers'
+    navLink: '/user'
   }
+  // {
+  //   id: 'viewUser',
+  //   title: 'View User',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/user'
+  // }
 ]

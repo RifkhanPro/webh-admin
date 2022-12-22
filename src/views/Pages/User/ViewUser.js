@@ -1,49 +1,37 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
-
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 const ViewUser = () => {
-    const { userId } = useParams();
-
-    const [userData, userDataChange] = useState({});
+  const { id } = useParams()
+  const [userData, setUserData] = useState()
 
     useEffect(() => {
-        fetch("http://localhost:8000/employee/" + empid).then((res) => {
-            return res.json();
-        }).then((resp) => {
-            empdatachange(resp);
-        }).catch((err) => {
-            console.log(err.message);
-        })
-    }, []);
-    return (
-        <div>
-            {/* <div className="row">
-                <div className="offset-lg-3 col-lg-6"> */}
+        const sendRequest = async () => {
+            try {
+                const response = await fetch(`http://localhost:8070/user/${id}`)
 
-               <div className="container">
-                
-            <div className="card row" style={{ "textAlign": "left" }}>
-                <div className="card-title">
-                    <h2>Employee Create</h2>
-                </div>
-                <div className="card-body"></div>
+                const responseData = await response.json()
 
-                {empdata &&
-                    <div>
-                        <h2>The Employee name is : <b>{empdata.name}</b>  ({empdata.id})</h2>
-                        <h3>Contact Details</h3>
-                        <h5>Email is : {empdata.email}</h5>
-                        <h5>Phone is : {empdata.phone}</h5>
-                        <Link className="btn btn-danger" to="/">Back to Listing</Link>
-                    </div>
+                console.log(responseData.result)
+
+                setUserData(responseData.result)
+
+                if (!response.ok()) {
+                    throw new Error(responseData.message)
                 }
-            </div>
-            </div>
-            {/* </div>
-            </div> */}
-        </div >
-    );
+            } catch (err) {
+                console.log(err)
+            }
+        } 
+        sendRequest()
+    }, [id])
+  return (
+    <div>
+     {userData && <div className="details">
+            {userData.firstname}
+            {userData.lastname}
+        </div>}
+    </div>
+  )
 }
 
-export default EmpDetail;
+export default ViewUser

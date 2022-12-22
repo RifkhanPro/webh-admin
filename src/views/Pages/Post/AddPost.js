@@ -15,56 +15,45 @@ function AddPost() {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault()
+    const postData = {name, description }
+    
+    fetch("http://localhost:8070/postManagement/create", {
+        method:"POST",
+        headers:{"content-type":"application/json"}, 
+        body:JSON.stringify(postData)
+      }).then((res) => {
+        alert('Saved successfully.')
+        console.log(res)
+        console.log(postData)
+        navigate('/')
+      }).catch((err) => {
+        console.log(err.message)
+      })
 
-    try {
-      const response = await fetch(
-        "http://localhost:8070/postManagement/create",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title: name,
-            desc: description
-          })
-        }
-      )
-
-      const responseFormData = await response.json()
-
-      console.log(responseFormData)
-
-      if (!response.ok) {
-        throw new Error(responseFormData.message)
-      }
-
-    //   setName('')
-    //   setDescription('')
-    } catch (error) {
-      console.log(error)
     }
-  }
-
   return (
     <Card>
-      <form onSubmit={formSubmitHandler} className="m-2">
-        <CardGroup className="group">
-          <CardTitle>Title</CardTitle>
-          <Input onChange={nameHandler} value={name} type="text" />
-        </CardGroup> 
+      <Col className="col-12">
+        <form onSubmit={formSubmitHandler} className="m-2">
+          <CardGroup className="group col-12">
+          <Label>Name</Label>
+            <Input onChange={nameHandler} value={name} type="text" />
+          </CardGroup> 
 
-        <CardGroup className="group">
-          <CardTitle>Description</CardTitle>
-          <Input
-            onChange={descriptionHandler}
-            value={description}
-            type="text"
-          />
-        </CardGroup> 
+          <CardGroup className="group">
+          <Label>Description</Label>
+            <Input
+              onChange={descriptionHandler}
+              value={description}
+              type="text"
+            />
+          </CardGroup> 
 
-        <Button type="submit" className="btn">
-          Submit
-        </Button>
-      </form>
+          <Button className='me-1' color='primary' type='submit'>
+            Submit
+          </Button>
+        </form>
+      </Col>
     </Card>
   )
 }

@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const AllUsers = () => {
     const [userData, userDataChange] = useState(null)
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
-    // const LoadDetail = (id) => {
-    //     navigate("/http://localhost:8070/postManagement/posts" + id)
-    // }
-    // const LoadEdit = (id) => {
-    //     navigate("/http://localhost:8070/postManagement/posts" + id)
-    // }
-    const Removefunction = () => {
+    const LoadDetail = (_id) => {
+        navigate(`${_id}`)
+    }
+    const LoadEdit = (_id) => {
+        navigate(`${_id}`)
+    }
+    const Removefunction = (_id) => {
         if (window.confirm('Do you want to remove?')) {
-            fetch("http://localhost:8070/postManagement/posts", {
+            fetch(`http://localhost:8070/user/${_id}`, {
                 method: "DELETE"
             }).then((res) => {
                 console.log(res)
@@ -59,15 +59,15 @@ const AllUsers = () => {
                         <tbody>
                             {userData &&
                                 userData.map(item => (
-                                    <tr key={item.id}>
-                                        <td>{item.id}</td>
+                                    <tr key={item._id}>
+                                        <td></td>
                                         <td>{item.firstname}</td>
                                         <td>{item.lastname}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
-                                        <td><a onClick={() => { LoadEdit(item.id) }} className="btn btn-success button">Edit </a> 
-                                            <a onClick={() => { Removefunction(item.id) }} className="btn btn-danger mr-1">Remove </a>
-                                            <a onClick={() => { LoadDetail(item.id) }} className="btn btn-primary mr-1">Details</a>
+                                        <td><a onClick={() => { LoadEdit(item._id) }} className="btn btn-success button">Edit </a> 
+                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger mr-1">Remove </a>
+                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-primary mr-1">Details</a>
                                         </td>
                                     </tr>
                                 ))
