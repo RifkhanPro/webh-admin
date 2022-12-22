@@ -42,7 +42,7 @@ const AllUsers = () => {
                 </div>
                 <div className="card-body">
                     {/* <div className="divbtn"> */}
-                        <Link to="/addUser" className="btn btn-success mb-2">Add New (+)</Link>
+                        {/* <Link to="/addUser" className="btn btn-success mb-2">Add New (+)</Link> */}
                     {/* </div> */}
                     <table className="table table-bordered">
                         <thead className="bg-dark text-white">
@@ -66,8 +66,8 @@ const AllUsers = () => {
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
                                         <td><a onClick={() => { LoadEdit(item._id) }} className="btn btn-success button">Edit </a> 
-                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger mr-1">Remove </a>
-                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-primary mr-1">Details</a>
+                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger mr-1">Deactivate </a>
+                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-warning mr-1">Details</a>
                                         </td>
                                     </tr>
                                 ))

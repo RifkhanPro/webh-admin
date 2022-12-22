@@ -45,7 +45,7 @@ const ViewBlog = lazy(() => import('../../views/Pages/Blog/ViewBlog'))
 //Post
 const AddPost = lazy(() => import('../../views/Pages/Post/AddPost'))
 const ViewPost = lazy(() => import('../../views/Pages/Post/ViewPost'))
-const ViewPosts = lazy(() => import('../../views/Pages/Post/AllPosts'))
+const AllPosts = lazy(() => import('../../views/Pages/Post/AllPosts'))
 
 //User
 const AddUser = lazy(() => import('../../views/Pages/User/AddUser'))
@@ -91,18 +91,24 @@ const Routes = [
     path:'/addBlog',
     element: <AddBlog />
   },
+
+  //Posts
   {
     path:'/addPost',
     element: <AddPost />
   },
   {
     path:'/posts',
-    element: <ViewPosts />
+    element: <AllPosts />
   },
   {
     path:'/posts/:id',
     element: <ViewPost />
   },
+
+  //End Post Here
+
+  //User
   {
     path:'/addUser',
     element: <AddUser />
@@ -115,6 +121,8 @@ const Routes = [
     path:'/user/:id',
     element: <ViewUser />
   },
+  //End User Here
+  
   {
     path: '/login',
     element: <Login />,
