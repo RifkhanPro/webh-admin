@@ -42,6 +42,15 @@ const ViewBlogs = lazy(() => import('./../../views/Pages/Blog/ViewBlogs'))
 const AddBlog = lazy(() => import('../../views/Pages/Blog/AddBlog'))
 const ViewBlog = lazy(() => import('../../views/Pages/Blog/ViewBlog'))
 
+//Post
+const AddPost = lazy(() => import('../../views/Pages/Post/AddPost'))
+const ViewPost = lazy(() => import('../../views/Pages/Post/ViewPost'))
+const ViewPosts = lazy(() => import('../../views/Pages/Post/ViewPosts'))
+
+//User
+const AddUser = lazy(() => import('../../views/Pages/User/AddUser'))
+const AllUsers = lazy(() => import('../../views/Pages/User/AllUsers'))
+
 // ** Merge Routes
 const Routes = [
   {
@@ -80,6 +89,26 @@ const Routes = [
   {
     path:'/addBlog',
     element: <AddBlog />
+  },
+  {
+    path:'/addPost',
+    element: <AddPost />
+  },
+  {
+    path:'/posts',
+    element: <ViewPosts />
+  },
+  {
+    path:'/posts/:id',
+    element: <ViewPost />
+  },
+  {
+    path:'/addUser',
+    element: <AddUser />
+  },
+  {
+    path:'/allUsers',
+    element: <AllUsers />
   },
   {
     path: '/login',

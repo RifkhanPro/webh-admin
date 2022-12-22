@@ -30,5 +30,29 @@ export default [
     title: 'Blogs',
     icon: <Mail size={20} />,
     navLink: '/blogs'
+  },
+  {
+    id: 'addPost',
+    title: 'Add Post',
+    icon: <Mail size={20} />,
+    navLink: '/addPost'
+  },
+  {
+    id: 'viewPost',
+    title: 'View Posts',
+    icon: <Mail size={20} />,
+    navLink: '/posts'
+  },
+  {
+    id: 'addUser',
+    title: 'Add User',
+    icon: <Mail size={20} />,
+    navLink: '/addUser'
+  },
+  {
+    id: 'allUsers',
+    title: 'All User',
+    icon: <Mail size={20} />,
+    navLink: '/allUsers'
   }
 ]
