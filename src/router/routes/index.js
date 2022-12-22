@@ -36,11 +36,13 @@ const Error = lazy(() => import('../../views/Error'))
 const ViewSkills = lazy(() => import('./../../views/Pages/Skill/ViewSkills'))
 const AddSkill = lazy(() => import('./../../views/Pages/Skill/AddSkill'))
 const ViewSkill = lazy(() => import('./../../views/Pages/Skill/ViewSkill'))
+const EditSkill = lazy(() => import('../../views/Pages/Skill/EditSkill'))
 
 //Blog
 const ViewBlogs = lazy(() => import('./../../views/Pages/Blog/ViewBlogs'))
 const AddBlog = lazy(() => import('../../views/Pages/Blog/AddBlog'))
 const ViewBlog = lazy(() => import('../../views/Pages/Blog/ViewBlog'))
+const EditBlog = lazy(() => import('../../views/Pages/Blog/EditBlog'))
 
 // ** Merge Routes
 const Routes = [
@@ -66,6 +68,10 @@ const Routes = [
     element: <ViewSkill />
   },
   {
+    path:'/skills/edit/:id',
+    element: <EditSkill />
+  },
+  {
     path:'/addSkill',
     element: <AddSkill />
   },
@@ -76,6 +82,10 @@ const Routes = [
   {
     path:'/blogs/:id',
     element: <ViewBlog />
+  },
+   {
+    path:'/blogs/edit/:id',
+    element: <EditBlog />
   },
   {
     path:'/addBlog',

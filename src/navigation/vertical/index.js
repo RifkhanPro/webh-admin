@@ -20,12 +20,6 @@ export default [
     navLink: '/skills'
   },
   {
-    id: 'addSkill',
-    title: 'AddSkill',
-    icon: <Mail size={20} />,
-    navLink: '/addSkill'
-  }, 
-  {
     id: 'blogs',
     title: 'Blogs',
     icon: <Mail size={20} />,

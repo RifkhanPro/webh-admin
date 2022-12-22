@@ -1,15 +1,20 @@
 import React from "react"
 // eslint-disable-next-line no-duplicate-imports
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { Card, CardText } from "reactstrap"
+import { useParams, useNavigate } from "react-router-dom"
+import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
+import './ViewSkill.css'
 
-const ViewSkill = () => {
+const ViewBlog = () => {
     const {id} = useParams()
-    const [skill, setSkill] = useState()
+    const [blog, setBlog] = useState()
+    const navigate = useNavigate()
 
-   
+    const routeHandler = () => {
+      navigate(`/blogs/edit/${id}`)
+    }
+
   useEffect(() => {
     const sendRequest = async () => {
      try {
@@ -19,7 +24,7 @@ const ViewSkill = () => {
 
          console.log(responseData)
 
-         setSkill(responseData)
+         setBlog(responseData)
             
          if (!response.ok()) {
            throw new Error(responseData.message)
@@ -31,19 +36,25 @@ const ViewSkill = () => {
 
     sendRequest()
  }, [id])
-  return <Card className="card">
-        <div className="image">
-            <img src={avatar} />
-        </div>
-       {skill && <div className="details">
-            <CardText>{skill.title}</CardText>
-            <CardText>{skill.desc}</CardText>
-        </div>}
+    return <>
+      <Card className="card">
+          <div className="image">
+              <img src={avatar} />
+          </div>
+        {blog && <div className="details">
+              <h1>{blog.name}</h1>
+              <CardText>{blog.desc}</CardText>
+          </div>}
 
-        {!skill && 
-            <CardText className="no-respond">There is no Such Blog</CardText>
-        }
-  </Card>
+          {!blog && 
+              <CardText className="no-respond">There is no Such blog</CardText>
+          }
+
+      </Card>
+      
+      <Button onClick={routeHandler} className="btn">Edit</Button>
+
+    </>
 }
 
-export default ViewSkill
+export default ViewBlog

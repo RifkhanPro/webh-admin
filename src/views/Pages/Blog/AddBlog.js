@@ -3,10 +3,13 @@
 import React, { useState } from 'react'
 import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+import { useNavigate } from 'react-router-dom'
 function AddSkill() {
 
   const [topic, setTitle] = useState()
   const [content, setDesc] = useState()
+
+  const navigate = useNavigate()
 
   const titleHandler = (e) => {
     setTitle(e.target.value)
@@ -21,7 +24,7 @@ function AddSkill() {
 
     try {
 			const response = await fetch('http://localhost:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-					title:topic,
+					name:topic,
 					desc:content
 				})
 			})
@@ -40,13 +43,15 @@ function AddSkill() {
 		} catch (err) { 
       //
     }
+
+    navigate('/blogs')
   }
 
   return (
     <Card>
       <form onSubmit={submitHandler}>
           <CardGroup className='group'>
-              <CardTitle>Title</CardTitle>
+              <CardTitle>Name</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text'/>
           </CardGroup>
 

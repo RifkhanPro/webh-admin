@@ -3,10 +3,12 @@
 import React, { useState } from 'react'
 import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+import { useNavigate } from 'react-router-dom'
 function AddSkill() {
 
   const [topic, setTitle] = useState()
   const [content, setDesc] = useState()
+  const navigate = useNavigate()
 
   const titleHandler = (e) => {
     setTitle(e.target.value)
@@ -40,6 +42,8 @@ function AddSkill() {
 		} catch (err) { 
       //
     }
+
+    navigate('/skills')
   }
 
   return (

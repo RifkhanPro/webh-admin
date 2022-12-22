@@ -14,8 +14,8 @@
 }
 
 .image img{
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
 }
 
 .details{
@@ -24,7 +24,6 @@
     align-items: center;
     justify-content: center;
     width: 48%;
-
 }
 
 .no-respond{
@@ -32,4 +31,11 @@
     justify-content: center;
     align-items: center;
     font: 50px;
+}
+
+.btn{
+    width: 70%;
+    margin: auto;
+    display: block;
+
 }

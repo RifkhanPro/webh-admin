@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
 import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './SkillItem.css'
-const SkillItem = (props) => {
+const BlogItem = (props) => {
 
   const navigate = useNavigate()
 
@@ -23,4 +23,4 @@ const SkillItem = (props) => {
   
 }
 
-export default SkillItem
+export default BlogItem

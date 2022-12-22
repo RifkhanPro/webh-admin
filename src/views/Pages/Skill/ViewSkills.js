@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import { useNavigate } from 'react-router-dom'
+import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import SkillList from './SkillList'
-
+import './ViewBlogs.css'
 
 function ViewSkills() {
   const [skills, setSkills] = useState()
-
+  const navigate  = useNavigate()
   useEffect(() => {
      const sendRequest = async () => {
       try {
@@ -28,19 +29,23 @@ function ViewSkills() {
      sendRequest()
   }, [])
 
+  
+  const routerHandler = () => {
+    navigate('/addSkill')
+  }
+
   return (
     <div>
-        <Card>
-        <CardHeader>
-          <CardTitle>Skills</CardTitle>
-        </CardHeader>
-        <CardBody>
-          <Card>
-             {skills && <SkillList  data = {skills}/>}
-             {!skills && <p>There is no Skills</p>}
-          </Card>
-        </CardBody>
+      <Card>
+          <CardBody>
+            <Card>
+              {skills && <SkillList  data = {skills}/>}
+              {!skills && <p>There is no Skills</p>}
+            </Card>
+          </CardBody>
       </Card>
+
+      <Button className='btn' onClick={routerHandler}>Add Skill</Button>
 
     </div>
   )

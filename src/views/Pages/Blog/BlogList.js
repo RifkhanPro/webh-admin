@@ -1,18 +1,18 @@
 /* eslint-disable no-tabs */
 import React from "react"
-import SkillItem from "./BlogItem"
+import BlogItem from "./BlogItem"
 import './Skill_Card.css'
 
-const SkillList = (props) => {
+const BlogList = (props) => {
 	return <>
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<SkillItem id={item._id} title={item.title} desc={item.desc} />
+						<BlogItem id={item._id} title={item.title} desc={item.desc} />
 					</li>
 				))}
 			</ul>
 		</>
 }
 
-export default SkillList     
+export default BlogList     
