@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+
 const ViewUser = () => {
   const { id } = useParams()
   const [userData, setUserData] = useState()

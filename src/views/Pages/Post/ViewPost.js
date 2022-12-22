@@ -12,9 +12,9 @@ const ViewPost = () => {
 
                 const responseData = await response.json()
 
-                console.log(responseData.result)
+                console.log(responseData.post)
 
-                setPostData(responseData)
+                setPostData(responseData.post)
 
                 if (!response.ok()) {
                     throw new Error(responseData.message)
@@ -29,7 +29,6 @@ const ViewPost = () => {
     <div className="container">
         <div className="card row" style={{ textAlign: "left" }}>
           <div className="card-title">
-            {/* <h2>User Create</h2> */}
           </div>
           <div className="card-body"></div>
 
@@ -38,16 +37,7 @@ const ViewPost = () => {
               <h2 className="mb-3">
                 <b>{postData.name} </b> 
               </h2>
-              <h3 className="mb-5">Contact Details</h3>
-              <h5>Description : {userData.description}</h5>
-              {/* <h5>Phone : {userData.phone}</h5>
-              <h5>Address : {userData.address}</h5>
-              <h5>City : {userData.city}</h5>
-              <h5>Country : {userData.country}</h5>
-              <h5 className="mb-3">Zip : {userData.zip}</h5>
-              
-              <h3 className="mb-2">Personal Information</h3>
-              <h5 className="mb-2">Status : {userData.status}</h5> */}
+              <h5 className="mb-3">Description : {postData.description}</h5>
               <Link className="btn btn-primary mb-3" to="/posts">
                 All Posts
               </Link>

@@ -13,7 +13,6 @@ import PublicRoute from '@components/routes/PublicRoute'
 // ** Utils
 import { isObjEmpty } from '@utils'
 
-
 const getLayout = {
   blank: <BlankLayout />,
   vertical: <VerticalLayout />,
@@ -53,6 +52,7 @@ const AddUser = lazy(() => import('../../views/Pages/User/AddUser'))
 const AllUsers = lazy(() => import('../../views/Pages/User/AllUsers'))
 const ViewUser = lazy(() => import('../../views/Pages/User/ViewUser'))
 const EditUser = lazy(() => import('../../views/Pages/User/EditUser'))
+const EditPost = lazy(() => import('../../views/Pages/Post/EditPost'))
 
 // ** Merge Routes
 const Routes = [
@@ -106,6 +106,10 @@ const Routes = [
   {
     path:'/posts/:id',
     element: <ViewPost />
+  },
+  {
+    path:'/posts/edit/:id',
+    element: <EditPost />
   },
 
   //End Post Here

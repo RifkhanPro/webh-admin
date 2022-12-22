@@ -9,7 +9,7 @@ const ViewPosts = () => {
         navigate(`${_id}`)
   }
   const LoadEdit = (_id) => {
-        navigate(`${_id}`)
+        navigate(`edit/${_id}`)
    }
 
   useEffect(() => {
