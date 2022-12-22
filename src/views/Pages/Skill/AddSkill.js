@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
+import ImageUploader from './ImageUploader'
+
 function AddSkill() {
 
   const [topic, setTitle] = useState()
@@ -17,6 +19,9 @@ function AddSkill() {
     setDesc(e.target.value)
 
   }
+  const catchFileDataHandler = (e) => {
+		console.log(e.pickedFile)
+	}
 
   const submitHandler =  async (e) => {
     e.preventDefault()
@@ -52,6 +57,11 @@ function AddSkill() {
           <CardGroup className='group'>
               <CardTitle>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text'/>
+          </CardGroup>
+
+          <CardGroup className='group'>
+              <CardTitle>Add Skill Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
 
           <CardGroup className='group'>

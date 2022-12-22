@@ -6,7 +6,7 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
-function AddSkill() {
+function AddArticle() {
 
   const [topic, setTitle] = useState()
   const [content, setDesc] = useState()
@@ -28,8 +28,8 @@ function AddSkill() {
     e.preventDefault()
 
     try {
-			const response = await fetch('http://localhost:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-					name:topic,
+			const response = await fetch('http://localhost:8070/article', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					title:topic,
 					desc:content
 				})
 			})
@@ -49,20 +49,19 @@ function AddSkill() {
       //
     }
 
-    navigate('/blogs')
+    navigate('/articles')
   }
 
   return (
     <Card>
       <form onSubmit={submitHandler}>
           <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
+              <CardTitle>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text'/>
           </CardGroup>
 
-
           <CardGroup className='group'>
-              <CardTitle>Add Blog Image</CardTitle>
+              <CardTitle>Add Article Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
 
@@ -77,4 +76,4 @@ function AddSkill() {
   )
 }
 
-export default AddSkill
+export default AddArticle

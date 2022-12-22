@@ -6,24 +6,38 @@ import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
-const ViewSkill = () => {
+const ViewNews = () => {
     const {id} = useParams()
-    const [skill, setSkill] = useState()
+    const [news, setNews] = useState()
     const navigate = useNavigate()
    
     const routeHandler = () => {
-      navigate(`/skills/edit/${id}`)
+      navigate(`/news/edit/${id}`)
+    }
+
+    const deleteHandler = async() => {
+        try {
+          const response = await fetch(`http://localhost:8070/news/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+
+          const responseData = await response.json()
+
+          if (!response.ok()) {
+            throw new Error(responseData.message)
+        }
+
+      } catch (err) {
+      }
+
+      navigate('/news')
     }
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/skill/${id}`)
+         const response = await fetch(`http://localhost:8070/news/${id}`)
 
          const responseData = await response.json()
 
-         console.log(responseData)
-
-         setSkill(responseData)
+         setNews(responseData)
             
          if (!response.ok()) {
            throw new Error(responseData.message)
@@ -36,43 +50,27 @@ const ViewSkill = () => {
     sendRequest()
  }, [id])
 
-   const deleteHandler = async() => {
-        try {
-          const response = await fetch(`http://localhost:8070/skill/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
-
-          const responseData = await response.json()
-
-          if (!response.ok()) {
-            throw new Error(responseData.message)
-        }
-
-      } catch (err) {
-      }
-
-      navigate('/skills')
-    }
-
   return <>
       <Card className="card">
           <div className="image">
               <img src={avatar} />
           </div>
-        {skill && <div className="details">
-              <h1>{skill.title}</h1>
-              <CardText>{skill.desc}</CardText>
+          {news && <div className="details">
+              <h1>{news.title}</h1>
+              <CardText>{news.desc}</CardText>
           </div>}
 
-          {!skill && 
-              <CardText className="no-respond">There is no Such Skill</CardText>
+          {!news && 
+              <CardText className="no-respond">There is no Such News</CardText>
           }
 
       </Card>
 
-      <div className="btns">
+          <div className="btns">
             <Button onClick={routeHandler} className='btn'>Edit</Button>
             <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
           </div>
   </>
 }
 
-export default ViewSkill
+export default ViewNews

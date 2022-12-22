@@ -44,6 +44,30 @@ const AddBlog = lazy(() => import('../../views/Pages/Blog/AddBlog'))
 const ViewBlog = lazy(() => import('../../views/Pages/Blog/ViewBlog'))
 const EditBlog = lazy(() => import('../../views/Pages/Blog/EditBlog'))
 
+//Article
+const ViewArticles = lazy(() => import('./../../views/Pages/Article/ViewArticles'))
+const AddArticle = lazy(() => import('../../views/Pages/Article/AddArticle'))
+const ViewArticle = lazy(() => import('../../views/Pages/Article/ViewArticle'))
+const EditArticle = lazy(() => import('../../views/Pages/Article/EditArticle'))
+
+//TopicPosts
+const ViewTopicPosts = lazy(() => import('./../../views/Pages/Topic/ViewTopics'))
+const AddTopicPost = lazy(() => import('../../views/Pages/Topic/AddTopic'))
+const ViewTopicPost = lazy(() => import('../../views/Pages/Topic/ViewTopic'))
+const EditTopicPost = lazy(() => import('../../views/Pages/Topic/EditTopic'))
+
+//Trend
+const ViewTrends = lazy(() => import('./../../views/Pages/Trend/ViewTrends'))
+const AddTrend = lazy(() => import('../../views/Pages/Trend/AddTrend'))
+const ViewTrend = lazy(() => import('../../views/Pages/Trend/ViewTrend'))
+const EditTrend = lazy(() => import('../../views/Pages/Trend/EditTrend'))
+
+//news
+const ViewNewses = lazy(() => import('../../views/Pages/News/ViewNewses'))
+const AddNews = lazy(() => import('../../views/Pages/News/AddNews'))
+const ViewNews = lazy(() => import('../../views/Pages/News/ViewNews'))
+const EditNews = lazy(() => import('../../views/Pages/News/EditNews'))
+
 // ** Merge Routes
 const Routes = [
   {
@@ -118,7 +142,72 @@ const Routes = [
     meta: {
       layout: 'blank'
     }
+  },
+  {
+    path:'/articles',
+    element: <ViewArticles/>
+  },
+  {
+    path:'/addArticle',
+    element: <AddArticle/>
+  },
+  {
+    path:'/articles/:id',
+    element: <ViewArticle/>
+  },
+  {
+    path:'/articles/edit/:id',
+    element: <EditArticle/>
+  },
+  {
+    path:'/topicPosts',
+    element: <ViewTopicPosts/>
+  },
+  {
+    path:'/addTopicPost',
+    element: <AddTopicPost/>
+  },
+  {
+    path:'/topicPosts/:id',
+    element: <ViewTopicPost/>
+  },
+  {
+    path:'/topicPosts/edit/:id',
+    element: <EditTopicPost/>
+  },
+  {
+    path:'/news',
+    element: <ViewNewses/>
+  },
+  {
+    path:'/addNews',
+    element: <AddNews/>
+  },
+  {
+    path:'/news/:id',
+    element: <ViewNews/>
+  },
+  {
+    path:'/news/edit/:id',
+    element: <EditNews/>
+  },
+  {
+    path:'/trends',
+    element: <ViewTrends/>
+  },
+  {
+    path:'/addTrend',
+    element: <AddTrend/>
+  },
+  {
+    path:'/trends/:id',
+    element: <ViewTrend/>
+  },
+  {
+    path:'/trends/edit/:id',
+    element: <EditTrend/>
   }
+  
 ]
 
 const getRouteMeta = route => {

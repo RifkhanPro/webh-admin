@@ -6,15 +6,15 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
-function AddSkill() {
+function AddTopic() {
 
-  const [topic, setTitle] = useState()
-  const [content, setDesc] = useState()
-
+  const [name, setName] = useState()
+  const [desc, setDesc] = useState()
+  const [category, setCategory] = useState()
   const navigate = useNavigate()
 
-  const titleHandler = (e) => {
-    setTitle(e.target.value)
+  const nameHandler = (e) => {
+    setName(e.target.value)
   }
   const descHandler = (e) => {
     setDesc(e.target.value)
@@ -24,13 +24,19 @@ function AddSkill() {
 		console.log(e.pickedFile)
 	}
 
+  const categoryHandler = (e) => {
+    setCategory(e.target.value)
+
+  }
+
   const submitHandler =  async (e) => {
     e.preventDefault()
 
     try {
-			const response = await fetch('http://localhost:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-					name:topic,
-					desc:content
+			const response = await fetch('http://localhost:8070/topicPost', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+          category,
+          name,
+					desc
 				})
 			})
 
@@ -44,31 +50,36 @@ function AddSkill() {
 
 
       setDesc('')
-      setTitle('')
+      setName('')
+      setCategory('')
 		} catch (err) { 
       //
     }
 
-    navigate('/blogs')
+    navigate('/topicPosts')
   }
 
   return (
     <Card>
       <form onSubmit={submitHandler}>
           <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
+              <CardTitle>Category</CardTitle>
+              <Input onChange={categoryHandler} value={category} type='text'/>
           </CardGroup>
 
+          <CardGroup className='group'>
+              <CardTitle>Name</CardTitle>
+              <Input onChange={nameHandler} value={name} type='text'/>
+          </CardGroup>
 
           <CardGroup className='group'>
-              <CardTitle>Add Blog Image</CardTitle>
+              <CardTitle>Add Skill Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
+              <Input onChange={descHandler}  value={desc} type='text'/>
           </CardGroup>
 
           <Button type='submit' className='btn'>Submit</Button>
@@ -77,4 +88,4 @@ function AddSkill() {
   )
 }
 
-export default AddSkill
+export default AddTopic

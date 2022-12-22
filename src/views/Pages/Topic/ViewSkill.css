@@ -34,6 +34,7 @@
     align-items: center;
     font: 50px;
 }
+
 .btns{
     display: flex;
     justify-content: space-evenly;
