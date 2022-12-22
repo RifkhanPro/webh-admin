@@ -9,7 +9,7 @@ const AllUsers = () => {
         navigate(`${_id}`)
     }
     const LoadEdit = (_id) => {
-        navigate(`${_id}`)
+        navigate(`edit/${_id}`)
     }
     const Removefunction = (_id) => {
         if (window.confirm('Do you want to remove?')) {

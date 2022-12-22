@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const ViewPosts = () => {
   const [postsData, postDataChange] = useState()
+  const navigate = useNavigate()
+  const LoadDetail = (_id) => {
+        navigate(`${_id}`)
+  }
+  const LoadEdit = (_id) => {
+        navigate(`${_id}`)
+   }
 
   useEffect(() => {
     fetch("http://localhost:8070/postManagement/posts")
@@ -17,6 +24,20 @@ const ViewPosts = () => {
         console.log(err.message)
       })
   }, [])
+
+//   const deleteHandler = async() => {
+//     try {
+//       const response = await fetch(`http://localhost:8070/article/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+  
+//       const responseData = await response.json()
+  
+//       if (!response.ok()) {
+//         throw new Error(responseData.message)
+//     }
+  
+//     } catch (err) {
+//         console.log(err)
+//     }
 
   return (
     <div className="container">
@@ -42,15 +63,15 @@ const ViewPosts = () => {
                         <tbody>
                             {postsData &&
                                 postsData.map(item => (
-                                    <tr key={item.id}>
-                                        <td>{item.id}</td>
+                                    <tr key={item._id}>
+                                        <td></td>
                                         <td>{item.name}</td>
                                         <td>{item.description}</td>
                                         <td></td>
                                         {/* <td>{item.image}</td> */}
-                                        <td><a onClick={() => { LoadEdit(item.id) }} className="btn btn-success button">Edit </a> 
-                                            <a onClick={() => { Removefunction(item.id) }} className="btn btn-danger mr-1">Remove </a>
-                                            <a onClick={() => { LoadDetail(item.id) }} className="btn btn-primary mr-1">Details</a>
+                                        <td><a onClick={() => { LoadEdit(item._id) }} className="btn btn-success button">Edit </a> 
+                                            {/* <a onClick={deleteHandler}  className="btn btn-danger mr-1">Remove </a> */}
+                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-primary mr-1">Details</a>
                                         </td>
                                     </tr>
                                 ))
@@ -64,5 +85,5 @@ const ViewPosts = () => {
         </div>
   )
 }
-
+// }
 export default ViewPosts
