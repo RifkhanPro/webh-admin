@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import SkillList from './SkillList'
-import './ViewSkills.css'
+// import './ViewSkills.css'
 
 function ViewSkills() {
   const [skills, setSkills] = useState()

@@ -1,11 +1,11 @@
 /* eslint-disable no-tabs */
 import React from "react"
 import SkillItem from "./SkillItem"
+import { Button, Card, CardGroup, CardTitle, FormGroup, Input, Row, Col, Label, InputGroup} from "reactstrap"
 import './Skill_Card.css'
 
 const SkillList = (props) => {
 	return <>
-			<h2 className="m-2">All Skills</h2>
 			<ul className="m-3">
 				{props.data.map((item) => (
 					<li key={item._id}>
