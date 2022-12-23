@@ -1,4 +1,4 @@
-import { Mail, Home } from 'react-feather'
+import { Mail, Home, FileText, Circle } from 'react-feather'
 
 export default [
   {
@@ -19,18 +19,49 @@ export default [
     icon: <Mail size={20} />,
     navLink: '/blogs'
   },
-  {
-    id: 'allPosts',
-    title: 'All Posts',
-    icon: <Mail size={20} />,
-    navLink: '/posts'
-  },
-  {
-    id: 'addPost',
-    title: 'Add Post',
-    icon: <Mail size={20} />,
-    navLink: '/addPost'
-  },
+  // {
+  //   id: 'postApp',
+  //   title: 'Post Management',
+  //   icon: <FileText />,
+  //   children: [
+  //     {
+  //       id: 'addPost',
+  //       title: 'Add Post',
+  //       icon: <Circle />,
+  //       navLink: '/addPost'
+  //     },
+  //     {
+  //       id: 'allPosts',
+  //       title: 'All posts',
+  //       icon: <Circle />,
+  //       navLink: '/posts'
+  //     }
+  //   ]
+  // },
+      // {
+      //   id: 'invoiceEdit',
+      //   title: 'Edit',
+      //   icon: <Circle />,
+      //   navLink: '/apps/invoice/edit'
+      // },
+      // {
+      //   id: 'invoiceAdd',
+      //   title: 'Add',
+      //   icon: <Circle />,
+      //   navLink: '/apps/invoice/add'
+      // }
+  // {
+  //   id: 'allPosts',
+  //   title: 'All Posts',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/posts'
+  // },
+  // {
+  //   id: 'addPost',
+  //   title: 'Add Post',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/addPost'
+  // },
   {
     id: 'allUsers',
     title: 'All User',
