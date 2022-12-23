@@ -24,13 +24,13 @@ const { id } = useParams()
 
     const handlesubmit = (e) => {
         e.preventDefault()
-        const postData = {nameChange, descriptionChange}
+        const postData = {name, description}
         
   
-        fetch(`http://localhost:8070/postManagement/posts/${id}`, {
+        fetch(`http://localhost:8070/postManagement/updatePost/${id}`, {
           method:"PUT",
           headers:{"content-type":"application/json"},
-          body:JSON.stringify(postData.post)
+          body:JSON.stringify(postData)
         }).then((res) => {
           console.log(res)
           alert('Updated successfully.')

@@ -25,19 +25,19 @@ const ViewPosts = () => {
       })
   }, [])
 
-//   const deleteHandler = async() => {
-//     try {
-//       const response = await fetch(`http://localhost:8070/article/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
-  
-//       const responseData = await response.json()
-  
-//       if (!response.ok()) {
-//         throw new Error(responseData.message)
-//     }
-  
-//     } catch (err) {
-//         console.log(err)
-//     }
+  const Removefunction = (_id) => {
+    if (window.confirm('Do you want to remove?')) {
+        fetch(`http://localhost:8070/postManagement/deletePost/${_id}`, {
+            method: "DELETE"
+        }).then((res) => {
+            console.log(res)
+            alert('Removed successfully.')
+            window.location.reload()
+        }).catch((err) => {
+            console.log(err.message)
+        })
+    }
+}
 
   return (
     <div className="container">
@@ -70,7 +70,7 @@ const ViewPosts = () => {
                                         <td></td>
                                         {/* <td>{item.image}</td> */}
                                         <td><a onClick={() => { LoadEdit(item._id) }} className="btn btn-success button">Edit </a> 
-                                            {/* <a onClick={deleteHandler}  className="btn btn-danger mr-1">Remove </a> */}
+                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger mr-1">Remove </a>
                                             <a onClick={() => { LoadDetail(item._id) }} className="btn btn-primary mr-1">Details</a>
                                         </td>
                                     </tr>

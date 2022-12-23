@@ -47,5 +47,4 @@ const ViewPost = () => {
         </div>
   )
 }
-
 export default ViewPost

@@ -1,6 +1,7 @@
 // ** React Imports
 import { Fragment, lazy } from 'react'
 import { Navigate } from 'react-router-dom'
+
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
 import VerticalLayout from '@src/layouts/VerticalLayout'
@@ -53,6 +54,7 @@ const AllUsers = lazy(() => import('../../views/Pages/User/AllUsers'))
 const ViewUser = lazy(() => import('../../views/Pages/User/ViewUser'))
 const EditUser = lazy(() => import('../../views/Pages/User/EditUser'))
 const EditPost = lazy(() => import('../../views/Pages/Post/EditPost'))
+
 
 // ** Merge Routes
 const Routes = [
@@ -133,7 +135,8 @@ const Routes = [
   },
 
   //End User Here
-  
+
+
   {
     path: '/login',
     element: <Login />,

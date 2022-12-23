@@ -3,8 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardTitle, CardHeader, CardBody, Input, Row, Col, Label, Form, CardGroup} from "reactstrap"
 
 const EditUser = () => {
-// const { userId } = useParams()
-// const { _id } = useParams()
+  
 const { id } = useParams()
 
     const [firstname, fnamechange] = useState("")
