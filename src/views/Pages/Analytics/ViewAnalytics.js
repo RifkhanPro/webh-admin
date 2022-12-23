@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import AnalyticList from './AnalyticList'
-import './ViewBlogs.css'
+// import './ViewBlogs.css'
 
 function ViewAnalytics() {
   const [trends, setTrends] = useState()
@@ -43,7 +43,7 @@ function ViewAnalytics() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add Analytic</Button>
+      <Button className='me-1' color='primary' onClick={routerHandler}>Add Analytics</Button>
 
     </div>
   )

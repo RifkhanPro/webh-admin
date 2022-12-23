@@ -1,8 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+// import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, Col, Label, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 
 const EditAdvertisement = () => {
@@ -75,25 +75,26 @@ const EditAdvertisement = () => {
 	  }
 
 	return (<Card>
-			<form onSubmit={submitHandler}>
-
+		<Col className='col-12'>
+			<form onSubmit={submitHandler} className='form-control'>
 				<CardGroup className='group'>
-					<CardTitle>Name</CardTitle>
+					<Label>Name</Label>
 					<Input onChange={NameHandler} value={name} type='text'/>
 				</CardGroup>
 
 				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='text'/>
+					<Label>Description</Label>
+					<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
 				</CardGroup>
 
 				<CardGroup className='group'>
-					<CardTitle>Expiry Date</CardTitle>
+					<Label>Expiry Date</Label>
 					<Input onChange={expiryHandler}  value={expiry} type='date'/>
 				</CardGroup>
 
-				<Button type='submit' className='btn'>Update</Button>
+				<Button type='submit' className='me-1' color='primary'>Update</Button>
 			</form>
+		</Col>
 	</Card>)
 }
 

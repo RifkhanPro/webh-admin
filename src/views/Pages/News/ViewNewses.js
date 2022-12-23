@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import NewsList from './NewsList'
-import './ViewBlogs.css'
+// import './ViewBlogs.css'
 
 function ViewNewses() {
 
@@ -45,7 +45,7 @@ function ViewNewses() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add News</Button>
+      <Button className='me-1' color='primary' onClick={routerHandler}>Add News</Button>
 
     </div>
   )

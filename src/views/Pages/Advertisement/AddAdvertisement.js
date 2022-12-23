@@ -1,8 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+// import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, Col, Label, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
@@ -58,31 +58,31 @@ function AddAdvertisement() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
-         
-
+      <Col className='col-12'>
+      <form onSubmit={submitHandler} className='form-control'>
           <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
+              <Label>Name</Label>
               <Input onChange={NameHandler} value={name} type='text'/>
           </CardGroup>
 
+
           <CardGroup className='group'>
-              <CardTitle>Add Advertisement Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
+              <Label>Description</Label>
+              <Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
           </CardGroup>
 
           <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='text'/>
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Expiry Date</CardTitle>
+              <Label>Expiry Date</Label>
               <Input onChange={expiryHandler}  value={expiry} type='date'/>
+          </CardGroup>
+          <CardGroup className='group'>
+              <Label>Add Advertisement Image</Label>
+              <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
 
           <Button type='submit' className='btn'>Submit</Button>
       </form>
+      </Col>
     </Card>
   )
 }

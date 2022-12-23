@@ -1,8 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+// import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, Col, Label, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 
 const EditTrend = () => {
@@ -67,21 +67,21 @@ const EditTrend = () => {
 	  }
 
 	return (<Card>
-			<form onSubmit={submitHandler}>
+			<Col className='col-12'>
+				<form className='form-control' onSubmit={submitHandler}>
+					<CardGroup className='group'>
+						<Label>Title</Label>
+						<Input onChange={titleHandler} value={title} type='text'/>
+					</CardGroup>
 
-				<CardGroup className='group'>
-					<CardTitle>Title</CardTitle>
-					<Input onChange={titleHandler} value={title} type='text'/>
-				</CardGroup>
+					<CardGroup className='group'>
+						<Label>Description</Label>
+						<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
+					</CardGroup>
 
-				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='text'/>
-				</CardGroup>
-
-				
-				<Button type='submit' className='btn'>Update</Button>
-			</form>
+					<Button type='submit' color='primary' className='me-1'>Update</Button>
+				</form>
+			</Col>
 	</Card>)
 }
 

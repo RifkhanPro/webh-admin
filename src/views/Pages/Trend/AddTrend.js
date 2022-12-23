@@ -1,8 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+// import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, FormGroup, Input, Label, Col } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
@@ -51,26 +51,26 @@ function AddTrend() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
-         
-
+      <Col className="col-12">
+      <form onSubmit={submitHandler}  className='form-control'>
           <CardGroup className='group'>
-              <CardTitle>Title</CardTitle>
+              <Label>Title</Label>
               <Input onChange={titleHandler} value={title} type='text'/>
           </CardGroup>
 
           <CardGroup className='group'>
-              <CardTitle>Add Trend Image</CardTitle>
+              <Label>Description</Label>
+              <Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
+          </CardGroup>
+          
+          <CardGroup className='group'>
+              <Label>Add Trend Image</Label>
               <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
 
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='text'/>
-          </CardGroup>
-
-          <Button type='submit' className='btn'>Submit</Button>
+          <Button type='submit' className='me-1' color='primary'>Submit</Button>
       </form>
+      </Col>
     </Card>
   )
 }
