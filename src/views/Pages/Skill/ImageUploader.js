@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button } from 'reactstrap'
+import { Button, Label } from 'reactstrap'
 import "./ImageUploader.css"
 
 function ImageUploader(props) {
@@ -44,16 +44,16 @@ function ImageUploader(props) {
     filePickerRef.current.click()
   }
   return (
-    <div className='form-control1'>
+    <div className='form-control'>
         <input type="file" name="" value="" style={{display:'none'}} accept='.jpg,.png,.jpeg' onChange={pickHandler} ref={filePickerRef} />
 
         <div className='image-upload'>
-            <div className='image-upload__preview'>
+            <div className='image-upload__preview mb-1'>
                 {previewUrl && <img src={previewUrl} alt='preview' />}
-                {!previewUrl && <p >Please pick an image</p>}
+                {!previewUrl && <p>Please pick an image</p>}
             </div>
 
-            <Button type='button' onClick={pickImageHandler}>Pick Image</Button>
+            <Button type='me-1' color='info' onClick={pickImageHandler}>Select</Button>
         </div>
     </div>
 

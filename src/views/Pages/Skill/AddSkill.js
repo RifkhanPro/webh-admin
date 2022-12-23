@@ -1,15 +1,18 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
-import React, { useState } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+import React, { useState, Fragment } from 'react'
+// import './AddSkill.css'
+import { Button, Card, CardGroup, Col, Input, Label, ListGroupItem } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
+import { FileText, X } from 'react-feather'
+
 import ImageUploader from './ImageUploader'
 
 function AddSkill() {
 
   const [topic, setTitle] = useState()
   const [content, setDesc] = useState()
+  // const [files, setFiles] = useState([])
   const navigate = useNavigate()
 
   const titleHandler = (e) => {
@@ -53,24 +56,31 @@ function AddSkill() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
-          <CardGroup className='group'>
-              <CardTitle>Title</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
-          </CardGroup>
+      <Col className="col-12">
+        <form onSubmit={submitHandler} className="m-2">
+            <CardGroup className='group col-12'>
+            <Label>Title</Label>
+                <Input onChange={titleHandler} value={topic} type='text'/>
+            </CardGroup>
 
-          <CardGroup className='group'>
-              <CardTitle>Add Skill Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
-          </CardGroup>
+            <CardGroup className='group'>
+            <Label>Description</Label>
+                <Input type="textarea" onChange={descHandler}  value={content} rows='5'/>
+            </CardGroup>
 
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
-          </CardGroup>
+            <CardGroup className='group'>
+            <Label>Select Skill Image</Label>
+            {/* <Row>
+             
+            </Row> */}
+            </CardGroup>
+            <CardGroup>
+            <ImageUploader onInput={catchFileDataHandler}/>
+            </CardGroup>
 
-          <Button type='submit' className='btn'>Submit</Button>
-      </form>
+            <Button type='submit' color='primary' className='btn mt-2'>Submit</Button>
+        </form>
+      </Col>
     </Card>
   )
 }
