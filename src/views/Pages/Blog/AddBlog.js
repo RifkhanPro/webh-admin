@@ -1,8 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+// import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, Input, Col, Label } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
@@ -54,25 +54,26 @@ function AddSkill() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
-          <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
-          </CardGroup>
+      <Col className="col-12">
+        <form onSubmit={submitHandler} className="m-2">
+            <CardGroup className='group'>
+                <Label>Name</Label>
+                <Input onChange={titleHandler} value={topic} type='text'/>
+            </CardGroup>
 
+            <CardGroup className='group'>
+                <Label>Description</Label>
+                <Input onChange={descHandler}  value={content} type='textarea' rows='5'/>
+            </CardGroup>
 
-          <CardGroup className='group'>
-              <CardTitle>Add Blog Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
-          </CardGroup>
+            <CardGroup className='group'>
+                <Label>Add Blog Image</Label>
+                <ImageUploader onInput={catchFileDataHandler}/>
+            </CardGroup>
 
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
-          </CardGroup>
-
-          <Button type='submit' className='btn'>Submit</Button>
-      </form>
+            <Button type='submit' className='me-1' color='primary'>Submit</Button>
+        </form>
+      </Col>
     </Card>
   )
 }

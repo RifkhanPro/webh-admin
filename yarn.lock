@@ -1251,6 +1251,18 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
+"@fortawesome/fontawesome-common-types@6.2.1":
+  "integrity" "sha512-Sz07mnQrTekFWLz5BMjOzHl/+NooTdW8F8kDQxjWwbpOJcnoSg4vUDng8d/WR1wOxM0O+CY9Zw0nR054riNYtQ=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.2.1.tgz"
+  "version" "6.2.1"
+
+"@fortawesome/free-solid-svg-icons@^6.2.1":
+  "integrity" "sha512-oKuqrP5jbfEPJWTij4sM+/RvgX+RMFwx3QZCZcK9PrBDgxC35zuc7AOFsyMjMd/PIFPeB2JxyqDr5zs/DZFPPw=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.2.1.tgz"
+  "version" "6.2.1"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "6.2.1"
+
 "@fullcalendar/common@~5.10.1":
   "integrity" "sha512-EumKIJcQTvQdTs75/9dmeREFgjcRVWzqHJS1Xvlz5mNsmB+w9EINCHETRjChtAQg1WD/lTQyVj4sHsKO7vCMSw=="
   "resolved" "https://registry.npmjs.org/@fullcalendar/common/-/common-5.10.1.tgz"
@@ -1650,6 +1662,11 @@
   "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   "version" "2.11.6"
 
+"@popperjs/core@2.11.5":
+  "integrity" "sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw=="
+  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
+  "version" "2.11.5"
+
 "@react-aria/ssr@^3.2.0":
   "integrity" "sha512-NmhoilMDyIfQiOSdQgxpVH2tC2u85Y0mVijtBNbI9kcDYLEiW/r6vKYVKtkyU+C4qobXhGMPfZ70PTc0lysSVA=="
   "resolved" "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.4.1.tgz"
@@ -1994,6 +2011,13 @@
   "resolved" "https://registry.npmjs.org/@types/q/-/q-1.5.5.tgz"
   "version" "1.5.5"
 
+"@types/react-dom@^18.0.3":
+  "integrity" "sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg=="
+  "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.9.tgz"
+  "version" "18.0.9"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.4.0", "@types/react-transition-group@^4.4.4":
   "integrity" "sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug=="
   "resolved" "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.4.tgz"
@@ -2001,10 +2025,19 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.0.40", "@types/react@>=16.14.8", "@types/react@>=16.9.11":
-  "integrity" "sha512-e7U2WC8XQP/xfR7bwhOhNFZKPTfW1ph+MiqtudKb8tSV8RyCsovQx2sNVtKoOryjxFKpHPPC/yNiGfdeVM5Gyw=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-16.14.24.tgz"
-  "version" "16.14.24"
+"@types/react@*", "@types/react@^18.0.9", "@types/react@>=16.14.8", "@types/react@>=16.9.11":
+  "integrity" "sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.26.tgz"
+  "version" "18.0.26"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    "csstype" "^3.0.2"
+
+"@types/react@^16.0.40":
+  "integrity" "sha512-b99nWeGGReLh6aKBppghVqp93dFJtgtDOzc8NXM6hewD8PQ2zZG5kBLgbx+VJr7Q7WBMjHxaIl3dwpwwPIUgyA=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-16.14.34.tgz"
+  "version" "16.14.34"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -3694,7 +3727,7 @@
     "kind-of" "^6.0.2"
     "shallow-clone" "^3.0.0"
 
-"clsx@^1.1.1":
+"clsx@^1.1.1", "clsx@1.1.1":
   "integrity" "sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA=="
   "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.1.1.tgz"
   "version" "1.1.1"
@@ -8075,6 +8108,15 @@
     "inherits" "^2.0.1"
     "safe-buffer" "^5.1.2"
 
+"mdb-react-ui-kit@^5.1.0":
+  "integrity" "sha512-vh7RN5NlVyIdAxbWWb8/yA/NGz7o0MpAX4XE7RZZeOGobEV6nogO5Y65YnBWqnKAXi5e/3UBLGZmOG+xUNjfBg=="
+  "resolved" "https://registry.npmjs.org/mdb-react-ui-kit/-/mdb-react-ui-kit-5.1.0.tgz"
+  "version" "5.1.0"
+  dependencies:
+    "@popperjs/core" "2.11.5"
+    "clsx" "1.1.1"
+    "react-popper" "2.3.0"
+
 "mdn-data@2.0.14":
   "integrity" "sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow=="
   "resolved" "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.14.tgz"
@@ -10247,7 +10289,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.0.0", "react-dom@^16.0.0 || ^17.0.0", "react-dom@^16.3.0", "react-dom@^16.7.0 || ^17", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^16.9.0", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=0.14.0", "react-dom@>=15.0.0", "react-dom@>=16", "react-dom@>=16.14.0", "react-dom@>=16.3.0", "react-dom@>=16.3.3", "react-dom@>=16.6.0", "react-dom@>=16.8", "react-dom@>=16.8.0", "react-dom@>=16.9.0", "react-dom@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x", "react-dom@17.0.2":
+"react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.0.0", "react-dom@^16.0.0 || ^17.0.0", "react-dom@^16.3.0", "react-dom@^16.7.0 || ^17", "react-dom@^16.8.0 || ^17 || ^18", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^16.9.0", "react-dom@^17.0.2", "react-dom@^18.1.0", "react-dom@>= 16.8.0", "react-dom@>=0.14.0", "react-dom@>=15.0.0", "react-dom@>=16", "react-dom@>=16.14.0", "react-dom@>=16.3.0", "react-dom@>=16.3.3", "react-dom@>=16.6.0", "react-dom@>=16.8", "react-dom@>=16.8.0", "react-dom@>=16.9.0", "react-dom@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x", "react-dom@17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -10362,10 +10404,10 @@
     "prop-types" "^15.7.2"
     "react-fast-compare" "^3.0.1"
 
-"react-popper@^2.2.4":
-  "integrity" "sha512-kxGkS80eQGtLl18+uig1UIf9MKixFSyPxglsgLBxlYnyDf65BiY9B3nZSc6C9XUNDgStROB0fMQlTEz1KxGddw=="
-  "resolved" "https://registry.npmjs.org/react-popper/-/react-popper-2.2.5.tgz"
-  "version" "2.2.5"
+"react-popper@^2.2.4", "react-popper@2.3.0":
+  "integrity" "sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q=="
+  "resolved" "https://registry.npmjs.org/react-popper/-/react-popper-2.3.0.tgz"
+  "version" "2.3.0"
   dependencies:
     "react-fast-compare" "^3.0.1"
     "warning" "^4.0.2"
@@ -10550,7 +10592,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0", "react@^16.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.3.0", "react@^16.7.0 || ^17", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^16.8.3", "react@^16.8.6 || ^17", "react@^16.9.0", "react@^16.9.0 || ^17.0.0 || 18.0.0-beta", "react@^17.0.2", "react@>= 16", "react@>= 16.8", "react@>= 16.8.0", "react@>= 16.8.3", "react@>= 16.8.x", "react@>=0.13", "react@>=0.14.0", "react@>=15.0.0", "react@>=16", "react@>=16.14.0", "react@>=16.3.0", "react@>=16.3.3", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0", "react@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x", "react@17.0.2":
+"react@^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0", "react@^16.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.3.0", "react@^16.7.0 || ^17", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^16.8.3", "react@^16.8.6 || ^17", "react@^16.9.0", "react@^16.9.0 || ^17.0.0 || 18.0.0-beta", "react@^17.0.2", "react@^18.1.0", "react@>= 16", "react@>= 16.8", "react@>= 16.8.0", "react@>= 16.8.3", "react@>= 16.8.x", "react@>=0.13", "react@>=0.14.0", "react@>=15.0.0", "react@>=16", "react@>=16.14.0", "react@>=16.3.0", "react@>=16.3.3", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0", "react@0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

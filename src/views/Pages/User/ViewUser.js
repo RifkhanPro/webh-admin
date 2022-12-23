@@ -49,7 +49,7 @@ const ViewUser = () => {
               <h3 className="mb-2">Personal Information</h3>
               <h5 className="mb-2">Status : {userData.status}</h5>
               <Link className="btn btn-primary mb-3" to="/user">
-                All Userss
+                All Users
               </Link>
             </div>
           )}

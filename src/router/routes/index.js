@@ -13,6 +13,7 @@ import PublicRoute from '@components/routes/PublicRoute'
 
 // ** Utils
 import { isObjEmpty } from '@utils'
+import Test from '../../views/Pages/Post/Test'
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -167,7 +168,10 @@ const Routes = [
     path:'/user/edit/:id',
     element: <EditUser />
   },
-
+  {
+    path:'/test',
+    element: <Test />
+  },
   //End User Here
 
 

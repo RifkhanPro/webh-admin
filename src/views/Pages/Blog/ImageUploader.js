@@ -47,13 +47,14 @@ function ImageUploader(props) {
     <div className='form-control1'>
         <input type="file" name="" value="" style={{display:'none'}} accept='.jpg,.png,.jpeg' onChange={pickHandler} ref={filePickerRef} />
 
-        <div className='image-upload'>
-            <div className='image-upload__preview'>
-                {previewUrl && <img src={previewUrl} alt='preview' />}
-                {!previewUrl && <p >Please pick an image</p>}
-            </div>
-
+            <div className='image-upload'>
+                <div className='image-upload__preview'>
+                    {previewUrl && <img src={previewUrl} alt='preview' />}
+                    {!previewUrl && <p >Please pick an image</p>}
+                </div>
+            <div>
             <Button type='button' onClick={pickImageHandler}>Pick Image</Button>
+            </div>
         </div>
     </div>
 

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from "reactstrap"
 import { Link, useNavigate } from "react-router-dom"
+import { Edit, Delete, Info, PlusCircle } from 'react-feather'
+
 
 const ViewPosts = () => {
   const [postsData, postDataChange] = useState()
+//   const [postDataChange] = useState()
   const navigate = useNavigate()
   const LoadDetail = (_id) => {
         navigate(`${_id}`)
@@ -46,22 +49,19 @@ const ViewPosts = () => {
                     <h2 className="m-2">All Posts</h2>
                 </div>
                 <div className="card-body">
-                    {/* <div className="divbtn"> */}
-                        <Link to="/addPost" className="btn btn-success mb-2">Add New (+)</Link>
-                    {/* </div> */}
-                    <table className="table table-bordered">
-                        <thead className="bg-dark text-white">
-                            <tr>
-                                <td>ID</td>
-                                <td>Name</td>
-                                <td>Description</td>
-                                <td>Image</td>
-                                {/* <td>Status</td> */}
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {postsData &&
+                        <Link to="/addPost" className="btn btn-success mb-2"><PlusCircle size={12} /></Link>
+                    <table class="table">
+                    <thead className="primary">
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {postsData &&
                                 postsData.map(item => (
                                     <tr key={item._id}>
                                         <td></td>
@@ -69,16 +69,15 @@ const ViewPosts = () => {
                                         <td>{item.description}</td>
                                         <td></td>
                                         {/* <td>{item.image}</td> */}
-                                        <td><a onClick={() => { LoadEdit(item._id) }} className="btn btn-success button">Edit </a> 
-                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger mr-1">Remove </a>
-                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-primary mr-1">Details</a>
+                                         <td>
+                                            <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |  
+                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
+                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>
                                         </td>
                                     </tr>
                                 ))
-                            }
-
-                        </tbody>
-
+                            } 
+                    </tbody>
                     </table>
                 </div>
             </div>

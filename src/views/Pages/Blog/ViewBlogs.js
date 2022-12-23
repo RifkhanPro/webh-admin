@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, ButtonToggle, Button } from 'reactstrap'
+import { Card, CardBody, Button } from 'reactstrap'
+import { PlusCircle } from 'react-feather'
 import BlogList  from './BlogList'
-import './ViewBlogs.css'
+// import './ViewBlogs.css'
 
 function ViewBlogs() {
   const [blogs, setBlogs] = useState()
@@ -45,7 +46,7 @@ function ViewBlogs() {
           </Card>
         </CardBody>
       </Card> 
-      <Button className='btn' onClick={routerHandler}>Add Blog</Button>
+      <Button className='btn' color='primary' onClick={routerHandler}>Add Blog <PlusCircle size={12} /></Button>
     </div>
 </>
 }

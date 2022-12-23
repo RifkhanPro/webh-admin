@@ -44,7 +44,7 @@ function ImageUploader(props) {
     filePickerRef.current.click()
   }
   return (
-    <div className='form-control'>
+    <div className='form-control1'>
         <input type="file" name="" value="" style={{display:'none'}} accept='.jpg,.png,.jpeg' onChange={pickHandler} ref={filePickerRef} />
 
         <div className='image-upload'>

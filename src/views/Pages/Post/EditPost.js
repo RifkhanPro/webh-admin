@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { Button, Card, CardTitle, Input, CardGroup} from "reactstrap"
+import { Button, Card, CardTitle, Input, CardGroup, Label} from "reactstrap"
+
 
 const EditPost = () => {
-const { id } = useParams()
-
+    const { id } = useParams()
+    const navigate = useNavigate()
     const [name, nameChange] = useState("")
     const [description, descriptionChange] = useState("")
 
@@ -20,8 +21,6 @@ const { id } = useParams()
         })
     }, [])
 
-    const navigate = useNavigate()
-
     const handlesubmit = (e) => {
         e.preventDefault()
         const postData = {name, description}
@@ -34,7 +33,7 @@ const { id } = useParams()
         }).then((res) => {
           console.log(res)
           alert('Updated successfully.')
-          navigate('/')
+          navigate('/posts')
         }).catch((err) => {
           console.log(err.message)
         })
@@ -42,9 +41,10 @@ const { id } = useParams()
       }
     return (
     <Card>
+      <CardTitle className="mt-2"><h3 className="m-2">Edit Post</h3></CardTitle>
       <form onSubmit = {handlesubmit} className="m-2">
         <CardGroup className="group">
-          <CardTitle>Name</CardTitle>
+          <Label>Name</Label>
           <Input 
           onChange = {e => nameChange(e.target.value)}
           value = {name} 
@@ -52,7 +52,7 @@ const { id } = useParams()
         </CardGroup> 
 
         <CardGroup className="group">
-          <CardTitle>Description</CardTitle>
+          <Label>Description</Label>
           <Input
             onChange = {e => descriptionChange(e.target.value)}
             value = {description}
@@ -69,7 +69,7 @@ const { id } = useParams()
           />
         </CardGroup>  */}
 
-        <Button type = "submit" className = "btn">
+        <Button type = "submit" className = "me-1 mt-1" color="primary">
           Submit
         </Button>
       </form>

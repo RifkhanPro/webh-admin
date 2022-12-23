@@ -1,11 +1,12 @@
 import { React, useState } from "react"
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input, Row, Col, Label, InputGroup} from "reactstrap"
+import { Link, useNavigate } from "react-router-dom"
 
 function AddPost() {
   
   const [name, setName] = useState()
   const [description, setDescription] = useState()
-
+  const navigate = useNavigate()
   const nameHandler = (e) => {
     setName(e.target.value)
   }
@@ -22,10 +23,9 @@ function AddPost() {
         headers:{"content-type":"application/json"}, 
         body:JSON.stringify(postData)
       }).then((res) => {
-        alert('Saved successfully.')
         console.log(res)
-        console.log(postData)
-        navigate('/')
+        alert('Saved successfully.')
+        navigate('/posts')
       }).catch((err) => {
         console.log(err.message)
       })
@@ -37,7 +37,12 @@ function AddPost() {
         <form onSubmit={formSubmitHandler} className="m-2">
           <CardGroup className="group col-12">
           <Label>Name</Label>
-            <Input onChange={nameHandler} value={name} type="text" />
+            <Input 
+              onChange={nameHandler} 
+              value={name} 
+              type="text" 
+              placeholder="Enter Name"
+            />
           </CardGroup> 
 
           <CardGroup className="group">
@@ -45,7 +50,9 @@ function AddPost() {
             <Input
               onChange={descriptionHandler}
               value={description}
-              type="text"
+              type="textarea"
+              rows='5'
+              placeholder="Enter Description"
             />
           </CardGroup> 
 
