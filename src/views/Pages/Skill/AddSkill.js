@@ -4,7 +4,6 @@ import React, { useState, Fragment } from 'react'
 // import './AddSkill.css'
 import { Button, Card, CardGroup, Col, Input, Label, ListGroupItem } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
-import { FileText, X } from 'react-feather'
 
 import ImageUploader from './ImageUploader'
 
@@ -57,6 +56,7 @@ function AddSkill() {
   return (
     <Card>
       <Col className="col-12">
+        <h3 className='m-2'>Add Skill</h3>
         <form onSubmit={submitHandler} className="m-2">
             <CardGroup className='group col-12'>
             <Label>Title</Label>
