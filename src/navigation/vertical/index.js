@@ -79,6 +79,11 @@ export default [
     title: 'TopicPosts',
     icon: <Mail size={20} />,
     navLink: '/topicPosts'
+  }, {
+    id: 'advertisement',
+    title: 'Advertisement',
+    icon: <Mail size={20} />,
+    navLink: '/advertisements'
   },
   {
     id: 'scoreBox',

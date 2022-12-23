@@ -83,6 +83,21 @@ const EditUser = lazy(() => import('../../views/Pages/User/EditUser'))
 const EditPost = lazy(() => import('../../views/Pages/Post/EditPost'))
 
 
+//Analytics
+const ViewAnalytics = lazy(() => import('../../views/Pages/Analytics/ViewAnalytics'))
+const AddAnalytic = lazy(() => import('../../views/Pages/Analytics/AddAnalytic'))
+const ViewAnalytic = lazy(() => import('../../views/Pages/Analytics/ViewAnalytic'))
+const EditAnalytic = lazy(() => import('../../views/Pages/Analytics/EditAnalytic'))
+
+//Advertisements
+const ViewAdvertisements = lazy(() => import('../../views/Pages/Advertisement/ViewAdvertisements'))
+const AddAdvertisement = lazy(() => import('../../views/Pages/Advertisement/AddAdvertisement'))
+const ViewAdvertisement = lazy(() => import('../../views/Pages/Advertisement/ViewAdvertisement'))
+const EditAdvertisement = lazy(() => import('../../views/Pages/Advertisement/EditAdvertisement'))
+
+//Feedback
+const AddFeedback = lazy(() => import('../../views/Pages/Feedback/AddFeedback'))
+
 // ** Merge Routes
 const Routes = [
   {
@@ -266,6 +281,42 @@ const Routes = [
   {
     path:'/trends/edit/:id',
     element: <EditTrend/>
+  },
+  {
+    path:'/analytics',
+    element: <ViewAnalytics/>
+  },
+  {
+    path:'/addAnalytic',
+    element: <AddAnalytic/>
+  },
+  {
+    path:'/analytics/:id',
+    element: <ViewAnalytic/>
+  },
+  {
+    path:'/analytics/edit/:id',
+    element: <EditAnalytic/>
+  },
+  {
+    path:'/advertisements',
+    element: <ViewAdvertisements/>
+  },
+  {
+    path:'/addAdvertisement',
+    element: <AddAdvertisement/>
+  },
+  {
+    path:'/advertisements/:id',
+    element: <ViewAdvertisement/>
+  },
+  {
+    path:'/advertisements/edit/:id',
+    element: <EditAdvertisement/>
+  },
+  {
+    path:"addFeedback",
+    element:<AddFeedback />
   }
   
 ]
