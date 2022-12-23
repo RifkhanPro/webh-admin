@@ -6,18 +6,18 @@ import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
-const ViewTrend = () => {
+const ViewAdvertisement = () => {
     const {id} = useParams()
     const [trend, setTrend] = useState()
     const navigate = useNavigate()
    
     const routeHandler = () => {
-      navigate(`/trends/edit/${id}`)
+      navigate(`/advertisements/edit/${id}`)
     }
 
     const deleteHandler = async() => {
       try {
-        const response = await fetch(`http://localhost:8070/trend/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+        const response = await fetch(`http://localhost:8070/advertisement/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
         const responseData = await response.json()
 
@@ -31,13 +31,13 @@ const ViewTrend = () => {
     } catch (err) {
     }
 
-      navigate('/trends')
+      navigate('/advertisements')
     }
     
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/trend/${id}`)
+         const response = await fetch(`http://localhost:8070/advertisement/${id}`)
 
          const responseData = await response.json()
 
@@ -60,12 +60,13 @@ const ViewTrend = () => {
               <img src={avatar} />
           </div>
         {trend && <div className="details">
-              <h1>{trend.title}</h1>
+              <h1>{trend.name}</h1>
+              <h1>{trend.expiry}</h1>
               <CardText>{trend.desc}</CardText>
           </div>}
 
           {!trend && 
-              <CardText className="no-respond">There is no Such Trend</CardText>
+              <CardText className="no-respond">There is no Such advertisement</CardText>
           }
 
       </Card>
@@ -77,4 +78,4 @@ const ViewTrend = () => {
   </>
 }
 
-export default ViewTrend
+export default ViewAdvertisement

@@ -6,18 +6,18 @@ import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
-const ViewTrend = () => {
+const ViewAnalytic = () => {
     const {id} = useParams()
     const [trend, setTrend] = useState()
     const navigate = useNavigate()
    
     const routeHandler = () => {
-      navigate(`/trends/edit/${id}`)
+      navigate(`/analytics/edit/${id}`)
     }
 
     const deleteHandler = async() => {
       try {
-        const response = await fetch(`http://localhost:8070/trend/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+        const response = await fetch(`http://localhost:8070/analytics/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
         const responseData = await response.json()
 
@@ -31,13 +31,13 @@ const ViewTrend = () => {
     } catch (err) {
     }
 
-      navigate('/trends')
+      navigate('/analytics')
     }
     
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/trend/${id}`)
+         const response = await fetch(`http://localhost:8070/analytics/${id}`)
 
          const responseData = await response.json()
 
@@ -65,7 +65,7 @@ const ViewTrend = () => {
           </div>}
 
           {!trend && 
-              <CardText className="no-respond">There is no Such Trend</CardText>
+              <CardText className="no-respond">There is no Such analytics</CardText>
           }
 
       </Card>
@@ -77,4 +77,4 @@ const ViewTrend = () => {
   </>
 }
 
-export default ViewTrend
+export default ViewAnalytic
