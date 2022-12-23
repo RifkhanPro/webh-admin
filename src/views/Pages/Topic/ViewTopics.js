@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
-import SkillList from './SkillList'
+import TopicList from './TopicList'
 import './ViewBlogs.css'
 
-function ViewSkills() {
-  const [skills, setSkills] = useState()
+function ViewTopics() {
+  const [topics, setTopics] = useState()
   const navigate  = useNavigate()
   useEffect(() => {
      const sendRequest = async () => {
       try {
-          const response = await fetch('http://localhost:8070/skill')
+          const response = await fetch('http://localhost:8070/topicPost/topicPosts')
 
           const responseData = await response.json()
  
           console.log(responseData)
 
-          setSkills(responseData)
+          setTopics(responseData)
              
           if (!response.ok()) {
             throw new Error(responseData.message)
@@ -31,7 +31,7 @@ function ViewSkills() {
 
   
   const routerHandler = () => {
-    navigate('/addSkill')
+    navigate('/addTopicPost')
   }
 
   return (
@@ -39,16 +39,16 @@ function ViewSkills() {
       <Card>
           <CardBody>
             <Card>
-              {skills && <SkillList  data = {skills}/>}
-              {!skills && <p>There is no Skills</p>}
+              {topics && <TopicList  data = {topics}/>}
+              {!topics && <p>There is no TopicPosts</p>}
             </Card>
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add Skill</Button>
+      <Button className='btn' onClick={routerHandler}>Add Topic</Button>
 
     </div>
   )
 }
 
-export default ViewSkills
+export default ViewTopics

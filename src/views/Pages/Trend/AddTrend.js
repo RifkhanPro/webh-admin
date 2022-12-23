@@ -6,11 +6,10 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
-function AddSkill() {
+function AddTrend() {
 
-  const [topic, setTitle] = useState()
-  const [content, setDesc] = useState()
-
+  const [title, setTitle] = useState()
+  const [desc, setDesc] = useState()
   const navigate = useNavigate()
 
   const titleHandler = (e) => {
@@ -28,15 +27,13 @@ function AddSkill() {
     e.preventDefault()
 
     try {
-			const response = await fetch('http://localhost:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-					name:topic,
-					desc:content
+			const response = await fetch('http://localhost:8070/trend', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+          title,
+					desc
 				})
 			})
 
 			const responseData = await response.json()
-
-      console.log(responseData)
 
 			if (!response.ok) {
 				throw new Error(responseData.message)
@@ -49,26 +46,27 @@ function AddSkill() {
       //
     }
 
-    navigate('/blogs')
+    navigate('/trends')
   }
 
   return (
     <Card>
       <form onSubmit={submitHandler}>
+         
+
           <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
+              <CardTitle>Title</CardTitle>
+              <Input onChange={titleHandler} value={title} type='text'/>
           </CardGroup>
 
-
           <CardGroup className='group'>
-              <CardTitle>Add Blog Image</CardTitle>
+              <CardTitle>Add Trend Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
+              <Input onChange={descHandler}  value={desc} type='text'/>
           </CardGroup>
 
           <Button type='submit' className='btn'>Submit</Button>
@@ -77,4 +75,4 @@ function AddSkill() {
   )
 }
 
-export default AddSkill
+export default AddTrend

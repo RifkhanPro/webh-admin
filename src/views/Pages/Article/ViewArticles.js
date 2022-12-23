@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, ButtonToggle, Button } from 'reactstrap'
-import BlogList  from './BlogList'
+import BlogList  from './ArticleList'
 import './ViewBlogs.css'
 
-function ViewBlogs() {
-  const [blogs, setBlogs] = useState()
+function ViewArticles() {
+  const [articles, setArticles] = useState()
   const navigate = useNavigate()
 
   useEffect(() => {
      const sendRequest = async () => {
       try {
-          const response = await fetch('http://localhost:8070/blog')
+          const response = await fetch('http://localhost:8070/article')
 
           const responseData = await response.json()
  
           console.log(responseData)
 
-          setBlogs(responseData)
+          setArticles(responseData)
              
           if (!response.ok()) {
             throw new Error(responseData.message)
@@ -31,7 +31,7 @@ function ViewBlogs() {
   }, [])
 
   const routerHandler = () => {
-    navigate('/addBlog')
+    navigate('/addArticle')
   }
 
   return <>
@@ -40,14 +40,14 @@ function ViewBlogs() {
        
         <CardBody>
           <Card>
-             {blogs && <BlogList  data = {blogs}/>}
-             {!blogs && <p>There is no Blogs</p>}
+             {articles && <BlogList  data = {articles}/>}
+             {!articles && <p>There is no Articles</p>}
           </Card>
         </CardBody>
       </Card> 
-      <Button className='btn' onClick={routerHandler}>Add Blog</Button>
+      <Button className='btn' onClick={routerHandler}>Add Article</Button>
     </div>
 </>
 }
 
-export default ViewBlogs
+export default ViewArticles
