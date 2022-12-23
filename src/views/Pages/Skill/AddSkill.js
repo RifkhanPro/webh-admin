@@ -1,7 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, Fragment } from 'react'
-// import './AddSkill.css'
 import { Button, Card, CardGroup, Col, Input, Label, ListGroupItem } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 

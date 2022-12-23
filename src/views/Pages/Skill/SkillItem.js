@@ -10,7 +10,7 @@ const SkillItem = (props) => {
     navigate(`${props.id}`)
   }
   
-  return ( 
+  return (
           <div className="skill_card" onClick={() => routehandler(props.id)}>
             <div className="title">{props.title}</div>
             <div className="image">

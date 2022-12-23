@@ -54,7 +54,7 @@ const ViewSkill = () => {
 
   return <>
       <Card className="card">
-          <div className="image">
+          <div className="image m-5">
               <img src={avatar} />
           </div>
         {skill && <div className="details">
@@ -69,9 +69,9 @@ const ViewSkill = () => {
       </Card>
 
       <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-          </div>
+          <Button onClick={routeHandler} className='btn' color="warning">Edit</Button>
+          <Button onClick={deleteHandler} className='btn' color="danger">Delete</Button>
+      </div>
   </>
 }
 
