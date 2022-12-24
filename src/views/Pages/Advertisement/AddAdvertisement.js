@@ -79,7 +79,6 @@ function AddAdvertisement() {
               <Label>Add Advertisement Image</Label>
               <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
-
           <Button type='submit' className='btn'>Submit</Button>
       </form>
       </Col>
