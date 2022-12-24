@@ -83,7 +83,7 @@ const AddName = () => {
 				</CardGroup>
 				<div className='btns'>
 					<Button type='submit' className='btn'>Add Name</Button>
-					<Button type='button' onClick={showNamesHandler} className='btn'>Show Names</Button>
+					<Button type='button' onClick={showNamesHandler} className='btn show'>Show Names</Button>
 				</div>
 			</form>
 	</Card>)

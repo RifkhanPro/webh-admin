@@ -74,7 +74,7 @@ const ViewTopic = () => {
 
       <div className="btns">
             <Button onClick={routeHandler} className='btn'>Edit Topic</Button>
-            <Button onClick={addNameHandler} className='btn'>Edit Name</Button>
+            <Button onClick={addNameHandler} className='btn'>Add Name</Button>
             <Button onClick={deleteHandler} className='btn delete'>Delete Topic</Button>
       </div>
   </>

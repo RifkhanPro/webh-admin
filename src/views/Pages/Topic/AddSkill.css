@@ -16,13 +16,14 @@ form .group{
 }
 
 .btns{
+    width: 100%;
     display: flex;
-    margin: auto;
     justify-content: space-evenly;
 }
-
-.btn{
-    display: block;
-    width: 30%;
-    margin: auto;
+.btns .show{
+    background-color: blue !important;
 }
+.btn{
+    width: 40%;
+}
+
