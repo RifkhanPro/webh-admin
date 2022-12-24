@@ -8,7 +8,7 @@ const ArticleList = (props) => {
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<ArticleItem id={item._id} title={item.title} desc={item.desc} />
+						<ArticleItem id={item._id} image={item.image} title={item.title} desc={item.desc} />
 					</li>
 				))}
 			</ul>

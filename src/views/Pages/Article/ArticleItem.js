@@ -15,7 +15,8 @@ const ArticleItem = (props) => {
           <div className="skill_card" onClick={() => routehandler(props.id)}>
             <div className="title">{props.title}</div>
             <div className="image">
-              <img src={avatar} alt="" />
+            {!props.image && <img src={avatar} alt="" />}
+              {props.image && <img src={props.image} alt="" />}
             </div>
             <div className="desc">{props.desc}</div>
           </div>

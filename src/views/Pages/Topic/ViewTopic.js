@@ -63,7 +63,7 @@ const ViewTopic = () => {
           </div>
         {skill && <div className="details">
               <h1>{skill.category}</h1>
-              <NameList data = {skill.names} />
+              <NameList category={skill.category} data = {skill.names} />
           </div>}
 
           {!skill && 

@@ -8,7 +8,7 @@ const NewsList = (props) => {
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<NewsItem id={item._id} title={item.title} desc={item.desc}/>
+						<NewsItem id={item._id} image={item.image} title={item.title} desc={item.desc}/>
 					</li>
 				))}
 			</ul>

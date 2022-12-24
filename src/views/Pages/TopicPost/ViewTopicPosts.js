@@ -39,7 +39,7 @@ function ViewTopicPosts() {
       <Card>
           <CardBody>
             <Card>
-              {topics && <TopicList  data = {topics}/>}
+              {topics && <TopicPostList  data = {topics}/>}
               {!topics && <p>There is no TopicPosts</p>}
             </Card>
           </CardBody>

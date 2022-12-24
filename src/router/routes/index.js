@@ -53,6 +53,7 @@ const EditArticle = lazy(() => import('../../views/Pages/Article/EditArticle'))
 //TopicPosts
 const ViewTopicPosts = lazy(() => import('../../views/Pages/TopicPost/ViewTopicPosts'))
 const AddTopicPost = lazy(() => import('../../views/Pages/TopicPost/AddTopicPost'))
+const AddPost = lazy(() => import('../../views/Pages/Topic/AddPost'))
 const ViewTopicPost = lazy(() => import('../../views/Pages/TopicPost/ViewTopicPost'))
 const EditTopicPost = lazy(() => import('../../views/Pages/TopicPost/EditTopicPost'))
 
@@ -105,6 +106,8 @@ const ViewTopic = lazy(() => import('../../views/Pages/Topic/ViewTopic'))
 const EditTopic = lazy(() => import('../../views/Pages/Topic/EditTopic'))
 const AddName = lazy(() => import('../../views/Pages/Topic/AddName'))
 const ShowNames = lazy(() => import('../../views/Pages/Topic/ShowNames'))
+const NameDetail = lazy(() => import('../../views/Pages/Topic/NameDetail'))
+const EditName = lazy(() => import('../../views/Pages/Topic/EditName'))
 
 //Feedback
 const AddFeedback = lazy(() => import('../../views/Pages/Feedback/AddFeedback'))
@@ -355,6 +358,18 @@ const Routes = [
   {
     path:"/topics/:id/names",
     element:<ShowNames />
+  },
+  {
+    path:"/topics/:category/:name",
+    element:<NameDetail />
+  },
+  {
+    path:"/topicPost/:id/addPost",
+    element:<AddPost />
+  },
+  {
+    path:"/topicPost/:name/:category/editName",
+    element:<EditName />
   }
   
 ]

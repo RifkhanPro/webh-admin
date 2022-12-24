@@ -6,7 +6,6 @@ function ImageUploader(props) {
 
     const [file, setFile] = useState()
     const [previewUrl, setPreviewUrl] = useState()
-    const [isValid, setIsValid] = useState(false)
 
     const filePickerRef = useRef()
 
@@ -25,19 +24,15 @@ function ImageUploader(props) {
     }, [file])
   const pickHandler = (e) => {
     let pickedFile 
-    let fileIsValid = isValid
 
     if (e.target.files && e.target.files.length === 1) {
         pickedFile = e.target.files[0]
         setFile(pickedFile)
-        setIsValid(true)
-        fileIsValid = true
     } else {
         setIsValid(false)
-        fileIsValid = false
     }
 
-    props.onInput(pickedFile, fileIsValid)
+    props.onInput(pickedFile)
   }
 
   const pickImageHandler = () => {

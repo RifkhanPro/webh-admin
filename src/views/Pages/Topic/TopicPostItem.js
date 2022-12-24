@@ -1,8 +1,9 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
 import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './SkillItem.css'
-const NewsItem = (props) => {
+const TopicPostItem = (props) => {
 
   const navigate = useNavigate()
 
@@ -12,10 +13,10 @@ const NewsItem = (props) => {
   
   return ( 
           <div className="skill_card" onClick={() => routehandler(props.id)}>
-            <div className="title">{props.title}</div>
+            <div className="title">{props.category}</div>
+            <div className="title">{props.name}</div>
             <div className="image">
-            {!props.image && <img src={avatar} alt="" />}
-              {props.image && <img src={props.image} alt="" />}
+              <img src={avatar} alt="" />
             </div>
             <div className="desc">{props.desc}</div>
           </div>
@@ -23,4 +24,4 @@ const NewsItem = (props) => {
   
 }
 
-export default NewsItem
+export default TopicPostItem

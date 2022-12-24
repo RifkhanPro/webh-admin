@@ -1,11 +1,13 @@
 // import React, { useState } from "react"
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './NameItem.css'
 const NameItem = (props) => {
-    // const [name, setName] = useState()
+    const navigate = useNavigate()
+
 
   const nameHandler = () => {
-      
+    navigate(`/topics/${props.category}/${props.id}`)
   }
 
   return ( 
