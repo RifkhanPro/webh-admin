@@ -4,31 +4,27 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
-import NameList from "./NameList"
-
 import './ViewSkill.css'
 
-const ViewTopic = () => {
+const ViewScoreBox = () => {
     const {id} = useParams()
     const [skill, setSkill] = useState()
     const navigate = useNavigate()
    
     const routeHandler = () => {
-      navigate(`/topics/edit/${id}`)
+      navigate(`/scoreBoxes/edit/${id}`)
     }
-
-    const addNameHandler = () => {
-      navigate(`/topics/${id}/AddName`)
-    }
-
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/topic/${id}`)
+         const response = await fetch(`http://localhost:8070/scoreBox/${id}`)
 
          const responseData = await response.json()
 
+         console.log(responseData)
+
          setSkill(responseData)
+            
          if (!response.ok()) {
            throw new Error(responseData.message)
        }
@@ -42,7 +38,7 @@ const ViewTopic = () => {
 
    const deleteHandler = async() => {
         try {
-          const response = await fetch(`http://localhost:8070/topic/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+          const response = await fetch(`http://localhost:8070/scoreBox/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
           const responseData = await response.json()
 
@@ -53,7 +49,7 @@ const ViewTopic = () => {
       } catch (err) {
       }
 
-      navigate('/topics')
+      navigate('/scoreBoxes')
     }
 
   return <>
@@ -62,22 +58,21 @@ const ViewTopic = () => {
               <img src={avatar} />
           </div>
         {skill && <div className="details">
-              <h1>{skill.category}</h1>
-              <NameList data = {skill.names} />
+              <h1>{skill.title}</h1>
+              <CardText>{skill.desc}</CardText>
           </div>}
 
           {!skill && 
-              <CardText className="no-respond">There is no Such Skill</CardText>
+              <CardText className="no-respond">There is no Such scoreBox</CardText>
           }
 
       </Card>
 
       <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit Topic</Button>
-            <Button onClick={addNameHandler} className='btn'>Edit Name</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete Topic</Button>
-      </div>
+            <Button onClick={routeHandler} className='btn'>Edit</Button>
+            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
+          </div>
   </>
 }
 
-export default ViewTopic
+export default ViewScoreBox

@@ -26,6 +26,12 @@ export default [
     navLink: '/articles'
   },
   {
+    id: 'topic',
+    title: 'Topic',
+    icon: <Mail size={20} />,
+    navLink: '/topics'
+  },
+  {
     id: 'topicPosts',
     title: 'TopicPosts',
     icon: <Mail size={20} />,
@@ -35,6 +41,11 @@ export default [
     title: 'Advertisement',
     icon: <Mail size={20} />,
     navLink: '/advertisements'
+  }, {
+    id: 'postManagement',
+    title: 'PostManagement',
+    icon: <Mail size={20} />,
+    navLink: '/postManagements'
   },
   {
     id: 'scoreBox',

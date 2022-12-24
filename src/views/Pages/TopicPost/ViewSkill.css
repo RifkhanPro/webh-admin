@@ -34,13 +34,14 @@
     align-items: center;
     font: 50px;
 }
+
 .btns{
     display: flex;
     justify-content: space-evenly;
 }
 
 .btns .btn{
-    width: 30%;
+    width: 40%;
 }
 
 .btns .delete{

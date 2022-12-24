@@ -16,9 +16,7 @@ function AddFeedback() {
 
   // const navigate = useNavigate()
   useEffect(() => {
-      setValid(
-        firstName.
-      )
+    setValid(false)
   }, [])
   const firstNameHandler = (e) => {
     if (e.target.value.trim().length > 0) {
