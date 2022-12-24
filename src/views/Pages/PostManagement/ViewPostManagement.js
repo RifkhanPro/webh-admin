@@ -3,7 +3,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
 const ViewPostManagement = () => {
@@ -55,7 +54,8 @@ const ViewPostManagement = () => {
   return <>
       <Card className="card">
           <div className="image">
-              <img src={avatar} />
+          {skill && <img src={skill.image} />}
+
           </div>
         {skill && <div className="details">
               <h1>{skill.name}</h1>
