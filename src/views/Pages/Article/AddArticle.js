@@ -55,12 +55,9 @@ function AddArticle() {
         //
       }
   
-      navigate('/articles')
+    navigate('/articles')
   }
-
     setValidated(true)
-
-    
   }
 
   return (

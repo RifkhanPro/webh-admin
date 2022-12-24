@@ -17,13 +17,13 @@ const ViewPostManagement = () => {
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/postManagement/${id}`)
+         const response = await fetch(`http://localhost:8070/postManagement/posts/${id}`)
 
          const responseData = await response.json()
 
-         console.log(responseData)
+         console.log(responseData.post)
 
-         setSkill(responseData)
+         setSkill(responseData.post)
             
          if (!response.ok()) {
            throw new Error(responseData.message)
