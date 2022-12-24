@@ -97,12 +97,12 @@ export default [
     icon: <Mail size={20} />,
     navLink: '/advertisements'
   }, 
-  {
-    id: 'postManagement',
-    title: 'Post',
-    icon: <Mail size={20} />,
-    navLink: '/postManagements'
-  },
+  // {
+  //   id: 'postManagement',
+  //   title: 'Post',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/postManagements'
+  // },
   {
     id: 'scoreBox',
     title: 'ScoreBox',
