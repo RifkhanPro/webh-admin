@@ -82,8 +82,7 @@ function AddTopic() {
               <Label>Add Skill Image</Label>
               <ImageUploader onInput={catchFileDataHandler}/>
           </CardGroup>
-          
-          <Button type='submit' className='me-1' color='primary'>Submit</Button>
+          <Button type='submit' className='btn'>Submit</Button>
       </form>
     </Card>
   )

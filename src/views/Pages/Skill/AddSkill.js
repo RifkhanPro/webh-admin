@@ -69,7 +69,7 @@ function AddSkill() {
             <Input
               required
               type="text"
-              placeholder="Enter Topic"
+              placeholder="Enter Title"
               onChange={titleHandler}
             />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

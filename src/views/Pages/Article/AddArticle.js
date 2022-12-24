@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 // import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, Col, Label, Input, Row } from 'reactstrap'
 import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 
