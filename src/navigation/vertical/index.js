@@ -1,4 +1,4 @@
-import { Mail, Home, FileText, Circle } from 'react-feather'
+import { Mail, Home, FileText, Circle, Command } from 'react-feather'
 
 export default [
   {
@@ -8,6 +8,12 @@ export default [
     navLink: '/home'
   },
   {
+    id: 'postManagement',
+    title: 'Post',
+    icon: <Mail size={20} />,
+    navLink: '/postManagements'
+  },
+  {
     id: 'skills',
     title: 'Skills',
     icon: <Mail size={20} />,
@@ -15,7 +21,7 @@ export default [
   },
   {
     id: 'blogs',
-    title: 'Blogs',
+    title: 'Blog',
     icon: <Mail size={20} />,
     navLink: '/blogs'
   },
@@ -50,27 +56,27 @@ export default [
       //   icon: <Circle />,
       //   navLink: '/apps/invoice/add'
       // }
-  {
-    id: 'allPosts',
-    title: 'All Posts',
-    icon: <Mail size={20} />,
-    navLink: '/posts'
-  },
-  {
-    id: 'addPost',
-    title: 'Add Post',
-    icon: <Mail size={20} />,
-    navLink: '/addPost'
-  },
+  // {
+  //   id: 'allPosts',
+  //   title: 'All Posts',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/posts'
+  // },
+  // {
+  //   id: 'addPost',
+  //   title: 'Add Post',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/addPost'
+  // },
   {
     id: 'allUsers',
-    title: 'All User',
+    title: 'User',
     icon: <Mail size={20} />,
     navLink: '/user'
   },
   {
     id: 'articles',
-    title: 'Articles',
+    title: 'Article',
     icon: <Mail size={20} />,
     navLink: '/articles'
   },
@@ -90,9 +96,10 @@ export default [
     title: 'Advertisement',
     icon: <Mail size={20} />,
     navLink: '/advertisements'
-  }, {
+  }, 
+  {
     id: 'postManagement',
-    title: 'PostManagement',
+    title: 'Post',
     icon: <Mail size={20} />,
     navLink: '/postManagements'
   },
@@ -116,14 +123,14 @@ export default [
   },
   {
     id: 'recentSearchFeed',
-    title: 'RecentSearchFeed',
+    title: 'Recent Search Feed',
     icon: <Mail size={20} />,
     navLink: '/recentSearchFeeds'
   },
   {
     id: 'feedback',
     title: 'FeedBack',
-    icon: <Mail size={20} />,
+    icon: <Command size={20} />,
     navLink: '/feedbacks'
   },
   {
@@ -134,7 +141,7 @@ export default [
   },
   {
     id: 'trend',
-    title: 'Trends',
+    title: 'Trend',
     icon: <Mail size={20} />,
     navLink: '/trends'
   }
