@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
-import TopicList from './TopicList'
+import ScoreBoxList from './ScoreBoxList'
 import './ViewBlogs.css'
 
-function ViewTopics() {
-  const [topics, setTopics] = useState()
+function ViewScoreBoxes() {
+  const [skills, setSkills] = useState()
   const navigate  = useNavigate()
   useEffect(() => {
      const sendRequest = async () => {
       try {
-          const response = await fetch('http://localhost:8070/topic/topics')
+          const response = await fetch('http://localhost:8070/scoreBox')
 
           const responseData = await response.json()
  
           console.log(responseData)
 
-          setTopics(responseData)
+          setSkills(responseData)
              
           if (!response.ok()) {
             throw new Error(responseData.message)
@@ -31,7 +31,7 @@ function ViewTopics() {
 
   
   const routerHandler = () => {
-    navigate('/addTopic')
+    navigate('/addScoreBox')
   }
 
   return (
@@ -39,16 +39,16 @@ function ViewTopics() {
       <Card>
           <CardBody>
             <Card>
-              {topics && <TopicList  data = {topics}/>}
-              {!topics && <p>There is no topics</p>}
+              {skills && <ScoreBoxList  data = {skills}/>}
+              {!skills && <p>There is no ScoreBoxes</p>}
             </Card>
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add Topic</Button>
+      <Button className='btn' onClick={routerHandler}>Add ScoreBox</Button>
 
     </div>
   )
 }
 
-export default ViewTopics
+export default ViewScoreBoxes

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
-import TopicList from './TopicList'
+import TopicPostList from './TopicPostList'
 import './ViewBlogs.css'
 
-function ViewTopics() {
+function ViewTopicPosts() {
   const [topics, setTopics] = useState()
   const navigate  = useNavigate()
   useEffect(() => {
      const sendRequest = async () => {
       try {
-          const response = await fetch('http://localhost:8070/topic/topics')
+          const response = await fetch('http://localhost:8070/topicPost/topicPosts')
 
           const responseData = await response.json()
  
@@ -31,7 +31,7 @@ function ViewTopics() {
 
   
   const routerHandler = () => {
-    navigate('/addTopic')
+    navigate('/addTopicPost')
   }
 
   return (
@@ -40,7 +40,7 @@ function ViewTopics() {
           <CardBody>
             <Card>
               {topics && <TopicList  data = {topics}/>}
-              {!topics && <p>There is no topics</p>}
+              {!topics && <p>There is no TopicPosts</p>}
             </Card>
           </CardBody>
       </Card>
@@ -51,4 +51,4 @@ function ViewTopics() {
   )
 }
 
-export default ViewTopics
+export default ViewTopicPosts

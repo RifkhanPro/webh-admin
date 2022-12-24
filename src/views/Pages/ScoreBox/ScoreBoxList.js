@@ -1,18 +1,18 @@
 /* eslint-disable no-tabs */
 import React from "react"
-import TopicItem from "./TopicItem"
+import ScoreBoxItem from "./ScoreBoxItem"
 import './Skill_Card.css'
 
-const TopicList = (props) => {
+const ScoreBoxList = (props) => {
 	return <>
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<TopicItem id={item._id} category={item.category}  />
+						<ScoreBoxItem id={item._id} title={item.title} desc={item.desc} />
 					</li>
 				))}
 			</ul>
 		</>
 }
 
-export default TopicList     
+export default ScoreBoxList     

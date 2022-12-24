@@ -4,8 +4,6 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
-import NameList from "./NameList"
-
 import './ViewSkill.css'
 
 const ViewTopic = () => {
@@ -16,11 +14,6 @@ const ViewTopic = () => {
     const routeHandler = () => {
       navigate(`/topics/edit/${id}`)
     }
-
-    const addNameHandler = () => {
-      navigate(`/topics/${id}/AddName`)
-    }
-
   useEffect(() => {
     const sendRequest = async () => {
      try {
@@ -29,6 +22,7 @@ const ViewTopic = () => {
          const responseData = await response.json()
 
          setSkill(responseData)
+            
          if (!response.ok()) {
            throw new Error(responseData.message)
        }
@@ -63,7 +57,6 @@ const ViewTopic = () => {
           </div>
         {skill && <div className="details">
               <h1>{skill.category}</h1>
-              <NameList data = {skill.names} />
           </div>}
 
           {!skill && 
@@ -73,10 +66,9 @@ const ViewTopic = () => {
       </Card>
 
       <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit Topic</Button>
-            <Button onClick={addNameHandler} className='btn'>Edit Name</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete Topic</Button>
-      </div>
+            <Button onClick={routeHandler} className='btn'>Edit</Button>
+            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
+          </div>
   </>
 }
 

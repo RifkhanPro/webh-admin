@@ -53,10 +53,10 @@ const ViewArticle = lazy(() => import('../../views/Pages/Article/ViewArticle'))
 const EditArticle = lazy(() => import('../../views/Pages/Article/EditArticle'))
 
 //TopicPosts
-const ViewTopicPosts = lazy(() => import('./../../views/Pages/Topic/ViewTopics'))
-const AddTopicPost = lazy(() => import('../../views/Pages/Topic/AddTopic'))
-const ViewTopicPost = lazy(() => import('../../views/Pages/Topic/ViewTopic'))
-const EditTopicPost = lazy(() => import('../../views/Pages/Topic/EditTopic'))
+const ViewTopicPosts = lazy(() => import('../../views/Pages/TopicPost/ViewTopicPosts'))
+const AddTopicPost = lazy(() => import('../../views/Pages/TopicPost/AddTopicPost'))
+const ViewTopicPost = lazy(() => import('../../views/Pages/TopicPost/ViewTopicPost'))
+const EditTopicPost = lazy(() => import('../../views/Pages/TopicPost/EditTopicPost'))
 
 //Trend
 const ViewTrends = lazy(() => import('./../../views/Pages/Trend/ViewTrends'))
@@ -94,6 +94,32 @@ const ViewAdvertisements = lazy(() => import('../../views/Pages/Advertisement/Vi
 const AddAdvertisement = lazy(() => import('../../views/Pages/Advertisement/AddAdvertisement'))
 const ViewAdvertisement = lazy(() => import('../../views/Pages/Advertisement/ViewAdvertisement'))
 const EditAdvertisement = lazy(() => import('../../views/Pages/Advertisement/EditAdvertisement'))
+
+//PostManagement
+const ViewPostManagements = lazy(() => import('../../views/Pages/PostManagement/ViewPostManagements'))
+const AddPostManagement = lazy(() => import('../../views/Pages/PostManagement/AddPostManagement'))
+const ViewPostManagement = lazy(() => import('../../views/Pages/PostManagement/ViewPostManagement'))
+const EditPostManagement = lazy(() => import('../../views/Pages/PostManagement/EditPostManagement'))
+
+//ScoreBoxes
+const ViewScoreBoxes = lazy(() => import('../../views/Pages/ScoreBox/ViewScoreBoxes'))
+const AddScoreBox = lazy(() => import('../../views/Pages/ScoreBox/AddScoreBox'))
+const ViewScoreBox = lazy(() => import('../../views/Pages/ScoreBox/ViewScoreBox'))
+const EditScoreBox = lazy(() => import('../../views/Pages/ScoreBox/EditScoreBox'))
+
+//ScoreBoxes
+const ViewRecentSearchFeeds = lazy(() => import('../../views/Pages/RecentSearchFeed/ViewRecentSearchFeeds'))
+const AddRecentSearchFeed = lazy(() => import('../../views/Pages/RecentSearchFeed/AddRecentSearchFeed'))
+const ViewRecentSearchFeed = lazy(() => import('../../views/Pages/RecentSearchFeed/ViewRecentSearchFeed'))
+const EditRecentSearchFeed = lazy(() => import('../../views/Pages/RecentSearchFeed/EditAddRecentSearchFeed'))
+
+//Topic
+const ViewTopics = lazy(() => import('../../views/Pages/Topic/ViewTopics'))
+const AddTopic = lazy(() => import('../../views/Pages/Topic/AddTopic'))
+const ViewTopic = lazy(() => import('../../views/Pages/Topic/ViewTopic'))
+const EditTopic = lazy(() => import('../../views/Pages/Topic/EditTopic'))
+const AddName = lazy(() => import('../../views/Pages/Topic/AddName'))
+const ShowNames = lazy(() => import('../../views/Pages/Topic/ShowNames'))
 
 //Feedback
 const AddFeedback = lazy(() => import('../../views/Pages/Feedback/AddFeedback'))
@@ -317,6 +343,78 @@ const Routes = [
   {
     path:"addFeedback",
     element:<AddFeedback />
+  },
+  {
+    path:'/postManagements',
+    element: <ViewPostManagements/>
+  },
+  {
+    path:'/addPostManagement',
+    element: <AddPostManagement/>
+  },
+  {
+    path:'/postManagements/:id',
+    element: <ViewPostManagement/>
+  },
+  {
+    path:'/postManagements/edit/:id',
+    element: <EditPostManagement/>
+  },
+  {
+    path:'/scoreBoxes',
+    element: <ViewScoreBoxes/>
+  },
+  {
+    path:'/addScoreBox',
+    element: <AddScoreBox/>
+  },
+  {
+    path:'/scoreBoxes/:id',
+    element: <ViewScoreBox/>
+  },
+  {
+    path:'/scoreBoxes/edit/:id',
+    element: <EditScoreBox/>
+  },
+  {
+    path:'/recentSearchFeeds',
+    element: <ViewRecentSearchFeeds/>
+  },
+  {
+    path:'/addRecentSearchFeed',
+    element: <AddRecentSearchFeed/>
+  },
+  {
+    path:'/recentSearchFeeds/:id',
+    element: <ViewRecentSearchFeed/>
+  },
+  {
+    path:'/recentSearchFeeds/edit/:id',
+    element: <EditRecentSearchFeed/>
+  },
+  {
+    path:"/topics",
+    element:<ViewTopics />
+  },
+  {
+    path:"/addTopic",
+    element:<AddTopic />
+  },
+  {
+    path:"/topics/:id",
+    element:<ViewTopic />
+  },
+  {
+    path:"/topics/edit/:id",
+    element:<EditTopic />
+  },
+  {
+    path:"/topics/:id/addName",
+    element:<AddName />
+  },
+  {
+    path:"/topics/:id/names",
+    element:<ShowNames />
   }
   
 ]

@@ -14,7 +14,6 @@ const EditTopic = () => {
 		setTitle(e.target.value)
 	}
 
-	
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
@@ -22,6 +21,7 @@ const EditTopic = () => {
 	
 			 const responseData = await response.json()
 	
+			 console.log(responseData)
 	
 			 setTitle(responseData.category)
 
@@ -46,6 +46,8 @@ const EditTopic = () => {
 				})
 	
 				const responseData = await response.json()
+	
+		  console.log(responseData)
 	
 				if (!response.ok) {
 					throw new Error(responseData.message)
