@@ -30,9 +30,9 @@ function AddArticle() {
   }
   const descHandler = (e) => {   
     if (e.target.value.trim() === '') {
-      setTopicValidate(false)
+      setContentValidate(false)
     } else {
-      setTopicValidate(true)
+      setContentValidate(true)
       setDesc(e.target.value)
 
     }
@@ -56,16 +56,17 @@ function AddArticle() {
       setTopicValidate(false)
       return
     }
-
+    
+    if (content.trim() === '') {
+      setContentValidate(false)
+      return
+    }
+    
     if (selectedFile === undefined) {
       setImageValidate(false)
       return
     }
 
-    if (content.trim() === '') {
-      setContentValidate(false)
-      return
-    }
 
     console.log('validate')
 
