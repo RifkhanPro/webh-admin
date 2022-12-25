@@ -2,7 +2,7 @@
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
 // import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, Col, Row, Input } from 'reactstrap'
+import { Button, Card, CardGroup, CardTitle, Label, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import Form from 'react-bootstrap/Form'
@@ -84,7 +84,7 @@ function AddPostManagement() {
     }
 
       try {
-        const response = await fetch('http://localhost:8070/postManagement/create', 
+        const response = await fetch('http://localhost:8070/postManagement', 
         {
           method:"POST", headers : {
             "Content-Type":"application/json"
@@ -111,9 +111,37 @@ function AddPostManagement() {
 
   return (
     <Card>
-      {/* <Form onSubmit={submitHandler} className="form-control"> */}
+      <form onSubmit={submitHandler} className='form-control'>
         <h3 className='mt-2'>Add Post</h3>
-        {/* <Row>
+          <CardGroup className='group'>
+              <Label>Name</Label>
+              <Input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
+              {!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+          </CardGroup>
+
+          <CardGroup className='group'>
+              <Label>Description</Label>
+              <Input onChange={contentHandler}  value={content} type='textarea' placeholder='Enter Description' rows='3'/>
+              {!contentValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+          </CardGroup>
+
+          <CardGroup className='group'>
+              <Label>Add Skill Image</Label>
+          </CardGroup>
+            <div>
+              <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+            </div>
+          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+      </form>
+    </Card>
+  )
+}
+
+export default AddPostManagement
+/* <Form onSubmit={submitHandler} className="form-control"> */
+        
+        /* <Row>
           <Form.Group as={Col} controlId="validationCustom01">
             <Form.Label className='mt-2'>Topic</Form.Label>
             <Input
@@ -151,31 +179,4 @@ function AddPostManagement() {
           </CardGroup>
         </Row>
         <Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-      </Form> */}
-      <form onSubmit={submitHandler}>
-          <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
-              <Input onChange={topicHandler} value={topic} type='text'/>
-              {!topicValidate && <p>Name should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={contentHandler}  value={content} type='text'/>
-              {!contentValidate && <p>Description should not be empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Add Skill Image</CardTitle>
-          </CardGroup>
-            <div>
-              <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p>Image should be selected</p>}
-            </div>
-          <Button type='submit' className='btn'>Submit</Button>
-      </form>
-    </Card>
-  )
-}
-
-export default AddPostManagement
+      </Form> */

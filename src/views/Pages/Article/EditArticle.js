@@ -148,7 +148,7 @@ const EditArticle = () => {
 				value={topic}
 				onChange={titleHandler}
 				/>
-				{!topicValidate && <p>Topic should not be Empty</p>}
+				{!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
 			</Form.Group>
 			</Row>
 			<Row>
@@ -162,19 +162,21 @@ const EditArticle = () => {
 				onChange={descHandler}
 				value={desc}
 				/>
-				{!descValidate && <p>Description should not be empty</p>}
+				{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 			</Form.Group>
 			</Row>
 			<Row>
 			<Form.Group as={Col} >
 				<CardGroup className='group'>
-              <CardTitle>Add Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
-              {!imageValidate && <p>image should be selected</p>}
+              <Form.Label>Add Image</Form.Label>
 			  </CardGroup>
 			</Form.Group>
 			</Row>
-			<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
+			<Row>
+			<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
+			</Row>
+			<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 		</Form>
 		{/* <form onSubmit={submitHandler} className='form-control'>
 			<CardGroup className='group'>

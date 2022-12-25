@@ -1,21 +1,35 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 
 function AddTopic() {
 
-  const [topic, setTitle] = useState()
   const navigate = useNavigate()
-
+  const [topic, setTitle] = useState('')
+  const [topicValidate, setTopicValidate] = useState(true)
   const titleHandler = (e) => {
     setTitle(e.target.value)
   }
 
+  // const categoryHandler = (e) => {
+  //   if (e.target.value.trim() === '') {
+  //     setTopicValidate(false)
+  //   } else {
+  //     setTopicValidate(true)
+  //     setTitle(e.target.value)
+  //   }
+  // }
+
   const submitHandler =  async (e) => {
     e.preventDefault()
+    
+    if (topic.trim() === '') {
+      setTopicValidate(false)
+      return
+    }
 
     try {
 			const response = await fetch('http://localhost:8070/topic', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
@@ -41,12 +55,13 @@ function AddTopic() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control col-12'>
           <CardGroup className='group'>
               <CardTitle>Category</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
+              <Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Category'/>
+              {!topicValidate && <p style={{color:"Red"}}>Category should not be Empty</p>}
           </CardGroup>
-          <Button type='submit' className='btn'>Submit</Button>
+          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
     </Card>
   )

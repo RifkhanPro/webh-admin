@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -140,26 +140,29 @@ const EditScoreBox = () => {
 	  }
 
 	return (<Card>
-			<form onSubmit={submitHandler}>
+			<form onSubmit={submitHandler} className='form-control col-12'>
 				<CardGroup className='group'>
 					<CardTitle>Title</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text'/>
-					{!topicValidate && <p>Title should not be Empty</p>}
+					<Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Text'/>
+					{!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
 				</CardGroup>
 	
 				<CardGroup className='group'>
 					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='text'/>
-					{!contentValidate && <p>Description not be empty</p>}
+					<Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
+					{!contentValidate && <p style={{color:"Red"}}>Description not be empty</p>}
 				</CardGroup>
 				
 				<CardGroup className='group'>
               		<CardTitle>Add ScoreBox Image</CardTitle>
-              		<ImageUploader onInput={catchFileDataHandler}/>
-              		{!imageValidate && <p>Image should be selected</p>}
+              		
           		</CardGroup>
+				<div>
+				<ImageUploader onInput={catchFileDataHandler}/>
+              		{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+				</div>
 
-				<Button type='submit' className='btn'>Update</Button>
+				<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
 			</form>
 	</Card>)
 }

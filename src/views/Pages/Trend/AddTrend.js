@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -109,28 +109,29 @@ function AddTrend() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control col-12'>
          
 
           <CardGroup className='group'>
               <CardTitle>Title</CardTitle>
-              <Input onChange={titleHandler} value={title} type='text'/>
-              {!titleValidate && <p>Title should not be Empty</p>}
+              <Input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
+              {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='text'/>
-              {!descValidate && <p>Description should not be empty</p>}
+              <Input onChange={descHandler}  value={desc} type='textarea' placeholder='Enter Description'/>
+              {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
           </CardGroup>
           <CardGroup className='group'>
               <CardTitle>Add Trend Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p>Image should be selected</p>}
+             
           </CardGroup>
-
-
-          <Button type='submit' className='btn'>Submit</Button>
+          <div>
+          <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+          </div>
+          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
     </Card>
   )

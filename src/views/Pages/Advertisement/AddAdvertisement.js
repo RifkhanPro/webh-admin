@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -126,34 +126,37 @@ function AddAdvertisement() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control col-12'>
          
 
-          <CardGroup className='group'>
+          <CardGroup className='group' >
               <CardTitle>Name</CardTitle>
-              <Input onChange={NameHandler} value={name} type='text'/>
-              {!nameValidate && <p>Name should not be Empty</p>}
+              <Input onChange={NameHandler} value={name} type='text' placeholder='Enter Name'/>
+              {!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='textarea'/>
-              {!descValidate && <p>Description should not be Empty</p>}
+              <Input onChange={descHandler}  value={desc} type='textarea' placeholder='Enter Description'/>
+              {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Expiry Date</CardTitle>
               <Input onChange={expiryHandler}  value={expiry} type='date'/>
-              {!expiryValidate && <p>Expiry Date should not be empty</p>}
+              {!expiryValidate && <p style={{color:"Red"}}>Expiry Date should not be empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Add Advertisement Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p>Image should be selected</p>}
+             
           </CardGroup>
+          <div>
+             <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+          </div>
 
-          <Button type='submit' className='btn'>Submit</Button>
+         <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
     </Card>
   )

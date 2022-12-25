@@ -11,6 +11,8 @@
     margin: 1rem;
     cursor: pointer;
     transition: all 1s;
+    max-width: 250px;
+    max-height: 250px;
 }
 
 .skill_card:hover{

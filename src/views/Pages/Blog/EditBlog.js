@@ -134,8 +134,33 @@ const EditSkill = () => {
   
 	return (
 	  <Card>
-		<Col className='col-12'>
-			{/* <Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
+		<form onSubmit={submitHandler} className='form-control col-12'>
+			<CardGroup className='group'>
+				<CardTitle>Title</CardTitle>
+				<Input onChange={titleHandler} value={topic} type='text'/>
+				{!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+			</CardGroup>
+  
+			<CardGroup className='group'>
+				<CardTitle>Description</CardTitle>
+				<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
+				{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+			</CardGroup>
+  
+			<CardGroup className='group'>
+              <CardTitle>Add Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
+			  </CardGroup>
+
+			  <Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
+		</form>
+	  </Card>
+	)
+}
+
+export default EditSkill
+			/* <Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
 			<Row>
 			<Form.Group as={Col} controlId="validationCustom01">
 				<Form.Label>Topic</Form.Label>
@@ -170,31 +195,4 @@ const EditSkill = () => {
 			</Form.Group>
 			</Row>
 			<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-		</Form> */}
-		</Col>
-		<form onSubmit={submitHandler}>
-			<CardGroup className='group'>
-				<CardTitle>Title</CardTitle>
-				<Input onChange={titleHandler} value={topic} type='text'/>
-				{!topicValidate && <p>Topic should not be Empty</p>}
-			</CardGroup>
-  
-			<CardGroup className='group'>
-				<CardTitle>Description</CardTitle>
-				<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-				{!descValidate && <p>Description should not be empty</p>}
-			</CardGroup>
-  
-			<CardGroup className='group'>
-              <CardTitle>Add Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
-              {!imageValidate && <p>image should be selected</p>}
-			  </CardGroup>
-
-			<Button type='submit' color='primary' className='btn'>Update</Button>
-		</form>
-	  </Card>
-	)
-}
-
-export default EditSkill
+		</Form> */

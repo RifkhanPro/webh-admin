@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -135,7 +135,7 @@ const EditSkill = () => {
 	  	}
 
 	return (<Card>
-			<form onSubmit={submitHandler}>
+			<form onSubmit={submitHandler} className='form-control col-12'>
 				<CardGroup className='group'>
 					<CardTitle>Title</CardTitle>
 					<Input onChange={titleHandler} value={topic} type='text'/>
@@ -150,11 +150,12 @@ const EditSkill = () => {
 				
 				<CardGroup className='group'>
               <CardTitle>Add Skill Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
-              {!imageValidate && <p>image should be selected</p>}
-
           </CardGroup>
-				<Button type='submit' className='btn'>Update</Button>
+		  <div>
+		  <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+              {!imageValidate && <p>image should be selected</p>}
+		  </div>
+				<Button type='submit' className='me-1 mt-2' color='primary'>Update</Button>
 			</form>
 	</Card>)
 }

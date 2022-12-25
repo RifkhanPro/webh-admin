@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -112,27 +112,27 @@ function AddSkill() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control col-12'>
           <CardGroup className='group'>
               <CardTitle>Name</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
-              {!topicValidate && <p>Name should not be Empty</p>}
-          </CardGroup>
-
-
-          <CardGroup className='group'>
-              <CardTitle>Add Blog Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p>Image should be selected</p>}
+              <Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Name'/>
+              {!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
-              {!contentValidate && <p>Description should not be empty</p>}
+              <Input onChange={descHandler}  value={content} type='textarea' row='5' placeholder='Enter Description'/>
+              {!contentValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
           </CardGroup>
 
-          <Button type='submit' className='btn'>Submit</Button>
+          <CardGroup className='group'>
+              <CardTitle>Add Blog Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p style={{color:"Red"}}> Image should be selected</p>}
+          </CardGroup>
+
+
+          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
     </Card>
   )

@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -112,26 +112,26 @@ function AddRecentSearchFeed() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control col-12'>
           <CardGroup className='group'>
               <CardTitle>Title</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
-              {!topicValidate && <p>Title should not be Empty</p>}
+              <Input onChange={titleHandler} value={topic} type='text'placeholder='Enter Title'/>
+              {!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
           </CardGroup>
 
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
-              {!contentValidate && <p>Description not be empty</p>}
+              <Input onChange={descHandler}  value={content} type='textarea' rows='5' placeholder='Enter Description'/>
+              {!contentValidate && <p style={{color:"Red"}}>Description not be empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
-              <CardTitle>Add AddRecentSearchFeed Image</CardTitle>
+              <CardTitle>Add Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p>Image should be selected</p>}
+              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
           </CardGroup>
-          <Button type='submit' className='btn'>Submit</Button>
+         <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
     </Card>
   )

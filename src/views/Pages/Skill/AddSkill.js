@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, {  useState } from 'react'
-import './AddSkill.css'
+// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -114,26 +114,26 @@ function AddSkill() {
 
   return (
     <Card>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control col-12'>
           <CardGroup className='group'>
               <CardTitle>Title</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text'/>
-              {!topicValidate && <p>Topic should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Add Skill Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p>image should be selected</p>}
-
+              <Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Title'/>
+              {!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
-              {!contentValidate && <p>It should not be empty</p>}
+              <Input onChange={descHandler}  value={content} type='textarea'  placeholder='Enter Description' row='4'/>
+              {!contentValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
           </CardGroup>
 
+          <CardGroup className='group'>
+              <CardTitle>Add Skill Image</CardTitle>
+          </CardGroup>
+          <div>
+          <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
+          </div>
           <Button type='submit' className='btn' >Submit</Button>
       </form>
     </Card>

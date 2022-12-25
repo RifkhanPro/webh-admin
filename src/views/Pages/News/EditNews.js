@@ -149,8 +149,9 @@ const EditNews = () => {
 								type="text"
 								value={title}
 								onChange={titleHandler}
+								placeholder='Enter Topic'
 							/>
-							{!titleValidate && <p>Topic should not be Empty</p>}
+							{!titleValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
 						</Form.Group>
 					</Row>
 					<Row>
@@ -164,18 +165,18 @@ const EditNews = () => {
 								onChange={descHandler}
 								value={desc}
 							/>
-							{!descValidate && <p>Description should not be empty</p>}
+							{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 						</Form.Group>
 					</Row>
 					<Row>
 						<Form.Group as={Col} >
 							<CardGroup className='group'>
-								<CardTitle>Add Image</CardTitle>
-								<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+								<Form.Label>Add Image</Form.Label>
 							</CardGroup>
-								{!imageValidate && <p>image should be selected</p>}
 						</Form.Group>
 					</Row>
+								<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+								{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 					<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
 				</Form>
 			</Col>

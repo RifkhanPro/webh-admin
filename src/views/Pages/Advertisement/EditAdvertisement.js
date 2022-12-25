@@ -164,7 +164,7 @@ const EditAdvertisement = () => {
 							onChange={nameHandler}
 							placeholder="Enter name"
 						/>
-						{!nameValidate && <p>Topic should not be Empty</p>}
+						{!nameValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
 					</Form.Group>
 				</Row>
 				<Row>
@@ -178,7 +178,7 @@ const EditAdvertisement = () => {
 							onChange={descHandler}
 							value={desc}
 						/>
-						{!descValidate && <p>Description should not be empty</p>}
+						{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 					</Form.Group>
 				</Row>
 				<Row>
@@ -191,17 +191,20 @@ const EditAdvertisement = () => {
 							onChange={expiryHandler}
 							value={expiry}
 						/>
-						{!expiryValidate && <p>Description should not be empty</p>}
+						{!expiryValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 					</Form.Group>
 				</Row>
 				<Row>
 				<Form.Group as={Col} >
 					<CardGroup className='group'>
-					<CardTitle>Add Image</CardTitle>
-					<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
-					{!imageValidate && <p>Image should be selected</p>}
+					<Form.Label>Add Image</Form.Label>
+					
 					</CardGroup>
 				</Form.Group>
+				</Row>
+				<Row>
+				<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</Row>
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 			</Form>

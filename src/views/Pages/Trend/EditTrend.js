@@ -140,7 +140,7 @@ const EditTrend = () => {
 								value={title}
 								onChange={titleHandler}
 							/>
-							{!titleValidate && <p>Title should not be Empty</p>}
+							{!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
 						</Form.Group>
 					</Row>
 				<Row>
@@ -154,17 +154,20 @@ const EditTrend = () => {
 							onChange={descHandler}
 							value={desc}
 						/>
-						{!descValidate && <p>Description should not be empty</p>}
+						{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 					</Form.Group>
 				</Row>
 				<Row>
 					<Form.Group as={Col} >
 						<CardGroup className='group'>
-						<CardTitle>Add Image</CardTitle>
-						<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
-						{!imageValidate && <p>image should be selected</p>}
+						<Form.Label>Add Image</Form.Label>
+						
 					</CardGroup>
 					</Form.Group>
+				</Row>
+				<Row>
+				<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+						{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 				</Row>
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 			</Form>

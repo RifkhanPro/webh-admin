@@ -113,7 +113,36 @@ function AddAnalytic() {
   return (
     <Card>
       <Col className='col-12'>
-      {/* <Form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className='form-control'>
+            <CardGroup className='group'>
+                <Label>Title</Label>
+                <Input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
+                {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+            </CardGroup>
+
+            <CardGroup className='group'>
+                <Label>Description</Label>
+                <Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
+                {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+            </CardGroup>
+            
+            <CardGroup className='group'>
+                <Label>Add Analytic Image</Label>
+            </CardGroup>
+            <div>
+            <ImageUploader onInput={catchFileDataHandler}/>
+                {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+            </div>
+
+            <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+        </form>
+      </Col>
+    </Card>
+  )
+}
+
+export default AddAnalytic
+/* <Form onSubmit={submitHandler}>
         <Row>
           <Form.Group as={Col} controlId="validationCustom01">
             <Form.Label>Title</Form.Label>
@@ -149,33 +178,4 @@ function AddAnalytic() {
           </Form.Group>
         </Row>
         <Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-      </Form> */}
-        <form onSubmit={submitHandler} className='form-control'>
-            <CardGroup className='group'>
-                <Label>Title</Label>
-                <Input onChange={titleHandler} value={title} type='text'/>
-                {!titleValidate && <p>Title should not be Empty</p>}
-            </CardGroup>
-
-            <CardGroup className='group'>
-                <Label>Description</Label>
-                <Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-                {!descValidate && <p>Description should not be empty</p>}
-            </CardGroup>
-            
-            <CardGroup className='group'>
-                <Label>Add Analytic Image</Label>
-            </CardGroup>
-            <div>
-            <ImageUploader onInput={catchFileDataHandler}/>
-                {!imageValidate && <p>Image should be selected</p>}
-            </div>
-
-            <Button type='submit' className='me-1' color='primary'>Submit</Button>
-        </form>
-      </Col>
-    </Card>
-  )
-}
-
-export default AddAnalytic
+      </Form> */
