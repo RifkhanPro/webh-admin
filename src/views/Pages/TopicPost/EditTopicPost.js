@@ -4,6 +4,8 @@ import React, { useState, useEffect  } from 'react'
 import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
+import ImageUploader from './ImageUploader'
+import axios from 'axios'
 
 const EditTopicPost = () => {
     const navigate = useNavigate()
@@ -11,19 +13,49 @@ const EditTopicPost = () => {
 	const [name, setName] = useState()
 	const [desc, setDesc] = useState()
 	const [category, setCategory] = useState()
-
+	const [selectedFile, setSelectedFile] = useState()
+  	const [nameValidate, setNameValidate] = useState(true)
+  	const [descValidate, setDescValidate] = useState(true)
+  	const [categoryValidate, setCategoryValidate] = useState(true)
+  	const [imageValidate, setImageValidate] = useState(true)
+	
+	const categoryHandler = (e) => {
+		if (e.target.value.trim() === '') {
+		  setCategoryValidate(false)
+		} else {
+		  setCategoryValidate(true)
+		  setCategory(e.target.value)
+		}
+	}
+	
 	const nameHandler = (e) => {
-		setName(e.target.value)
-	  }
-	  const descHandler = (e) => {
-		setDesc(e.target.value)
+		if (e.target.value.trim() === '') {
+		  setNameValidate(false)
+		} else {
+		  setNameValidate(true)
+		  setName(e.target.value)
+		}
 	  }
 	
-	  const categoryHandler = (e) => {
-		setCategory(e.target.value)
-	  }
+	const descHandler = (e) => {
+		if (e.target.value.trim() === '') {
+		  setDescValidate(false)
+		} else {
+		  setDescValidate(true)
+		  setDesc(e.target.value)
+		}
+	}
+	
+	const catchFileDataHandler = (e) => {
+		if (e.name === '') {
+		  setImageValidate(false)
+		} else {
+		  setImageValidate(true)
+		  setSelectedFile(e)
+		}
+	}
 
-	 useEffect(() => {
+	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
 			 const response = await fetch(`http://localhost:8070/topicPost/${id}/viewPost`)
@@ -49,12 +81,54 @@ const EditTopicPost = () => {
 
 	const submitHandler =  async (e) => {
 		e.preventDefault()
+    
+    if (category.trim() === '') {
+      setCategoryValidate(false)
+      return
+    }
+    if (name.trim() === '') {
+      setNameValidate(false)
+      return
+    }
+    
+    if (desc.trim() === '') {
+      setDescValidate(false)
+      return
+    }
+
+    if (selectedFile === undefined) {
+      setImageValidate(false)
+      return
+    }
+
+
+    console.log('validate')
+
+    let image
+    const formData = new FormData()
+    formData.append("file", selectedFile)
+    formData.append("upload_preset", "feed_images")
+
+    try {
+      await axios
+        .post(
+          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+          formData
+        )
+        .then((res) => {
+          
+          image = res.data.secure_url
+        })
+    } catch (error) {
+      alert(error)
+    }
 	
 		try {
 				const response = await fetch(`http://localhost:8070/topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						category,
 						name,
-						desc
+						desc,
+						image
 					})
 				})
 	
@@ -82,18 +156,26 @@ const EditTopicPost = () => {
 				<CardGroup className='group'>
 				<CardTitle>Category</CardTitle>
 				<Input onChange={categoryHandler} value={category} type='text'/>
+				{!categoryValidate && <p>Category should not be Empty</p>}
 			</CardGroup>
 
 			<CardGroup className='group'>
 				<CardTitle>Name</CardTitle>
 				<Input onChange={nameHandler} value={name} type='text'/>
+				{!nameValidate && <p>Name should not be Empty</p>}
 			</CardGroup>
 
 			<CardGroup className='group'>
 				<CardTitle>Description</CardTitle>
 				<Input onChange={descHandler}  value={desc} type='text'/>
+				{!descValidate && <p>Description should not be Empty</p>}
 			</CardGroup>
 
+			<CardGroup className='group'>
+              <CardTitle>Add Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p>Image should not be Empty</p>}
+          </CardGroup>
 				
 				<Button type='submit' className='btn'>Update</Button>
 			</form>
