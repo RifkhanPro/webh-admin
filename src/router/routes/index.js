@@ -123,7 +123,7 @@ const ShowNames = lazy(() => import('../../views/Pages/Topic/ShowNames'))
 
 //Feedback
 const AllFeedback = lazy(() => import('../../views/Pages/Feedback/AllFeedback'))
-
+const ViewFeedback = lazy(() => import('../../views/Pages/Feedback/ViewFeedback'))
 // ** Merge Routes
 const Routes = [
   {
@@ -343,6 +343,10 @@ const Routes = [
   {
     path:"/feedbacks",
     element:<AllFeedback />
+  },
+  {
+    path:"/feedbacks/:id",
+    element:<ViewFeedback />
   },
   {
     path:'/postManagements',
