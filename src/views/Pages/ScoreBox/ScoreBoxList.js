@@ -8,7 +8,7 @@ const ScoreBoxList = (props) => {
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<ScoreBoxItem id={item._id} title={item.title} desc={item.desc} />
+						<ScoreBoxItem id={item._id} image={item.image} title={item.title} desc={item.desc} />
 					</li>
 				))}
 			</ul>

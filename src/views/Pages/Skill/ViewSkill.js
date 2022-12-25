@@ -3,7 +3,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
 const ViewSkill = () => {
@@ -54,8 +53,8 @@ const ViewSkill = () => {
 
   return <>
       <Card className="card">
-          <div className="image m-5">
-              <img src={avatar} />
+          <div className="image">
+             {skill && <img src={skill.image} />}
           </div>
         {skill && <div className="details">
               <h1>{skill.title}</h1>
@@ -69,9 +68,9 @@ const ViewSkill = () => {
       </Card>
 
       <div className="btns">
-          <Button onClick={routeHandler} className='btn' color="warning">Edit</Button>
-          <Button onClick={deleteHandler} className='btn' color="danger">Delete</Button>
-      </div>
+            <Button onClick={routeHandler} className='btn'>Edit</Button>
+            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
+          </div>
   </>
 }
 

@@ -14,7 +14,6 @@ function ViewTopics() {
 
           const responseData = await response.json()
  
-          console.log(responseData)
 
           setTopics(responseData)
              

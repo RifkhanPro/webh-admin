@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
+import NameList from './NameList'
 function ShowNames() {
     const {id} = useParams()
-    // const [names, setNames] = useState()
+    const [names, setNames] = useState()
 
     useEffect(() => {
         const sendRequest = async () => {
@@ -12,8 +12,8 @@ function ShowNames() {
     
              const responseData = await response.json()
     
-            //  setNames(responseData.names)
-            //  console.log(responseData.names)
+             setNames(responseData.names)
+             console.log(names)
              if (!response.ok()) {
                throw new Error(responseData.message)
            }
@@ -28,7 +28,7 @@ function ShowNames() {
 
   return (
     <div>
-       
+       <NameList data = {names}/>
     </div>
   )
 }

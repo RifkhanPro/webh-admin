@@ -8,47 +8,77 @@ import Form from 'react-bootstrap/Form'
 
 const EditAdvertisement = () => {
 
-	const [validated, setValidated] = useState(false)
-    const navigate = useNavigate()
+	
 	const {id} = useParams()
+    const navigate = useNavigate()
 	const [name, setName] = useState()
 	const [desc, setDesc] = useState()
 	const [expiry, setExpiry] = useState()
+	const [selectedFile, setSelectedFile] = useState()
+  	const [nameValidate, setNameValidate] = useState(true)
+  	const [descValidate, setDescValidate] = useState(true)
+	const [expiryValidate, setExpiryValidate] = useState(true)
+  	const [imageValidate, setImageValidate] = useState(true)
 
-	const NameHandler = (e) => {
-		setName(e.target.value)
-	  }
-	  const descHandler = (e) => {
-		setDesc(e.target.value)
-	  }
+	const nameHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setNameValidate(false)
+		} else {
+			setNameValidate(true)
+			setName(e.target.value)
+		}
+  	}
 
-	  const expiryHandler = (e) => {
-		setExpiry(e.target.value)
-	  }
+	const expiryHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setExpiryValidate(false)
+		} else {
+			setExpiryValidate(true)
+			setExpiry(e.target.value)
+		}
+  	}
 
-	 useEffect(() => {
+  	const descHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setDescValidate(false)
+		} else {
+			setDescValidate(true)
+			setDesc(e.target.value)
+		}
+  	}
+
+  	const catchFileDataHandler = (e) => {
+		if (e.name === '') {
+			setImageValidate(false)
+		} else {
+			setImageValidate(true)
+			setSelectedFile(e)
+		}
+	}
+
+	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch(`http://localhost:8070/advertisement/${id}`)
+			const response = await fetch(`http://localhost:8070/advertisement/${id}`)
 	
-			 const responseData = await response.json()
+			const responseData = await response.json()
 	
-			 console.log(responseData)
+			console.log(responseData)
 	
-			 setName(responseData.name)
-			 setExpiry(responseData.expiry)
-			 setDesc(responseData.desc)
+			setName(responseData.name)
+			setExpiry(responseData.expiry)
+			setDesc(responseData.desc)
 
-			 if (!response.ok()) {
+			if (!response.ok()) {
 			   throw new Error(responseData.message)
-		   }
+		    }
 	
-		 } catch (err) {
-		 }
-		} 
-	
-		sendRequest()
-	 }, [id])
+		} catch (err) {
+			console.log(err)
+		}
+	} 
+	sendRequest()
+	}, [id])
 
 	const submitHandler =  async (e) => {
 		const form = e.currentTarget

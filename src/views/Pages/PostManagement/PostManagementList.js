@@ -8,7 +8,7 @@ const PostManagementList = (props) => {
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<PostManagementItem id={item._id} name={item.name} desc={item.desc} />
+						<PostManagementItem id={item._id} image={item.image} name={item.name} desc={item.desc} />
 					</li>
 				))}
 			</ul>

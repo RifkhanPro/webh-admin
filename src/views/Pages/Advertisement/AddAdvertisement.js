@@ -1,144 +1,160 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-// import './AddSkill.css'
-import { Button, Card, Col, Row, Input } from 'reactstrap'
+import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
-import Form from 'react-bootstrap/Form'
+import axios from 'axios'
 
 function AddAdvertisement() {
 
-  const [validated, setValidated] = useState(false)
-  const [name, setName] = useState()
-  const [desc, setDesc] = useState()
-  const [expiry, setExpiry] = useState()
+  const [name, setName] = useState('')
+  const [desc, setDesc] = useState('')
+  const [expiry, setExpiry] = useState('')
+  const [nameValidate, setNameValidate] = useState(true)
+  const [descValidate, setDescValidate] = useState(true)
+  const [expiryValidate, setExpiryValidate] = useState(true)
+  const [imageValidate, setImageValidate] = useState(true)
+  const [selectedFile, setSelectedFile] = useState()
   const navigate = useNavigate()
 
   const NameHandler = (e) => {
-    setName(e.target.value)
+    if (e.target.value.trim() === '') {
+      setNameValidate(false)
+    } else {
+      setNameValidate(true)
+      setName(e.target.value)
+    }
   }
 
   const descHandler = (e) => {
-    setDesc(e.target.value)
+    if (e.target.value.trim() === '') {
+      setDescValidate(false)
+    } else {
+      setDescValidate(true)
+      setDesc(e.target.value)
+
+    }
   }
 
   const expiryHandler = (e) => {
-    setExpiry(e.target.value)
+    if (e.target.value.trim() === '') {
+      setExpiryValidate(false)
+    } else {
+      setExpiryValidate(true)
+      setExpiry(e.target.value)
+    }
   }
-  // const catchFileDataHandler = (e) => {
-	// 	console.log(e.pickedFile)
-	// }
+  const catchFileDataHandler = (e) => {  
+    
+    if (e.name === '') {
+      setImageValidate(false)
+    } else {
+      setImageValidate(true)
+      setSelectedFile(e)
+    }
+	}
 
   const submitHandler =  async (e) => {
-    const form = e.currentTarget
-    if (form.checkValidity() === false) {
-      e.preventDefault()
-      e.stopPropagation()
-    } else {
-      try {
-        const response = await fetch('http://localhost:8070/advertisement', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-            name,
-            desc,
-            expiry
-          })
-        })
-
-        const responseData = await response.json()
-
-        if (!response.ok) {
-          throw new Error(responseData.message)
-        }
-
-
-        setDesc('')
-        setName('')
-        setExpiry('')
-      } catch (err) { 
-        console.log(err)
-      }
-
-      navigate('/advertisements')
+    e.preventDefault()
+    
+    if (name.trim() === '') {
+      setNameValidate(false)
+      return
     }
-    setValidated(true)
+
+    if (desc.trim === '') {
+      setDescValidate(false)
+      return
+    }
+
+    if (expiry.trim() === '') {
+      setExpiryValidate(false)
+      return
+    }
+
+    if (selectedFile === undefined) {
+      setImageValidate(false)
+      return
+    }
+
+    
+    let image
+    
+    const formData = new FormData()
+    formData.append("file", selectedFile)
+    formData.append("upload_preset", "feed_images")
+    console.log('validate')
+
+    try {
+      await axios
+        .post(
+          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+          formData
+        )
+        .then((res) => {
+          image = res.data.secure_url
+        })
+    } catch (error) {
+      alert(error)
+    }
+    try {
+			const response = await fetch('http://localhost:8070/advertisement', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+          name,
+					desc,
+          expiry,
+          image
+				})
+			})
+
+			const responseData = await response.json()
+      console.log(responseData)
+			if (!response.ok) {
+				throw new Error(responseData.message)
+			}
+
+      setName('')
+      setDesc('')
+      setExpiry('')
+		} catch (err) { 
+      //
+    }
+
+    navigate('/advertisements')
   }
 
   return (
     <Card>
-      <Col className='col-12'>
-      <Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
-        <Row>
-          <Form.Group as={Col} controlId="validationCustom01">
-            <Form.Label>Name</Form.Label>
-            <Input
-              required
-              type="text"
-              placeholder="Enter Name"
-              onChange={NameHandler}
-            />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-                Please Enter Name
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
+      <form onSubmit={submitHandler}>
+         
 
-        <Form.Group as={Col} controlId="validationCustom02">
-            <Form.Label>Description</Form.Label>
-            <Input
-              required
-              type="textarea"
-              placeholder="Enter Description"
-              rows='5'
-              onChange={descHandler}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-                Please Enter Description
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-        <Form.Group as={Col} controlId="validationCustom02">
-            <Form.Label>Expiry Date</Form.Label>
-            <Input
-              required
-              type="date"
-              placeholder="Enter Expiry Date"
-              onChange={expiryHandler}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-                Please Enter Expiry Date
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-      </Form>
-      {/* <form onSubmit={submitHandler} className='form-control'>
           <CardGroup className='group'>
-              <Label>Name</Label>
+              <CardTitle>Name</CardTitle>
               <Input onChange={NameHandler} value={name} type='text'/>
-          </CardGroup>
-
-
-          <CardGroup className='group'>
-              <Label>Description</Label>
-              <Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
+              {!nameValidate && <p>Name should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
-              <Label>Expiry Date</Label>
+              <CardTitle>Description</CardTitle>
+              <Input onChange={descHandler}  value={desc} type='textarea'/>
+              {!descValidate && <p>Description should not be Empty</p>}
+          </CardGroup>
+
+          <CardGroup className='group'>
+              <CardTitle>Expiry Date</CardTitle>
               <Input onChange={expiryHandler}  value={expiry} type='date'/>
+              {!expiryValidate && <p>Expiry Date should not be empty</p>}
           </CardGroup>
+
           <CardGroup className='group'>
-              <Label>Add Advertisement Image</Label>
+              <CardTitle>Add Advertisement Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p>Image should be selected</p>}
           </CardGroup>
+
           <Button type='submit' className='btn'>Submit</Button>
-      </form> */}
-      </Col>
+      </form>
     </Card>
   )
 }

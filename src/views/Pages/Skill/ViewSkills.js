@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import SkillList from './SkillList'
-// import './ViewSkills.css'
+import './ViewBlogs.css'
 
 function ViewSkills() {
   const [skills, setSkills] = useState()
@@ -45,7 +45,7 @@ function ViewSkills() {
           </CardBody>
       </Card>
 
-      <Button className='me-1' color='primary' onClick={routerHandler}>Add Skill</Button>
+      <Button className='btn' onClick={routerHandler}>Add Skill</Button>
 
     </div>
   )

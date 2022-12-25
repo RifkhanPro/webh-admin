@@ -2,63 +2,118 @@
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect } from 'react'
 // import './AddSkill.css'
-import { Button, Card, Row, Col, Label, Input } from 'reactstrap'
+import { Button, Card, Row, Col, CardGroup, CardTitle, Input } from 'reactstrap'
 import { useParams, useNavigate } from "react-router-dom"
 import Form from 'react-bootstrap/Form'
-
+import ImageUploader from './ImageUploader'
+import axios from 'axios'
 
 const EditArticle = () => {
-	const [validated, setValidated] = useState(false)
-	const [topic, setTitle] = useState()
-	const [desc, setDesc] = useState()
+
     const navigate = useNavigate()
 	const {id}  = useParams()
 
-	const titleHandler = (e) => {
-	  setTitle(e.target.value)
+	const [topic, setTitle] = useState()
+	const [desc, setDesc] = useState()
+	const [selectedFile, setSelectedFile] = useState()
+  	const [topicValidate, setTopicValidate] = useState(true)
+  	const [descValidate, setDescValidate] = useState(true)
+  	const [imageValidate, setImageValidate] = useState(true)
+
+	  const titleHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setTopicValidate(false)
+		} else {
+			setTopicValidate(true)
+			setTitle(e.target.value)
+		}
+  	}
+
+  	const descHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setDescValidate(false)
+		} else {
+			setDescValidate(true)
+			setDesc(e.target.value)
+		}
+  	}
+
+  	const catchFileDataHandler = (e) => {
+		if (e.name === '') {
+			setImageValidate(false)
+		} else {
+			setImageValidate(true)
+			setSelectedFile(e)
+		}
 	}
-	const descHandler = (e) => {
-	  setDesc(e.target.value)
-  
-	}
 
-  useEffect(() => {
-    const sendRequest = async () => {
-    try {
-        const response = await fetch(`http://localhost:8070/article/${id}`)
+ 	useEffect(() => {
+		const sendRequest = async () => {
+		try {
+			const response = await fetch(`http://localhost:8070/article/${id}`)
 
-        const responseData = await response.json()
+			const responseData = await response.json()
 
-        console.log(responseData)
+			console.log(responseData)
 
-        setTitle(responseData.title)
-        setDesc(responseData.desc)
-            
-        if (!response.ok()) {
-           throw new Error(responseData.message)
-		   
-        }
+			setTitle(responseData.title)
+			setDesc(responseData.desc)
+				
+			if (!response.ok()) {
+			throw new Error(responseData.message)
+			
+			}
 
-    } catch (err) {
-		console.log(err)
-    }
-	// alert('Saved successfully.')
-	//  navigate('/articles')
+		} catch (err) {
+			console.log(err)
+		}
     } 
 
     sendRequest()
- }, [id])
+ 	}, [id])
   
 	const submitHandler =  async (e) => {
-		const form = e.currentTarget
-		if (form.checkValidity() === false) {
-		  e.preventDefault()
-		  e.stopPropagation()
-		} else {
+		e.preventDefault()
+			if (topic.trim() === '') {
+				setTopicValidate(false)
+				return
+		  	}
+
+			if (desc.trim() === '') {
+				setContentValidate(false)
+				return
+			}
+	  
+		  	if (selectedFile === undefined) {
+				setImageValidate(false)
+				return
+		  	}
+		  	console.log('validate')
+		   
+		  	let image
+
+			const formData = new FormData()
+			formData.append("file", selectedFile)
+			formData.append("upload_preset", "feed_images")
+
+			try {
+				await axios
+				  .post(
+					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+					formData
+				  )
+				  .then((res) => {
+					image = res.data.secure_url
+				  })
+			} catch (error) {
+				alert(error)
+			}
+
 			try {
 				const response = await fetch(`http://localhost:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 					desc,
-					title:topic
+					title:topic,
+					image
 					})
 				})
 		
@@ -69,23 +124,22 @@ const EditArticle = () => {
 					throw new Error(responseData.message)
 				}
 		
-				setDesc('')
 				setTitle('')
+				setDesc('')
 				} catch (err) { 
-
+					console.log(err)
 				}
 
 			navigate('/articles')
-			}
-			setValidated(true)
+			
 		}
   
 	return (
 	  <Card>
 		<Col className='col-12'>
-			<Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
+			<Form onSubmit={submitHandler} className="form-control">
 			<Row>
-			<Form.Group as={Col} controlId="validationCustom01">
+			<Form.Group as={Col}>
 				<Form.Label>Topic</Form.Label>
 				<Input
 				required
@@ -93,14 +147,11 @@ const EditArticle = () => {
 				value={topic}
 				onChange={titleHandler}
 				/>
-			<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-				<Form.Control.Feedback type="invalid">
-					Please Enter Topic
-				</Form.Control.Feedback>
+				{!topicValidate && <p>Topic should not be Empty</p>}
 			</Form.Group>
 			</Row>
 			<Row>
-			<Form.Group as={Col} controlId="validationCustom02">
+			<Form.Group as={Col} >
 				<Form.Label>Description</Form.Label>
 				<Input
 				required
@@ -110,10 +161,16 @@ const EditArticle = () => {
 				onChange={descHandler}
 				value={desc}
 				/>
-				<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-				<Form.Control.Feedback type="invalid">
-					Please Enter Description
-				</Form.Control.Feedback>
+				{!descValidate && <p>Description should not be empty</p>}
+			</Form.Group>
+			</Row>
+			<Row>
+			<Form.Group as={Col} >
+				<CardGroup className='group'>
+              <CardTitle>Add Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+              {!imageValidate && <p>image should be selected</p>}
+			  </CardGroup>
 			</Form.Group>
 			</Row>
 			<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
@@ -135,5 +192,4 @@ const EditArticle = () => {
 	  </Card>
 	)
 }
-
 export default EditArticle

@@ -5,6 +5,7 @@ import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
+import axios from 'axios'
 
 function AddTopicPost() {
 
@@ -12,6 +13,7 @@ function AddTopicPost() {
   const [desc, setDesc] = useState()
   const [category, setCategory] = useState()
   const navigate = useNavigate()
+  const [selectedFile, setSelectedFile] = useState()
 
   const nameHandler = (e) => {
     setName(e.target.value)
@@ -21,7 +23,8 @@ function AddTopicPost() {
 
   }
   const catchFileDataHandler = (e) => {
-		console.log(e.pickedFile)
+    setSelectedFile(e)
+
 	}
 
   const categoryHandler = (e) => {
@@ -31,12 +34,29 @@ function AddTopicPost() {
 
   const submitHandler =  async (e) => {
     e.preventDefault()
+    let image
+    const formData = new FormData()
+    formData.append("file", selectedFile)
+    formData.append("upload_preset", "feed_images")
 
+    try {
+      await axios
+        .post(
+          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+          formData
+        )
+        .then((res) => {
+          image = res.data.secure_url
+        })
+    } catch (error) {
+      alert(error)
+    }
     try {
 			const response = await fetch('http://localhost:8070/topicPost', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
           category,
           name,
-					desc
+					desc,
+          image
 				})
 			})
 

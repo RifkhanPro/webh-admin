@@ -3,7 +3,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
 const ViewPostManagement = () => {
@@ -14,16 +13,17 @@ const ViewPostManagement = () => {
     const routeHandler = () => {
       navigate(`/postManagements/edit/${id}`)
     }
+    
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/postManagement/posts/${id}`)
+         const response = await fetch(`http://localhost:8070/postManagement/${id}`)
 
          const responseData = await response.json()
 
-         console.log(responseData.post)
+         console.log(responseData)
 
-         setSkill(responseData.post)
+         setSkill(responseData)
             
          if (!response.ok()) {
            throw new Error(responseData.message)
@@ -55,7 +55,8 @@ const ViewPostManagement = () => {
   return <>
       <Card className="card">
           <div className="image">
-              <img src={avatar} />
+          {skill && <img src={skill.image} />}
+
           </div>
         {skill && <div className="details">
               <h1>{skill.name}</h1>

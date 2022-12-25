@@ -1,130 +1,139 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-// import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, Input, Col, Row } from 'reactstrap'
+import './AddSkill.css'
+import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
-import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
+import axios from 'axios'
 
 function AddSkill() {
 
-  const [validated, setValidated] = useState(false)
-
-  const [topic, setTitle] = useState()
-  const [content, setDesc] = useState()
-
+  const [topic, setTitle] = useState('')
+  const [content, setDesc] = useState('')
+  const [selectedFile, setSelectedFile] = useState()
+  const [topicValidate, setTopicValidate] = useState(true)
+  const [contentValidate, setContentValidate] = useState(true)
+  const [imageValidate, setImageValidate] = useState(true)
   const navigate = useNavigate()
 
+  
   const titleHandler = (e) => {
-    setTitle(e.target.value)
-  }
-  const descHandler = (e) => {
-    setDesc(e.target.value)
+   
+    if (e.target.value.trim() === '') {
+      setTopicValidate(false)
+    } else {
+      setTopicValidate(true)
+      setTitle(e.target.value)
+
+    }
 
   }
+  const descHandler = (e) => {
+    if (e.target.value.trim() === '') {
+      setContentValidate(false)
+    } else {
+      setContentValidate(true)
+      setDesc(e.target.value)
+
+    }
+  }
   const catchFileDataHandler = (e) => {
-		console.log(e.pickedFile)
+    if (e.name === '') {
+      setImageValidate(false)
+    } else {
+      setImageValidate(true)
+      setSelectedFile(e)
+    }
 	}
 
   const submitHandler =  async (e) => {
-    const form = e.currentTarget
-    if (form.checkValidity() === false) {
-      e.preventDefault()
-      e.stopPropagation()
-    } else {
-      try {
-        const response = await fetch('http://localhost:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-            name:topic,
-            desc:content
-          })
-        })
+    e.preventDefault()
 
-        const responseData = await response.json()
-
-        console.log(responseData)
-
-        if (!response.ok) {
-          throw new Error(responseData.message)
-        }
-
-
-        setDesc('')
-        setTitle('')
-      } catch (err) { 
-        //
-      }
-      navigate('/blogs')
+    if (topic.trim() === '') {
+      setTopicValidate(false)
+      return
     }
-    setValidated(true)
+
+    if (selectedFile === undefined) {
+      setImageValidate(false)
+      return
+    }
+
+    if (content.trim() === '') {
+      setContentValidate(false)
+      return
+    }
+
+    console.log('validate')
+
+    let imageUrl
+
+    const formData = new FormData()
+    formData.append("file", selectedFile)
+    formData.append("upload_preset", "feed_images")
+
+    try {
+      await axios
+        .post(
+          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+          formData
+        )
+        .then((res) => {
+          imageUrl = res.data.secure_url
+        })
+    } catch (error) {
+      alert(error)
+    }
+
+    try {
+			const response = await fetch('http://localhost:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					name:topic,
+					desc:content,
+          imageUrl
+				})
+			})
+
+			const responseData = await response.json()
+      console.log(responseData)
+			if (!response.ok) {
+				throw new Error(responseData.message)
+			}
+
+
+      setDesc('')
+      setTitle('')
+		} catch (err) { 
+      //
+    }
+
+    navigate('/blogs')
   }
 
   return (
     <Card>
-      <Col className="col-12">
-      <Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
-        <Row>
-          <Form.Group as={Col} controlId="validationCustom01">
-            <Form.Label className='mt-1'>Topic</Form.Label>
-            <Input
-              required
-              type="text"
-              placeholder="Enter Topic"
-              onChange={titleHandler}
-            />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-                Please Enter Topic
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-        <Form.Group as={Col} controlId="validationCustom02">
-            <Form.Label className='mt-1'>Description</Form.Label>
-            <Input
-              required
-              type="textarea"
-              placeholder="Enter Description"
-              rows='5'
-              onChange={descHandler}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            <Form.Control.Feedback type="invalid">
-                Please Enter Description
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group as={Col} controlId="validationCustom02">
-              <Form.Label className='mt-1'>Image</Form.Label>
-                <ImageUploader onInput={catchFileDataHandler}/>
-              {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              <Form.Control.Feedback type="invalid">
-                  Please Enter Image
-              </Form.Control.Feedback> */}
-          </Form.Group>
-        </Row>
-        <Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-      </Form>
-        {/* <form onSubmit={submitHandler} className="m-2">
-            <CardGroup className='group'>
-                <Label>Name</Label>
-                <Input onChange={titleHandler} value={topic} type='text'/>
-            </CardGroup>
+      <form onSubmit={submitHandler}>
+          <CardGroup className='group'>
+              <CardTitle>Name</CardTitle>
+              <Input onChange={titleHandler} value={topic} type='text'/>
+              {!topicValidate && <p>Name should not be Empty</p>}
+          </CardGroup>
 
-            <CardGroup className='group'>
-                <Label>Description</Label>
-                <Input onChange={descHandler}  value={content} type='textarea' rows='5'/>
-            </CardGroup>
 
-            <CardGroup className='group'>
-                <Label>Add Blog Image</Label>
-                <ImageUploader onInput={catchFileDataHandler}/>
-            </CardGroup>
+          <CardGroup className='group'>
+              <CardTitle>Add Blog Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p>Image should be selected</p>}
+          </CardGroup>
 
-            <Button type='submit' className='me-1' color='primary'>Submit</Button>
-        </form> */}
-      </Col>
+          <CardGroup className='group'>
+              <CardTitle>Description</CardTitle>
+              <Input onChange={descHandler}  value={content} type='text'/>
+              {!contentValidate && <p>Description should not be empty</p>}
+          </CardGroup>
+
+          <Button type='submit' className='btn'>Submit</Button>
+      </form>
     </Card>
   )
 }

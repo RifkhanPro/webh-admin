@@ -3,7 +3,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
 const ViewRecentSearchFeed = () => {
@@ -30,6 +29,8 @@ const ViewRecentSearchFeed = () => {
        }
 
      } catch (err) {
+      console.log(err)
+
      }
     } 
 
@@ -47,6 +48,7 @@ const ViewRecentSearchFeed = () => {
         }
 
       } catch (err) {
+        console.log(err)
       }
 
       navigate('/recentSearchFeeds')
@@ -55,7 +57,7 @@ const ViewRecentSearchFeed = () => {
   return <>
       <Card className="card">
           <div className="image">
-              <img src={avatar} />
+              {skill && <img src={skill.image} />}
           </div>
         {skill && <div className="details">
               <h1>{skill.title}</h1>
