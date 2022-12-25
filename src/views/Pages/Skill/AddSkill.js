@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
@@ -9,26 +9,62 @@ import axios from 'axios'
 
 function AddSkill() {
 
-  const [topic, setTitle] = useState()
-  const [content, setDesc] = useState()
+  const [topic, setTitle] = useState('')
+  const [content, setDesc] = useState('')
   const [selectedFile, setSelectedFile] = useState()
-
+  const [topicValidate, setTopicValidate] = useState(true)
+  const [contentValidate, setContentValidate] = useState(true)
+  const [imageValidate, setImageValidate] = useState(true)
   const navigate = useNavigate()
 
 
   const titleHandler = (e) => {
     setTitle(e.target.value)
+
+    if (e.target.value.trim() === '') {
+      setTopicValidate(false)
+    }
   }
   const descHandler = (e) => {
-    setDesc(e.target.value)
+    if (e.target.value.trim() === '') {
+      setContentValidate(false)
+    } else {
+      setContentValidate(true)
+      setDesc(e.target.value)
+
+    }
 
   }
   const catchFileDataHandler = (e) => {
-    setSelectedFile(e)
+   
+    if (e.name === '') {
+      setImageValidate(false)
+    } else {
+      setImageValidate(true)
+      setSelectedFile(e)
+    }
 	}
 
   const submitHandler =  async (e) => {
     e.preventDefault()
+
+    if (topic.trim() === '') {
+      setTopicValidate(false)
+      return
+    }
+
+    if (selectedFile === undefined) {
+      setImageValidate(false)
+      return
+    }
+
+    if (content.trim() === '') {
+      setContentValidate(false)
+      return
+    }
+
+    console.log('validate')
+ 
     let imageUrl
 
       const formData = new FormData()
@@ -78,19 +114,23 @@ function AddSkill() {
           <CardGroup className='group'>
               <CardTitle>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text'/>
+              {!topicValidate && <p>Topic should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Add Skill Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p>image should be selected</p>}
+
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
               <Input onChange={descHandler}  value={content} type='text'/>
+              {!contentValidate && <p>It should not be empty</p>}
           </CardGroup>
 
-          <Button type='submit' className='btn'>Submit</Button>
+          <Button type='submit' className='btn' >Submit</Button>
       </form>
     </Card>
   )

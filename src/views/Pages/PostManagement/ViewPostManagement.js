@@ -13,6 +13,7 @@ const ViewPostManagement = () => {
     const routeHandler = () => {
       navigate(`/postManagements/edit/${id}`)
     }
+    
   useEffect(() => {
     const sendRequest = async () => {
      try {

@@ -363,10 +363,10 @@ const Routes = [
     path:"/topics/:category/:name",
     element:<NameDetail />
   },
-  {
-    path:"/topicPost/:id/addPost",
-    element:<AddPost />
-  },
+  // {
+  //   path:"/topicPost/:id/addPost",
+  //   element:<AddPost />
+  // },
   {
     path:"/topicPost/:name/:category/editName",
     element:<EditName />

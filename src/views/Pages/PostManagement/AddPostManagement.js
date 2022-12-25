@@ -47,7 +47,7 @@ function AddPostManagement() {
     }
     try {
 			const response = await fetch('http://localhost:8070/postManagement', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-         name:topic,
+          name:topic,
 					description:content,
           image
 				})
