@@ -20,7 +20,7 @@ const EditArticle = () => {
   	const [descValidate, setDescValidate] = useState(true)
   	const [imageValidate, setImageValidate] = useState(true)
 
-	  const titleHandler = (e) => {
+	const titleHandler = (e) => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -143,6 +143,7 @@ const EditArticle = () => {
 				<Form.Label>Topic</Form.Label>
 				<Input
 				required
+				placeholder="Enter Topic"
 				type="text"
 				value={topic}
 				onChange={titleHandler}

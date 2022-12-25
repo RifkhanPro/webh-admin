@@ -2,9 +2,11 @@
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
 // import './AddSkill.css'
-import { Button, Card, CardGroup, Row, Col, Label, Input } from 'reactstrap'
+import { Button, Card, CardGroup, Row, Col, CardTitle, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
+import ImageUploader from './ImageUploader'
+import axios from 'axios'
 
 const EditAdvertisement = () => {
 
@@ -81,11 +83,47 @@ const EditAdvertisement = () => {
 	}, [id])
 
 	const submitHandler =  async (e) => {
-		const form = e.currentTarget
-		if (form.checkValidity() === false) {
-		  e.preventDefault()
-		  e.stopPropagation()
-		} else {
+		e.preventDefault()
+			if (name.trim() === '') {
+				setNameValidate(false)
+				return
+		  	}
+
+			if (desc.trim() === '') {
+				setDescValidate(false)
+				return
+			}
+			
+			if (expiry.trim() === '') {
+				setExpiryValidate(false)
+				return
+			}
+
+		  	if (selectedFile === undefined) {
+				setImageValidate(false)
+				return
+		  	}
+		  	console.log('validate')
+		   
+		  	let image
+
+			const formData = new FormData()
+			formData.append("file", selectedFile)
+			formData.append("upload_preset", "feed_images")
+
+			try {
+				await axios
+				  .post(
+					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+					formData
+				  )
+				  .then((res) => {
+					image = res.data.secure_url
+				  })
+			} catch (error) {
+				alert(error)
+			}
+
 			try {
 				const response = await fetch(`http://localhost:8070/advertisement/${id}`, 
 				{
@@ -94,7 +132,8 @@ const EditAdvertisement = () => {
 					}, body :JSON.stringify({
 							name,		
 							desc,
-							expiry
+							expiry,
+							image
 						})
 					})
 					const responseData = await response.json()
@@ -102,21 +141,19 @@ const EditAdvertisement = () => {
 					if (!response.ok) {
 						throw new Error(responseData.message)
 					}
-					setDesc('')
 					setName('')
+					setDesc('')
+					setExpiry('')
 			
 			} catch (err) { 
 				console.log(Err)
 			}
-
 			navigate('/advertisements')
 		}
-	setValidated(true)
-	}
 
 	return (<Card>
 		<Col className='col-12'>
-			<Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
+			<Form onSubmit={submitHandler} className="form-control">
 				<Row>
 					<Form.Group as={Col} controlId="validationCustom01">
 						<Form.Label>Name</Form.Label>
@@ -124,13 +161,10 @@ const EditAdvertisement = () => {
 							required
 							type="text"
 							value={name}
-							onChange={NameHandler}
+							onChange={nameHandler}
 							placeholder="Enter name"
 						/>
-						<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-							<Form.Control.Feedback type="invalid">
-								Please Enter Name
-							</Form.Control.Feedback>
+						{!nameValidate && <p>Topic should not be Empty</p>}
 					</Form.Group>
 				</Row>
 				<Row>
@@ -144,10 +178,7 @@ const EditAdvertisement = () => {
 							onChange={descHandler}
 							value={desc}
 						/>
-						<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-						<Form.Control.Feedback type="invalid">
-							Please Enter Description
-						</Form.Control.Feedback>
+						{!descValidate && <p>Description should not be empty</p>}
 					</Form.Group>
 				</Row>
 				<Row>
@@ -160,11 +191,17 @@ const EditAdvertisement = () => {
 							onChange={expiryHandler}
 							value={expiry}
 						/>
-						<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-						<Form.Control.Feedback type="invalid">
-							Please Enter Expiry Date
-						</Form.Control.Feedback>
+						{!expiryValidate && <p>Description should not be empty</p>}
 					</Form.Group>
+				</Row>
+				<Row>
+				<Form.Group as={Col} >
+					<CardGroup className='group'>
+					<CardTitle>Add Image</CardTitle>
+					<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+					{!imageValidate && <p>Image should be selected</p>}
+					</CardGroup>
+				</Form.Group>
 				</Row>
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 			</Form>
