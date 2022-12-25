@@ -10,13 +10,27 @@ const AddName = () => {
 	const {id} = useParams()
 	const [topic, setTitle] = useState()
 	const [name, setName] = useState()
+	const [topicValidate, setTopicValidate] = useState(true)
+	const [nameValidate, setNameValidate] = useState(true)
 
 	const titleHandler = (e) => {
-		setTitle(e.target.value)
+		if (e.target.value.trim() === '') {
+		  setTopicValidate(false)
+		} else {
+		  setTopicValidate(true)
+		  setTitle(e.target.value)
+	
+		}
+	
 	}
-
-	const nameHandler = (e) => {
-		setName(e.target.value)
+	const descHandler = (e) => {   
+		if (e.target.value.trim() === '') {
+			setNameValidate(false)
+		} else {
+			setNameValidate(true)
+			setName(e.target.value)
+		}
+	
 	}
 
 	const showNamesHandler = () => {
@@ -46,6 +60,16 @@ const AddName = () => {
 
 	const submitHandler =  async (e) => {
 		e.preventDefault()
+    
+		if (topic.trim() === '') {
+			setTopicValidate(false)
+			return
+		}
+		
+		if (name.trim() === '') {
+			setNameValidate(false)
+			return
+		}
 	
 		try {
 				const response = await fetch(`http://localhost:8070/topic/${id}/create`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
@@ -75,11 +99,13 @@ const AddName = () => {
 				<CardGroup className='group'>
 					<CardTitle>Category</CardTitle>
 					<Input onChange={titleHandler} value={topic} type='text' disabled/>
+					{!topicValidate && <p>Category should not be Empty</p>}
 				</CardGroup>
 	
 				<CardGroup className='group'>
 					<CardTitle>Name</CardTitle>
-					<Input onChange={nameHandler} value={name} type='text'/>
+					<Input onChange={descHandler} value={name} type='text'/>
+					{!nameValidate && <p>Name Should not be empty</p>}
 				</CardGroup>
 				<div className='btns'>
 					<Button type='submit' className='btn'>Add Name</Button>

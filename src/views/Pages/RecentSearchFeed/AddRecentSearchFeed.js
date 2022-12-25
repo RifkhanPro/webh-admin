@@ -9,25 +9,63 @@ import axios from 'axios'
 
 function AddRecentSearchFeed() {
 
-  const [topic, setTitle] = useState()
-  const [content, setDesc] = useState()
+  const [topic, setTitle] = useState('')
+  const [content, setDesc] = useState('')
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState()
+  const [topicValidate, setTopicValidate] = useState(true)
+  const [contentValidate, setContentValidate] = useState(true)
+  const [imageValidate, setImageValidate] = useState(true)
 
   const titleHandler = (e) => {
-    setTitle(e.target.value)
+    if (e.target.value.trim() === '') {
+      setTopicValidate(false)
+    } else {
+      setTopicValidate(true)
+      setTitle(e.target.value)
+    }
   }
-  const descHandler = (e) => {
-    setDesc(e.target.value)
+  const descHandler = (e) => {   
+    if (e.target.value.trim() === '') {
+      setContentValidate(false)
+    } else {
+      setContentValidate(true)
+      setDesc(e.target.value)
 
+    }
   }
+
   const catchFileDataHandler = (e) => {
-    setSelectedFile(e)
 
+    if (e.name === '') {
+      setImageValidate(false)
+    } else {
+      setImageValidate(true)
+      setSelectedFile(e)
+    }
 	}
 
   const submitHandler =  async (e) => {
     e.preventDefault()
+    
+    if (topic.trim() === '') {
+      setTopicValidate(false)
+      return
+    }
+    
+    if (content.trim() === '') {
+      setContentValidate(false)
+      return
+    }
+    
+    if (selectedFile === undefined) {
+      setImageValidate(false)
+      return
+    }
+
+
+    console.log('validate')
+
     let image
     const formData = new FormData()
     formData.append("file", selectedFile)
@@ -40,6 +78,7 @@ function AddRecentSearchFeed() {
           formData
         )
         .then((res) => {
+          
           image = res.data.secure_url
         })
     } catch (error) {
@@ -62,8 +101,8 @@ function AddRecentSearchFeed() {
 			}
 
 
-      setDesc('')
       setTitle('')
+      setDesc('')
 		} catch (err) { 
       //
     }
@@ -77,18 +116,21 @@ function AddRecentSearchFeed() {
           <CardGroup className='group'>
               <CardTitle>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text'/>
+              {!topicValidate && <p>Title should not be Empty</p>}
+          </CardGroup>
+
+
+          <CardGroup className='group'>
+              <CardTitle>Description</CardTitle>
+              <Input onChange={descHandler}  value={content} type='text'/>
+              {!contentValidate && <p>Description not be empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
               <CardTitle>Add AddRecentSearchFeed Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler}/>
+              {!imageValidate && <p>Image should be selected</p>}
           </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={content} type='text'/>
-          </CardGroup>
-
           <Button type='submit' className='btn'>Submit</Button>
       </form>
     </Card>
