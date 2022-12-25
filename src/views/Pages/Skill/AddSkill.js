@@ -16,14 +16,18 @@ function AddSkill() {
   const [contentValidate, setContentValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
   const navigate = useNavigate()
-
+ 
 
   const titleHandler = (e) => {
-    setTitle(e.target.value)
 
     if (e.target.value.trim() === '') {
       setTopicValidate(false)
+    } else {
+      setTopicValidate(true)
+      setTitle(e.target.value)
+
     }
+
   }
   const descHandler = (e) => {
     if (e.target.value.trim() === '') {
