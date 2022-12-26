@@ -65,7 +65,7 @@ const AllUsers = () => {
                                         <td>{item.phone}</td>
                                         {/* <td>{item.image}</td> */}
                                          <td>
-                                            {/* <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |   */}
+                                            <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |  
                                             <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
                                             <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>
                                         </td>
