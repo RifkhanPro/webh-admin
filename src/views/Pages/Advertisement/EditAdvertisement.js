@@ -16,6 +16,7 @@ const EditAdvertisement = () => {
 	const [name, setName] = useState()
 	const [desc, setDesc] = useState()
 	const [expiry, setExpiry] = useState()
+	const [image, setImage] = useState("")
 	const [selectedFile, setSelectedFile] = useState()
   	const [nameValidate, setNameValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
@@ -70,6 +71,7 @@ const EditAdvertisement = () => {
 			setName(responseData.name)
 			setExpiry(responseData.expiry)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -203,7 +205,7 @@ const EditAdvertisement = () => {
 				</Form.Group>
 				</Row>
 				<Row>
-				<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
 					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</Row>
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>

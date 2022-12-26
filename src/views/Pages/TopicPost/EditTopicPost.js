@@ -12,6 +12,7 @@ const EditTopicPost = () => {
 	const {id} = useParams()
 	const [name, setName] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState('')
 	const [category, setCategory] = useState()
 	const [selectedFile, setSelectedFile] = useState()
   	const [nameValidate, setNameValidate] = useState(true)
@@ -67,6 +68,7 @@ const EditTopicPost = () => {
 			 setName(responseData.name)
 			 setDesc(responseData.desc)
 			 setCategory(responseData.category)
+			 setImage(responseData.image)
 
 			 if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -176,7 +178,7 @@ const EditTopicPost = () => {
               
           </CardGroup>
 		  <div>
-		  <ImageUploader onInput={catchFileDataHandler}/>
+		  <ImageUploader onInput={catchFileDataHandler} image={image}/>
               {!imageValidate && <p style={{color:"Red"}}>Image should not be Empty</p>}
 		  </div>
 				

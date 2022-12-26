@@ -14,6 +14,7 @@ const EditSkill = () => {
 	const {id}  = useParams()
 	const [topic, setTitle] = useState('')
 	const [desc, setDesc] = useState('')
+	const [image, setImage] = useState('')
 	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
@@ -55,8 +56,9 @@ const EditSkill = () => {
 
 			console.log(responseData)
 
-			setTitle(responseData.name)
-			setDesc(responseData.desc)
+			setTitle(responseData.blog.name)
+			setDesc(responseData.blog.desc)
+			setImage(responseData.blog.image)
 				
 			if (!response.ok()) {
 			throw new Error(responseData.message)
@@ -149,7 +151,7 @@ const EditSkill = () => {
   
 			<CardGroup className='group'>
               <CardTitle>Add Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+              <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
               {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 			  </CardGroup>
 

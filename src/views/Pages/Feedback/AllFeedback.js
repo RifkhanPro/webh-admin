@@ -83,7 +83,7 @@ const AllFeedback = () => {
             </thead>
             <tbody>
                 {feedbackData &&
-                        feedbackData.map(item => (
+                        feedbackData.feedbacks.map(item => (
                             <tr key={item._id}>
                                 {/* <td>{}</td> */}
                                 <td>{item.firstName}</td>

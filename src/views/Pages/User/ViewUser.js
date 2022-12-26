@@ -70,7 +70,7 @@ const ViewUser = () => {
               <h5 className="mb-3">Zip : {userData.zip}</h5>
               
               <h3 className="mb-2">Personal Information</h3>
-              <h5 className="mb-2">Status : {userData.status}</h5>
+              <h5 className="mb-2">Status : {userData.status === true ? 'Active' : 'Inactive'}</h5>
               <Link className="btn btn-primary mb-3" to="/user">
                 All Users
               </Link>

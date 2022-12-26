@@ -86,7 +86,7 @@ const AllUsers = () => {
                                         <td>{item.lastname}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
-                                        <td>{item.status === true ? 'Active' : "Deactivate"}</td>
+                                        <td>{item.status === true ? 'Active' : "Inactive"}</td>
                                         <td>{item.profilePoints}</td>
                                         {/* <td>{item.image}</td> */}
                                          <td>

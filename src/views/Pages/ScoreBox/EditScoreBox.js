@@ -13,6 +13,7 @@ const EditScoreBox = () => {
 	
 	const [topic, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState('')
 	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [contentValidate, setContentValidate] = useState(true)
@@ -59,6 +60,7 @@ const EditScoreBox = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -158,7 +160,7 @@ const EditScoreBox = () => {
               		
           		</CardGroup>
 				<div>
-				<ImageUploader onInput={catchFileDataHandler}/>
+				<ImageUploader onInput={catchFileDataHandler} image={image} />
               		{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
 

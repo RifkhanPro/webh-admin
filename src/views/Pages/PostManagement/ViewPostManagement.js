@@ -7,7 +7,7 @@ import './ViewSkill.css'
 
 const ViewPostManagement = () => {
     const {id} = useParams()
-    const [skill, setSkill] = useState()
+    const [post, setPost] = useState()
     const navigate = useNavigate()
    
     const routeHandler = () => {
@@ -17,13 +17,10 @@ const ViewPostManagement = () => {
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://68.178.164.166:8070/postManagement/${id}`)
+         const response = await fetch(`http://68.178.164.166:8070/postManagement/posts/${id}`)
 
          const responseData = await response.json()
-
-         console.log(responseData)
-
-         setSkill(responseData)
+         setPost(responseData.post)
             
          if (!response.ok()) {
            throw new Error(responseData.message)
@@ -38,7 +35,7 @@ const ViewPostManagement = () => {
 
    const deleteHandler = async() => {
         try {
-          const response = await fetch(`http://68.178.164.166:8070/postManagement/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+          const response = await fetch(`http://68.178.164.166:8070/postManagement/deletePost/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
           const responseData = await response.json()
 
@@ -55,15 +52,15 @@ const ViewPostManagement = () => {
   return <>
       <Card className="card">
           <div className="image">
-          {skill && <img src={skill.image} />}
+          {post && <img src={post.image} />}
 
           </div>
-        {skill && <div className="details">
-              <h1>{skill.name}</h1>
-              <CardText>{skill.description}</CardText>
+        {post && <div className="details">
+              <h1>{post.name}</h1>
+              <CardText>{post.description}</CardText>
           </div>}
 
-          {!skill && 
+          {!post && 
               <CardText className="no-respond">There is no Such postManagement</CardText>
           }
 

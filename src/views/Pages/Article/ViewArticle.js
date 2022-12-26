@@ -37,21 +37,22 @@ const ViewArticle = () => {
  }, [id])
 
  
- const deleteHandler = async() => {
-  try {
-    const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+  const deleteHandler = async() => {
+    try {
+      const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
-    const responseData = await response.json()
+      const responseData = await response.json()
 
-    if (!response.ok()) {
-      throw new Error(responseData.message)
+      if (!response.ok()) {
+        throw new Error(responseData.message)
+    }
+
+    } catch (err) {
+    }
+
+    navigate('/articles')
   }
 
-} catch (err) {
-}
-
-navigate('/blogs')
-}
     return <>
       <Card className="card">
           <div className="image">

@@ -23,7 +23,7 @@ const ViewBlog = () => {
 
          console.log(responseData)
 
-         setBlog(responseData)
+         setBlog(responseData.blog)
             
          if (!response.ok()) {
            throw new Error(responseData.message)

@@ -15,6 +15,7 @@ const EditArticle = () => {
 
 	const [topic, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState("")
 	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
@@ -58,6 +59,7 @@ const EditArticle = () => {
 
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 				
 			if (!response.ok()) {
 			throw new Error(responseData.message)
@@ -173,7 +175,7 @@ const EditArticle = () => {
 			</Form.Group>
 			</Row>
 			<Row>
-			<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+			<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
               {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 			</Row>
 			<Button type='submit' className='mt-2'  color='primary'>Update</Button>

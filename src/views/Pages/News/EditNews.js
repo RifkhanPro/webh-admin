@@ -15,6 +15,7 @@ const EditNews = () => {
 	const {id} = useParams()
 	const [title, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState('')
 	const [selectedFile, setSelectedFile] = useState()
   	const [titleValidate, setTitleValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
@@ -58,6 +59,7 @@ const EditNews = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -175,7 +177,7 @@ const EditNews = () => {
 							</CardGroup>
 						</Form.Group>
 					</Row>
-								<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+								<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
 								{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 					<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
 				</Form>

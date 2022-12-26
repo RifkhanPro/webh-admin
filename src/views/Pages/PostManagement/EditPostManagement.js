@@ -13,6 +13,7 @@ const EditPostManagement = () => {
 	const {id} = useParams()
 	const [topic, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState("")
 	const [selectedFile, setSelectedFile] = useState()
 	const [topicValidate, setTopicValidate] = useState(true)
 	const [desctValidate, setDescValidate] = useState(true)
@@ -48,14 +49,13 @@ const EditPostManagement = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch(`http://68.178.164.166:8070/postManagement/${id}`)
+			 const response = await fetch(`http://68.178.164.166:8070/postManagement/posts/${id}`)
 	
 			 const responseData = await response.json()
 	
-			 console.log(responseData)
-	
-			 setTitle(responseData.name)
-			 setDesc(responseData.description)
+			 setTitle(responseData.post.name)
+			 setDesc(responseData.post.description)
+			 setImage(responseData.post.image)
 
 			 if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -67,7 +67,8 @@ const EditPostManagement = () => {
 	
 		sendRequest()
 	 }, [id])
-
+	
+	//  function 
 	const submitHandler =  async (e) => {
 		e.preventDefault()
 
@@ -107,17 +108,15 @@ const EditPostManagement = () => {
     }
 	
 		try {
-				const response = await fetch(`http://68.178.164.166:8070/postManagement/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+				const response = await fetch(`http://68.178.164.166:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
-						desc,
+						description:desc,
 						image
 					})
 				})
 	
 				const responseData = await response.json()
-	
-		  console.log(responseData)
-	
+				console.log(responseData)
 				if (!response.ok) {
 					throw new Error(responseData.message)
 				}
@@ -151,7 +150,7 @@ const EditPostManagement = () => {
               <CardTitle>Add Skill Image</CardTitle>
           </CardGroup>
             <div>
-              <ImageUploader onInput={catchFileDataHandler}/>
+              <ImageUploader onInput={catchFileDataHandler} image={ image }/>
               {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
             </div>
 			<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>

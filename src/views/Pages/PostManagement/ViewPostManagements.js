@@ -5,7 +5,7 @@ import PostManagementList from './PostManagementList'
 import './ViewBlogs.css'
 
 function ViewPostManagements() {
-  const [skills, setSkills] = useState()
+  const [posts, setPosts] = useState()
   const navigate  = useNavigate()
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
@@ -32,13 +32,9 @@ function ViewPostManagements() {
   useEffect(() => {
      const sendRequest = async () => {
       try {
-          const response = await fetch('http://68.178.164.166:8070/postManagement')
-
+          const response = await fetch('http://68.178.164.166:8070/postManagement/posts')
           const responseData = await response.json()
- 
-          console.log(responseData)
-
-          setSkills(responseData)
+          setPosts(responseData)
              
           if (!response.ok()) {
             throw new Error(responseData.message)
@@ -61,8 +57,8 @@ function ViewPostManagements() {
       <Card>
           <CardBody>
             <Card>
-              {skills && <PostManagementList  data = {skills}/>}
-              {!skills && <p>There is no postManagements</p>}
+              {posts && <PostManagementList data={posts} />}
+              {!posts && <p>There is no postManagements</p>}
             </Card>
           </CardBody>
       </Card>

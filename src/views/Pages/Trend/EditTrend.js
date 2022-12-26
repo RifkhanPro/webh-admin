@@ -15,6 +15,7 @@ const EditTrend = () => {
 
 	const [title, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState('')
 	const [selectedFile, setSelectedFile] = useState()
   	const [titleValidate, setTitleValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
@@ -57,6 +58,7 @@ const EditTrend = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -166,24 +168,11 @@ const EditTrend = () => {
 					</Form.Group>
 				</Row>
 				<Row>
-				<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
 						{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 				</Row>
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 			</Form>
-				{/* <form className='form-control' onSubmit={submitHandler}>
-					<CardGroup className='group'>
-						<Label>Title</Label>
-						<Input onChange={titleHandler} value={title} type='text'/>
-					</CardGroup>
-
-					<CardGroup className='group'>
-						<Label>Description</Label>
-						<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-					</CardGroup>
-
-					<Button type='submit' color='primary' className='me-1'>Update</Button>
-				</form> */}
 			</Col>
 	</Card>)
 }

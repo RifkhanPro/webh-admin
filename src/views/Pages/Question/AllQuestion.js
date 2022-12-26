@@ -74,7 +74,6 @@ const AllQuestion = () => {
                 {/* <th scope="col">#</th> */}
                 <th scope="col">Email</th>
                 <th scope="col">Mobile</th>
-                <th scope="col">Image</th>
                 <th scope="col">Quesions</th>
                 <th scope="col">Action</th>
                 </tr>
@@ -83,13 +82,9 @@ const AllQuestion = () => {
                 {questionData &&
                         questionData.map(item => (
                             <tr key={item._id}>
-                                {/* <td>{}</td> */}
                                 <td>{item.email}</td>
                                 <td>{item.mobile}</td>
-                                <td>{item.image}</td>
                                 <td>{item.question}</td>
-                                {/* <td></td> */}
-                                {/* <td>{item.image}</td> */}
                                  <td>
                                     <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
                                     <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>

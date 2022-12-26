@@ -15,6 +15,7 @@ const EditAnalytic = () => {
 
 	const [title, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [image, setImage] = useState("")
 	const [selectedFile, setSelectedFile] = useState()
   	const [titleValidate, setTitleValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
@@ -57,6 +58,7 @@ const EditAnalytic = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -164,7 +166,7 @@ const EditAnalytic = () => {
 						<Form.Group as={Col} >
 							<CardGroup className='group'>
 								<CardTitle>Add Image</CardTitle>
-								<ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+								<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
 								{!imageValidate && <p>image should be selected</p>}
 							</CardGroup>
 						</Form.Group>

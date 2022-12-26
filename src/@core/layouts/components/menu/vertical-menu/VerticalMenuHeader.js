@@ -5,11 +5,10 @@ import { NavLink } from 'react-router-dom'
 // ** Icons Imports
 import { Disc, X, Circle } from 'react-feather'
 
-// ** Config
-import themeConfig from '@configs/themeConfig'
-
 // ** Utils
 import { getUserData, getHomeRouteForLoggedInUser } from '@utils'
+
+import logo from '../../../../../assets/images/logo/webh_logo.png'
 
 const VerticalMenuHeader = props => {
   // ** Props
@@ -52,9 +51,9 @@ const VerticalMenuHeader = props => {
         <li className='nav-item me-auto'>
           <NavLink to={user ? getHomeRouteForLoggedInUser(user.role) : '/home'} className='navbar-brand'>
             <span className='brand-logo'>
-              <img src={themeConfig.app.appLogoImage} alt='logo' />
+              <img src={logo} alt='logo' />
             </span>
-            <h2 className='brand-text mb-0'>{themeConfig.app.appName}</h2>
+            <h2 className='brand-text mb-0'>WEBH</h2>
           </NavLink>
         </li>
         <li className='nav-item nav-toggle'>

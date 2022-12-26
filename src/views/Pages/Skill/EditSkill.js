@@ -13,6 +13,7 @@ const EditSkill = () => {
 	
 	const [topic, setTitle] = useState('')
   	const [desc, setDesc] = useState('')
+  	const [image, setImage] = useState('')
   	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [contentValidate, setContentValidate] = useState(true)
@@ -57,6 +58,7 @@ const EditSkill = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
+			setImage(responseData.image)
 
 			if (!response.ok()) {
 				throw new Error(responseData.message)
@@ -152,7 +154,7 @@ const EditSkill = () => {
               <CardTitle>Add Skill Image</CardTitle>
           </CardGroup>
 		  <div>
-		  <ImageUploader onInput={catchFileDataHandler} value={selectedFile}/>
+		  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
               {!imageValidate && <p>image should be selected</p>}
 		  </div>
 				<Button type='submit' className='me-1 mt-2' color='primary'>Update</Button>
