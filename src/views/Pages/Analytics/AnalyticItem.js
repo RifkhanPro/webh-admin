@@ -1,7 +1,6 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import './SkillItem.css'
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 
 const AnalyticItem = (props) => {
 
@@ -16,6 +15,7 @@ const AnalyticItem = (props) => {
             <div className="title">{props.title}</div>
             <div className="image">
             {!props.image && <img src={avatar} alt="" />}
+            {props.image && <img src={props.image} alt="" />}
             </div>
             <div className="desc">{props.desc}</div>
           </div>
