@@ -12,7 +12,7 @@ const NameDetail = () => {
         console.log(category, name)
             const sendRequest = async () => {
                 try {
-                    const response = await fetch('http://localhost:8070/topicPost', {method:"GET",
+                    const response = await fetch('http://localhost:8070/topicPost', {method:"POST",
                         headers : {"Content-Type":"application/json"},
                         body :JSON.stringify({
                             name,

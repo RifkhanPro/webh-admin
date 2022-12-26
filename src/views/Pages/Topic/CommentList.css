@@ -1,0 +1,7 @@
+.ul{
+    width: 100%;
+    border: 1px solid black !important;
+    padding: 2rem;
+    list-style: square;
+    display: block;
+}
