@@ -57,7 +57,7 @@ const ViewTrend = () => {
   return <>
       <Card className="card">
           <div className="image">
-              <img src={avatar} />
+               {trend && <img src={trend.image} />}
           </div>
         {trend && <div className="details">
               <h1>{trend.title}</h1>
