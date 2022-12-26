@@ -16,7 +16,7 @@ const NameDetail = () => {
             const sendRequest = async () => {
                 try {
 
-                    const response = await fetch('http://localhost:8070/topicPost/post', {method:"POST",
+                    const response = await fetch('http://68.178.164.166:8070/topicPost/post', {method:"POST",
                         headers : {"Content-Type":"application/json"},
                         body :JSON.stringify({
                             name,

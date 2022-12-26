@@ -10,7 +10,7 @@ function ViewPostManagements() {
   useEffect(() => {
      const sendRequest = async () => {
       try {
-          const response = await fetch('http://localhost:8070/postManagement')
+          const response = await fetch('http://68.178.164.166:8070/postManagement')
 
           const responseData = await response.json()
  

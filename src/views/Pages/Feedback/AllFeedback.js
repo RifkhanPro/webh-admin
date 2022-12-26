@@ -15,7 +15,7 @@ const AllFeedback = () => {
   }
 
    useEffect(() => {
-    fetch("http://localhost:8070/feedback/")
+    fetch("http://68.178.164.166:8070/feedback/")
       .then((res) => {
         return res.json()
       })
@@ -29,7 +29,7 @@ const AllFeedback = () => {
 
   const Removefunction = (_id) => {
     if (window.confirm('Do you want to remove?')) {
-        fetch(`http://localhost:8070/feedback/${_id}`, {
+        fetch(`http://68.178.164.166:8070/feedback/${_id}`, {
             method: "DELETE"
         }).then((res) => {
             console.log(res)
