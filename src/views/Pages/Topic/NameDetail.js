@@ -3,23 +3,20 @@ import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText, CardTitle } from "reactstrap"
 import TopicList from "./TopicList"
+import TopicPostList from "./TopicPostList"
 import './ViewSkill.css'
 const NameDetail = () => {
     const {category, name} = useParams()
     const [posts, setPosts] = useState()
     const navigate = useNavigate()
 
-    const routeHandler = () => {
-        navigate(`/topicPost/${name}/${category}/editName`)
-  
-      navigate('/topics')
-    }
 
     useEffect(() => {
 
             const sendRequest = async () => {
                 try {
-                    const response = await fetch('http://localhost:8070/topicPost', {method:"GET",
+
+                    const response = await fetch('http://localhost:8070/topicPost/post', {method:"POST",
                         headers : {"Content-Type":"application/json"},
                         body :JSON.stringify({
                             name,
@@ -28,6 +25,7 @@ const NameDetail = () => {
                     })
 
                     const responseData = await response.json()
+                    console.log(responseData)
                     setPosts(responseData)
                     if (!response.ok) {
                         throw new Error(responseData.message)
@@ -42,7 +40,7 @@ const NameDetail = () => {
         
         sendRequest()
 
-     }, [name, category])
+     }, [])
 
     return <>
         <Card className="card">
@@ -58,7 +56,8 @@ const NameDetail = () => {
         </Card>
 
         <Card>
-            {posts && <TopicList data = {posts}/>}
+            {posts && <TopicPostList data = {posts}/>}
+            {posts && posts.length === 0 && <p>There is no Posts</p>}
         </Card>
 
     </>

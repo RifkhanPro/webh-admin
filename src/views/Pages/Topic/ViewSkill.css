@@ -46,3 +46,9 @@
 .btns .delete{
     background-color: red !important;
 }
+
+.comments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
