@@ -7,16 +7,9 @@ import './ViewSkill.css'
 const NameDetail = () => {
     const {category, name} = useParams()
     const [posts, setPosts] = useState()
-    const navigate = useNavigate()
-
-    const routeHandler = () => {
-        navigate(`/topicPost/${name}/${category}/editName`)
   
-      navigate('/topics')
-    }
-
     useEffect(() => {
-
+        console.log(category, name)
             const sendRequest = async () => {
                 try {
                     const response = await fetch('http://localhost:8070/topicPost', {method:"GET",
@@ -28,6 +21,9 @@ const NameDetail = () => {
                     })
 
                     const responseData = await response.json()
+                    console.log(category, name)
+
+                    console.log(responseData)
                     setPosts(responseData)
                     if (!response.ok) {
                         throw new Error(responseData.message)
@@ -42,7 +38,7 @@ const NameDetail = () => {
         
         sendRequest()
 
-     }, [name, category])
+     }, [])
 
     return <>
         <Card className="card">

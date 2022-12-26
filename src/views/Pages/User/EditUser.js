@@ -12,6 +12,15 @@ const { id } = useParams()
     const [phone, phonechange] = useState("")
     // const [password, passchange] = useState("")
     const [status, statuschange] = useState("")
+    const [points, pointsChange] = useState(0)
+
+    const min = 0
+    const max = 100
+
+    const pointsChangeHandler = (event) => {
+      const value = Math.max(min, Math.min(max, Number(event.target.value)))
+      pointsChange(value)
+    }
 
     useEffect(() => {
         fetch(`http://localhost:8070/user/${id}`).then((res) => {
@@ -23,6 +32,7 @@ const { id } = useParams()
             emailchange(resp.result.email)
             phonechange(resp.result.phone)
             statuschange(resp.result.status)
+            // pointsChange(resp.result.points)
             console.log(resp.result)
         }).catch((err) => {
             console.log(err.message)
@@ -36,17 +46,17 @@ const { id } = useParams()
 
     const handlesubmit = (e) => {
         e.preventDefault()
-        const userData = {firstname, lastname, email, phone, status}
+        const userData = {points}
         
   
-        fetch(`http://localhost:8070/user/${id}`, {
+        fetch(`http://localhost:8070/user/${id}/changePoints`, {
           method:"PUT",
           headers:{"content-type":"application/json"},
           body:JSON.stringify(userData)
         }).then((res) => {
           console.log(res)
           alert('Updated successfully.')
-          navigate('/')
+          navigate('/user')
         }).catch((err) => {
           console.log(err.message)
         })
@@ -61,6 +71,7 @@ const { id } = useParams()
           <Input 
           onChange = {e => fnamechange(e.target.value)}
           value = {firstname} 
+          disabled
           type = "text" />
         </CardGroup> 
 
@@ -70,6 +81,8 @@ const { id } = useParams()
             onChange = {e => lnamechange(e.target.value)}
             value = {lastname}
             type = "text"
+          disabled
+
           />
         </CardGroup> 
 
@@ -79,6 +92,8 @@ const { id } = useParams()
             onChange = {e => emailchange(e.target.value)}
             value = {email}
             type = "email"
+          disabled
+
           />
         </CardGroup> 
 
@@ -88,6 +103,8 @@ const { id } = useParams()
             onChange = {e => phonechange(e.target.value)}
             value = {phone}
             type = "text"
+          disabled
+
           />
         </CardGroup> 
 {/* 
@@ -106,9 +123,19 @@ const { id } = useParams()
             onChange = {e => statuschange(e.target.value)}
             value = {status}
             type = "text"
+            disabled
+
           />
         </CardGroup> 
 
+        <CardGroup className="group">
+          <CardTitle>Profile Points</CardTitle>
+          <Input
+            onChange = {pointsChangeHandler}
+            value = {points}
+            type = "number"
+          />
+        </CardGroup> 
         <Button type = "submit" className = "btn">
           Submit
         </Button>

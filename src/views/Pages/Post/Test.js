@@ -1,11 +1,11 @@
 import {React, useState} from 'react'
-import {
-    MDBValidation,
-    MDBValidationItem,
-    MDBInput,
-    MDBBtn,
-    MDBCheckbox
-  } from 'mdb-react-ui-kit'
+// import {
+//     MDBValidation,
+//     MDBValidationItem,
+//     MDBInput,
+//     MDBBtn,
+//     MDBCheckbox
+//   } from 'mdb-react-ui-kit'
 
 const Test = () => {
     const [name, setName] = useState()
