@@ -6,30 +6,45 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import Form from 'react-bootstrap/Form'
-// import axios from 'axios'
+import axios from 'axios'
 
 const EditPostManagement = () => {
     const navigate = useNavigate()
 	const {id} = useParams()
 	const [topic, setTitle] = useState()
 	const [desc, setDesc] = useState()
+	const [selectedFile, setSelectedFile] = useState()
+	const [topicValidate, setTopicValidate] = useState(true)
+	const [desctValidate, setDescValidate] = useState(true)
+	const [imageValidate, setImageValidate] = useState(true)
 
-	const titleHandler = (e) => {
-		setTitle(e.target.value)
-	}
-	const descHandler = (e) => {
-		setDesc(e.target.value)
-	 }
+	const topicHandler = (e) => {
+		if (e.target.value.trim() === '') {
+		  setTopicValidate(false)
+		} else {
+		  setTopicValidate(true)
+		  setTitle(e.target.value)
 	
-	const catchFileDataHandler = (e) => {
-		console.log(e)
-		// if (e.name === '') {
-		//   setImageValidate(false)
-		// } else {
-		//   setImageValidate(true)
-		//   setSelectedFile(e)
-		// }
-	}
+		}
+	  }
+	  const contentHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setDescValidate(false)
+		} else {
+			setDescValidate(true)
+		  setDesc(e.target.value)
+	
+		}
+	  }
+	  const catchFileDataHandler = (e) => {
+	   
+		if (e.name === '') {
+		  setImageValidate(false)
+		} else {
+		  setImageValidate(true)
+		  setSelectedFile(e)
+		}
+		}
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
@@ -55,11 +70,47 @@ const EditPostManagement = () => {
 
 	const submitHandler =  async (e) => {
 		e.preventDefault()
+
+    if (topic.trim() === '') {
+      setTopicValidate(false)
+      return
+    }
+
+    if (desc.trim() === '') {
+		setDescValidate(false)
+      return
+    }
+
+    if (selectedFile === undefined) {
+      setImageValidate(false)
+      return
+    }
+
+    let image
+
+    const formData = new FormData()
+    formData.append("file", selectedFile)
+    formData.append("upload_preset", "feed_images")
+    console.log('validate')
+
+    try {
+      await axios
+        .post(
+          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+          formData
+        )
+        .then((res) => {
+          image = res.data.secure_url
+        })
+    } catch (error) {
+      alert(error)
+    }
 	
 		try {
 				const response = await fetch(`http://localhost:8070/postManagement/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
-						desc
+						desc,
+						image
 					})
 				})
 	
@@ -72,8 +123,8 @@ const EditPostManagement = () => {
 				}
 	
 	
-		  setDesc('')
 		  setTitle('')
+		  setDesc('')
 
 			} catch (err) { 
 		  			//
@@ -86,12 +137,14 @@ const EditPostManagement = () => {
 			<form onSubmit={submitHandler} className='col-12 form-control'>
 				<CardGroup className='group'>
 					<CardTitle>Name</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text'/>
+					<Input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
+					{!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
 				</CardGroup>
 	
 				<CardGroup className='group'>
 					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='textarea' rows='4'/>
+					<Input onChange={contentHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+					{!desctValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</CardGroup>
 				
 				<CardGroup className='group'>
@@ -99,9 +152,9 @@ const EditPostManagement = () => {
           </CardGroup>
             <div>
               <ImageUploader onInput={catchFileDataHandler}/>
-              {/* {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>} */}
+              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
             </div>
-				<Button type='submit' className='btn'>Update</Button>
+			<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
 			</form>
 	</Card>)
 }
