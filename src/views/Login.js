@@ -1,15 +1,56 @@
 import { useSkin } from '@hooks/useSkin'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
 import InputPasswordToggle from '@components/input-password-toggle'
 import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap'
 import '@styles/react/pages/page-authentication.scss'
+import axios from 'axios'
+import { useState } from 'react'
+import swal from 'sweetalert'
 
 const Login = () => {
   const { skin } = useSkin()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+  // const [showPassword, setShowPassword] = useState()
 
   const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
+
+    //show hide password
+    // function handleshowpassword () {
+    //     setShowPassword((prevShowPassword) => !prevShowPassword)
+    // }
+
+    async function signIn(event) {
+      event.preventDefault()
+
+      const config = {
+          headers: {
+              "content-Type": "application/json"
+          }
+      }
+      
+      try {
+          //getting data from backend
+          const {data} = await axios.post("http://localhost:8070/user/admin-signin", {email, password}, config)
+
+          //setting the user authorization token
+          localStorage.setItem("userAuthToken", `User ${data.token}`)
+          //setting user
+          localStorage.setItem("user", JSON.stringify(data.result))
+          navigate('/home')
+      } catch (error) {
+          if (error.response.status === 404) {
+            swal("Incorrect Email or Password!", "Check the email and password!", "error")
+          } else if (error.response.status === 400) {
+            swal("Incorrect Email or Password!", "Check the email and password!", "error")
+          } else {
+              alert("Authentication Failed")
+          }
+      }
+  }
 
   return (
     <div className='auth-wrapper auth-cover'>
@@ -76,12 +117,16 @@ const Login = () => {
               Welcome to Vuexy! 👋
             </CardTitle>
             <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
-            <Form className='auth-login-form mt-2' onSubmit={e => e.preventDefault()}>
+            <Form className='auth-login-form mt-2' 
+            // onSubmit={e => e.preventDefault()} 
+            onSubmit={signIn}>
               <div className='mb-1'>
                 <Label className='form-label' for='login-email'>
                   Email
                 </Label>
-                <Input type='email' id='login-email' placeholder='john@example.com' autoFocus />
+                <Input type='email' id='login-email' placeholder='john@example.com' name="email" autoFocus 
+                        onChange={(event) => { setEmail(event.target.value) }} 
+                        />
               </div>
               <div className='mb-1'>
                 <div className='d-flex justify-content-between'>
@@ -92,7 +137,10 @@ const Login = () => {
                     <small>Forgot Password?</small>
                   </Link>
                 </div>
-                <InputPasswordToggle className='input-group-merge' id='login-password' />
+                <InputPasswordToggle className='input-group-merge' id='login-password' name="password"
+                        onChange={ (event) => { setPassword(event.target.value) }}
+                        // handleShowPassword={handleshowpassword}
+                        />
               </div>
               <div className='form-check mb-1'>
                 <Input type='checkbox' id='remember-me' />
@@ -100,8 +148,11 @@ const Login = () => {
                   Remember Me
                 </Label>
               </div>
-              <Button tag={Link} to='/' color='primary' block>
+              <Button type='submit' color='primary' 
+              // onClick={handleshowpassword} 
+              block>
                 Sign in
+                {/* { showPassword ? "ok" : "not" } */}
               </Button>
             </Form>
             <p className='text-center mt-2'>
