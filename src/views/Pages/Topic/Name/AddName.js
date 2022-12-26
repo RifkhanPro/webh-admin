@@ -19,7 +19,7 @@ const AddName = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch('http://localhost:8070/topic/topics')
+			 const response = await fetch('http://68.178.164.166:8070/topic/topics')
 	
 			 const responseData = await response.json()
 	
@@ -40,7 +40,7 @@ const AddName = () => {
       e.preventDefault()
   
       try {
-              const response = await fetch(`http://localhost:8070/topic/${}/create`, {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+              const response = await fetch(`http://68.178.164.166:8070/topic/${}/create`, {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
                       name:content
                   })
               })

@@ -34,12 +34,12 @@ const AllUsers = () => {
         navigate(`edit/${_id}`)
     }
     const Removefunction = (_id) => {
-        if (window.confirm('Do you want to remove?')) {
-            fetch(`http://localhost:8070/user/${_id}`, {
-                method: "DELETE"
+        if (window.confirm('Do you want to Change the Status?')) {
+            fetch(`http://68.178.164.166:8070/user/${_id}/activation`, {
+                method: "PUT"
             }).then((res) => {
                 console.log(res)
-                alert('Removed successfully.')
+                alert('Update successfully.')
                 window.location.reload()
             }).catch((err) => {
                 console.log(err.message)
@@ -48,7 +48,7 @@ const AllUsers = () => {
     }
 
     useEffect(() => {
-        fetch("http://localhost:8070/user").then((res) => {
+        fetch("http://68.178.164.166:8070/user").then((res) => {
             return res.json()
         }).then((resp) => {
             userDataChange(resp)
@@ -71,6 +71,8 @@ const AllUsers = () => {
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
+                        <th scope="col">Activation</th>
+                        <th scope="col">Points</th>
                         {/* <th scope="col">Status</th> */}
                         <th scope="col">Action</th>
                         </tr>
@@ -84,6 +86,8 @@ const AllUsers = () => {
                                         <td>{item.lastname}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
+                                        <td>{item.status === true ? 'Active' : "Deactivate"}</td>
+                                        <td>{item.profilePoints}</td>
                                         {/* <td>{item.image}</td> */}
                                          <td>
                                             <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |  
