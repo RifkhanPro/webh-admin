@@ -53,7 +53,8 @@ const ViewNews = () => {
   return <>
       <Card className="card">
           <div className="image">
-              <img src={avatar} />
+                           {news && <img src={news.image} />}
+
           </div>
           {news && <div className="details">
               <h1>{news.title}</h1>
