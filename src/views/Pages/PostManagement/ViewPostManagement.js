@@ -60,7 +60,7 @@ const ViewPostManagement = () => {
           </div>
         {skill && <div className="details">
               <h1>{skill.name}</h1>
-              <CardText>{skill.desc}</CardText>
+              <CardText>{skill.description}</CardText>
           </div>}
 
           {!skill && 
