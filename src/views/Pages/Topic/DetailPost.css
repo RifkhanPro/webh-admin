@@ -1,0 +1,28 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48%;
+
+}
+
+.no-respond{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 50px;
+}
+
+.comment{
+    width: 100%;
+    text-decoration: underline;
+    float: left;
+}

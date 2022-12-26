@@ -120,7 +120,8 @@ const ViewTopic = lazy(() => import('../../views/Pages/Topic/ViewTopic'))
 const EditTopic = lazy(() => import('../../views/Pages/Topic/EditTopic'))
 const AddName = lazy(() => import('../../views/Pages/Topic/AddName'))
 const ShowNames = lazy(() => import('../../views/Pages/Topic/ShowNames'))
-
+const PostDetails = lazy(() => import('../../views/Pages/Topic/PostDetails'))
+const NameDetail = lazy(() => import('../../views/Pages/Topic/NameDetail'))
 //Feedback
 const AllFeedback = lazy(() => import('../../views/Pages/Feedback/AllFeedback'))
 const ViewFeedback = lazy(() => import('../../views/Pages/Feedback/ViewFeedback'))
@@ -423,6 +424,14 @@ const Routes = [
   {
     path:"/topics/:id/names",
     element:<ShowNames />
+  },
+  {
+    path:"/topics/:category/:name",
+    element:<NameDetail />
+  },
+  {
+    path:"/topics/:category/:name/:id",
+    element:<PostDetails />
   },
   {
     path:"/questions",
