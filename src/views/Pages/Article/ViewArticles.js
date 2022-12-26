@@ -7,6 +7,27 @@ import './ViewBlogs.css'
 function ViewArticles() {
   const [articles, setArticles] = useState()
   const navigate = useNavigate()
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    //check whether user has signed in
+    if (localStorage.getItem("userAuthToken")) {
+        setIsSignedIn(true)
+        console.log(isSignedIn)
+
+        //get user data
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+            console.log(user)
+        }
+
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
+
+  console.log(user, isSignedIn)
 
   useEffect(() => {
      const sendRequest = async () => {
@@ -35,7 +56,7 @@ function ViewArticles() {
   }
 
   return <>
-     <div>
+     {user ? <div>
         <Card>
        
         <CardBody>
@@ -46,7 +67,7 @@ function ViewArticles() {
         </CardBody>
       </Card> 
       <Button className='btn' onClick={routerHandler}>Add Article</Button>
-    </div>
+    </div> : <></> }
 </>
 }
 

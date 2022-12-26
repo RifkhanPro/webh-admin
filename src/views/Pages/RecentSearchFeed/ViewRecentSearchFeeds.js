@@ -7,6 +7,28 @@ import './ViewBlogs.css'
 function ViewRecentSearchFeeds() {
   const [skills, setSkills] = useState()
   const navigate  = useNavigate()
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    //check whether user has signed in
+    if (localStorage.getItem("userAuthToken")) {
+        setIsSignedIn(true)
+        console.log(isSignedIn)
+
+        //get user data
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+            console.log(user)
+        }
+
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
+
+  console.log(user, isSignedIn)
+
   useEffect(() => {
      const sendRequest = async () => {
       try {
@@ -34,8 +56,8 @@ function ViewRecentSearchFeeds() {
     navigate('/addRecentSearchFeed')
   }
 
-  return (
-    <div>
+  return <>
+    {user ? <div>
       <Card>
           <CardBody>
             <Card>
@@ -47,8 +69,8 @@ function ViewRecentSearchFeeds() {
 
       <Button className='btn' onClick={routerHandler}>Add RecentSearchFeed</Button>
 
-    </div>
-  )
+    </div> : <></> }
+  </>
 }
 
 export default ViewRecentSearchFeeds

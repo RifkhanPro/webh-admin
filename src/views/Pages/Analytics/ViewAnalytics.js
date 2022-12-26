@@ -7,6 +7,28 @@ import AnalyticList from './AnalyticList'
 function ViewAnalytics() {
   const [trends, setTrends] = useState()
   const navigate  = useNavigate()
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    //check whether user has signed in
+    if (localStorage.getItem("userAuthToken")) {
+        setIsSignedIn(true)
+        console.log(isSignedIn)
+
+        //get user data
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+            console.log(user)
+        }
+
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
+
+  console.log(user, isSignedIn)
+
   useEffect(() => {
      const sendRequest = async () => {
       try {
@@ -32,8 +54,8 @@ function ViewAnalytics() {
     navigate('/addAnalytic')
   }
 
-  return (
-    <div>
+  return <>
+  {user ? <div>
       <Card>
           <CardBody>
             <Card>
@@ -44,9 +66,8 @@ function ViewAnalytics() {
       </Card>
 
       <Button className='me-1' color='primary' onClick={routerHandler}>Add Analytics</Button>
-
-    </div>
-  )
+    </div> : <></>}
+    </>
 }
 
 export default ViewAnalytics

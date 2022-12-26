@@ -7,6 +7,28 @@ import './ViewBlogs.css'
 function ViewTrends() {
   const [trends, setTrends] = useState()
   const navigate  = useNavigate()
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    //check whether user has signed in
+    if (localStorage.getItem("userAuthToken")) {
+        setIsSignedIn(true)
+        console.log(isSignedIn)
+
+        //get user data
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+            console.log(user)
+        }
+
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
+
+  console.log(user, isSignedIn)
+
   useEffect(() => {
      const sendRequest = async () => {
       try {
@@ -32,8 +54,8 @@ function ViewTrends() {
     navigate('/addTrend')
   }
 
-  return (
-    <div>
+  return <>
+    {user ? <div>
       <Card>
           <CardBody>
             <Card>
@@ -45,8 +67,8 @@ function ViewTrends() {
 
       <Button className='btn' onClick={routerHandler}>Add Trend</Button>
 
-    </div>
-  )
+    </div> : <></> }
+  </>
 }
 
 export default ViewTrends

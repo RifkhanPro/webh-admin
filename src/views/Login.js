@@ -47,7 +47,7 @@ const Login = () => {
           } else if (error.response.status === 400) {
             swal("Incorrect Email or Password!", "Check the email and password!", "error")
           } else {
-              alert("Authentication Failed")
+            swal("Incorrect Email or Password!", "Check the email and password!", "error")
           }
       }
   }
@@ -114,9 +114,9 @@ const Login = () => {
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
             <CardTitle tag='h2' className='fw-bold mb-1'>
-              Welcome to Vuexy! 👋
+              Welcome to WebH Admin Panel! 👋
             </CardTitle>
-            <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
+            <CardText className='mb-2'>Please sign-in to your account as an admin</CardText>
             <Form className='auth-login-form mt-2' 
             // onSubmit={e => e.preventDefault()} 
             onSubmit={signIn}>
@@ -161,23 +161,6 @@ const Login = () => {
                 <span>Create an account</span>
               </Link>
             </p>
-            <div className='divider my-2'>
-              <div className='divider-text'>or</div>
-            </div>
-            <div className='auth-footer-btn d-flex justify-content-center'>
-              <Button color='facebook'>
-                <Facebook size={14} />
-              </Button>
-              <Button color='twitter'>
-                <Twitter size={14} />
-              </Button>
-              <Button color='google'>
-                <Mail size={14} />
-              </Button>
-              <Button className='me-0' color='github'>
-                <GitHub size={14} />
-              </Button>
-            </div>
           </Col>
         </Col>
       </Row>

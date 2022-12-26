@@ -5,6 +5,27 @@ import { Mail, Home, FileText, Circle, Edit, Delete, Info, PlusCircle } from 're
 const AllUsers = () => {
     const [userData, userDataChange] = useState(null)
     const navigate = useNavigate()
+    const [isSignedIn, setIsSignedIn] = useState(false)
+    const [user, setUser] = useState("")
+  
+    useEffect(() => {
+      //check whether user has signed in
+      if (localStorage.getItem("userAuthToken")) {
+          setIsSignedIn(true)
+          console.log(isSignedIn)
+  
+          //get user data
+          if (localStorage.getItem("user")) {
+              setUser(JSON.parse(localStorage.getItem('user')))
+              console.log(user)
+          }
+  
+      } else {
+        setIsSignedIn(false)
+      }
+    }, [])
+  
+    console.log(user, isSignedIn)  
 
     const LoadDetail = (_id) => {
         navigate(`${_id}`)
@@ -35,8 +56,8 @@ const AllUsers = () => {
             console.log(err.message)
         })
     }, [])
-    return (
-        <div className="container">
+    return <>
+        {user ? <div className="container">
             <div className="card">
                 <div className="card-title">
                     <h2 className="m-2">All Users</h2>
@@ -76,8 +97,8 @@ const AllUsers = () => {
                     </table>
                 </div>
             </div>
-        </div>
-    )
+        </div> : <></> }
+    </>
 }
 
 export default AllUsers

@@ -8,8 +8,29 @@ import { Edit, Delete, Info, PlusCircle } from 'react-feather'
 
 const AllFeedback = () => {
   const [feedbackData, feedbackDataChange] = useState()
-
   const navigate = useNavigate()
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    //check whether user has signed in
+    if (localStorage.getItem("userAuthToken")) {
+        setIsSignedIn(true)
+        console.log(isSignedIn)
+
+        //get user data
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+            console.log(user)
+        }
+
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
+
+  console.log(user, isSignedIn)
+
   const LoadDetail = (_id) => {
         navigate(`${_id}`)
   }
@@ -41,8 +62,8 @@ const AllFeedback = () => {
     }
 }
 
-  return (
-    <div className="container">
+  return <>
+    {user ? <div className="container">
     <div className="card">
         <div className="card-title">
             <h2 className="m-2">All Feedbacks</h2>
@@ -83,8 +104,8 @@ const AllFeedback = () => {
             </table>
         </div>
     </div>
-</div>
-  )
+</div> : <></> }
+  </>
 }
 
 export default AllFeedback

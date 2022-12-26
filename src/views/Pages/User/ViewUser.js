@@ -4,6 +4,28 @@ import { Link, useParams } from "react-router-dom"
 const ViewUser = () => {
   const { id } = useParams()
   const [userData, setUserData] = useState()
+  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    //check whether user has signed in
+    if (localStorage.getItem("userAuthToken")) {
+        setIsSignedIn(true)
+        console.log(isSignedIn)
+
+        //get user data
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem('user')))
+            console.log(user)
+        }
+
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [])
+
+  console.log(user, isSignedIn)
+
 
     useEffect(() => {
         const sendRequest = async () => {
@@ -25,8 +47,9 @@ const ViewUser = () => {
         } 
         sendRequest()
     }, [id])
-  return (
-    <div className="container">
+
+  return <>
+    {user ? <div className="container">
         <div className="card row" style={{ textAlign: "left" }}>
           <div className="card-title">
             {/* <h2>User Create</h2> */}
@@ -54,8 +77,8 @@ const ViewUser = () => {
             </div>
           )}
         </div>
-        </div>
-  )
+      </div> : <></> }
+  </>
 }
 
 export default ViewUser
