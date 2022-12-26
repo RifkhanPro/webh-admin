@@ -13,7 +13,7 @@ const AllUsers = () => {
         navigate(`edit/${_id}`)
     }
     const Removefunction = (_id) => {
-        if (window.confirm('Do you want to remove?')) {
+        if (window.confirm('Do you want to Change the Status?')) {
             fetch(`http://localhost:8070/user/${_id}/activation`, {
                 method: "PUT"
             }).then((res) => {
@@ -65,7 +65,7 @@ const AllUsers = () => {
                                         <td>{item.lastname}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
-                                        <td>{item.status === true ? 'Active' : "InActive"}</td>
+                                        <td>{item.status === true ? 'Active' : "Deactivate"}</td>
                                         <td>{item.profilePoints}</td>
                                         {/* <td>{item.image}</td> */}
                                          <td>
