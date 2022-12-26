@@ -8,7 +8,7 @@ const AnalyticList = (props) => {
 			<ul>
 				{props.data.map((item) => (
 					<li key={item._id}>
-						<AnalyticItem id={item._id} title={item.title} image={image} desc={item.desc} />
+						<AnalyticItem id={item._id} title={item.title} image={item.image} desc={item.desc} />
 					</li>
 				))}
 			</ul>

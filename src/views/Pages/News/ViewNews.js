@@ -3,7 +3,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 import './ViewSkill.css'
 
 const ViewNews = () => {
@@ -53,7 +52,8 @@ const ViewNews = () => {
   return <>
       <Card className="card">
           <div className="image">
-              <img src={avatar} />
+                           {news && <img src={news.image} />}
+
           </div>
           {news && <div className="details">
               <h1>{news.title}</h1>

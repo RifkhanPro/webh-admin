@@ -14,7 +14,7 @@ const AllQuestion = () => {
   }
 
    useEffect(() => {
-    fetch("http://localhost:8070/question/questions")
+    fetch("http://localhost:8070/question")
       .then((res) => {
         return res.json()
       })
