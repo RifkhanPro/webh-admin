@@ -9,13 +9,13 @@ import axios from 'axios'
 
 function AddSkill() {
 
+  const navigate = useNavigate()
   const [topic, setTitle] = useState('')
   const [content, setDesc] = useState('')
   const [selectedFile, setSelectedFile] = useState()
   const [topicValidate, setTopicValidate] = useState(true)
   const [contentValidate, setContentValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
-  const navigate = useNavigate()
 
   
   const titleHandler = (e) => {
@@ -39,12 +39,12 @@ function AddSkill() {
     }
   }
   const catchFileDataHandler = (e) => {
-    if (e.name === '') {
-      setImageValidate(false)
-    } else {
-      setImageValidate(true)
-      setSelectedFile(e)
-    }
+		if (e.name === '') {
+			setImageValidate(false)
+		} else {
+			setImageValidate(true)
+			setSelectedFile(e)
+		}
 	}
 
   const submitHandler =  async (e) => {
@@ -55,19 +55,19 @@ function AddSkill() {
       return
     }
 
+    if (content.trim() === '') {
+      setContentValidate(false)
+      return
+    }
+    
     if (selectedFile === undefined) {
       setImageValidate(false)
       return
     }
 
-    if (content.trim() === '') {
-      setContentValidate(false)
-      return
-    }
-
     console.log('validate')
 
-    let imageUrl
+    let image
 
     const formData = new FormData()
     formData.append("file", selectedFile)
@@ -80,7 +80,7 @@ function AddSkill() {
           formData
         )
         .then((res) => {
-          imageUrl = res.data.secure_url
+          image = res.data.secure_url
         })
     } catch (error) {
       alert(error)
@@ -90,7 +90,7 @@ function AddSkill() {
 			const response = await fetch('http://68.178.164.166:8070/blog', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 					name:topic,
 					desc:content,
-          imageUrl
+          image
 				})
 			})
 

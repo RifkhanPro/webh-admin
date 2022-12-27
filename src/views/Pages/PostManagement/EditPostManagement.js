@@ -11,12 +11,13 @@ import axios from 'axios'
 const EditPostManagement = () => {
     const navigate = useNavigate()
 	const {id} = useParams()
+	
 	const [topic, setTitle] = useState()
 	const [desc, setDesc] = useState()
 	const [image, setImage] = useState("")
 	const [selectedFile, setSelectedFile] = useState()
 	const [topicValidate, setTopicValidate] = useState(true)
-	const [desctValidate, setDescValidate] = useState(true)
+	const [descValidate, setDescValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
 	const topicHandler = (e) => {
@@ -28,16 +29,17 @@ const EditPostManagement = () => {
 	
 		}
 	  }
-	  const contentHandler = (e) => {
+	
+	const descHandler = (e) => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
 			setDescValidate(true)
-		  setDesc(e.target.value)
-	
+			setDesc(e.target.value)
 		}
-	  }
-	  const catchFileDataHandler = (e) => {
+  	}
+
+	const catchFileDataHandler = (e) => {
 	   
 		if (e.name === '') {
 		  setImageValidate(false)
@@ -45,8 +47,9 @@ const EditPostManagement = () => {
 		  setImageValidate(true)
 		  setSelectedFile(e)
 		}
-		}
-	 useEffect(() => {
+	}
+
+	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
 			 const response = await fetch(`http://68.178.164.166:8070/postManagement/posts/${id}`)
@@ -142,8 +145,8 @@ const EditPostManagement = () => {
 	
 				<CardGroup className='group'>
 					<CardTitle>Description</CardTitle>
-					<Input onChange={contentHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
-					{!desctValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<Input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</CardGroup>
 				
 				<CardGroup className='group'>
