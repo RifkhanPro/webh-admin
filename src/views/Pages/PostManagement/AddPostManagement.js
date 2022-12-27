@@ -84,7 +84,7 @@ function AddPostManagement() {
     }
 
       try {
-        const response = await fetch('http://68.178.164.166:8070/postManagement', 
+        const response = await fetch('http://68.178.164.166:8070/postManagement/create', 
         {
           method:"POST", headers : {
             "Content-Type":"application/json"
