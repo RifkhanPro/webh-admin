@@ -4,14 +4,13 @@ import React, { useState, useEffect } from 'react'
 // import './AddSkill.css'
 import { Button, Card, Col, CardGroup, CardTitle, Input } from 'reactstrap'
 import { useParams, useNavigate } from "react-router-dom"
-import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import ImageUploader from './ImageUploader'
 
 const EditSkill = () => {
     
-	const navigate = useNavigate()
 	const {id}  = useParams()
+	const navigate = useNavigate()
 	const [topic, setTitle] = useState('')
 	const [desc, setDesc] = useState('')
 	const [image, setImage] = useState('')

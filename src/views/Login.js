@@ -34,7 +34,7 @@ const Login = () => {
       
       try {
           //getting data from backend
-          const {data} = await axios.post("http://68.178.164.166:8070/user/admin-signin", {email, password}, config)
+          const {data} = await axios.post("http://localhost:8070/user/admin-signin", {email, password}, config)
 
           //setting the user authorization token
           localStorage.setItem("userAuthToken", `User ${data.token}`)
