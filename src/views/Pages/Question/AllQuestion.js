@@ -68,7 +68,7 @@ const AllQuestion = () => {
             <h2 className="m-2">All Questions</h2>
         </div>
         <div className="card-body">
-            <table class="table">
+            <table className="table">
             <thead className="primary">
                 <tr>
                 {/* <th scope="col">#</th> */}
@@ -86,7 +86,7 @@ const AllQuestion = () => {
                                 <td>{item.mobile}</td>
                                 <td>{item.question}</td>
                                  <td>
-                                    <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
+                                    <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i className="fas fa-trash-alt"></i> </a>  | 
                                     <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>
                                 </td>
                             </tr>

@@ -63,7 +63,7 @@ const AllUsers = () => {
                     <h2 className="m-2">All Users</h2>
                 </div>
                 <div className="card-body">
-                <table class="table">
+                <table className="table">
                     <thead className="primary">
                         <tr>
                         {/* <th scope="col">#</th> */}
@@ -81,7 +81,7 @@ const AllUsers = () => {
                         {userData &&
                                 userData.map(item => (
                                     <tr key={item._id}>
-                                        {/* <td></td> */}
+                                        {/* <td>{item.count()}</td> */}
                                         <td>{item.firstname}</td>
                                         <td>{item.lastname}</td>
                                         <td>{item.email}</td>
@@ -90,7 +90,7 @@ const AllUsers = () => {
                                         <td>{item.profilePoints}</td>
                                          <td>
                                             <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |  
-                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
+                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i className="fas fa-trash-alt"></i> </a>  | 
                                             <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>
                                         </td>
                                     </tr>
