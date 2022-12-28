@@ -17,9 +17,10 @@ const EditSkill = () => {
   	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [contentValidate, setContentValidate] = useState(true)
-  	const [imageValidate, setImageValidate] = useState(true)
+  	// const [setImageValidate] = useState(true)
 
   	const titleHandler = (e) => {
+		console.log(image)
 		if (e.target.value.trim() === '') {
 		setTopicValidate(false)
 		} else {
@@ -27,6 +28,7 @@ const EditSkill = () => {
 		setTitle(e.target.value)
 		}
   	}
+
 
   	const descHandler = (e) => {
 		if (e.target.value.trim() === '') {
@@ -38,12 +40,12 @@ const EditSkill = () => {
   	}
 
   	const catchFileDataHandler = (e) => {
-		if (e.name === '') {
-		setImageValidate(false)
-		} else {
-		setImageValidate(true)
+		// if (e.name === '') {
+		// setImageValidate(false)
+		// } else {
+		// setImageValidate(true)
 		setSelectedFile(e)
-		}
+		// }
 	}
 
 	
@@ -59,7 +61,7 @@ const EditSkill = () => {
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
 			setImage(responseData.image)
-
+			
 			if (!response.ok()) {
 				throw new Error(responseData.message)
 		    }
@@ -79,35 +81,31 @@ const EditSkill = () => {
 				return
 		  	}
 	  
-		  	if (selectedFile === undefined) {
-				setImageValidate(false)
-				return
+		  	if (selectedFile !== undefined) {
+				console.log(selectedFile)
+				const formData = new FormData()
+				formData.append("file", selectedFile)
+				formData.append("upload_preset", "feed_images")
+				try {
+					await axios
+					.post(
+						"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+						formData
+					)
+					.then((res) => {
+						setImage(res.data.secure_url)
+					})
+					} catch (error) {
+						alert(error)
+					}
 		  	}
 	  
 		  	if (desc.trim() === '') {
 				setContentValidate(false)
 				return
 		  	}
-	  
 		  	console.log('validate')
 	   
-		  	let image
-	  
-			const formData = new FormData()
-			formData.append("file", selectedFile)
-			formData.append("upload_preset", "feed_images")
-			try {
-				await axios
-				  .post(
-					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-					formData
-				  )
-				  .then((res) => {
-					image = res.data.secure_url
-				  })
-			  	} catch (error) {
-					alert(error)
-			  	}
 			
 			try {
 				const response = await fetch(`http://68.178.164.166:8070/skill/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
@@ -155,7 +153,7 @@ const EditSkill = () => {
           </CardGroup>
 		  <div>
 		  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-              {!imageValidate && <p>image should be selected</p>}
+              {/* {!imageValidate && <p>image should be selected</p>} */}
 		  </div>
 				<Button type='submit' className='me-1 mt-2' color='primary'>Update</Button>
 			</form>
