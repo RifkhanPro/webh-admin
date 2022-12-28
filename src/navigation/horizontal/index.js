@@ -13,4 +13,5 @@ export default [
     icon: <Mail size={20} />,
     navLink: '/second-page'
   }
+ 
 ]

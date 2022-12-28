@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
@@ -18,24 +18,64 @@ function AddTopicPost() {
   const [descValidate, setDescValidate] = useState(true)
   const [categoryValidate, setCategoryValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
+  const [categoryList, setCategoryList] = useState()
 
+  const [names, setNames] = useState()
+
+      useEffect(() => {
+          const sendRequest = async () => {
+            try {
+                const response = await fetch('http://localhost:8070/topic')
+
+                const responseData = await response.json()
+
+                setCategoryList(responseData)
+                console.log(responseData)
+                if (!response.ok()) {
+                  throw new Error(responseData.message)
+                }
+
+            } catch (err) {
+             
+            }
+        } 
+
+        sendRequest()
+    }, [])
+
+      useEffect(() => {
+        const sendRequest = async () => {
+          try {
+              const response = await fetch('http://localhost:8070/topic/topicNames', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+                category
+              })
+            })
+    
+              const responseData = await response.json()
+              console.log(category)
+              console.log(responseData)
+    
+              setNames(responseData)
+    
+              if (!response.ok()) {
+                throw new Error(responseData.message)
+            }
+    
+          } catch (err) {
+    
+          }
+        } 
+  
+        sendRequest()
+      }, [category])
+   
 
   const categoryHandler = (e) => {
-    if (e.target.value.trim() === '') {
-      setCategoryValidate(false)
-    } else {
-      setCategoryValidate(true)
       setCategory(e.target.value)
-    }
   }
 
   const nameHandler = (e) => {
-    if (e.target.value.trim() === '') {
-      setNameValidate(false)
-    } else {
-      setNameValidate(true)
       setName(e.target.value)
-    }
   }
 
   const descHandler = (e) => {
@@ -81,6 +121,7 @@ function AddTopicPost() {
 
 
     console.log('validate')
+    // console.log(names)
 
     let image
     const formData = new FormData()
@@ -102,7 +143,7 @@ function AddTopicPost() {
     }
 
     try {
-			const response = await fetch('http://68.178.164.166:8070/topicPost', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+			const response = await fetch('http://localhost:8070/topicPost', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
           category,
           name,
 					desc,
@@ -134,13 +175,27 @@ function AddTopicPost() {
       <form onSubmit={submitHandler} className='form-control col-12'>
           <CardGroup className='group'>
               <CardTitle>Category</CardTitle>
-              <Input onChange={categoryHandler} value={category} type='text' placeholder='Enter Category'/>
+              <select onChange={categoryHandler}>
+                {categoryList && categoryList.map((option, index) => {
+                    return <option key={index} >
+                        {option}
+                    </option>
+                })}
+              </select>
+              {/* <Input onChange={categoryHandler} value={category} type='text' placeholder='Enter Category'/> */}
               {!categoryValidate && <p style={{color:"Red"}}> Category should not be Empty</p>}
           </CardGroup>
 
           <CardGroup className='group'>
-              <CardTitle>Name</CardTitle>
-              <Input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/>
+              <CardTitle>Topic</CardTitle>
+              <select onChange={nameHandler}>
+                {names && names.map((option, index) => {
+                    return <option key={index} >
+                        {option}
+                    </option>
+                })}
+              </select>
+              {/* <Input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/> */}
               {!nameValidate && <p style={{color:"Red"}}> Name should not be Empty</p>}
           </CardGroup>
 

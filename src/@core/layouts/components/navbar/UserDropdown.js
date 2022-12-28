@@ -25,6 +25,10 @@ const UserDropdown = () => {
     navigate('/login')
   }
 
+  const routerHandler = () => {
+    navigate('/profile')
+  }
+
     useEffect(() => {
     //check whether user has signed in
     if (localStorage.getItem("userAuthToken")) {
@@ -57,10 +61,17 @@ const UserDropdown = () => {
         
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to='/' onClick={e => e.preventDefault()}>
+        <DropdownItem tag={Link} to='/profile' onClick={routerHandler}>
           <User size={14} className='me-75' />
           <span className='align-middle'>Profile</span>
         </DropdownItem>
+
+        <DropdownItem divider />
+        <DropdownItem tag={Link} to='/pages/' onClick={e => e.preventDefault()}>
+          <Settings size={14} className='me-75' />
+          <span className='align-middle'>Settings</span>
+        </DropdownItem>
+      
         <DropdownItem tag={Link} to='/home' onClick={logout}>
           <Power size={14} className='me-75' />
           <span className='align-middle'>Logout</span>

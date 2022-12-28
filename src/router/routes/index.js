@@ -130,6 +130,10 @@ const ViewFeedback = lazy(() => import('../../views/Pages/Feedback/ViewFeedback'
 const AllQuestion = lazy(() => import('../../views/Pages/Question/AllQuestion'))
 const ViewQuestion = lazy(() => import('../../views/Pages/Question/ViewQuestion'))
 
+//Profile 
+const Profile = lazy(() => import('../../views/Pages/Profile/ProfilePage.jsx'))
+const EditProfile = lazy(() => import('../../views/Pages/Profile/EditProfile.jsx'))
+
 // ** Merge Routes
 const Routes = [
   {
@@ -441,8 +445,17 @@ const Routes = [
   {
     path:'/questions/:id',
     element: <ViewQuestion />
+  },
+
+  //profile
+  {
+    path:"/profile",
+    element:<Profile />
+  },
+  {
+    path:'/profile/:id/edit',
+    element:<EditProfile />
   }
-  
 ]
 
 const getRouteMeta = route => {
