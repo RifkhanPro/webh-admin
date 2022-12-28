@@ -4,8 +4,8 @@ import React, { useState, useEffect  } from 'react'
 // import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
-import ImageUploader from './ImageUploader'
-import axios from 'axios'
+// import ImageUploader from './ImageUploader'
+// import axios from 'axios'
 
 const EditSkill = () => {
 	const navigate = useNavigate()
@@ -13,14 +13,11 @@ const EditSkill = () => {
 	
 	const [topic, setTitle] = useState('')
   	const [desc, setDesc] = useState('')
-  	const [image, setImage] = useState('')
-  	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [contentValidate, setContentValidate] = useState(true)
-  	// const [setImageValidate] = useState(true)
 
   	const titleHandler = (e) => {
-		console.log(image)
+		// console.log(image)
 		if (e.target.value.trim() === '') {
 		setTopicValidate(false)
 		} else {
@@ -39,19 +36,10 @@ const EditSkill = () => {
 		}
   	}
 
-  	const catchFileDataHandler = (e) => {
-		// if (e.name === '') {
-		// setImageValidate(false)
-		// } else {
-		// setImageValidate(true)
-		setSelectedFile(e)
-		// }
-	}
-
 	
-	 useEffect(() => {
+	useEffect(() => {
 		const sendRequest = async () => {
-		 try {
+		try {
 			const response = await fetch(`http://68.178.164.166:8070/skill/${id}`)
 	
 			const responseData = await response.json()
@@ -60,7 +48,7 @@ const EditSkill = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
-			setImage(responseData.image)
+			// setImage(responseData.image)
 			
 			if (!response.ok()) {
 				throw new Error(responseData.message)
@@ -81,24 +69,24 @@ const EditSkill = () => {
 				return
 		  	}
 	  
-		  	if (selectedFile !== undefined) {
-				console.log(selectedFile)
-				const formData = new FormData()
-				formData.append("file", selectedFile)
-				formData.append("upload_preset", "feed_images")
-				try {
-					await axios
-					.post(
-						"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-						formData
-					)
-					.then((res) => {
-						setImage(res.data.secure_url)
-					})
-					} catch (error) {
-						alert(error)
-					}
-		  	}
+		  	// if (selectedFile !== undefined) {
+			// 	console.log(selectedFile)
+			// 	const formData = new FormData()
+			// 	formData.append("file", selectedFile)
+			// 	formData.append("upload_preset", "feed_images")
+			// 	try {
+			// 		await axios
+			// 		.post(
+			// 			"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+			// 			formData
+			// 		)
+			// 		.then((res) => {
+			// 			setImage(res.data.secure_url)
+			// 		})
+			// 		} catch (error) {
+			// 			alert(error)
+			// 		}
+		  	// }
 	  
 		  	if (desc.trim() === '') {
 				setContentValidate(false)
@@ -110,8 +98,8 @@ const EditSkill = () => {
 			try {
 				const response = await fetch(`http://68.178.164.166:8070/skill/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
-						title:topic,
-						image
+						title:topic
+						// image
 					})
 				})
 	
@@ -143,18 +131,10 @@ const EditSkill = () => {
 				</CardGroup>
 	
 				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='text'/>
+					<CardTitle className='mt-1'>Description</CardTitle>
+					<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
 					{!contentValidate && <p>Description should not be empty</p>}
 				</CardGroup>
-				
-				<CardGroup className='group'>
-              <CardTitle>Add Skill Image</CardTitle>
-          </CardGroup>
-		  <div>
-		  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-              {/* {!imageValidate && <p>image should be selected</p>} */}
-		  </div>
 				<Button type='submit' className='me-1 mt-2' color='primary'>Update</Button>
 			</form>
 	</Card>)

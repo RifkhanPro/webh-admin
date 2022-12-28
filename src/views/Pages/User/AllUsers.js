@@ -66,7 +66,7 @@ const AllUsers = () => {
                 <table class="table">
                     <thead className="primary">
                         <tr>
-                        <th scope="col">#</th>
+                        {/* <th scope="col">#</th> */}
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
@@ -81,14 +81,13 @@ const AllUsers = () => {
                         {userData &&
                                 userData.map(item => (
                                     <tr key={item._id}>
-                                        <td></td>
+                                        {/* <td></td> */}
                                         <td>{item.firstname}</td>
                                         <td>{item.lastname}</td>
                                         <td>{item.email}</td>
                                         <td>{item.phone}</td>
                                         <td>{item.status === true ? 'Active' : "Inactive"}</td>
                                         <td>{item.profilePoints}</td>
-                                        {/* <td>{item.image}</td> */}
                                          <td>
                                             <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |  
                                             <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
