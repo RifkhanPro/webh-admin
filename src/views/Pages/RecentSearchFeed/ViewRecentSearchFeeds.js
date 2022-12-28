@@ -57,6 +57,7 @@ function ViewRecentSearchFeeds() {
   }
 
   return <>
+      <Button className='btn mb-2' onClick={routerHandler}>Add RecentSearchFeed</Button>
     {user ? <div>
       <Card>
           <CardBody>
@@ -67,7 +68,6 @@ function ViewRecentSearchFeeds() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add RecentSearchFeed</Button>
 
     </div> : <></> }
   </>

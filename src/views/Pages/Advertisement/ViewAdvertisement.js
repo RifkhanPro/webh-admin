@@ -39,7 +39,7 @@ const ViewAdvertisement = () => {
          const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`)
 
          const responseData = await response.json()
-
+          console.log(responseData)
          setTrend(responseData)
             
          if (!response.ok()) {

@@ -57,6 +57,7 @@ function ViewArticles() {
 
   return <>
      {user ? <div>
+      <Button className='btn mb-2 ' onClick={routerHandler}>Add Article</Button>
         <Card>
        
         <CardBody>
@@ -66,7 +67,6 @@ function ViewArticles() {
           </Card>
         </CardBody>
       </Card> 
-      <Button className='btn' onClick={routerHandler}>Add Article</Button>
     </div> : <></> }
 </>
 }

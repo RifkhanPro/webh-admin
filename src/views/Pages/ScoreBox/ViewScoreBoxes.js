@@ -57,6 +57,7 @@ function ViewScoreBoxes() {
   }
 
   return <>
+      <Button className='btn mb-2' onClick={routerHandler}>Add ScoreBox</Button>
    {user ? <div>
       <Card>
           <CardBody>
@@ -67,7 +68,6 @@ function ViewScoreBoxes() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add ScoreBox</Button>
 
     </div> : <></> }
   </>

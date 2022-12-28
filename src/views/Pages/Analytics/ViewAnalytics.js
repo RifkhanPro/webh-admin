@@ -55,6 +55,7 @@ function ViewAnalytics() {
   }
 
   return <>
+  <Button className='btn mb-2' onClick={routerHandler}>Add Analytics</Button>
   {user ? <div>
       <Card>
           <CardBody>
@@ -65,7 +66,6 @@ function ViewAnalytics() {
           </CardBody>
       </Card>
 
-      <Button className='me-1' color='primary' onClick={routerHandler}>Add Analytics</Button>
     </div> : <></>}
     </>
 }

@@ -53,6 +53,7 @@ function ViewPostManagements() {
   }
 
   return <>
+      <Button className='btn mb-2' onClick={routerHandler}>Add postManagement</Button>
     {user ? <div>
       <Card>
           <CardBody>
@@ -63,7 +64,6 @@ function ViewPostManagements() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add postManagement</Button>
 
     </div> : <></> }
   </>
