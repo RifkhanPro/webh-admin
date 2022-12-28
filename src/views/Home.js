@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
-
+import { Navigate, Link } from 'react-router-dom'
+import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Row } from 'reactstrap'
+import './homeItem.css'
+import { Mail, FileText, Folder, Award, User, List, TrendingUp, Search, HelpCircle, MessageCircle, BarChart2, Paperclip, Type, Info, Eye } from 'react-feather'
 const Home = () => {
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
@@ -28,42 +29,64 @@ const Home = () => {
     return <>
       {user ? <div>
         <Card>
-          <CardHeader>
-            <CardTitle>Kick start your project 🚀</CardTitle>
-          </CardHeader>
-          <CardBody>
-            <CardText>All the best for your new project.</CardText>
-            <CardText>
-              Please make sure to read our{' '}
-              <CardLink
-                href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/'
-                target='_blank'
-              >
-                Template Documentation
-              </CardLink>{' '}
-              to understand where to go from here and how to use our template.
-            </CardText>
-          </CardBody>
-        </Card>
-  
-        <Card>
-          <CardHeader>
-            <CardTitle>Want to integrate JWT? 🔒</CardTitle>
-          </CardHeader>
-          <CardBody>
-            <CardText>
-              We carefully crafted JWT flow so you can implement JWT with ease and with minimum efforts.
-            </CardText>
-            <CardText>
-              Please read our{' '}
-              <CardLink
-                href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/docs/development/auth'
-                target='_blank'
-              >
-                JWT Documentation
-              </CardLink>{' '}
-              to get more out of JWT authentication.
-            </CardText>
+         <CardBody>
+          <Row>
+           {/* Post Count  */}
+          <div className="skill_card">
+            <div className="title">Total Posts</div>
+            <div className="count">{40}</div>
+            <Link to='/postManagements' className='btn btn-primary mb-1'>All Posts</Link>
+          </div>
+
+          {/* Blog Count  */}
+          <div className="skill_card">
+            <div className="title">Total Blogs</div>
+            <div className="count">{100}</div>
+             <Link to='/blogs' className='btn btn-primary mb-1'>All Blogs</Link>
+          </div>
+        
+          {/* Article Count  */}
+          <div className="skill_card">
+            <div className="title">Total Articles</div>
+            <div className="count">{250}</div>
+            <Link to='/articles' className='btn btn-primary mb-1'>All Articles</Link>
+          </div>
+
+          {/* Topic Count  */}
+          <div className="skill_card">
+            <div className="title">Total Topic</div>
+            <div className="count">{0}</div>
+            <Link to='/topics' className='btn btn-primary mb-1'>All Topics</Link>
+          </div>
+        
+          {/* Topic Posts Count  */}
+          <div className="skill_card">
+            <div className="title">TopicPosts</div>
+            <div className="count">{2}</div>
+            <Link to='/topicPosts' className='btn btn-primary mb-1'>All TopicPosts</Link>
+          </div>
+
+          {/* Advertisements Count  */}
+          <div className="skill_card">
+            <div className="title">Advertisements</div>
+            <div className="count">{10}</div>
+            <Link to='/advertisements' className='btn btn-primary mb-1'>Advertisement</Link>
+          </div>
+
+          {/* News Count  */}
+          <div className="skill_card">
+            <div className="title">News</div>
+            <div className="count">{30}</div>
+            <Link to='/news' className='btn btn-primary mb-1'>All News</Link>
+          </div>
+        
+          {/* User Count  */}
+          <div className="skill_card">
+            <div className="title">Users</div>
+            <div className="count">{11}</div>
+            <Link to='/user' className='btn btn-primary mb-1'>All Users</Link>
+          </div>
+          </Row>
           </CardBody>
         </Card>
       </div> : <></> }
