@@ -55,6 +55,7 @@ function ViewTrends() {
   }
 
   return <>
+      <Button className='btn mb-2' onClick={routerHandler}>Add Trend</Button>
     {user ? <div>
       <Card>
           <CardBody>
@@ -65,7 +66,6 @@ function ViewTrends() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add Trend</Button>
 
     </div> : <></> }
   </>

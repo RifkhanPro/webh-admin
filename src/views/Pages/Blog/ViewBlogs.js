@@ -61,6 +61,7 @@ function ViewBlogs() {
   console.log(user)
 
   return <>
+      <Button className='btn mb-2' onClick={routerHandler}>Add Blog <PlusCircle size={12} /></Button>
   {user ?     
   <div>
         <Card>
@@ -72,7 +73,6 @@ function ViewBlogs() {
           </Card>
         </CardBody>
       </Card> 
-      <Button className='btn' color='primary' onClick={routerHandler}>Add Blog <PlusCircle size={12} /></Button>
     </div> : <></>}
 </>
 }

@@ -151,6 +151,8 @@ const EditAdvertisement = () => {
 				console.log(Err)
 			}
 			navigate('/advertisements')
+			window.location.reload(true)
+
 		}
 
 	return (<Card>

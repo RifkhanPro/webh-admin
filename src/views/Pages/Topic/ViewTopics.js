@@ -56,6 +56,7 @@ function ViewTopics() {
   }
 
   return <>
+      <Button className='btn mb-2' onClick={routerHandler}>Add Topic</Button>
     {user ? <div>
       <Card>
           <CardBody>
@@ -66,7 +67,6 @@ function ViewTopics() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add Topic</Button>
 
     </div> : <></> }
   </>

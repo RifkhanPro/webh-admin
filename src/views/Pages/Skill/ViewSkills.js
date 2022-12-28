@@ -57,6 +57,7 @@ function ViewSkills() {
   }
 
   return <>
+  <Button className='btn mb-2' onClick={routerHandler}>Add Skill</Button>
     {user ? <div>
       <Card>
           <CardBody>
@@ -67,7 +68,6 @@ function ViewSkills() {
           </CardBody>
       </Card>
 
-      <Button className='btn' onClick={routerHandler}>Add Skill</Button>
 
     </div> : <></> }
   </>
