@@ -1,5 +1,4 @@
-import { Mail, Home, FileText, Circle, Command } from 'react-feather'
-
+import { Mail, Home, FileText, Folder, Award, User, List, TrendingUp, Search, HelpCircle, MessageCircle, BarChart2, Paperclip, Type } from 'react-feather'
 export default [
   {
     id: 'home',
@@ -10,52 +9,21 @@ export default [
   {
     id: 'postManagement',
     title: 'Post',
-    icon: <Mail size={20} />,
+    icon: <Paperclip size={20} />,
     navLink: '/postManagements'
   },
   {
     id: 'skills',
     title: 'Skills',
-    icon: <Mail size={20} />,
+    icon: <Award size={20} />,
     navLink: '/skills'
   },
   {
     id: 'blogs',
     title: 'Blog',
-    icon: <Mail size={20} />,
+    icon: <FileText size={20} />,
     navLink: '/blogs'
   },
-  // {
-  //   id: 'postApp',
-  //   title: 'Post Management',
-  //   icon: <FileText />,
-  //   children: [
-  //     {
-  //       id: 'addPost',
-  //       title: 'Add Post',
-  //       icon: <Circle />,
-  //       navLink: '/addPost'
-  //     },
-  //     {
-  //       id: 'allPosts',
-  //       title: 'All posts',
-  //       icon: <Circle />,
-  //       navLink: '/posts'
-  //     }
-  //   ]
-  // },
-      // {
-      //   id: 'invoiceEdit',
-      //   title: 'Edit',
-      //   icon: <Circle />,
-      //   navLink: '/apps/invoice/edit'
-      // },
-      // {
-      //   id: 'invoiceAdd',
-      //   title: 'Add',
-      //   icon: <Circle />,
-      //   navLink: '/apps/invoice/add'
-      // }
   // {
   //   id: 'allPosts',
   //   title: 'All Posts',
@@ -71,13 +39,13 @@ export default [
   {
     id: 'allUsers',
     title: 'User',
-    icon: <Mail size={20} />,
+    icon: <User size={20} />,
     navLink: '/user'
   },
   {
     id: 'articles',
     title: 'Article',
-    icon: <Mail size={20} />,
+    icon: <Folder size={20} />,
     navLink: '/articles'
   },
   {
@@ -89,12 +57,12 @@ export default [
   {
     id: 'topicPosts',
     title: 'TopicPosts',
-    icon: <Mail size={20} />,
+    icon: <Type size={20} />,
     navLink: '/topicPosts'
   }, {
     id: 'advertisement',
     title: 'Advertisement',
-    icon: <Mail size={20} />,
+    icon: <List size={20} />,
     navLink: '/advertisements'
   }, 
   // {
@@ -103,12 +71,12 @@ export default [
   //   icon: <Mail size={20} />,
   //   navLink: '/postManagements'
   // },
-  {
-    id: 'scoreBox',
-    title: 'ScoreBox',
-    icon: <Mail size={20} />,
-    navLink: '/scoreBoxes'
-  },
+  // {
+  //   id: 'scoreBox',
+  //   title: 'ScoreBox',
+  //   icon: <Mail size={20} />,
+  //   navLink: '/scoreBoxes'
+  // },
   {
     id: 'news',
     title: 'News',
@@ -118,31 +86,31 @@ export default [
   {
     id: 'analytics',
     title: 'Analytics',
-    icon: <Mail size={20} />,
+    icon: <BarChart2 size={20} />,
     navLink: '/analytics'
   },
   {
     id: 'recentSearchFeed',
     title: 'Recent Search Feed',
-    icon: <Mail size={20} />,
+    icon: <Search size={20} />,
     navLink: '/recentSearchFeeds'
   },
   {
     id: 'feedback',
     title: 'FeedBack',
-    icon: <Command size={20} />,
+    icon: <MessageCircle size={20} />,
     navLink: '/feedbacks'
   },
   {
     id: 'question',
     title: 'Question',
-    icon: <Mail size={20} />,
+    icon: <HelpCircle size={20} />,
     navLink: '/questions'
   },
   {
     id: 'trend',
     title: 'Trend',
-    icon: <Mail size={20} />,
+    icon: <TrendingUp size={20} />,
     navLink: '/trends'
   }
 ]
