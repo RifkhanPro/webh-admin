@@ -173,9 +173,10 @@ function AddTopicPost() {
   return (
     <Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
+        <h3>Add Topic Post</h3>
           <CardGroup className='group'>
-              <CardTitle>Category</CardTitle>
-              <select onChange={categoryHandler}>
+              <CardTitle className='mt-1'>Category</CardTitle>
+              <select onChange={categoryHandler} className="form-control">
                 {categoryList && categoryList.map((option, index) => {
                     return <option key={index} >
                         {option}
@@ -188,7 +189,7 @@ function AddTopicPost() {
 
           <CardGroup className='group'>
               <CardTitle>Topic</CardTitle>
-              <select onChange={nameHandler}>
+              <select onChange={nameHandler}  className="form-control">
                 {names && names.map((option, index) => {
                     return <option key={index} >
                         {option}
