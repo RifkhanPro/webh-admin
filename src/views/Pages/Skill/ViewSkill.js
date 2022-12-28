@@ -53,9 +53,6 @@ const ViewSkill = () => {
 
   return <>
       <Card className="card">
-          <div className="image">
-             {skill && <img src={skill.image} />}
-          </div>
         {skill && <div className="details">
               <h1>{skill.title}</h1>
               <CardText>{skill.desc}</CardText>
