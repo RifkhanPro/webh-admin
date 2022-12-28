@@ -4,6 +4,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    min-height: 350px;
+    max-height: 400px;
 }
 
 .image{
@@ -17,6 +19,7 @@
 .image img{
     width: 90%;
     height: 90%;
+    max-height: 400px;
 }
 
 .details{

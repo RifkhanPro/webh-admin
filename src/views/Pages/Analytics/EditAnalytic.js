@@ -1,7 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
 import { Button, Card, CardGroup, Row, CardTitle, Col, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
@@ -135,9 +134,10 @@ const EditAnalytic = () => {
 	return (<Card>
 			<Col className='col-12'>
 				<Form onSubmit={submitHandler} className="form-control">
+					<h3>Edit Analytics</h3>
 					<Row>
 						<Form.Group as={Col}>
-							<Form.Label>Title</Form.Label>
+							<CardTitle className='mt-1'>Title</CardTitle>
 							<Input
 							required
 							type="text"
@@ -150,7 +150,7 @@ const EditAnalytic = () => {
 					</Row>
 					<Row>
 						<Form.Group as={Col}>
-							<Form.Label>Description</Form.Label>
+							<CardTitle className='mt-1'>Description</CardTitle>
 							<Input
 							required
 							type="textarea"
@@ -165,29 +165,14 @@ const EditAnalytic = () => {
 					<Row>
 						<Form.Group as={Col} >
 							<CardGroup className='group'>
-								<CardTitle>Add Image</CardTitle>
-								<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-								{!imageValidate && <p>image should be selected</p>}
 							</CardGroup>
 						</Form.Group>
+								<CardTitle className='mt-1'>Add Image</CardTitle>
+								<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
+								{!imageValidate && <p>image should be selected</p>}
 					</Row>
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 				</Form>
-			{/* <form onSubmit={submitHandler} className='form-control'>
-
-				<CardGroup className='group'>
-					<Label>Title</Label>
-					<Input onChange={titleHandler} value={title} type='text'/>
-				</CardGroup>
-
-				<CardGroup className='group'>
-					<Label>Description</Label>
-					<Input onChange={descHandler}  value={desc} type='text'/>
-				</CardGroup>
-
-				
-				<Button type='submit' className='me-1' color='primary'>Update</Button>
-			</form> */}
 			</Col>
 	</Card>)
 }

@@ -76,8 +76,9 @@ function AddSkill() {
   return (
     <Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
+        <h3>Add Skill</h3>
           <CardGroup className='group'>
-              <CardTitle>Title</CardTitle>
+              <CardTitle className='mt-2'>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Title'/>
               {!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
           </CardGroup>

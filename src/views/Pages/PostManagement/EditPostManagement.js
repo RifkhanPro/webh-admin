@@ -137,7 +137,8 @@ const EditPostManagement = () => {
 
 	return (<Card>
 			<form onSubmit={submitHandler} className='col-12 form-control'>
-				<CardGroup className='group'>
+				<h3>Edit Post</h3>
+				<CardGroup className='group mt-1'>
 					<CardTitle>Name</CardTitle>
 					<Input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
 					{!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}

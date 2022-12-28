@@ -1,7 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
 import { Button, Card, CardGroup, Row, Col, CardTitle, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
@@ -9,8 +8,6 @@ import ImageUploader from './ImageUploader'
 import axios from 'axios'
 
 const EditAdvertisement = () => {
-
-	
 	const {id} = useParams()
     const navigate = useNavigate()
 	const [name, setName] = useState()
@@ -158,9 +155,10 @@ const EditAdvertisement = () => {
 	return (<Card>
 		<Col className='col-12'>
 			<Form onSubmit={submitHandler} className="form-control">
+				<h3>Edit Advertisement</h3>
 				<Row>
 					<Form.Group as={Col} controlId="validationCustom01">
-						<Form.Label>Name</Form.Label>
+						<CardTitle className='mt-1'>Name</CardTitle>
 						<Input
 							required
 							type="text"
@@ -173,7 +171,7 @@ const EditAdvertisement = () => {
 				</Row>
 				<Row>
 					<Form.Group as={Col} controlId="validationCustom02">
-						<Form.Label>Description</Form.Label>
+						<CardTitle className='mt-1'>Description</CardTitle>
 						<Input
 							required
 							type="textarea"
@@ -187,7 +185,7 @@ const EditAdvertisement = () => {
 				</Row>
 				<Row>
 					<Form.Group as={Col} controlId="validationCustom02">
-						<Form.Label>Expiry Date</Form.Label>
+						<CardTitle className='mt-1'>Expiry Date</CardTitle>
 						<Input
 							required
 							type="date"
@@ -201,10 +199,9 @@ const EditAdvertisement = () => {
 				<Row>
 				<Form.Group as={Col} >
 					<CardGroup className='group'>
-					<Form.Label>Add Image</Form.Label>
-					
 					</CardGroup>
 				</Form.Group>
+					<CardTitle className='mt-1'>Add Image</CardTitle>
 				</Row>
 				<Row>
 				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>

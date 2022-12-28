@@ -140,59 +140,47 @@ const EditArticle = () => {
 	  <Card>
 		<Col className='col-12'>
 			<Form onSubmit={submitHandler} className="form-control">
+				<h3>Edit Article</h3>
 			<Row>
-			<Form.Group as={Col}>
-				<Form.Label>Topic</Form.Label>
-				<Input
-				required
-				placeholder="Enter Topic"
-				type="text"
-				value={topic}
-				onChange={titleHandler}
-				/>
-				{!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
-			</Form.Group>
+				<Form.Group as={Col} className="mt-1">
+					<CardTitle className='mt-1'>Topic</CardTitle>
+					<Input
+					required
+					placeholder="Enter Topic"
+					type="text"
+					value={topic}
+					onChange={titleHandler}
+					/>
+					{!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+				</Form.Group>
 			</Row>
 			<Row>
-			<Form.Group as={Col} >
-				<Form.Label>Description</Form.Label>
-				<Input
-				required
-				type="textarea"
-				placeholder="Enter Description"
-				rows='5'
-				onChange={descHandler}
-				value={desc}
-				/>
-				{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-			</Form.Group>
+				<Form.Group as={Col} >
+					<CardTitle className='mt-1'>Description</CardTitle>
+					<Input
+					required
+					type="textarea"
+					placeholder="Enter Description"
+					rows='5'
+					onChange={descHandler}
+					value={desc}
+					/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				</Form.Group>
 			</Row>
 			<Row>
-			<Form.Group as={Col} >
-				<CardGroup className='group'>
-              <Form.Label>Add Image</Form.Label>
-			  </CardGroup>
-			</Form.Group>
+				<Form.Group as={Col} >
+					<CardGroup className='group'>
+				</CardGroup>
+				</Form.Group>
+				<CardTitle className='mt-1'>Add Image</CardTitle>
 			</Row>
 			<Row>
-			<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
+				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
+				{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 			</Row>
 			<Button type='submit' className='mt-2'  color='primary'>Update</Button>
-		</Form>
-		{/* <form onSubmit={submitHandler} className='form-control'>
-			<CardGroup className='group'>
-				<Label>Title</Label>
-				<Input onChange={titleHandler} value={topic} type='text'/>
-			</CardGroup>
-  
-			<CardGroup className='group'>
-				<Label>Description</Label>
-				<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-			</CardGroup>
-  
-			<Button type='submit' className='me-1' color='primary'>Update</Button>
-		</form> */}
+			</Form>
 		</Col>
 	  </Card>
 	)

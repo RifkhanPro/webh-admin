@@ -1,7 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
 import { Button, Card, CardGroup, Row, CardTitle, Col, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
@@ -143,9 +142,10 @@ const EditNews = () => {
 		<Card>
 			<Col className='col-12'>
 				<Form onSubmit={submitHandler} className="form-control">
+					<h3>Edit News</h3>
 					<Row>
 						<Form.Group as={Col}>
-							<Form.Label>Topic</Form.Label>
+							<CardTitle className='mt-1'>Topic</CardTitle>
 							<Input
 								required
 								type="text"
@@ -158,7 +158,7 @@ const EditNews = () => {
 					</Row>
 					<Row>
 						<Form.Group as={Col} controlId="validationCustom02">
-							<Form.Label>Description</Form.Label>
+							<CardTitle className='mt-1'>Description</CardTitle>
 							<Input
 								required
 								type="textarea"
@@ -173,9 +173,9 @@ const EditNews = () => {
 					<Row>
 						<Form.Group as={Col} >
 							<CardGroup className='group'>
-								<Form.Label>Add Image</Form.Label>
 							</CardGroup>
 						</Form.Group>
+								<CardTitle className='mt-1'>Add Image</CardTitle>
 					</Row>
 								<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
 								{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}

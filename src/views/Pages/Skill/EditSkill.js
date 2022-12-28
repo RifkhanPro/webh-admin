@@ -1,11 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
-// import ImageUploader from './ImageUploader'
-// import axios from 'axios'
 
 const EditSkill = () => {
 	const navigate = useNavigate()
@@ -17,7 +14,6 @@ const EditSkill = () => {
   	const [contentValidate, setContentValidate] = useState(true)
 
   	const titleHandler = (e) => {
-		// console.log(image)
 		if (e.target.value.trim() === '') {
 		setTopicValidate(false)
 		} else {
@@ -48,7 +44,6 @@ const EditSkill = () => {
 	
 			setTitle(responseData.title)
 			setDesc(responseData.desc)
-			// setImage(responseData.image)
 			
 			if (!response.ok()) {
 				throw new Error(responseData.message)
@@ -69,25 +64,6 @@ const EditSkill = () => {
 				return
 		  	}
 	  
-		  	// if (selectedFile !== undefined) {
-			// 	console.log(selectedFile)
-			// 	const formData = new FormData()
-			// 	formData.append("file", selectedFile)
-			// 	formData.append("upload_preset", "feed_images")
-			// 	try {
-			// 		await axios
-			// 		.post(
-			// 			"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-			// 			formData
-			// 		)
-			// 		.then((res) => {
-			// 			setImage(res.data.secure_url)
-			// 		})
-			// 		} catch (error) {
-			// 			alert(error)
-			// 		}
-		  	// }
-	  
 		  	if (desc.trim() === '') {
 				setContentValidate(false)
 				return
@@ -99,7 +75,6 @@ const EditSkill = () => {
 				const response = await fetch(`http://68.178.164.166:8070/skill/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title:topic
-						// image
 					})
 				})
 	
@@ -124,7 +99,8 @@ const EditSkill = () => {
 
 	return (<Card>
 			<form onSubmit={submitHandler} className='form-control col-12'>
-				<CardGroup className='group'>
+				<h3>Edit Skill</h3>
+				<CardGroup className='group mt-1'>
 					<CardTitle>Title</CardTitle>
 					<Input onChange={titleHandler} value={topic} type='text'/>
 					{!topicValidate && <p>Topic should not be Empty</p>}

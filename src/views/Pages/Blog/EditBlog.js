@@ -1,10 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect } from 'react'
-// import './AddSkill.css'
 import { Button, Card, Col, CardGroup, CardTitle, Input } from 'reactstrap'
 import { useParams, useNavigate } from "react-router-dom"
-import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import ImageUploader from './ImageUploader'
 
@@ -137,7 +135,8 @@ const EditSkill = () => {
 	return (
 	  <Card>
 		<form onSubmit={submitHandler} className='form-control col-12'>
-			<CardGroup className='group'>
+			<h3>Edit Blog</h3>
+			<CardGroup className='group mt-1'>
 				<CardTitle>Title</CardTitle>
 				<Input onChange={titleHandler} value={topic} type='text'/>
 				{!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
@@ -162,39 +161,3 @@ const EditSkill = () => {
 }
 
 export default EditSkill
-			/* <Form noValidate validated={validated} onSubmit={submitHandler} className="form-control">
-			<Row>
-			<Form.Group as={Col} controlId="validationCustom01">
-				<Form.Label>Topic</Form.Label>
-				<Input
-				required
-				type="text"
-				value={topic}
-				placeholder="Enter Topic"
-				onChange={titleHandler}
-				/>
-			<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-				<Form.Control.Feedback type="invalid">
-					Please Enter Topic
-				</Form.Control.Feedback>
-			</Form.Group>
-			</Row>
-			<Row>
-			<Form.Group as={Col} controlId="validationCustom02">
-				<Form.Label>Description</Form.Label>
-				<Input
-				required
-				type="textarea"
-				placeholder="Enter Description"
-				rows='5'
-				onChange={descHandler}
-				value={desc}
-				/>
-				<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-				<Form.Control.Feedback type="invalid">
-					Please Enter Description
-				</Form.Control.Feedback>
-			</Form.Group>
-			</Row>
-			<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-		</Form> */

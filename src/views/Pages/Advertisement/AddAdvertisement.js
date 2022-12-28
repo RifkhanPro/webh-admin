@@ -1,7 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-// import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -127,9 +126,8 @@ function AddAdvertisement() {
   return (
     <Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
-         
-
-          <CardGroup className='group' >
+          <h3>Add Advertisement</h3>
+          <CardGroup className='group mt-1'>
               <CardTitle>Name</CardTitle>
               <Input onChange={NameHandler} value={name} type='text' placeholder='Enter Name'/>
               {!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
@@ -137,7 +135,7 @@ function AddAdvertisement() {
 
           <CardGroup className='group'>
               <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='textarea' placeholder='Enter Description'/>
+              <Input onChange={descHandler}  value={desc} type='textarea' placeholder='Enter Description' rows='5'/>
               {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
           </CardGroup>
 

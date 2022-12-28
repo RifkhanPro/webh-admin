@@ -117,7 +117,8 @@ function AddArticle() {
   return (
     <Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
-          <CardGroup className='group'>
+        <h3>Add Article</h3>
+          <CardGroup className='group mt-1'>
               <CardTitle>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Title'/>
               {!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}

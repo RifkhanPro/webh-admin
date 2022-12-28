@@ -114,23 +114,23 @@ function AddPostManagement() {
       <form onSubmit={submitHandler} className='form-control'>
         <h3 className='mt-2'>Add Post</h3>
           <CardGroup className='group'>
-              <Label>Name</Label>
+              <CardTitle className='mt-1'>Name</CardTitle>
               <Input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
-              {!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+              {!topicValidate && <p style={{color:"Red"}}>Name should not be Empty !</p>}
           </CardGroup>
 
           <CardGroup className='group'>
-              <Label>Description</Label>
+              <CardTitle>Description</CardTitle>
               <Input onChange={contentHandler}  value={content} type='textarea' placeholder='Enter Description' rows='3'/>
-              {!contentValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+              {!contentValidate && <p style={{color:"Red"}}>Description should not be empty!</p>}
           </CardGroup>
 
           <CardGroup className='group'>
-              <Label>Add Skill Image</Label>
           </CardGroup>
+              <CardTitle>Add Skill Image</CardTitle>
             <div>
               <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+              {!imageValidate && <p style={{color:"Red"}}>Image should be selected!</p>}
             </div>
           <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>

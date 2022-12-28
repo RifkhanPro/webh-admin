@@ -113,7 +113,8 @@ function AddRecentSearchFeed() {
   return (
     <Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
-          <CardGroup className='group'>
+        <h3>Add Recent Search Feed</h3>
+          <CardGroup className='group mt-1'>
               <CardTitle>Title</CardTitle>
               <Input onChange={titleHandler} value={topic} type='text'placeholder='Enter Title'/>
               {!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
@@ -127,10 +128,10 @@ function AddRecentSearchFeed() {
           </CardGroup>
 
           <CardGroup className='group'>
-              <CardTitle>Add Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler}/>
               {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
           </CardGroup>
+              <CardTitle>Add Image</CardTitle>
+              <ImageUploader onInput={catchFileDataHandler}/>
          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
     </Card>

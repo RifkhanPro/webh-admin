@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import AnalyticList from './AnalyticList'
 // import './ViewBlogs.css'
 
 function ViewAnalytics() {
   const [trends, setTrends] = useState()
-  const navigate  = useNavigate()
+  // const navigate  = useNavigate()
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
 
@@ -50,12 +50,12 @@ function ViewAnalytics() {
   }, [])
 
   
-  const routerHandler = () => {
-    navigate('/addAnalytic')
-  }
+  // const routerHandler = () => {
+  //   navigate('/addAnalytic')
+  // }
 
   return <>
-  <Button className='btn mb-2' onClick={routerHandler}>Add Analytics</Button>
+  {/* <Button className='btn mb-2' onClick={routerHandler}>Add Analytics</Button> */}
   {user ? <div>
       <Card>
           <CardBody>
