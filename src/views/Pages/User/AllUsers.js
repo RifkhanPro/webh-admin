@@ -7,7 +7,7 @@ const AllUsers = () => {
     const navigate = useNavigate()
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [user, setUser] = useState("")
-  
+    const [allData, setAllData] = useState('')
     useEffect(() => {
       //check whether user has signed in
       if (localStorage.getItem("userAuthToken")) {
@@ -52,6 +52,10 @@ const AllUsers = () => {
             return res.json()
         }).then((resp) => {
             userDataChange(resp)
+            console.log(resp)
+            setAllData(Object.keys(resp).length)
+            // const allData = count
+            console.log(allData)
         }).catch((err) => {
             console.log(err.message)
         })
