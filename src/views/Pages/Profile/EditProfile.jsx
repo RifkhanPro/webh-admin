@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card, CardGroup } from 'react-bootstrap'
-// import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CardTitle, Input } from 'reactstrap'
 
 function EditProfile() {
-        // const navigate = useNavigate()
-        // const {id} = useParams()
+        const navigate = useNavigate()
+        const {id} = useParams()
         const [firstname, setFirstName] = useState('')
         const [lastname, setLastName] = useState('')
         const [firstNameValidate, setFirstNameValidate] = useState(true)
@@ -39,52 +39,48 @@ function EditProfile() {
         const submitHandler =  async (e) => {
             e.preventDefault()
 
-            console.log(firstname)
-            console.log(lastname)
+
                 if (firstname.trim() === '') {
-                    console.log('firstname', firstname)
                     setFirstNameValidate(false)
                     return
                 }
 
                 if (lastname.trim() === '') {
-                    console.log('lastname', lastname)
 
                     lastNameValidate(false)
                     return
                 }
 
             
-               console.log('validate')
-                // try {
-                //     const response = await fetch(`http://localhost:8070/user/${id}/updateAdmin`, {method:"PUT", 
-                //     headers : {"Content-Type":"application/json"}, 
-                //     body :JSON.stringify({
-                //         firstname,
-                //         lastname,
-                //         email
-                //         })
-                //     })
+                try {
+                    const response = await fetch(`http://localhost:8070/user/${id}/updateAdmin`, {method:"PUT", 
+                    headers : {"Content-Type":"application/json"}, 
+                    body :JSON.stringify({
+                        firstname,
+                        lastname
+                        })
+                    })
             
-                //     const responseData = await response.json()
+                    const responseData = await response.json()
             
-                //     console.log(responseData)
+                    console.log(responseData)
 
-                //     localStorage.removeItem('user')
-                //     localStorage.setItem('user', JSON.stringify(responseData))
+                    localStorage.removeItem('user')
+                    localStorage.setItem('user', JSON.stringify(responseData))
 
-                //     if (!response.ok) {
-                //         throw new Error(responseData.message)
-                //     }
+                    if (!response.ok) {
+                        throw new Error(responseData.message)
+                    }
             
-                //     setEmail('')
-                //     setFirstName('')
-                //     setLastName('')
-                //     } catch (err) { 
-                //         console.log(err)
-                //     }
+                    setFirstName('')
+                    setLastName('')
+                    } catch (err) { 
+                        console.log(err)
+                    }
 
-                // navigate('/profile')
+                navigate('/profile')
+                window.location.reload(true)
+
             }
     
         return (

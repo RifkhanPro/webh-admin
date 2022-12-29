@@ -48,7 +48,6 @@ function ProfilePage() {
 
       const imageUploadHandler = async () => {
         let image
-        console.log(file)
         const formData = new FormData()
         formData.append("file", file)
         formData.append("upload_preset", "feed_images")
@@ -68,7 +67,6 @@ function ProfilePage() {
         }
 
         try {
-            console.log(image)
        
 			const response = await fetch(`http://localhost:8070/user/${user._id}/profilePic`, {method:"PUT",
              headers : {"Content-Type":"application/json"},
@@ -89,7 +87,6 @@ function ProfilePage() {
             } catch (err) { 
                 alert(err)
             }
-            console.log(image)
       }
 
   return (
@@ -107,6 +104,7 @@ function ProfilePage() {
                         <div className="profile-content">
                             <span>FirstName : {user.firstname}</span>
                             <span>LastName : {user.lastname}</span>
+                            <span>WEBHID : {user.webhId}</span>
                             <div className='btn'>
                             <button  
                                 className="edit-profile-button"
