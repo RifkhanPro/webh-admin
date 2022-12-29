@@ -59,7 +59,7 @@ const EditTopicPost = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch(`http://68.178.164.166:8070//topicPost/${id}/viewPost`)
+			 const response = await fetch(`http://68.178.164.166:8070/topicPost/${id}/viewPost`)
 	
 			 const responseData = await response.json()
 	
@@ -126,7 +126,7 @@ const EditTopicPost = () => {
     }
 	
 		try {
-				const response = await fetch(`http://68.178.164.166:8070//topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+				const response = await fetch(`http://68.178.164.166:8070/topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						category,
 						name,
 						desc,

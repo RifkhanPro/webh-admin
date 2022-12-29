@@ -57,7 +57,7 @@ function EditProfile() {
             
                console.log('validate')
                 // try {
-                //     const response = await fetch(`http://68.178.164.166:8070//user/${id}/updateAdmin`, {method:"PUT", 
+                //     const response = await fetch(`http://68.178.164.166:8070/user/${id}/updateAdmin`, {method:"PUT", 
                 //     headers : {"Content-Type":"application/json"}, 
                 //     body :JSON.stringify({
                 //         firstname,
