@@ -67,7 +67,7 @@ const AllUsers = () => {
                     <h2 className="m-2">All Users</h2>
                 </div>
                 <div className="card-body">
-                <table className="table">
+                <table className="table" style={{ width:'auto'}}>
                     <thead className="primary">
                         <tr>
                         {/* <th scope="col">#</th> */}

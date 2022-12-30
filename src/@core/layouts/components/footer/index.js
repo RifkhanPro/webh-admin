@@ -13,7 +13,6 @@ const Footer = () => {
       </span>
       <span className='float-md-end d-none d-md-block'>
         Hand-crafted & Made with <b>ProDigit</b>
-        <Heart size={14} />
       </span>
     </p>
   )
