@@ -13,6 +13,18 @@ export default [
     navLink: '/postManagements'
   },
   {
+    id: 'comments',
+    title: 'Comments',
+    icon: <TrendingUp size={20} />,
+    navLink: '/comments'
+  },
+  {
+    id: 'PostApproval',
+    title: 'PostApproval',
+    icon: <TrendingUp size={20} />,
+    navLink: '/postApproval'
+  },
+  {
     id: 'skills',
     title: 'Skills',
     icon: <Award size={20} />,
