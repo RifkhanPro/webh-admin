@@ -1,0 +1,22 @@
+.tr:hover
+{
+    background-color: aqua;
+    cursor: pointer;
+}
+
+.card{
+    min-width: 830px;
+}
+
+.btns
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btns a{
+    width: 49%;
+    margin: 0%;
+    padding: auto;
+}

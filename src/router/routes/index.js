@@ -134,12 +134,29 @@ const ViewQuestion = lazy(() => import('../../views/Pages/Question/ViewQuestion'
 const Profile = lazy(() => import('../../views/Pages/Profile/ProfilePage.jsx'))
 const EditProfile = lazy(() => import('../../views/Pages/Profile/EditProfile.jsx'))
 
+// comments
+const Comments = lazy(() => import('../../views/Pages/CommentsApprovel/AllComments'))
+
+// Posts
+const Posts = lazy(() => import('../../views/Pages/PostApprovel/AllPosts'))
+
 // ** Merge Routes
 const Routes = [
   {
     path: '/',
     index: true,
     element: <Navigate replace to={DefaultRoute} />
+  },
+
+  //comments
+  {
+    path:'/comments',
+    element: <Comments />
+  },
+   //posts
+   {
+    path:'/postApproval',
+    element: <Posts />
   },
   {
     path: '/home',
