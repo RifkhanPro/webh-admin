@@ -14,14 +14,14 @@ export default [
   },
   {
     id: 'comments',
-    title: 'Comments',
-    icon: <TrendingUp size={20} />,
+    title: 'Comment Approval',
+    icon: <Mail size={20} />,
     navLink: '/comments'
   },
   {
     id: 'PostApproval',
     title: 'PostApproval',
-    icon: <TrendingUp size={20} />,
+    icon: <Paperclip size={20} />,
     navLink: '/postApproval'
   },
   {

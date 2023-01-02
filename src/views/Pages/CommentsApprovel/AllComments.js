@@ -60,7 +60,7 @@ const AllComments = () => {
         {user ? <div className="container">
             <div className="card">
                 <div className="card-title">
-                    <h2 className="m-2">All Users</h2>
+                    <h2 className="m-2">All Comments</h2>
                 </div>
                 <div className="card-body">
                 <table className="table" style={{ width:'auto'}}>
