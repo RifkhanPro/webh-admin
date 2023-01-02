@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Mail, Home, FileText, Circle, Edit, Delete, Info, PlusCircle } from 'react-feather'
+import './aprovalStyles.css'
 
 const AllComments = () => {
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [user, setUser] = useState("")
     const [comments, setComments] = useState()
-
+    const navigate = useNavigate()
     useEffect(() => {
       //check whether user has signed in
       if (localStorage.getItem("userAuthToken")) {
@@ -38,6 +39,11 @@ const AllComments = () => {
         })
     }, [])
 
+    
+    const viewHandler = (postId, id) => {
+        console.log(postId, id)
+        navigate(`/comments/${postId}/${id}`)
+    }
     const approveHandler = async (postId, _id) => {
        
         try {
@@ -85,8 +91,9 @@ const AllComments = () => {
                                         <td>{item.desc}</td>
                                         <td>{item.status === true ? 'Approved' : "Rejected"}</td>
                                        
-                                        <td>
+                                          <td className="btns">
                                             <a onClick={() => approveHandler(item.postId, item.id)}   className={item.status === true ? 'btn btn-danger' : "btn btn-primary"}>{item.status === true ? 'Reject' : "Approve"}</a>
+                                            <a onClick={() => viewHandler(item.postId, item.id)} className="btn btn-success">View</a>
                                         </td>
                                     </tr>
                                 ))
