@@ -67,9 +67,9 @@ const AllUsers = () => {
                     <h2 className="m-2">All Users</h2>
                 </div>
                 <div className="card-body">
-                <table className="table" style={{ width:'auto'}}>
-                    <thead className="primary">
-                        <tr>
+                <table className="tbl" style={{ width:'1000px'}}>
+                    <thead className="th-1" style={{}}>
+                        <tr> 
                         {/* <th scope="col">#</th> */}
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
