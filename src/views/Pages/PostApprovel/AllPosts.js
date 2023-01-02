@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Mail, Home, FileText, Circle, Edit, Delete, Info, PlusCircle } from 'react-feather'
 import './aprovalStyles.css'
 const AllPosts = () => {
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [user, setUser] = useState("")
     const [posts, setPosts] = useState()
-
+    const navigate = useNavigate()
     useEffect(() => {
       //check whether user has signed in
       if (localStorage.getItem("userAuthToken")) {
@@ -59,7 +59,7 @@ const AllPosts = () => {
 
 
     const viewHandler = (id) => {
-        console.log(id)
+        navigate(`/postApproval/${id}`)
     }
     return <>
         {user ? <div className="container">
