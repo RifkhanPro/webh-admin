@@ -19,7 +19,6 @@ const TopicPostItem = (props) => {
             {!props.image && <img src={avatar} alt="" />}
               {props.image && <img src={props.image} alt="" />}
             </div>
-            <div className="desc">{props.desc}</div>
           </div>
         )
   

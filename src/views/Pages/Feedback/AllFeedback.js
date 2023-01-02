@@ -68,7 +68,7 @@ const AllFeedback = () => {
         <div className="card-title">
             <h2 className="m-2">All Feedbacks</h2>
         </div>
-        <div className="card-body">
+        <div className="table-responsive card-body">
             <table class="table">
             <thead className="primary">
                 <tr>

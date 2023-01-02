@@ -1,6 +1,4 @@
-.btn{
-    width: 70%;
-    margin: auto;
-    display: block;
-
+.card{
+    display: flex;
+    justify-content: center !important;
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Card, CardBody, Button } from 'reactstrap'
 import { PlusCircle } from 'react-feather'
 import BlogList  from './BlogList'
-// import './ViewBlogs.css'
+import './ViewBlogs.css'
 
 function ViewBlogs() {
   const [blogs, setBlogs] = useState()
@@ -64,14 +64,13 @@ function ViewBlogs() {
       <Button className='btn mb-2' onClick={routerHandler}>Add Blog <PlusCircle size={12} /></Button>
   {user ?     
   <div>
-        <Card>
-       
-        <CardBody>
-          <Card>
-             {blogs && <BlogList  data = {blogs}/>}
-             {!blogs && <p>There is no Blogs</p>}
-          </Card>
-        </CardBody>
+        <Card className='card'>
+          <CardBody>
+            <Card>
+              {blogs && <BlogList  data = {blogs}/>}
+              {!blogs && <p>There is no Blogs</p>}
+            </Card>
+          </CardBody>
       </Card> 
     </div> : <></>}
 </>

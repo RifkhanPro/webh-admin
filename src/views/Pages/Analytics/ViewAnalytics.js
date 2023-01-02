@@ -184,10 +184,10 @@ function ViewAnalytics() {
 
 
     return <>
-      {user ? <div>
-        <Card>
+      {user ? <div >
+        <Card >
          <CardBody>
-          <Row>
+          <Row className='card'>
            {/* Post Count  */}
           <div className="skill_card">
             <div className="title">Total Posts</div>
