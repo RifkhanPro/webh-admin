@@ -68,7 +68,9 @@ const EditAdvertisement = () => {
 			setName(responseData.name)
 			setExpiry(responseData.expiry)
 			setDesc(responseData.desc)
-			setImage(responseData.image)
+			if (responseData.image) {
+				setImage(responseData.image)
+			}
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -98,57 +100,87 @@ const EditAdvertisement = () => {
 				return
 			}
 
-		  	if (selectedFile === undefined) {
-				setImageValidate(false)
-				return
-		  	}
 		  	console.log('validate')
-		   
-		  	let image
+			let imageUrl = ''
 
-			const formData = new FormData()
-			formData.append("file", selectedFile)
-			formData.append("upload_preset", "feed_images")
-
-			try {
-				await axios
-				  .post(
-					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-					formData
-				  )
-				  .then((res) => {
-					image = res.data.secure_url
-				  })
-			} catch (error) {
-				alert(error)
+			if (selectedFile !== undefined) {
+				const formData = new FormData()
+				formData.append("file", selectedFile)
+				formData.append("upload_preset", "feed_images")
+	
+				try {
+					await axios
+					  .post(
+						"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+						formData
+					  )
+					  .then((res) => {
+						imageUrl = res.data.secure_url
+					  })
+				} catch (error) {
+					alert(error)
+				}
 			}
-
-			try {
-				const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`, 
-				{
-					method:"PUT", headers : {
-						"Content-Type":"application/json"
-					}, body :JSON.stringify({
-							name,		
-							desc,
-							expiry,
-							image
-						})
-					})
-					const responseData = await response.json()
-		
-					if (!response.ok) {
-						throw new Error(responseData.message)
-					}
-					setName('')
-					setDesc('')
-					setExpiry('')
 			
-			} catch (err) { 
-				console.log(Err)
+			if (imageUrl !== '') {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`, 
+					{
+						method:"PUT", headers : {
+							"Content-Type":"application/json"
+						}, body :JSON.stringify({
+								name,		
+								desc,
+								expiry,
+								image:imageUrl
+							})
+						})
+						const responseData = await response.json()
+			
+						if (!response.ok) {
+							throw new Error(responseData.message)
+						}
+						setName('')
+						setDesc('')
+						setExpiry('')
+				
+				} catch (err) { 
+					console.log(err)
+				}
+				
+				navigate('/advertisements')
+				window.location.reload(true)
+
+			} else {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`, 
+					{
+						method:"PUT", headers : {
+							"Content-Type":"application/json"
+						}, body :JSON.stringify({
+								name,		
+								desc,
+								expiry,
+								image
+							})
+						})
+						const responseData = await response.json()
+			
+						if (!response.ok) {
+							throw new Error(responseData.message)
+						}
+						setName('')
+						setDesc('')
+						setExpiry('')
+				
+				} catch (err) { 
+					console.log(err)
+				}
+				
+				navigate('/advertisements')
+				window.location.reload(true)
 			}
-			navigate('/advertisements')
-			window.location.reload(true)
+
 
 		}
 
