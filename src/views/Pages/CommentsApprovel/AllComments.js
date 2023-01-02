@@ -28,7 +28,7 @@ const AllComments = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:8070/post").then((res) => {
+        fetch("http://68.178.164.166:8070/post").then((res) => {
             return res.json()
         }).then((resp) => {
             setComments(resp)
@@ -41,7 +41,7 @@ const AllComments = () => {
     const approveHandler = async (postId, _id) => {
        
         try {
-            const response = await fetch(`http://localhost:8070/post/${postId}/${_id}/checkComment`, {method:"PUT", 
+            const response = await fetch(`http://68.178.164.166:8070/post/${postId}/${_id}/checkComment`, {method:"PUT", 
             headers : {"Content-Type":"application/json"}})
 
             const responseData = await response.json()

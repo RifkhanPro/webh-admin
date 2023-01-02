@@ -28,7 +28,7 @@ const AllPosts = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:8070/post", {method : 'PUT', headers : {"Content-Type":"application/json"}}).then((res) => {
+        fetch("http://68.178.164.166:8070/post", {method : 'PUT', headers : {"Content-Type":"application/json"}}).then((res) => {
             return res.json()
         }).then((resp) => {
             setPosts(resp.posts)
@@ -41,7 +41,7 @@ const AllPosts = () => {
     const approveHandler = async (postId) => {
        
         try {
-            const response = await fetch(`http://localhost:8070/post/${postId}/check`, {method:"PUT", 
+            const response = await fetch(`http://68.178.164.166:8070/post/${postId}/check`, {method:"PUT", 
             headers : {"Content-Type":"application/json"}})
 
             const responseData = await response.json()
