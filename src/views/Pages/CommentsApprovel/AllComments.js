@@ -68,8 +68,8 @@ const AllComments = () => {
                 <div className="card-title">
                     <h2 className="m-2">All Comments</h2>
                 </div>
-                <div className="card-body">
-                <table className="table" style={{ width:'auto'}}>
+                <div className="table-responsive">
+                <table className="table">
                     <thead className="primary">
                         <tr>
                             {/* <th scope="col">Comment</th> */}

@@ -4,10 +4,6 @@
     cursor: pointer;
 }
 
-.card{
-    min-width: 830px;
-}
-
 .btns
 {
     display: flex;

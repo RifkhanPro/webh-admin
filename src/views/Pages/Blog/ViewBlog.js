@@ -47,10 +47,10 @@ const ViewBlog = () => {
           throw new Error(responseData.message)
       }
 
-    } catch (err) {
-    }
+      } catch (err) {
+      }
 
-    navigate('/blogs')
+      navigate('/blogs')
     }
     return <>
       <Card className="card">
