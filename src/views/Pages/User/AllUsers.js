@@ -67,14 +67,14 @@ const AllUsers = () => {
                     <h2 className="m-2">All Users</h2>
                 </div>
                 <div className="card-body">
-                <table className="tbl" style={{ width:'1000px'}}>
+                <div className="tbl" style={{ width:'1000px'}}>
                     <thead className="th-1" style={{}}>
                         <tr> 
                         {/* <th scope="col">#</th> */}
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col" style={{width:"10%"}}>First Name</th>
+                        <th scope="col" style={{width:"10%"}}>Last Name</th>
+                        <th scope="col" >Email</th>
+                        <th scope="col" style={{width:"5%"}}>Phone</th>
                         <th scope="col">Activation</th>
                         <th scope="col">Points</th>
                         {/* <th scope="col">Status</th> */}
@@ -101,7 +101,7 @@ const AllUsers = () => {
                                 ))
                             } 
                     </tbody>
-                    </table>
+                    </div>
                 </div>
             </div>
         </div> : <></> }
