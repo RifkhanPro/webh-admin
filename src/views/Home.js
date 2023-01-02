@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Row } from 'reactstrap'
-import './homeItem.css'
+// import './homeItem.css'
+import './AnalyticsCard.css'
 import { Mail, FileText, Folder, Award, User, List, TrendingUp, Search, HelpCircle, MessageCircle, BarChart2, Paperclip, Type, Info, Eye } from 'react-feather'
 const Home = () => {
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -178,10 +179,10 @@ const Home = () => {
 
 
     return <>
-      {user ? <div>
+      {user ? <div >
         <Card>
          <CardBody>
-          <Row>
+          <Row className='card'>
            {/* Post Count  */}
           <div className="skill_card">
             <div className="title">Total Posts</div>

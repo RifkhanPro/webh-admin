@@ -48,7 +48,7 @@ const ViewPosts = () => {
                 <div className="card-title">
                     <h2 className="m-2">All Posts</h2>
                 </div>
-                <div className="card-body">
+                <div className="table-responsive">
                         <Link to="/addPost" className="btn btn-success mb-2"><PlusCircle size={12} /></Link>
                     <table class="table">
                     <thead className="primary">

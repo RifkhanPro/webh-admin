@@ -3,7 +3,7 @@ import { Button } from 'reactstrap'
 import "./ImageUploader.css"
 
 function ImageUploader(props) {
-    console.log(props)
+
     const [file, setFile] = useState()
     const [previewUrl, setPreviewUrl] = useState()
 
@@ -28,6 +28,7 @@ function ImageUploader(props) {
     if (e.target.files && e.target.files.length === 1) {
         pickedFile = e.target.files[0]
         setFile(pickedFile)
+  
     }
 
     props.onInput(pickedFile)
@@ -42,7 +43,7 @@ function ImageUploader(props) {
 
         <div className='image-upload'>
             <div className='image-upload__preview'>
-                {previewUrl ? <><img src={previewUrl} alt='preview' /></> : <>{props.image && <img src={props.image} alt='preview' />}</> }
+            {previewUrl ? <><img src={previewUrl} alt='preview' /></> : <>{props.image && <img src={props.image} alt='preview' />}</> }
             </div>
 
             <Button type='button' onClick={pickImageHandler}>Pick Image</Button>
