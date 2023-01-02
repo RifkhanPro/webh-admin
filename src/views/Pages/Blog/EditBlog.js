@@ -16,7 +16,6 @@ const EditSkill = () => {
 	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
-  	const [imageValidate, setImageValidate] = useState(true)
 	
 	const titleHandler = (e) => {
 		if (e.target.value.trim() === '') {
@@ -37,12 +36,7 @@ const EditSkill = () => {
   	}
 
   	const catchFileDataHandler = (e) => {
-		if (e.name === '') {
-			setImageValidate(false)
-		} else {
-			setImageValidate(true)
 			setSelectedFile(e)
-		}
 	}
 
     useEffect(() => {
@@ -180,7 +174,6 @@ const EditSkill = () => {
 			<CardGroup className='group'>
               <CardTitle>Add Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 			  </CardGroup>
 
 			  <Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>

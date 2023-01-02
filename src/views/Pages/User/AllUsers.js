@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Mail, Home, FileText, Circle, Edit, Delete, Info, PlusCircle } from 'react-feather'
-
+import './user.css'
 const AllUsers = () => {
     const [userData, userDataChange] = useState(null)
     const navigate = useNavigate()
@@ -62,45 +62,45 @@ const AllUsers = () => {
     }, [])
     return <>
         {user ? <div className="container">
-            <div className="card">
-                <div className="card-title">
-                    <h2 className="m-2">All Users</h2>
+            <div className="card m-0 p-0" >
+                <div className="mx-1 mt-1">
+                    <h2 >All Users</h2>
                 </div>
-                <div className="card-body">
-                <table className="table" style={{ width:'auto'}}>
-                    <thead className="primary">
-                        <tr>
-                        {/* <th scope="col">#</th> */}
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Activation</th>
-                        <th scope="col">Points</th>
-                        {/* <th scope="col">Status</th> */}
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userData &&
-                                userData.map(item => (
-                                    <tr key={item._id}>
-                                        {/* <td>{item.count()}</td> */}
-                                        <td>{item.firstname}</td>
-                                        <td>{item.lastname}</td>
-                                        <td>{item.email}</td>
-                                        <td>{item.phone}</td>
-                                        <td>{item.status === true ? 'Active' : "Inactive"}</td>
-                                        <td>{item.profilePoints}</td>
-                                         <td>
-                                            <a onClick={() => { LoadEdit(item._id) }} className="btn btn-success"><Edit size={12} /> </a>   |  
-                                            <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i className="fas fa-trash-alt"></i> </a>  | 
-                                            <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>
-                                        </td>
-                                    </tr>
-                                ))
-                            } 
-                    </tbody>
+                <div className="table-responsive m-1">
+                    <table className="table">
+                        <thead className="table-primary">
+                            <tr >
+                            {/* <th scope="col">#</th> */}
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Activation</th>
+                            <th scope="col">Points</th>
+                            {/* <th scope="col">Status</th> */}
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                {userData &&
+                                        userData.map(item => (
+                                            <tr key={item._id} >
+                                                {/* <td>{item.count()}</td> */}
+                                                <td>{item.firstname}</td>
+                                                <td>{item.lastname}</td>
+                                                <td>{item.email}</td>
+                                                <td>{item.phone}</td>
+                                                <td>{item.status === true ? 'Active' : "Inactive"}</td>
+                                                <td>{item.profilePoints}</td>
+                                                <td className="btn-div">
+                                                    <Edit onClick={() => { LoadEdit(item._id) }} size={20}  className="btns"/>
+                                                    <Info onClick={() => { LoadEdit(item._id) }} size={20} className="btns"/>
+                                                    <Delete onClick={() => { LoadEdit(item._id) }} size={20} className="btns"/> 
+                                                </td>
+                                            </tr>
+                                        ))
+                                    } 
+                            </tbody>
                     </table>
                 </div>
             </div>
