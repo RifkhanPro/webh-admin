@@ -16,7 +16,6 @@ const EditSkill = () => {
 	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
-  	const [imageValidate, setImageValidate] = useState(true)
 	
 	const titleHandler = (e) => {
 		if (e.target.value.trim() === '') {
@@ -37,12 +36,7 @@ const EditSkill = () => {
   	}
 
   	const catchFileDataHandler = (e) => {
-		if (e.name === '') {
-			setImageValidate(false)
-		} else {
-			setImageValidate(true)
 			setSelectedFile(e)
-		}
 	}
 
     useEffect(() => {
@@ -82,54 +76,83 @@ const EditSkill = () => {
 				return
 			}
 	  
-		  	if (selectedFile === undefined) {
-				setImageValidate(false)
-				return
-		  	}
 		  	console.log('validate')
 		   
-		  	let image
+			  let imageUrl = ''
 
-			const formData = new FormData()
-			formData.append("file", selectedFile)
-			formData.append("upload_preset", "feed_images")
+			  if (selectedFile !== undefined) {
+				  const formData = new FormData()
+				  formData.append("file", selectedFile)
+				  formData.append("upload_preset", "feed_images")
+	  
+				  try {
+					  await axios
+						.post(
+						  "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+						  formData
+						)
+						.then((res) => {
+						  imageUrl = res.data.secure_url
+						})
+				  } catch (error) {
+					  alert(error)
+				  }
+			  }
 
-			try {
-				await axios
-				  .post(
-					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-					formData
-				  )
-				  .then((res) => {
-					image = res.data.secure_url
-				  })
-			} catch (error) {
-				alert(error)
-			}
-
-			try {
-				const response = await fetch(`http://68.178.164.166:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-					name:topic,
-					desc,
-					image
+			  if (imageUrl !== '') {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+						name:topic,
+						desc,
+						image:imageUrl
+						})
 					})
-				})
-		
-				const responseData = await response.json()
-		
-				console.log(responseData)
-		
-				if (!response.ok) {
-					throw new Error(responseData.message)
-				}
-		
-				setDesc('')
-				setTitle('')
-				} catch (err) { 
-					console.log(err)
-				}
+			
+					const responseData = await response.json()
+			
+					console.log(responseData)
+			
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+			
+					setDesc('')
+					setTitle('')
+					} catch (err) { 
+						console.log(err)
+					}
+	
+				navigate('/blogs')
+				window.location.reload(true)
 
-			navigate('/blogs')
+			  } else {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+						name:topic,
+						desc,
+						image
+						})
+					})
+			
+					const responseData = await response.json()
+			
+					console.log(responseData)
+			
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+			
+					setDesc('')
+					setTitle('')
+					} catch (err) { 
+						console.log(err)
+					}
+	
+				navigate('/blogs')
+				window.location.reload(true)
+
+			  }
+			
 		}
   
 	return (
@@ -151,7 +174,6 @@ const EditSkill = () => {
 			<CardGroup className='group'>
               <CardTitle>Add Image</CardTitle>
               <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
 			  </CardGroup>
 
 			  <Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>

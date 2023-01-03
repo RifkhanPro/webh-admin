@@ -21,3 +21,7 @@ form .group{
     width: 50%;
     margin: auto;
 }
+.card{
+    margin: auto;
+    min-width: 500px !important;
+}

@@ -90,47 +90,79 @@ const EditAnalytic = () => {
 		  
 		console.log('validate')
 	   
-		let image
+		let imageUrl = ''
 
-		const formData = new FormData()
-		formData.append("file", selectedFile)
-		formData.append("upload_preset", "feed_images")
+		if (selectedFile !== undefined) {
+			const formData = new FormData()
+			formData.append("file", selectedFile)
+			formData.append("upload_preset", "feed_images")
 
-		try {
-			await axios
-			  .post(
-				"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-				formData
-			  )
-			  .then((res) => {
-				image = res.data.secure_url
-			  })
-		} catch (error) {
-			alert(error)
+			try {
+				await axios
+				  .post(
+					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+					formData
+				  )
+				  .then((res) => {
+					imageUrl = res.data.secure_url
+				  })
+			} catch (error) {
+				alert(error)
+			}
 		}
-		try {
-			const response = await fetch(`http://68.178.164.166:8070/analytics/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-				desc,
-				title,
-				image
-				})
-			})
-			const responseData = await response.json()
 		
-			if (!response.ok) {
-				throw new Error(responseData.message)
-			}
+		if (imageUrl !== '') {
+			try {
+				const response = await fetch(`http://68.178.164.166:8070/analytics/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					desc,
+					title,
+					image:imageUrl
+					})
+				})
+				const responseData = await response.json()
 			
-			setTitle('')
-			setDesc('')
+				if (!response.ok) {
+					throw new Error(responseData.message)
+				}
+				
+				setTitle('')
+				setDesc('')
+	
+				} catch (err) { 
+					console.log(err)
+				}
+	
+			navigate('/analytics')
+			window.location.reload(true)
 
-			} catch (err) { 
-				console.log(err)
+			} else {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/analytics/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+						desc,
+						title,
+						image
+						})
+					})
+					const responseData = await response.json()
+				
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+					
+					setTitle('')
+					setDesc('')
+		
+					} catch (err) { 
+						console.log(err)
+					}
+		
+				navigate('/analytics')
+				window.location.reload(true)
 			}
 
-		navigate('/analytics')
 		}
 
+		
 	return (<Card>
 			<Col className='col-12'>
 				<Form onSubmit={submitHandler} className="form-control">

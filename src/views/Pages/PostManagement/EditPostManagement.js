@@ -85,56 +85,85 @@ const EditPostManagement = () => {
       return
     }
 
-    if (selectedFile === undefined) {
-      setImageValidate(false)
-      return
-    }
 
-    let image
+	let imageUrl = ''
 
-    const formData = new FormData()
-    formData.append("file", selectedFile)
-    formData.append("upload_preset", "feed_images")
-    console.log('validate')
+	if (selectedFile !== undefined) {
+		const formData = new FormData()
+		formData.append("file", selectedFile)
+		formData.append("upload_preset", "feed_images")
 
-    try {
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-          formData
-        )
-        .then((res) => {
-          image = res.data.secure_url
-        })
-    } catch (error) {
-      alert(error)
-    }
-	
 		try {
+			await axios
+			  .post(
+				"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+				formData
+			  )
+			  .then((res) => {
+				imageUrl = res.data.secure_url
+			  })
+		} catch (error) {
+			alert(error)
+		}
+	}
+
+		if (imageUrl !== '') {
+			try {
 				const response = await fetch(`http://68.178.164.166:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
 						description:desc,
-						image
+						image:imageUrl
 					})
 				})
-	
+
 				const responseData = await response.json()
 				console.log(responseData)
 				if (!response.ok) {
 					throw new Error(responseData.message)
 				}
-	
-	
-		  setTitle('')
-		  setDesc('')
 
-			} catch (err) { 
-		  			//
+
+				setTitle('')
+				setDesc('')
+
+					} catch (err) { 
+							//
+					}
+
+					navigate('/postManagements')
+					window.location.reload(true)
+
+			} else {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+							name:topic,
+							description:desc,
+							image
+						})
+					})
+	
+					const responseData = await response.json()
+					console.log(responseData)
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+	
+	
+					setTitle('')
+					setDesc('')
+	
+						} catch (err) { 
+								//
+						}
+	
+						navigate('/postManagements')
+						window.location.reload(true)
+	
 			}
-
-			navigate('/postManagements')
-	  }
-
+			
+	}
+	
+	
 	return (<Card>
 			<form onSubmit={submitHandler} className='col-12 form-control'>
 				<h3>Edit Post</h3>

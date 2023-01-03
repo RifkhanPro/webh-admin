@@ -6,6 +6,7 @@ import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditAdvertisement = () => {
 	const {id} = useParams()
@@ -56,6 +57,7 @@ const EditAdvertisement = () => {
 		}
 	}
 
+
 	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
@@ -68,7 +70,9 @@ const EditAdvertisement = () => {
 			setName(responseData.name)
 			setExpiry(responseData.expiry)
 			setDesc(responseData.desc)
-			setImage(responseData.image)
+			if (responseData.image) {
+				setImage(responseData.image)
+			}
 
 			if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -79,6 +83,8 @@ const EditAdvertisement = () => {
 		}
 	} 
 	sendRequest()
+
+
 	}, [id])
 
 	const submitHandler =  async (e) => {
@@ -98,119 +104,160 @@ const EditAdvertisement = () => {
 				return
 			}
 
-		  	if (selectedFile === undefined) {
-				setImageValidate(false)
-				return
-		  	}
 		  	console.log('validate')
-		   
-		  	let image
+			let imageUrl = ''
 
-			const formData = new FormData()
-			formData.append("file", selectedFile)
-			formData.append("upload_preset", "feed_images")
-
-			try {
-				await axios
-				  .post(
-					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-					formData
-				  )
-				  .then((res) => {
-					image = res.data.secure_url
-				  })
-			} catch (error) {
-				alert(error)
+			if (selectedFile !== undefined) {
+				const formData = new FormData()
+				formData.append("file", selectedFile)
+				formData.append("upload_preset", "feed_images")
+	
+				try {
+					await axios
+					  .post(
+						"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+						formData
+					  )
+					  .then((res) => {
+						imageUrl = res.data.secure_url
+					  })
+				} catch (error) {
+					alert(error)
+				}
 			}
-
-			try {
-				const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`, 
-				{
-					method:"PUT", headers : {
-						"Content-Type":"application/json"
-					}, body :JSON.stringify({
-							name,		
-							desc,
-							expiry,
-							image
-						})
-					})
-					const responseData = await response.json()
-		
-					if (!response.ok) {
-						throw new Error(responseData.message)
-					}
-					setName('')
-					setDesc('')
-					setExpiry('')
 			
-			} catch (err) { 
-				console.log(Err)
+			if (imageUrl !== '') {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`, 
+					{
+						method:"PUT", headers : {
+							"Content-Type":"application/json"
+						}, body :JSON.stringify({
+								name,		
+								desc,
+								expiry,
+								image:imageUrl
+							})
+						})
+						const responseData = await response.json()
+			
+						if (!response.ok) {
+							throw new Error(responseData.message)
+						}
+						setName('')
+						setDesc('')
+						setExpiry('')
+				
+				} catch (err) { 
+					console.log(err)
+				}
+				
+				navigate('/advertisements')
+				window.location.reload(true)
+
+			} else {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/advertisement/${id}`, 
+					{
+						method:"PUT", headers : {
+							"Content-Type":"application/json"
+						}, body :JSON.stringify({
+								name,		
+								desc,
+								expiry,
+								image
+							})
+						})
+						const responseData = await response.json()
+			
+						if (!response.ok) {
+							throw new Error(responseData.message)
+						}
+						setName('')
+						setDesc('')
+						setExpiry('')
+				
+				} catch (err) { 
+					console.log(err)
+				}
+				
+				navigate('/advertisements')
+				window.location.reload(true)
 			}
-			navigate('/advertisements')
-			window.location.reload(true)
+
 
 		}
 
-	return (<Card>
-		<Col className='col-12'>
-			<Form onSubmit={submitHandler} className="form-control">
-				<h3>Edit Advertisement</h3>
-				<Row>
-					<Form.Group as={Col} controlId="validationCustom01">
-						<CardTitle className='mt-1'>Name</CardTitle>
-						<Input
-							required
-							type="text"
-							value={name}
-							onChange={nameHandler}
-							placeholder="Enter name"
-						/>
-						{!nameValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+	return (<>
+		{ !name && !desc && !expiry &&     <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+		{ name && desc && expiry && <Card>
+			<Col className='col-12'>
+				<Form onSubmit={submitHandler} className="form-control">
+					<h3>Edit Advertisement</h3>
+					<Row>
+						<Form.Group as={Col} controlId="validationCustom01">
+							<CardTitle className='mt-1'>Name</CardTitle>
+							<Input
+								required
+								type="text"
+								value={name}
+								onChange={nameHandler}
+								placeholder="Enter name"
+							/>
+							{!nameValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+						</Form.Group>
+					</Row>
+					<Row>
+						<Form.Group as={Col} controlId="validationCustom02">
+							<CardTitle className='mt-1'>Description</CardTitle>
+							<Input
+								required
+								type="textarea"
+								placeholder="Enter Description"
+								rows='5'
+								onChange={descHandler}
+								value={desc}
+							/>
+							{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+						</Form.Group>
+					</Row>
+					<Row>
+						<Form.Group as={Col} controlId="validationCustom02">
+							<CardTitle className='mt-1'>Expiry Date</CardTitle>
+							<Input
+								required
+								type="date"
+								placeholder="Enter Expiry Date"
+								onChange={expiryHandler}
+								value={expiry}
+							/>
+							{!expiryValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+						</Form.Group>
+					</Row>
+					<Row>
+					<Form.Group as={Col} >
+						<CardGroup className='group'>
+						</CardGroup>
 					</Form.Group>
-				</Row>
-				<Row>
-					<Form.Group as={Col} controlId="validationCustom02">
-						<CardTitle className='mt-1'>Description</CardTitle>
-						<Input
-							required
-							type="textarea"
-							placeholder="Enter Description"
-							rows='5'
-							onChange={descHandler}
-							value={desc}
-						/>
-						{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-					</Form.Group>
-				</Row>
-				<Row>
-					<Form.Group as={Col} controlId="validationCustom02">
-						<CardTitle className='mt-1'>Expiry Date</CardTitle>
-						<Input
-							required
-							type="date"
-							placeholder="Enter Expiry Date"
-							onChange={expiryHandler}
-							value={expiry}
-						/>
-						{!expiryValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-					</Form.Group>
-				</Row>
-				<Row>
-				<Form.Group as={Col} >
-					<CardGroup className='group'>
-					</CardGroup>
-				</Form.Group>
-					<CardTitle className='mt-1'>Add Image</CardTitle>
-				</Row>
-				<Row>
-				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-				</Row>
-				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
-			</Form>
-			</Col>
-	</Card>
+						<CardTitle className='mt-1'>Add Image</CardTitle>
+					</Row>
+					<Row>
+					<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
+						{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					</Row>
+					<Button type='submit' className='mt-2'  color='primary'>Update</Button>
+				</Form>
+				</Col>
+		</Card>}
+	</>
+	
+	
 	)
 }
 
