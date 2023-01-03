@@ -135,7 +135,7 @@ function AddAdvertisement() {
                   visible={true}
                 />}
 
-<Card>
+    <Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
           <h3>Add Advertisement</h3>
           <CardGroup className='group mt-1'>
@@ -167,7 +167,7 @@ function AddAdvertisement() {
 
          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
-    </Card>}
+    </Card>
     </>
    
   )

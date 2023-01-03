@@ -3,6 +3,7 @@
 import React, { useState, useEffect  } from 'react'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditSkill = () => {
 	const navigate = useNavigate()
@@ -97,23 +98,35 @@ const EditSkill = () => {
 			navigate('/skills')
 	  	}
 
-	return (<Card>
-			<form onSubmit={submitHandler} className='form-control col-12'>
-				<h3>Edit Skill</h3>
-				<CardGroup className='group mt-1'>
-					<CardTitle>Title</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text'/>
-					{!topicValidate && <p>Topic should not be Empty</p>}
-				</CardGroup>
-	
-				<CardGroup className='group'>
-					<CardTitle className='mt-1'>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-					{!contentValidate && <p>Description should not be empty</p>}
-				</CardGroup>
-				<Button type='submit' className='me-1 mt-2' color='primary'>Update</Button>
-			</form>
-	</Card>)
+	return (
+		<>
+		{ !topic && !desc &&     <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+
+			{topic && desc &&  <Card>
+						<form onSubmit={submitHandler} className='form-control col-12'>
+							<h3>Edit Skill</h3>
+							<CardGroup className='group mt-1'>
+								<CardTitle>Title</CardTitle>
+								<Input onChange={titleHandler} value={topic} type='text'/>
+								{!topicValidate && <p>Topic should not be Empty</p>}
+							</CardGroup>
+				
+							<CardGroup className='group'>
+								<CardTitle className='mt-1'>Description</CardTitle>
+								<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
+								{!contentValidate && <p>Description should not be empty</p>}
+							</CardGroup>
+							<Button type='submit' className='me-1 mt-2' color='primary'>Update</Button>
+						</form>
+				</Card>}
+		</>
+	)
 }
 
 export default EditSkill

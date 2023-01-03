@@ -6,6 +6,7 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditAddRecentSearchFeed = () => {
     const navigate = useNavigate()
@@ -170,31 +171,44 @@ const EditAddRecentSearchFeed = () => {
 	
 	  }
 
-	return (<Card>
-			<form onSubmit={submitHandler} className='form-control col-12'>
-				<CardGroup className='group'>
-					<CardTitle>Title</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Title'/>
-					{!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
-				</CardGroup>
-	
-				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='textarea' rows='5' className='Enter Description'/>
-					{!contentValidate && <p style={{color:"Red"}}>Description not be empty</p>}
-				</CardGroup>
+	return <>
+		{ !topic && !desc &&   <RotatingLines className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+		/>}
 
-				<CardGroup className='group'>
-              		<CardTitle>AddImage</CardTitle>
-              		
-          		</CardGroup>
-				<div>
-				<ImageUploader onInput={catchFileDataHandler} image={image} />
-              		{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-				</div>
-				<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
-			</form>
-	</Card>)
+		{topic && desc && 
+				<Card>
+				<form onSubmit={submitHandler} className='form-control col-12'>
+					<CardGroup className='group'>
+						<CardTitle>Title</CardTitle>
+						<Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Title'/>
+						{!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+					</CardGroup>
+		
+					<CardGroup className='group'>
+						<CardTitle>Description</CardTitle>
+						<Input onChange={descHandler}  value={desc} type='textarea' rows='5' className='Enter Description'/>
+						{!contentValidate && <p style={{color:"Red"}}>Description not be empty</p>}
+					</CardGroup>
+	
+					<CardGroup className='group'>
+						  <CardTitle>AddImage</CardTitle>
+						  
+					  </CardGroup>
+					<div>
+					<ImageUploader onInput={catchFileDataHandler} image={image} />
+						  {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					</div>
+					<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
+				</form>
+		</Card>
+		}
+	</>
+	
 }
 
 export default EditAddRecentSearchFeed

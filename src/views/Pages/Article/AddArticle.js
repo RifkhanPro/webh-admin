@@ -16,6 +16,7 @@ function AddArticle() {
   const [contentValidate, setContentValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
   const navigate = useNavigate()
+  // const [spinner, setSpinner] = useState(false)
 
   const titleHandler = (e) => {
     if (e.target.value.trim() === '') {

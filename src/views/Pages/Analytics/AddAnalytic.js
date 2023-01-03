@@ -49,6 +49,7 @@ function AddAnalytic() {
 
   const submitHandler =  async (e) => {
     e.preventDefault()
+    setSpinner(true)
 
     if (title.trim() === '') {
       setTitleValidate(false)

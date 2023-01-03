@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TopicList from './TopicList'
 import './ViewBlogs.css'
+import { RotatingLines } from  'react-loader-spinner'
 
 function ViewTopics() {
   const [topics, setTopics] = useState()
@@ -62,7 +63,14 @@ function ViewTopics() {
           <CardBody>
             <Card>
               {topics && <TopicList  data = {topics}/>}
-              {!topics && <p>There is no topics</p>}
+              {topics && topics.length === 0 && <p>There is no topics</p>}
+              {!topics &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
             </Card>
           </CardBody>
       </Card>
