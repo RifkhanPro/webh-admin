@@ -1,6 +1,7 @@
 import React from "react"
 // eslint-disable-next-line no-duplicate-imports
 import { useState, useEffect } from "react"
+import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
 import './ViewSkill.css'
@@ -50,6 +51,13 @@ const ViewNews = () => {
  }, [id])
 
   return <>
+      {!news &&    <RotatingLines className="text-center"
+      strokeColor="grey"
+      strokeWidth="5"
+      animationDuration="1"
+      width="96"
+      visible={true}
+    />}
       <Card className="card">
           <div className="image">
                            {news && <img src={news.image} />}

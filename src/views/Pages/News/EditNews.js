@@ -6,6 +6,7 @@ import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 
 const EditNews = () => {
@@ -176,7 +177,15 @@ const EditNews = () => {
 		}
 
 	return (
-		<Card>
+		<>
+			{ !title && !desc  &&     <RotatingLines className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+			/>}
+		{title && desc && <Card>
 			<Col className='col-12'>
 				<Form onSubmit={submitHandler} className="form-control">
 					<h3>Edit News</h3>
@@ -219,7 +228,8 @@ const EditNews = () => {
 					<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
 				</Form>
 			</Col>
-		</Card>
+		</Card>}
+		</>
 	)
 }
 

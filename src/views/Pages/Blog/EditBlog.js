@@ -5,6 +5,7 @@ import { Button, Card, Col, CardGroup, CardTitle, Input } from 'reactstrap'
 import { useParams, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import ImageUploader from './ImageUploader'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditSkill = () => {
     
@@ -156,29 +157,42 @@ const EditSkill = () => {
 		}
   
 	return (
-	  <Card>
-		<form onSubmit={submitHandler} className='form-control col-12'>
-			<h3>Edit Blog</h3>
-			<CardGroup className='group mt-1'>
-				<CardTitle>Title</CardTitle>
-				<Input onChange={titleHandler} value={topic} type='text'/>
-				{!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
-			</CardGroup>
-  
-			<CardGroup className='group'>
-				<CardTitle>Description</CardTitle>
-				<Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-				{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-			</CardGroup>
-  
-			<CardGroup className='group'>
-              <CardTitle>Add Image</CardTitle>
-              <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-			  </CardGroup>
+		<>
+			{ !topic && !desc &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
 
-			  <Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
-		</form>
-	  </Card>
+				{ topic && desc &&
+					  <Card>
+					  <form onSubmit={submitHandler} className='form-control col-12'>
+						  <h3>Edit Blog</h3>
+						  <CardGroup className='group mt-1'>
+							  <CardTitle>Title</CardTitle>
+							  <Input onChange={titleHandler} value={topic} type='text'/>
+							  {!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+						  </CardGroup>
+				
+						  <CardGroup className='group'>
+							  <CardTitle>Description</CardTitle>
+							  <Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
+							  {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+						  </CardGroup>
+				
+						  <CardGroup className='group'>
+							<CardTitle>Add Image</CardTitle>
+							<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
+							</CardGroup>
+			  
+							<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
+					  </form>
+					</Card>
+				}
+		</>
+	
 	)
 }
 

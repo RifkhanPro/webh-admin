@@ -163,7 +163,16 @@ const EditAnalytic = () => {
 		}
 
 		
-	return (<Card>
+	return (
+	<>
+	{ !title && !desc  &&     <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+				{title && desc && 	<Card>
 			<Col className='col-12'>
 				<Form onSubmit={submitHandler} className="form-control">
 					<h3>Edit Analytics</h3>
@@ -206,7 +215,9 @@ const EditAnalytic = () => {
 				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
 				</Form>
 			</Col>
-	</Card>)
+	</Card>}
+				</>
+)
 }
 
 export default EditAnalytic

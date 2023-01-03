@@ -4,6 +4,7 @@ import React, { useState, useEffect  } from 'react'
 import './AddSkill.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditTopic = () => {
     const navigate = useNavigate()
@@ -61,7 +62,16 @@ const EditTopic = () => {
 			navigate('/topics')
 	  }
 
-	return (<Card>
+	return (
+		<>
+				{ !topic &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+		{topic &&  <Card>
 			<form onSubmit={submitHandler}>
 				<CardGroup className='group'>
 					<CardTitle>Category</CardTitle>
@@ -70,7 +80,10 @@ const EditTopic = () => {
 	
 				<Button type='submit' className='btn'>Update</Button>
 			</form>
-	</Card>)
+		</Card>}
+		</>
+	
+	)
 }
 
 export default EditTopic

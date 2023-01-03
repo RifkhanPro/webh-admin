@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TopicPostList from './TopicPostList'
@@ -63,7 +64,14 @@ function ViewTopicPosts() {
           <CardBody>
             <Card>
               {topics && <TopicPostList  data = {topics}/>}
-              {!topics && <p>There is no TopicPosts</p>}
+              {topics && topics.length <= 0 && <p>There is no TopicPosts</p>}
+              {!topics &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
             </Card>
           </CardBody>
       </Card>

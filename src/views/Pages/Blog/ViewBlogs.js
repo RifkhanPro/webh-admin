@@ -5,6 +5,7 @@ import { Card, CardBody, Button } from 'reactstrap'
 import { PlusCircle } from 'react-feather'
 import BlogList  from './BlogList'
 import './ViewBlogs.css'
+import { RotatingLines } from 'react-loader-spinner'
 
 function ViewBlogs() {
   const [blogs, setBlogs] = useState()
@@ -68,7 +69,14 @@ function ViewBlogs() {
           <CardBody>
             <Card>
               {blogs && <BlogList  data = {blogs}/>}
-              {!blogs && <p>There is no Blogs</p>}
+              {blogs && blogs.length <= 0 && <p>There is no Blogs</p>}
+              {!blogs &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
             </Card>
           </CardBody>
       </Card> 
