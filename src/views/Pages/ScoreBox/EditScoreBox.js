@@ -75,98 +75,123 @@ const EditScoreBox = () => {
 	}, [id])
 
 	const submitHandler =  async (e) => {
-		e.preventDefault()
-    
-    if (topic.trim() === '') {
-      setTopicValidate(false)
-      return
-    }
+			e.preventDefault()
+			
+			if (topic.trim() === '') {
+			setTopicValidate(false)
+			return
+			}
 
-    if (desc.trim() === '') {
-      setContentValidate(false)
-      return
-    }
+			if (desc.trim() === '') {
+			setContentValidate(false)
+			return
+			}
 
-    if (selectedFile === undefined) {
-      setImageValidate(false)
-      return
-    }
-
-
-    console.log('validate')
-
-    let image
-    const formData = new FormData()
-    formData.append("file", selectedFile)
-    formData.append("upload_preset", "feed_images")
-
-    try {
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-          formData
-        )
-        .then((res) => {
-          
-          image = res.data.secure_url
-        })
-    } catch (error) {
-      alert(error)
-    }
 	
-	try {
-		const response = await fetch(`http://68.178.164.166:8070/scoreBox/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-			desc,
-			title:topic,
-			image
-			})
-		})
-	
-		const responseData = await response.json()
-	
-		console.log(responseData)
-	
-		if (!response.ok) {
-			throw new Error(responseData.message)
-		}
-	
-	
-		setTitle('')
-		setDesc('')
+			console.log('validate')
+					let imageUrl = ''
 
-		} catch (err) { 
-		  	//
-		}
-
-		navigate('/scoreBoxes')
-	  }
-
-	return (<Card>
-			<form onSubmit={submitHandler} className='form-control col-12'>
-				<CardGroup className='group'>
-					<CardTitle>Title</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Text'/>
-					{!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
-				</CardGroup>
+			if (selectedFile !== undefined) {
+				const formData = new FormData()
+				formData.append("file", selectedFile)
+				formData.append("upload_preset", "feed_images")
 	
-				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
-					{!contentValidate && <p style={{color:"Red"}}>Description not be empty</p>}
-				</CardGroup>
+				try {
+					await axios
+					  .post(
+						"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+						formData
+					  )
+					  .then((res) => {
+						imageUrl = res.data.secure_url
+					  })
+				} catch (error) {
+					alert(error)
+				}
+			}
+	
+			if (imageUrl !== '') {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/scoreBox/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+						desc,
+						title:topic,
+						image:imageUrl
+						})
+					})
 				
-				<CardGroup className='group'>
-              		<CardTitle>Add ScoreBox Image</CardTitle>
-              		
-          		</CardGroup>
-				<div>
-				<ImageUploader onInput={catchFileDataHandler} image={image} />
-              		{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-				</div>
+					const responseData = await response.json()
+				
+					console.log(responseData)
+				
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+				
+				
+					setTitle('')
+					setDesc('')
+			
+					} catch (err) { 
+						//
+					}
+			
+					navigate('/scoreBoxes')
+					window.location.reload(true)
 
-				<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
-			</form>
-	</Card>)
-}
+			} else {
+			try {
+				const response = await fetch(`http://68.178.164.166:8070/scoreBox/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					desc,
+					title:topic,
+					image
+					})
+				})
+			
+				const responseData = await response.json()
+			
+				console.log(responseData)
+			
+				if (!response.ok) {
+					throw new Error(responseData.message)
+				}
+			
+				setTitle('')
+				setDesc('')
+		
+				} catch (err) { 
+					  //
+				}
+		
+				navigate('/scoreBoxes')
+				window.location.reload(true)
+		}
+	}
+		return (<Card>
+				<form onSubmit={submitHandler} className='form-control col-12'>
+					<CardGroup className='group'>
+						<CardTitle>Title</CardTitle>
+						<Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Text'/>
+						{!topicValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+					</CardGroup>
+		
+					<CardGroup className='group'>
+						<CardTitle>Description</CardTitle>
+						<Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
+						{!contentValidate && <p style={{color:"Red"}}>Description not be empty</p>}
+					</CardGroup>
+					
+					<CardGroup className='group'>
+						<CardTitle>Add ScoreBox Image</CardTitle>
+						
+					</CardGroup>
+					<div>
+					<ImageUploader onInput={catchFileDataHandler} image={image} />
+						{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					</div>
+
+					<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
+				</form>
+		</Card>)
+	}
 
 export default EditScoreBox

@@ -86,54 +86,81 @@ const EditArticle = () => {
 				return
 			}
 	  
-		  	if (selectedFile === undefined) {
-				setImageValidate(false)
-				return
-		  	}
-		  	console.log('validate')
-		   
-		  	let image
+		 
+			  console.log('validate')
+			  let imageUrl = ''
+  
+			  if (selectedFile !== undefined) {
+				  const formData = new FormData()
+				  formData.append("file", selectedFile)
+				  formData.append("upload_preset", "feed_images")
+	  
+				  try {
+					  await axios
+						.post(
+						  "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+						  formData
+						)
+						.then((res) => {
+						  imageUrl = res.data.secure_url
+						})
+				  } catch (error) {
+					  alert(error)
+				  }
+			  }
+			  if (imageUrl !== '') {
 
-			const formData = new FormData()
-			formData.append("file", selectedFile)
-			formData.append("upload_preset", "feed_images")
-
-			try {
-				await axios
-				  .post(
-					"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-					formData
-				  )
-				  .then((res) => {
-					image = res.data.secure_url
-				  })
-			} catch (error) {
-				alert(error)
-			}
-
-			try {
-				const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-					desc,
-					title:topic,
-					image
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+						desc,
+						title:topic,
+						image:imageUrl
+						})
 					})
-				})
-		
-				const responseData = await response.json()
-				console.log(responseData)
-		
-				if (!response.ok) {
-					throw new Error(responseData.message)
-				}
-		
-				setTitle('')
-				setDesc('')
-				} catch (err) { 
-					console.log(err)
-				}
-
-			navigate('/articles')
 			
+					const responseData = await response.json()
+					console.log(responseData)
+			
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+			
+					setTitle('')
+					setDesc('')
+					} catch (err) { 
+						console.log(err)
+					}
+	
+				navigate('/articles')
+				window.location.reload(true)
+
+			  } else {
+				try {
+					const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+						desc,
+						title:topic,
+						image
+						})
+					})
+			
+					const responseData = await response.json()
+					console.log(responseData)
+			
+					if (!response.ok) {
+						throw new Error(responseData.message)
+					}
+			
+					setTitle('')
+					setDesc('')
+					} catch (err) { 
+						console.log(err)
+					}
+	
+				navigate('/articles')
+				window.location.reload(true)
+
+			  }
+		
 		}
   
 	return (

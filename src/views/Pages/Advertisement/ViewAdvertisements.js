@@ -3,13 +3,13 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import AdvertisementList from './AdvertisementList'
 import './ViewBlogs.css'
+import { RotatingLines } from  'react-loader-spinner'
 
 function ViewAnalytics() {
   const [trends, setTrends] = useState()
   const navigate  = useNavigate()
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
-
   useEffect(() => {
     //check whether user has signed in
     if (localStorage.getItem("userAuthToken")) {
@@ -47,7 +47,7 @@ function ViewAnalytics() {
      } 
 
      sendRequest()
-  }, [])
+  }, () => {}, [])
 
   
   const routerHandler = () => {
@@ -55,13 +55,21 @@ function ViewAnalytics() {
   }
 
   return <>
+   
       <Button className='btn mb-2' onClick={routerHandler}>Add Advertisement</Button>
     {user ? <div>
       <Card>
           <CardBody>
             <Card>
               {trends && <AdvertisementList  data = {trends}/>}
-              {!trends && <p>There is no Advertisement</p>}
+              {trends && trends.length <= 0 && <p>There is no Advertisement</p>}
+              {!trends &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
             </Card>
           </CardBody>
       </Card>

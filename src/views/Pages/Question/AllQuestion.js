@@ -67,7 +67,7 @@ const AllQuestion = () => {
         <div className="card-title">
             <h2 className="m-2">All Questions</h2>
         </div>
-        <div className="card-body">
+        <div className="table-responsive">
             <table className="table">
             <thead className="primary">
                 <tr>
