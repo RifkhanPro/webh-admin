@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
 import avatar from './../../../assets/images/users/avatar-1.jpg'
 import NameList from "./NameList"
+import { RotatingLines } from "react-loader-spinner"
 
 import './ViewSkill.css'
 
@@ -57,6 +58,13 @@ const ViewTopic = () => {
     }
 
   return <>
+      {!skill &&    <RotatingLines className="text-center"
+      strokeColor="grey"
+      strokeWidth="5"
+      animationDuration="1"
+      width="96"
+      visible={true}
+    />}
       <Card className="card">
           <div className="image">
               <img src={avatar} />

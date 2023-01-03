@@ -6,6 +6,7 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditTopicPost = () => {
     const navigate = useNavigate()
@@ -153,38 +154,56 @@ const EditTopicPost = () => {
 			navigate('/topicPosts')
 	  }
 
-	return (<Card>
-			<form onSubmit={submitHandler} className='form-control col-12'>
+	return (
+		<>
+			{
+			!name && !desc && !category &&     <RotatingLines className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+					/>
+				}
+
+		{name && desc && category &&
+			<Card>
+				<form onSubmit={submitHandler} className='form-control col-12'>
+					<CardGroup className='group'>
+					<CardTitle>Category</CardTitle>
+					<Input onChange={categoryHandler} value={category} type='text' placeholder='Enter Category'/>
+					{!categoryValidate && <p style={{color:"Red"}}>Category should not be Empty</p>}
+				</CardGroup>
+
 				<CardGroup className='group'>
-				<CardTitle>Category</CardTitle>
-				<Input onChange={categoryHandler} value={category} type='text' placeholder='Enter Category'/>
-				{!categoryValidate && <p style={{color:"Red"}}>Category should not be Empty</p>}
-			</CardGroup>
+					<CardTitle>Name</CardTitle>
+					<Input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/>
+					{!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+				</CardGroup>
 
-			<CardGroup className='group'>
-				<CardTitle>Name</CardTitle>
-				<Input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/>
-				{!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
-			</CardGroup>
+				<CardGroup className='group'>
+					<CardTitle>Description</CardTitle>
+					<Input onChange={descHandler}  value={desc} type='text' placeholder='Enter Description' rows='5'/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
+				</CardGroup>
 
-			<CardGroup className='group'>
-				<CardTitle>Description</CardTitle>
-				<Input onChange={descHandler}  value={desc} type='text' placeholder='Enter Description' rows='5'/>
-				{!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
-			</CardGroup>
-
-			<CardGroup className='group'>
-              <CardTitle>Add Image</CardTitle>
-              
-          </CardGroup>
-		  <div>
-		  <ImageUploader onInput={catchFileDataHandler} image={image}/>
-              {!imageValidate && <p style={{color:"Red"}}>Image should not be Empty</p>}
-		  </div>
-				
-		  <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
-			</form>
-	</Card>)
+				<CardGroup className='group'>
+				<CardTitle>Add Image</CardTitle>
+					
+				</CardGroup>
+				<div>
+				<ImageUploader onInput={catchFileDataHandler} image={image}/>
+					{!imageValidate && <p style={{color:"Red"}}>Image should not be Empty</p>}
+				</div>
+						
+				<Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+					</form>
+			</Card>
+		}
+		</>
+	
+	
+	)
 }
 
 export default EditTopicPost

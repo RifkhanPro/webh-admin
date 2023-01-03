@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import SkillList from './SkillList'
@@ -63,7 +64,14 @@ function ViewSkills() {
           <CardBody>
             <Card>
               {skills && <SkillList  data = {skills}/>}
-              {!skills && <p>There is no Skills</p>}
+              {skills && skills.length <= 0 && <p>There is no Skills</p>}
+              {!skills &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
             </Card>
           </CardBody>
       </Card>

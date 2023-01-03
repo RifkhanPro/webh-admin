@@ -7,6 +7,7 @@ import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditTrend = () => {
 
@@ -159,51 +160,65 @@ const EditTrend = () => {
 			
 		}
 
-	return (<Card>
-			<Col className='col-12'>
-				<Form onSubmit={submitHandler} className="form-control">
+	return (
+	<>
+		{ !title && !desc &&     <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+
+		{ title && desc && 
+				<Card>
+				<Col className='col-12'>
+					<Form onSubmit={submitHandler} className="form-control">
+						<Row>
+							<Form.Group as={Col}>
+								<Form.Label>Title</Form.Label>
+								<Input
+									required
+									type="text"
+									value={title}
+									onChange={titleHandler}
+								/>
+								{!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+							</Form.Group>
+						</Row>
 					<Row>
 						<Form.Group as={Col}>
-							<Form.Label>Title</Form.Label>
+							<Form.Label>Description</Form.Label>
 							<Input
 								required
-								type="text"
-								value={title}
-								onChange={titleHandler}
+								type="textarea"
+								placeholder="Enter Description"
+								rows='5'
+								onChange={descHandler}
+								value={desc}
 							/>
-							{!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+							{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 						</Form.Group>
 					</Row>
-				<Row>
-					<Form.Group as={Col}>
-						<Form.Label>Description</Form.Label>
-						<Input
-							required
-							type="textarea"
-							placeholder="Enter Description"
-							rows='5'
-							onChange={descHandler}
-							value={desc}
-						/>
-						{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-					</Form.Group>
-				</Row>
-				<Row>
-					<Form.Group as={Col} >
-						<CardGroup className='group'>
-						<Form.Label>Add Image</Form.Label>
-						
-					</CardGroup>
-					</Form.Group>
-				</Row>
-				<Row>
-				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-						{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
-				</Row>
-				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
-			</Form>
-			</Col>
-	</Card>)
+					<Row>
+						<Form.Group as={Col} >
+							<CardGroup className='group'>
+							<Form.Label>Add Image</Form.Label>
+							
+						</CardGroup>
+						</Form.Group>
+					</Row>
+					<Row>
+					<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
+							{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
+					</Row>
+					<Button type='submit' className='mt-2'  color='primary'>Update</Button>
+				</Form>
+				</Col>
+		</Card>
+		}
+	</>
+	)
 }
 
 export default EditTrend

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, ButtonToggle, Button } from 'reactstrap'
 import BlogList  from './ArticleList'
@@ -63,7 +64,14 @@ function ViewArticles() {
         <CardBody>
           <Card>
              {articles && <BlogList  data = {articles}/>}
-             {!articles && <p>There is no Articles</p>}
+             {articles && articles.length <= 0 && <p>There is no Articles</p>}
+             {!articles &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
           </Card>
         </CardBody>
       </Card> 

@@ -1,6 +1,7 @@
 import React from "react"
 // eslint-disable-next-line no-duplicate-imports
 import { useState, useEffect } from "react"
+import { RotatingLines } from "react-loader-spinner"
 import { useParams, useNavigate } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
 import './ViewSkill.css'
@@ -58,15 +59,23 @@ const ViewArticle = () => {
           <div className="image">
               {blog && <img src={blog.image} />}
           </div>
+          {!blog &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
         {blog && <div className="details">
               <h1>{blog.title}</h1>
               <CardText>{blog.desc}</CardText>
           </div>}
 
-          {!blog && 
+          {blog && blog.length <= 0 && 
               <CardText className="no-respond">There is no Such Article</CardText>
           }
 
+        
       </Card>
 
       <div className="btns">

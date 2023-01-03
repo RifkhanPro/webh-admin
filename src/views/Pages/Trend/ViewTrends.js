@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TrendList from './TrendList'
@@ -61,7 +62,14 @@ function ViewTrends() {
           <CardBody>
             <Card>
               {trends && <TrendList  data = {trends}/>}
-              {!trends && <p>There is no Trends</p>}
+              {trends  && trends.length <= 0 && <p>There is no Trends</p>}
+              {!trends &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
             </Card>
           </CardBody>
       </Card>
