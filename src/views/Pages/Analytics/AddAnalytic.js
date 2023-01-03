@@ -17,6 +17,7 @@ function AddAnalytic() {
   const [descValidate, setDescValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
   const navigate = useNavigate()
+  const [spinner, setSpinner] = useState(false)
 
   const titleHandler = (e) => {
     if (e.target.value.trim() === '') {
@@ -111,33 +112,43 @@ function AddAnalytic() {
 
 
   return (
-    <Card>
-      <Col className='col-12'>
-      <form onSubmit={submitHandler} className='form-control'>
-            <CardGroup className='group'>
-                <Label>Title</Label>
-                <Input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
-                {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
-            </CardGroup>
+    <>
+     {spinner &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+                  {!spinner && <Card>
+                <Col className='col-12'>
+          <form onSubmit={submitHandler} className='form-control'>
+                <CardGroup className='group'>
+                    <Label>Title</Label>
+                    <Input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
+                    {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+                </CardGroup>
 
-            <CardGroup className='group'>
-                <Label>Description</Label>
-                <Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
-                {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-            </CardGroup>
-            
-            <CardGroup className='group'>
-                <Label>Add Analytic Image</Label>
-            </CardGroup>
-            <div>
-            <ImageUploader onInput={catchFileDataHandler}/>
-                {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-            </div>
+                <CardGroup className='group'>
+                    <Label>Description</Label>
+                    <Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
+                    {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+                </CardGroup>
+                
+                <CardGroup className='group'>
+                    <Label>Add Analytic Image</Label>
+                </CardGroup>
+                <div>
+                <ImageUploader onInput={catchFileDataHandler}/>
+                    {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+                </div>
 
-            <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
-        </form>
-      </Col>
-    </Card>
+                <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+            </form>
+          </Col>
+        </Card>}
+      </>
+ 
   )
 }
 

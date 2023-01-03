@@ -5,6 +5,7 @@ import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 function AddAdvertisement() {
 
@@ -16,6 +17,7 @@ function AddAdvertisement() {
   const [expiryValidate, setExpiryValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
   const [selectedFile, setSelectedFile] = useState()
+  const [spinner, setSpinner] = useState(false)
   const navigate = useNavigate()
 
   const NameHandler = (e) => {
@@ -57,6 +59,7 @@ function AddAdvertisement() {
 
   const submitHandler =  async (e) => {
     e.preventDefault()
+    setSpinner(true)
     
     if (name.trim() === '') {
       setNameValidate(false)
@@ -119,12 +122,20 @@ function AddAdvertisement() {
 		} catch (err) { 
       //
     }
-
     navigate('/advertisements')
   }
 
   return (
-    <Card>
+    <>
+    {spinner &&    <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+
+<Card>
       <form onSubmit={submitHandler} className='form-control col-12'>
           <h3>Add Advertisement</h3>
           <CardGroup className='group mt-1'>
@@ -156,7 +167,9 @@ function AddAdvertisement() {
 
          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
       </form>
-    </Card>
+    </Card>}
+    </>
+   
   )
 }
 

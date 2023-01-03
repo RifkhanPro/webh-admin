@@ -8,7 +8,7 @@ function ViewApprovalComment() {
     const {id, cid} = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:8070/post/${id}/${cid}/comment`).then((res) => {
+        fetch(`http://68.178.164.166:8070/post/${id}/${cid}/comment`).then((res) => {
             return res.json()
         }).then((resp) => {
             setComment(resp)
@@ -21,7 +21,7 @@ function ViewApprovalComment() {
 
     useEffect(() => {
         if (userId) {
-            fetch(`http://localhost:8070/user/${userId}`).then((res) => {
+            fetch(`http://68.178.164.166:8070/user/${userId}`).then((res) => {
                 return res.json()
             }).then((resp) => {
                 console.log(resp.result)

@@ -6,6 +6,7 @@ import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditAdvertisement = () => {
 	const {id} = useParams()
@@ -56,6 +57,7 @@ const EditAdvertisement = () => {
 		}
 	}
 
+
 	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
@@ -81,6 +83,8 @@ const EditAdvertisement = () => {
 		}
 	} 
 	sendRequest()
+
+
 	}, [id])
 
 	const submitHandler =  async (e) => {
@@ -184,65 +188,76 @@ const EditAdvertisement = () => {
 
 		}
 
-	return (<Card>
-		<Col className='col-12'>
-			<Form onSubmit={submitHandler} className="form-control">
-				<h3>Edit Advertisement</h3>
-				<Row>
-					<Form.Group as={Col} controlId="validationCustom01">
-						<CardTitle className='mt-1'>Name</CardTitle>
-						<Input
-							required
-							type="text"
-							value={name}
-							onChange={nameHandler}
-							placeholder="Enter name"
-						/>
-						{!nameValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+	return (<>
+		{ !name && !desc && !expiry &&     <RotatingLines className="text-center"
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="96"
+                  visible={true}
+                />}
+		{ name && desc && expiry && <Card>
+			<Col className='col-12'>
+				<Form onSubmit={submitHandler} className="form-control">
+					<h3>Edit Advertisement</h3>
+					<Row>
+						<Form.Group as={Col} controlId="validationCustom01">
+							<CardTitle className='mt-1'>Name</CardTitle>
+							<Input
+								required
+								type="text"
+								value={name}
+								onChange={nameHandler}
+								placeholder="Enter name"
+							/>
+							{!nameValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
+						</Form.Group>
+					</Row>
+					<Row>
+						<Form.Group as={Col} controlId="validationCustom02">
+							<CardTitle className='mt-1'>Description</CardTitle>
+							<Input
+								required
+								type="textarea"
+								placeholder="Enter Description"
+								rows='5'
+								onChange={descHandler}
+								value={desc}
+							/>
+							{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+						</Form.Group>
+					</Row>
+					<Row>
+						<Form.Group as={Col} controlId="validationCustom02">
+							<CardTitle className='mt-1'>Expiry Date</CardTitle>
+							<Input
+								required
+								type="date"
+								placeholder="Enter Expiry Date"
+								onChange={expiryHandler}
+								value={expiry}
+							/>
+							{!expiryValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+						</Form.Group>
+					</Row>
+					<Row>
+					<Form.Group as={Col} >
+						<CardGroup className='group'>
+						</CardGroup>
 					</Form.Group>
-				</Row>
-				<Row>
-					<Form.Group as={Col} controlId="validationCustom02">
-						<CardTitle className='mt-1'>Description</CardTitle>
-						<Input
-							required
-							type="textarea"
-							placeholder="Enter Description"
-							rows='5'
-							onChange={descHandler}
-							value={desc}
-						/>
-						{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-					</Form.Group>
-				</Row>
-				<Row>
-					<Form.Group as={Col} controlId="validationCustom02">
-						<CardTitle className='mt-1'>Expiry Date</CardTitle>
-						<Input
-							required
-							type="date"
-							placeholder="Enter Expiry Date"
-							onChange={expiryHandler}
-							value={expiry}
-						/>
-						{!expiryValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-					</Form.Group>
-				</Row>
-				<Row>
-				<Form.Group as={Col} >
-					<CardGroup className='group'>
-					</CardGroup>
-				</Form.Group>
-					<CardTitle className='mt-1'>Add Image</CardTitle>
-				</Row>
-				<Row>
-				<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-				</Row>
-				<Button type='submit' className='mt-2'  color='primary'>Update</Button>
-			</Form>
-			</Col>
-	</Card>
+						<CardTitle className='mt-1'>Add Image</CardTitle>
+					</Row>
+					<Row>
+					<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
+						{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					</Row>
+					<Button type='submit' className='mt-2'  color='primary'>Update</Button>
+				</Form>
+				</Col>
+		</Card>}
+	</>
+	
+	
 	)
 }
 
