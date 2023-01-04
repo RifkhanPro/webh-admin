@@ -134,13 +134,8 @@ const ViewQuestion = lazy(() => import('../../views/Pages/Question/ViewQuestion'
 const Profile = lazy(() => import('../../views/Pages/Profile/ProfilePage.jsx'))
 const EditProfile = lazy(() => import('../../views/Pages/Profile/EditProfile.jsx'))
 
-// comments
-const Comments = lazy(() => import('../../views/Pages/CommentsApprovel/AllComments'))
-const ViewApprovalComment = lazy(() => import('../../views/Pages/CommentsApprovel/ViewApprovalComment'))
-
 // Posts
-const Posts = lazy(() => import('../../views/Pages/PostApprovel/AllPosts'))
-const ViewApprovalPost = lazy(() => import('../../views/Pages/PostApprovel/ViewApprovalPost'))
+const PostReport = lazy(() => import('../../views/Pages/PostReport/PostsReport'))
 
 // ** Merge Routes
 const Routes = [
@@ -150,23 +145,10 @@ const Routes = [
     element: <Navigate replace to={DefaultRoute} />
   },
 
-  //comments
-  {
-    path:'/comments',
-    element: <Comments />
-  },
-  {
-    path:'/comments/:id/:cid',
-    element: <ViewApprovalComment />
-  },
    //posts
    {
-    path:'/postApproval',
-    element: <Posts />
-  },
-  {
-    path:'/postApproval/:id',
-    element: <ViewApprovalPost />
+    path:'/postReport',
+    element: <PostReport />
   },
   {
     path: '/home',
