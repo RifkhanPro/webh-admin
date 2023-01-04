@@ -24,6 +24,8 @@
     display: block;
     text-align: center;
     padding: .5rem;
+    max-width: 230px;
+    font-size: 15px !important;
 }
 
 .image{
@@ -39,5 +41,4 @@
 .desc{
     margin: auto;
     padding: .5rem;
-
 }
