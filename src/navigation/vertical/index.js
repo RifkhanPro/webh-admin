@@ -13,16 +13,10 @@ export default [
     navLink: '/postManagements'
   },
   {
-    id: 'comments',
-    title: 'Comment Approval',
-    icon: <Mail size={20} />,
-    navLink: '/comments'
-  },
-  {
-    id: 'PostApproval',
-    title: 'PostApproval',
+    id: 'reportPost',
+    title: 'PostReport',
     icon: <Paperclip size={20} />,
-    navLink: '/postApproval'
+    navLink: '/postReport'
   },
   {
     id: 'skills',

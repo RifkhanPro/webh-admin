@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import './aprovalStyles.css'
-const AllPosts = () => {
+
+const AllComments = () => {
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [user, setUser] = useState("")
     const [posts, setPosts] = useState()
+
     useEffect(() => {
       //check whether user has signed in
       if (localStorage.getItem("userAuthToken")) {
@@ -47,7 +49,7 @@ const AllPosts = () => {
       
       
     }, [])
-
+    
     const approveHandler = async (id) => {
        
         try {
@@ -66,7 +68,7 @@ const AllPosts = () => {
         window.location.reload()
     }
 
-
+    
     const deleteHandler = async (postId) => {
        
         try {
@@ -83,7 +85,7 @@ const AllPosts = () => {
         }
         window.location.reload()
     }
-
+   
     return <>
         {user ? <div className="container">
             <div className="card">
@@ -124,5 +126,4 @@ const AllPosts = () => {
     </>
 }
 
-
-export default AllPosts
+export default AllComments
