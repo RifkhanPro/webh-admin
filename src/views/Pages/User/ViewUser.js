@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-
+import './ViewUser.css'
 const ViewUser = () => {
   const { id } = useParams()
   const [userData, setUserData] = useState()
@@ -30,7 +30,7 @@ const ViewUser = () => {
     useEffect(() => {
         const sendRequest = async () => {
             try {
-                const response = await fetch(`http://68.178.164.166:8070/user/${id}`)
+                const response = await fetch(`http://localhost:8070/user/${id}`)
 
                 const responseData = await response.json()
 
@@ -49,12 +49,10 @@ const ViewUser = () => {
     }, [id])
 
   return <>
-    {user ? <div className="container">
-        <div className="card row" style={{ textAlign: "left" }}>
-          <div className="card-title">
-            {/* <h2>User Create</h2> */}
-          </div>
-          <div className="card-body"></div>
+    {user ? <div className="post-container">
+        <div className="post-card" >
+         
+          <div className="post-card-body"></div>
 
           {userData && (
             <div className="m-2">

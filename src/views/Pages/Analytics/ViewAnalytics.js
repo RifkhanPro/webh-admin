@@ -1,9 +1,11 @@
+/* eslint-disable multiline-ternary */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Card, CardHeader, CardBody, Row, Button } from 'reactstrap'
+import { Bar } from 'react-chartjs-2'
 import './AnalyticsCard.css'
-import { Mail, FileText, Folder, Award, User, List, TrendingUp, Search, HelpCircle, MessageCircle, BarChart2, Paperclip, Type, Info, Eye } from 'react-feather'
-// import './ViewBlogs.css'
+
+import './ViewAnalytics.css'
+import Chart from 'react-apexcharts'
 
 function ViewAnalytics() {
 
@@ -13,7 +15,6 @@ function ViewAnalytics() {
 
   const [allData, setAllData] = useState('')
   const [userData, userDataChange] = useState(null)
-
   //post  
   const [allPost, setPostDataChange] = useState('')
   const [allPostData, setAllPostData] = useState('')
@@ -42,6 +43,21 @@ function ViewAnalytics() {
   //Advertistment  
   const [allNews, setNewsChange] = useState('')
   const [allNewsCount, setAllNewsCount] = useState('')
+  const [option, setOption] = useState({
+    chart: {
+      id: 'apexchart-example'
+    },
+    xaxis: {
+      categories: ["Users", "Topics", "Posts", "Newses", "Advertisements", "Blogs", "Articles", "TopicPosts"]
+    }
+  })
+
+  const [series, setSeries] = useState([
+    {
+          name: 'series',
+          data: [0, 0, 0, 0, 0, 0, 0]
+      }
+    ])
 
   useEffect(() => {
     //check whether user has signed in
@@ -64,12 +80,12 @@ function ViewAnalytics() {
 
   // Post Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/postManagement/posts").then((res) => {
+    fetch("http://localhost:8070/postManagement/posts").then((res) => {
         return res.json()
     }).then((resp) => {
         setPostDataChange(resp)
-        console.log(resp)
         setAllPostData(Object.keys(resp).length)
+        setSeries([...series, series[0].data[2] = Object.keys(resp).length])
         // const allData = count
         console.log(allPostData)
         console.log(allPost)
@@ -80,12 +96,13 @@ function ViewAnalytics() {
   
   // Blog Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/blog").then((res) => {
+    fetch("http://localhost:8070/blog").then((res) => {
         return res.json()
     }).then((resp) => {
         setBlogDataChange(resp)
-        console.log(resp)
         setAllPClogCount(Object.keys(resp).length)
+        setSeries([...series, series[0].data[5] = Object.keys(resp).length])
+
         console.log(allBlogCount)
         console.log(allBlog)
     }).catch((err) => {
@@ -95,12 +112,13 @@ function ViewAnalytics() {
 
   // Article Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/article").then((res) => {
+    fetch("http://localhost:8070/article").then((res) => {
         return res.json()
     }).then((resp) => {
         setArticleDataChange(resp)
-        console.log(resp)
         setAllArticleCount(Object.keys(resp).length)
+        setSeries([...series, series[0].data[6] = Object.keys(resp).length])
+
         console.log(allArticleCount)
         console.log(allArticle)
     }).catch((err) => {
@@ -110,12 +128,13 @@ function ViewAnalytics() {
 
   // Topic Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/topic/topics").then((res) => {
+    fetch("http://localhost:8070/topic/topics").then((res) => {
         return res.json()
     }).then((resp) => {
         setTopicDataChange(resp)
-        console.log(resp)
         setAllTopicCount(Object.keys(resp).length)
+        setSeries([...series, series[0].data[1] = Object.keys(resp).length])
+
         console.log(allTopicCount)
         console.log(allTopic)
     }).catch((err) => {
@@ -125,12 +144,13 @@ function ViewAnalytics() {
 
   // Topic Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/topicPost/topicPosts").then((res) => {
+    fetch("http://localhost:8070/topicPost/topicPosts").then((res) => {
         return res.json()
     }).then((resp) => {
         setTopicPostDataChange(resp)
-        console.log(resp)
         setAllTopicPostCount(Object.keys(resp).length)
+        setSeries([...series, series[0].data[7] = Object.keys(resp).length])
+
         console.log(allTopicPostCount)
         console.log(allTopicPost)
       }).catch((err) => {
@@ -140,12 +160,13 @@ function ViewAnalytics() {
 
   // Advertistment Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/advertisement").then((res) => {
+    fetch("http://localhost:8070/advertisement").then((res) => {
         return res.json()
     }).then((resp) => {
         setAdvDataChange(resp)
-        console.log(resp)
         setAllAdvCount(Object.keys(resp).length)
+        setSeries([...series, series[0].data[4] = Object.keys(resp).length])
+
         console.log(allAdvCount)
         console.log(allAdvPost)
       }).catch((err) => {
@@ -155,13 +176,13 @@ function ViewAnalytics() {
 
   // News Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/news").then((res) => {
+    fetch("http://localhost:8070/news").then((res) => {
         return res.json()
     }).then((resp) => {
         setNewsChange(resp)
-        console.log(resp)
         setAllNewsCount(Object.keys(resp).length)
-        console.log(allNewsCount)
+        setSeries([...series, series[0].data[3] = Object.keys(resp).length])
+
         console.log(allNews)
       }).catch((err) => {
           console.log(err.message)
@@ -170,84 +191,32 @@ function ViewAnalytics() {
 
   // User Count
   useEffect(() => {
-    fetch("http://68.178.164.166:8070/user").then((res) => {
+    fetch("http://localhost:8070/user").then((res) => {
         return res.json()
     }).then((resp) => {
         userDataChange(resp)
-        console.log(resp)
         setAllData(Object.keys(resp).length)
+        setSeries([...series, series[0].data[0] = Object.keys(resp).length])
+
         console.log(userData)
     }).catch((err) => {
         console.log(err.message)
     })
+
+  console.log(allData)
+
   }, [])
 
 
+    console.log(series)
+  
     return <>
-      {user ? <div >
-        <Card >
-         <CardBody>
-          <Row className='card'>
-           {/* Post Count  */}
-          <div className="skill_card">
-            <div className="title">Total Posts</div>
-            <div className="count">{allPostData}</div>
-            <Link to='/postManagements' className='btn btn-primary mb-1'>All Posts <Paperclip size={15} /></Link>
-          </div>
-
-          {/* Blog Count  */}
-          <div className="skill_card">
-            <div className="title">Total Blogs</div>
-            <div className="count">{allBlogCount}</div>
-             <Link to='/blogs' className='btn btn-primary mb-1'>All Blogs <FileText size={15} /></Link>
-          </div>
-        
-          {/* Article Count  */}
-          <div className="skill_card">
-            <div className="title">Total Articles</div>
-            <div className="count">{allArticleCount}</div>
-            <Link to='/articles' className='btn btn-primary mb-1'>All Articles <Folder size={15} /></Link>
-          </div>
-
-          {/* Topic Count  */}
-          <div className="skill_card">
-            <div className="title">Total Topic</div>
-            <div className="count">{allTopicCount}</div>
-            <Link to='/topics' className='btn btn-primary mb-1'>All Topics </Link>
-          </div>
-        
-          {/* Topic Posts Count  */}
-          <div className="skill_card">
-            <div className="title">TopicPosts</div>
-            <div className="count">{allTopicPostCount}</div>
-            <Link to='/topicPosts' className='btn btn-primary mb-1'>All TopicPosts </Link>
-          </div>
-
-          {/* Advertisements Count  */}
-          <div className="skill_card">
-            <div className="title">Advertisements</div>
-            <div className="count">{allAdvCount}</div>
-            <Link to='/advertisements' className='btn btn-primary mb-1'>Advertisement</Link>
-          </div>
-
-          {/* News Count  */}
-          <div className="skill_card">
-            <div className="title">News</div>
-            <div className="count">{allNewsCount}</div>
-            <Link to='/news' className='btn btn-primary mb-1'>All News <Mail size={15} /></Link>
-          </div>
-        
-          {/* User Count  */}
-          <div className="skill_card">
-            <div className="title">Users</div>
-            <div className="count">{allData}</div>
-            <Link to='/user' className='btn btn-primary mb-1'>All Users <User size={15}/></Link>
-          </div>
-          </Row>
-          </CardBody>
-        </Card>
-      </div> : <></> }
-    </>
+      <div className="chart-container">
+        <div className="chart-card">
+          { user && <Chart options={option} series={series} type="bar" width={1000}  height={500} />}
+        </div>
+      </div>  
+  </>
   
 }
 

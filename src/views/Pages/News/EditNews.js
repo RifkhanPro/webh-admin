@@ -51,7 +51,7 @@ const EditNews = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			const response = await fetch(`http://68.178.164.166:8070/news/${id}`)
+			const response = await fetch(`http://localhost:8070/news/${id}`)
 	
 			const responseData = await response.json()
 	
@@ -112,7 +112,7 @@ const EditNews = () => {
 
 			if (imageUrl !== '') {
 				try {
-					const response = await fetch(`http://68.178.164.166:8070/news/${id}`, 
+					const response = await fetch(`http://localhost:8070/news/${id}`, 
 					{
 						method:"PUT", headers : {
 							"Content-Type":"application/json"
@@ -143,7 +143,7 @@ const EditNews = () => {
 
 			} else {
 				try {
-					const response = await fetch(`http://68.178.164.166:8070/news/${id}`, 
+					const response = await fetch(`http://localhost:8070/news/${id}`, 
 					{
 						method:"PUT", headers : {
 							"Content-Type":"application/json"

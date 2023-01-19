@@ -1,0 +1,13 @@
+.chart-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.chart-container .chart-card{
+    margin: auto !important;
+    display: flex;
+    justify-content: center;
+}

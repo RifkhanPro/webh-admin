@@ -18,12 +18,12 @@ export default [
     icon: <Paperclip size={20} />,
     navLink: '/postReport'
   },
-  {
-    id: 'skills',
-    title: 'Skills',
-    icon: <Award size={20} />,
-    navLink: '/skills'
-  },
+  // {
+  //   id: 'skills',
+  //   title: 'Skills',
+  //   icon: <Award size={20} />,
+  //   navLink: '/skills'
+  // },
   {
     id: 'blogs',
     title: 'Blog',

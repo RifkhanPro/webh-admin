@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 import './aprovalStyles.css'
 
 const AllComments = () => {
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [user, setUser] = useState("")
     const [posts, setPosts] = useState()
-
+    const navigate = useNavigate()
+    
     useEffect(() => {
       //check whether user has signed in
       if (localStorage.getItem("userAuthToken")) {
@@ -29,7 +31,7 @@ const AllComments = () => {
     useEffect(() => {
         const sendRequest = async () => {
             try {
-                const response = await fetch(`http://68.178.164.166:8070/post`)
+                const response = await fetch(`http://localhost:8070/post`)
        
                 const responseData = await response.json()
        
@@ -49,46 +51,16 @@ const AllComments = () => {
       
       
     }, [])
-    
-    const approveHandler = async (id) => {
+
+
+    const viewHandler = async (postId) => {
        
-        try {
-            const response = await fetch(`http://68.178.164.166:8070/post/${id}/report`, {method:"PUT", 
-            headers : {"Content-Type":"application/json"}})
-
-            const responseData = await response.json()
-
-            if (!response.ok) {
-                throw new Error(responseData.message)
-            }
-
-        } catch (err) { 
-            console.log(err)
-        }
-        window.location.reload()
-    }
-
-    
-    const deleteHandler = async (postId) => {
-       
-        try {
-            const response = await fetch(`http://68.178.164.166:8070/post/${postId}`, {method:"DELETE"})
-
-            const responseData = await response.json()
-
-            if (!response.ok) {
-                throw new Error(responseData.message)
-            }
-
-        } catch (err) { 
-            console.log(err)
-        }
-        window.location.reload()
+        navigate(`/postReport/${postId}`)
     }
    
     return <>
-        {user ? <div className="container">
-            <div className="card">
+        {user ? <div className="post-container">
+            <div className="post-card">
                 <div className="card-title">
                     <h2 className="m-2">All Posts</h2>
                 </div>
@@ -98,23 +70,21 @@ const AllComments = () => {
                         <tr>
                             <th scope="col">Category</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Report</th>
-                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                        
                         {posts && posts.map(item => (
                         
-                                    <tr key={item.id} className="tr" >
+                                    <tr key={item.id} className="tr" onClick={() => viewHandler(item.id)}>
                                      
                                         <td>{item.category}</td>
                                         <td>{item.desc}</td>
+                                        <td><img src={item.image} alt="" /></td>
                                         <td>{item.report === true ? "Reported" : "Accepted"}</td>
-                                        <td className="btns">
-                                            {item.report === true  && <a onClick={() => approveHandler(item.id)}   className='btn btn-success'>Reject</a>}
-                                            <a onClick={() => deleteHandler(item.id)}   className= 'btn btn-danger'>Delete</a>
-                                        </td>
+                                     
                                     </tr>
                                 ))
                             } 

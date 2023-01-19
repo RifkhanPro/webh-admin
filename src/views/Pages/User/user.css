@@ -1,16 +1,21 @@
 
 
-.btn-div{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.user-container
+{
+    margin-inline:1rem  !important;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: white !important;
+
 }
-.btns{
-    transition: all .5s;
-    display: flex;
-   
+
+.user-container .user-card{
+    margin: auto !important;
+    background-color: white !important;
+
 }
-.btns:hover{
-    transform: scale(1.5);
+
+.user-container .user-card .table tbody tr:hover{
     cursor: pointer;
+    background-color: aqua;
 }

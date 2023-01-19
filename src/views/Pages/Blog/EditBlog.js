@@ -43,7 +43,7 @@ const EditSkill = () => {
     useEffect(() => {
 		const sendRequest = async () => {
 		try {
-			const response = await fetch(`http://68.178.164.166:8070/blog/${id}`)
+			const response = await fetch(`http://localhost:8070/blog/${id}`)
 
 			const responseData = await response.json()
 
@@ -102,7 +102,7 @@ const EditSkill = () => {
 
 			  if (imageUrl !== '') {
 				try {
-					const response = await fetch(`http://68.178.164.166:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://localhost:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
 						desc,
 						image:imageUrl
@@ -128,7 +128,7 @@ const EditSkill = () => {
 
 			  } else {
 				try {
-					const response = await fetch(`http://68.178.164.166:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://localhost:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
 						desc,
 						image
