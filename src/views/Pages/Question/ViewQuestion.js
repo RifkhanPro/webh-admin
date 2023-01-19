@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-
+import './AllQuestion.css'
 const ViewQuestion = () => {
   const { id } = useParams()
   const [question, setQuestion] = useState()
@@ -50,19 +50,15 @@ const ViewQuestion = () => {
     }, [id])
 
   return <>
-    {user ? <div className="container">
-        <div className="card row" style={{ textAlign: "left" }}>
-          <div className="card-title">
-            {/* <h2>User Create</h2> */}
-          </div>
-          <div className="card-body"></div>
-
+    {user ? <div className="question-container">
+        <div className="question-card row" style={{ textAlign: "left" }}>
+     
           {question && (
             <div className="m-2">
               <h2 className="mb-3">
                 <b>{question.firstname} {question.lastname}</b> 
               </h2>
-              <h3 className="mb-5">Question Details</h3>
+              <h3 className="mb-2">Question Details</h3>
               <h5>Question : {question.question}</h5>
               <h5>Email : {question.email}</h5>
               <h5>Mobile : {question.mobile}</h5>

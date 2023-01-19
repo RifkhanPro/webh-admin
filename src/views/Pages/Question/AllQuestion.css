@@ -1,0 +1,21 @@
+.question-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.question-container .question-card{
+    margin: auto !important;
+}
+.question-container .question-card .question-card-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.table tbody tr:hover
+{
+    background-color: aqua;
+    cursor: pointer;
+}

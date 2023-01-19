@@ -6,6 +6,7 @@ const ViewUser = () => {
   const [userData, setUserData] = useState()
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
+  const [posts, setPosts] = useState()
 
   useEffect(() => {
     //check whether user has signed in
@@ -48,31 +49,75 @@ const ViewUser = () => {
         sendRequest()
     }, [id])
 
-  return <>
-    {user ? <div className="post-container">
-        <div className="post-card" >
-         
-          <div className="post-card-body"></div>
+    
+    useEffect(() => {
+      const sendRequest = async () => {
+          try {
+              const response = await fetch(`http://localhost:8070/post/${id}/userPosts`)
 
+              const responseData = await response.json()
+
+              console.log(responseData)
+
+              setPosts(responseData)
+
+              if (!response.ok()) {
+                  throw new Error(responseData.message)
+              }
+          } catch (err) {
+              console.log(err)
+          }
+      } 
+      sendRequest()
+  }, [id])
+
+  return <>
+    {user ? <div className="user-view-container">
+        <div className="user-view-card" >
+         
           {userData && (
-            <div className="m-2">
-              <h2 className="mb-3">
-                <b>{userData.firstname} {userData.lastname}</b> 
-              </h2>
-              <h3 className="mb-5">Contact Details</h3>
-              <h5>Email : {userData.email}</h5>
-              <h5>Phone : {userData.phone}</h5>
-              <h5>Address : {userData.address}</h5>
-              <h5>City : {userData.city}</h5>
-              <h5>Country : {userData.country}</h5>
-              <h5 className="mb-3">Zip : {userData.zip}</h5>
+            <>
+
+                <div className="user-view-card-div user-view-card-personal-details">
+                  <h2 className="mb-1">Personal Details</h2>
+                 {userData.profilePicture && <img src={userData.profilePicture} alt="" />}
+                  <div className="user-view-card-personal-details-div">
+                    <h4 className="mt-1">FullName : {userData.firstname} {userData.lastname}</h4>
+                    <h4>Email : {userData.email} </h4>
+                    <h4>Profile Points : {userData.profilePoints} </h4>
+                    <h4>Webh ID : {userData.webhId} </h4>
+                    {userData.address && <h4>Address : {userData.address} </h4>}
+                    {userData.country && <h4>Country : {userData.country} </h4>}
+                    {userData.city && <h4>City : {userData.city} </h4>}
+                    {userData.phone && <h4>Phone : {userData.phone} </h4>}
+                    {userData.state && <h4>State : {userData.state} </h4>}
+                    {userData.zip && <h4>Zip : {userData.zip} </h4>}
+                    {userData.worksAt && <h4>Works At : {userData.worksAt} </h4>}
+                  </div>
               
-              <h3 className="mb-2">Personal Information</h3>
-              <h5 className="mb-2">Status : {userData.status === true ? 'Active' : 'Inactive'}</h5>
-              <Link className="btn btn-primary mb-3" to="/user">
-                All Users
-              </Link>
-            </div>
+                </div>
+                {posts && posts.length > 0 && <div className="user-view-card-div user-view-card-posts">
+                  <h2 className="mb-1">Posts</h2>
+                      <div className="user-view-card-posts-list">
+                        {posts.map(post => <img src={post.image} alt="" className="post-image" />)}
+                      </div>
+                  </div>}
+                {userData.interests && userData.interests.length > 0 &&  <div className="user-view-card-div user-view-card-interests">
+                  <h2 className="mb-1">Interests</h2>  
+                  <div className="user-view-card-skill-list">
+                        {userData.interests.map(interest => <p>{interest.name}</p>)}
+                  </div>
+                </div>}
+                {userData.skills && userData.skills.length > 0 &&   <div className="user-view-card-div user-view-card-skills">
+                  <h2 className="mb-1">Skills</h2>  
+                  <div className="user-view-card-skill-list">
+                        {userData.skills.map(skill => <p>{skill.name}</p>)}
+                  </div>
+                </div>}
+              
+           
+            </>
+       
           )}
         </div>
       </div> : <></> }

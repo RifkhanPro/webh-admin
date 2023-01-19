@@ -1,15 +1,81 @@
-.post-container
+
+.user-view-container
 {
     margin-inline:1rem  !important;
-    background-color: white !important;
-    padding: 1rem;
     border-radius: 5px;
+    background-color: white !important;
 }
 
-.post-container .post-card{
-    margin: auto !important;
+.user-view-container .user-view-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    flex-wrap: wrap;
 }
-.post-container .post-card .post-card-body{
+
+
+.user-view-container .user-view-card .user-view-card-div{
+    width: 45%;
+    min-height: 200px;
+    background-color: rgba(0, 255, 255, 0.315);
+    margin: 1rem;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(49, 26, 26, 0.421) !important;
+}
+
+.user-view-card-heading{
+    text-align: start;
+}
+
+.user-view-card-personal-details{
     display: flex;
     flex-direction: column;
+
+    
 }
+
+.user-view-card-personal-details img{
+    width: 200px;
+    border-radius: 100%;
+    margin: auto;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.349);
+}
+.user-view-card-personal-details .user-view-card-personal-details-div{
+    margin: auto;
+}
+.user-view-card-posts-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.user-view-card-skill-list
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.user-view-card-skill-list p{
+    margin: 1rem;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 1rem;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.589);
+
+}
+
+.user-view-card-posts-list img{
+    width: 44%;
+    margin: 0.5rem;
+    border-radius: 5px;
+    
+}
+
+@media ( max-width:600px) {
+    .user-view-container .user-view-card .user-view-card-div{
+        width:95%
+    }
+}
+
