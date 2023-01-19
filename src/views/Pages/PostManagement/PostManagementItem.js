@@ -12,7 +12,7 @@ const PostManagementItem = (props) => {
   }
   
   return ( 
-          <div className="skill_card" onClick={() => routehandler(props.id)}>
+          <div className="postManagementItem" onClick={() => routehandler(props.id)}>
             <div className="title">{props.name}</div>
             <div className="image">
             {!props.image && <img src={avatar} alt="" />}
