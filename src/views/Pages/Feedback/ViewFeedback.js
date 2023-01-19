@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-
+import './AllFeedback.css'
 const ViewFeedback = () => {
   const { id } = useParams()
   const [feedbackData, setFeedbackData] = useState()
@@ -26,8 +26,8 @@ const ViewFeedback = () => {
         sendRequest()
     }, [id])
   return (
-    <div className="container">
-        <div className="card row" style={{ textAlign: "left" }}>
+    <div className="feedback-container">
+        <div className="feedback-card ">
           <div className="card-title">
           </div>
           <div className="card-body"></div>

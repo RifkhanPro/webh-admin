@@ -1,4 +1,4 @@
-.question-container
+.feedback-container
 {
     margin-inline:1rem  !important;
     background-color: white !important;
@@ -6,10 +6,10 @@
     border-radius: 5px;
 }
 
-.question-container .question-card{
+.feedback-container .feedback-card{
     margin: auto !important;
 }
-.question-container .question-card .question-card-body{
+.feedback-container .feedback-card .feedback-card-body{
     display: flex;
     flex-direction: column;
 }
@@ -21,40 +21,42 @@
 }
 
 
-/* view Question page */
 
-.question-card h3{
+
+/* view feedback page */
+
+.feedback-card h3{
     margin-bottom: 1rem;
 }
 
-.question-card-div{
+.feedback-card-div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
 }
-.question-card-div-img{
+.feedback-card-div-img{
     display: flex;
     justify-content: center;
 }
-.question-card-div-img img{
+.feedback-card-div-img img{
     width: 80%;
     max-height: 400px;
     margin: auto;
     border-radius: 5px;
 }
 
-.question-card-div-div{
+.feedback-card-div-div{
     display: flex;
     margin: auto;
     margin-top: 1rem;
     flex-direction: column;
 }
-.question-card-div-btn{
+.feedback-card-div-btn{
     display: flex;
     justify-content: center;
 }
-.question-card-div-btn button{
+.feedback-card-div-btn button{
     width: 30%;
     padding: 1rem;
     background-color: red;
