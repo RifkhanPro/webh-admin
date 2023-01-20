@@ -17,11 +17,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: auto;
-    width: 100%;
 }
 
 .postManagement-container .postManagement-card .postManagement-card-body{
-    margin: auto;
-    width: 100%;
+   display: flex;
+   justify-content: center !important;
+   align-items: center !important;
+   margin: auto;
 }

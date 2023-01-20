@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 import React from "react"
 import PostManagementItem from "./PostManagementItem"
-import './Skill_Card.css'
+import './PostManagementList.css'
 
 const PostManagementList = (props) => {
 	return <>

@@ -3,7 +3,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import avatar from './../../../assets/images/users/avatar-1.jpg'
 import NameList from "./NameList"
 import { RotatingLines } from "react-loader-spinner"
 
@@ -65,26 +64,27 @@ const ViewTopic = () => {
       width="96"
       visible={true}
     />}
-      <Card className="card">
-          <div className="image">
-              <img src={avatar} />
-          </div>
-        {skill && <div className="details">
-              <h1>{skill.category}</h1>
-              <NameList category={skill.category} data = {skill.names} />
-          </div>}
+    <div className="topic-view-container">
+      <div className="topic-view-card">
+            {skill && <h1 className="topic-view-card-category">{skill.category}</h1>}
 
-          {!skill && 
-              <CardText className="no-respond">There is no Such Skill</CardText>
-          }
+          {skill && <div className="topic-view-card-name-list">
+                <NameList category={skill.category} data = {skill.names} />
+            </div>}
 
-      </Card>
+            {skill && skill.length === 0 && 
+                <p className="no-respond">There is no Such Skill</p>
+            }
 
-      <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit Topic</Button>
-            <Button onClick={addNameHandler} className='btn'>Add Name</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete Topic</Button>
       </div>
+
+        <div className="topic-view-container-btns">
+              <Button onClick={routeHandler} className='btn'>Edit Category</Button>
+              <Button onClick={addNameHandler} className='btn'>Add Name</Button>
+              <Button onClick={deleteHandler} className='btn delete'>Delete Category</Button>
+        </div>
+    </div>
+     
   </>
 }
 

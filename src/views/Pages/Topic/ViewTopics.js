@@ -58,10 +58,10 @@ function ViewTopics() {
 
   return <>
       <Button className='btn mb-2' onClick={routerHandler}>Add Topic</Button>
-    {user ? <div>
-      <Card>
-          <CardBody>
-            <Card>
+    {user ? <div className='topic-container'>
+      <div className='topic-card'>
+          <div className='topic-card-body'>
+            <div>
               {topics && <TopicList  data = {topics}/>}
               {topics && topics.length === 0 && <p>There is no topics</p>}
               {!topics &&    <RotatingLines className="text-center"
@@ -71,9 +71,9 @@ function ViewTopics() {
                   width="96"
                   visible={true}
                 />}
-            </Card>
-          </CardBody>
-      </Card>
+            </div>
+          </div>
+      </div>
 
 
     </div> : <></> }

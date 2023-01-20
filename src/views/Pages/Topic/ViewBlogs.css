@@ -1,3 +1,19 @@
+.topic-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.topic-container .topic-card{
+    margin: auto !important;
+}
+.topic-container .topic-card .topic-card-body{
+    display: flex;
+    flex-direction: column;
+}
+
 .btn{
     width: 70%;
     margin: auto;

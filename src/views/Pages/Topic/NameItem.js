@@ -11,8 +11,8 @@ const NameItem = (props) => {
   }
 
   return ( 
-          <div className="item" id={props.id} onClick={nameHandler}>
-            <div className="title">{props.name}</div>
+          <div className="name-item" id={props.id} onClick={nameHandler}>
+            <div className="name-item-title">{props.name}</div>
           </div>
         )
   
