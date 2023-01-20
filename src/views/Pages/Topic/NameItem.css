@@ -1,5 +1,10 @@
-.item:hover{
+.name-item:hover{
     cursor: pointer;
     background-color: lightblue;
     color: black;
+    border-radius: 5px;
+}
+
+.name-item-title{
+    padding: 1rem;
 }

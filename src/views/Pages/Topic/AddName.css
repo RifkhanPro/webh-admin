@@ -1,0 +1,70 @@
+.addName-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.addName-container .addName-card{
+    margin: auto !important;
+}
+
+.addName-form{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start !important;
+    flex-direction: column;
+}
+.addName-form .addName-form-heading{
+    padding: 1rem;
+}
+.addName-form .group{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center !important;
+    padding: 1rem;
+    margin: auto !important;
+}
+
+.addName-form .group .input-invalid-feedback
+{
+    color: red;
+    padding: 0.5rem;
+}
+
+.addName-form .group h2{
+    font-weight: bold;
+}
+.addName-form .group input{
+    padding: 1rem;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid blue;
+}
+.addName-form  .btns{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.addName-form .btns .btn{
+    width: 30%;
+    background-color: gray;
+    color: white;
+    transition: all 0.5s;
+}
+.addName-form .btns .btn:hover{
+    background-color: blue;
+    color: white;
+}
+
+@media (max-width:650px) {
+    .addName-form .btns .btn{
+        margin: 1rem;
+        width: 80%;
+    }
+    
+}

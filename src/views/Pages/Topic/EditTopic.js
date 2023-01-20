@@ -2,20 +2,26 @@
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
 import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import { RotatingLines } from 'react-loader-spinner'
 
 const EditTopic = () => {
     const navigate = useNavigate()
 	const {id} = useParams()
-	const [topic, setTitle] = useState()
+	const [topic, setTopic] = useState('')
+	const [valid, setValid] = useState(true)
 
 	const titleHandler = (e) => {
-		setTitle(e.target.value)
+		setTopic(e.target.value)
+		console.log(e.target.value)
+		if (e.target.value.trim().length ===  0) {
+			console.log('false')
+			setValid(false)
+			return
+		}
+		setValid(true)
 	}
 
-	
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
@@ -24,7 +30,7 @@ const EditTopic = () => {
 			 const responseData = await response.json()
 	
 	
-			 setTitle(responseData.category)
+			 setTopic(responseData.category)
 
 			 if (!response.ok()) {
 			   throw new Error(responseData.message)
@@ -40,6 +46,9 @@ const EditTopic = () => {
 	const submitHandler =  async (e) => {
 		e.preventDefault()
 	
+		if (!valid) {
+			return
+		}
 		try {
 				const response = await fetch(`http://localhost:8070/topic/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						category:topic
@@ -53,7 +62,7 @@ const EditTopic = () => {
 				}
 	
 	
-		  setTitle('')
+		  setTopic('')
 
 			} catch (err) { 
 		  			//
@@ -64,25 +73,22 @@ const EditTopic = () => {
 
 	return (
 		<>
-				{ !topic &&    <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
-		{topic &&  <Card>
-			<form onSubmit={submitHandler}>
-				<CardGroup className='group'>
-					<CardTitle>Category</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text'/>
-				</CardGroup>
-	
-				<Button type='submit' className='btn'>Update</Button>
-			</form>
-		</Card>}
+			<div className='edit-topic-container'>
+			 <div className='edit-topic-card'>
+				<form className='edit-topic-card-form' onSubmit={submitHandler}>
+					<div className='group'>
+						<h2>Category</h2>
+						<input onChange={titleHandler} value={topic} type='text'/>
+						{!valid && <p className='input-invalid-feedback'>It should not be empty</p>}
+					</div>
+		
+					<button type='submit' className='btn' disabled={!valid}>Update</button>
+				</form>
+			</div>
+			</div>
+			
 		</>
-	
+		
 	)
 }
 

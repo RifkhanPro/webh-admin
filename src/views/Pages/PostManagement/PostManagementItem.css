@@ -1,21 +1,20 @@
-.skill_card{
+.postManagementItem{
+    width: 250px;
     min-width: 250px !important;
     min-height: 250px;
     border-radius: 10px;
     box-shadow: 0 1px 8px black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: justify;
-    margin: 1rem;
     cursor: pointer;
     transition: all 1s;
-    width: 250px;
     overflow: hidden;
+    margin: auto;
 }
 
-.skill_card:hover{
+
+
+.postManagementItem:hover{
     transform: scale(1.1);
 }
 
@@ -24,7 +23,6 @@
     display: block;
     text-align: center;
     padding: .5rem;
-    max-width: 230px;
     font-size: 15px !important;
 }
 
@@ -36,9 +34,4 @@
 .image img{
     width: 100% !important;
     height: 200px !important;
-}
-
-.desc{
-    margin: auto;
-    padding: .5rem;
 }
