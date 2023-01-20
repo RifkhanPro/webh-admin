@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText, CardTitle } from "reactstrap"
 import TopicList from "./TopicList"
 import TopicPostList from "./TopicPostList"
-import './ViewSkill.css'
+import './NameDetails.css'
 const NameDetail = () => {
     const {category, name} = useParams()
     const [posts, setPosts] = useState()
@@ -42,26 +42,25 @@ const NameDetail = () => {
 
      }, [])
 
-    return <>
-        <Card className="card">
-        {category && <div className="details">
-                <h1>{category}</h1>
-                <CardTitle>{name}</CardTitle>
-            </div>}
+    return <div className="nameDetails-container">
+        <div className="nameDetails-card">
+            {category && <div className="details">
+                    <h1 className="nameDetails-card-category">{category}</h1>
+                    <h3 className="nameDetails-card-name">{name}</h3>
+                </div>}
 
-            {!category && 
-                <CardText className="no-respond">There is no Such Category</CardText>
-            }
+                {!category && 
+                    <p className="no-respond">There is no Such Category</p>
+                }
 
-        </Card>
-
-        <Card>
-            {posts && <TopicPostList data = {posts}/>}
-            {posts && posts.length === 0 && <p>There is no Posts</p>}
-        </Card>
-
-    </>
-      
+                
+            <div className="nameDetails-card-post-list">
+                {posts && <TopicPostList data = {posts}/>}
+                {posts && posts.length === 0 && <p>There is no Posts</p>}
+            </div>
+        </div>
+    </div>
+       
     }
 
 
