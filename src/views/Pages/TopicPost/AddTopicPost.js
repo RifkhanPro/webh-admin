@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useEffect, useState } from 'react'
-// import './AddSkill.css'
+import './AddPostManagement.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -171,12 +171,12 @@ function AddTopicPost() {
   }
 
   return (
-    <Card>
-      <form onSubmit={submitHandler} className='form-control col-12'>
+    <div className='edit-postManagement-container'>
+      <form onSubmit={submitHandler}  className='edit-postManagement-form'>
         <h3>Add Topic Post</h3>
-          <CardGroup className='group'>
-              <CardTitle className='mt-1'>Category</CardTitle>
-              <select onChange={categoryHandler} className="form-control">
+          <div className='edit-postManagement-group'>
+            <h5>Category</h5>
+            <select onChange={categoryHandler} className="form-control">
                 {categoryList && categoryList.map((option, index) => {
                     return <option key={index} >
                         {option}
@@ -185,11 +185,11 @@ function AddTopicPost() {
               </select>
               {/* <Input onChange={categoryHandler} value={category} type='text' placeholder='Enter Category'/> */}
               {!categoryValidate && <p style={{color:"Red"}}> Category should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Topic</CardTitle>
-              <select onChange={nameHandler}  className="form-control">
+          </div>
+	
+          <div className='edit-postManagement-group'>
+					<h5>Topic</h5>
+          <select onChange={nameHandler}  className="form-control">
                 {names && names.map((option, index) => {
                     return <option key={index} >
                         {option}
@@ -198,26 +198,24 @@ function AddTopicPost() {
               </select>
               {/* <Input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/> */}
               {!nameValidate && <p style={{color:"Red"}}> Name should not be Empty</p>}
-          </CardGroup>
+				</div>
 
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='textarea' placeholder='Enter Description' rows='4'/>
-              {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Add Image</CardTitle>
-          </CardGroup>
-          <div>
-          <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p style={{color:"Red"}}>Image should not be Empty</p>}
-          </div>
-
-          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+        <div className='edit-postManagement-group'>
+					<h5>Description</h5>
+					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				</div>
+         
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+          <h5>Add Image</h5>
+					<ImageUploader onInput={catchFileDataHandler} />
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+				</div>
+				<button type='submit' className='btn' color='primary'>Add</button>
       </form>
-    </Card>
+    </div>
   )
+
 }
 
 export default AddTopicPost

@@ -1,11 +1,11 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
+import './EditPostManagement.css'
 import { Button, Card, CardGroup, Row, Col, Label, Input, CardTitle } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
-import ImageUploader from './ImageUploader'
+import ImageUploader from '../TopicPost/ImageUploader'
 import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
 
@@ -160,65 +160,36 @@ const EditTrend = () => {
 			
 		}
 
-	return (
-	<>
-		{ !title && !desc &&     <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
+	return (<div className='edit-postManagement-container'>
+		{ !title && !desc  &&     <RotatingLines className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+			/>}
+			{title && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
+				<h3 >Edit Trend</h3>
+				<div className='edit-postManagement-group'>
+					<h5>Title</h5>
+					<input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
+					{!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+				</div>
+	
+				<div className='edit-postManagement-group'>
+					<h5>Description</h5>
+					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				</div>
 
-		{ title && desc && 
-				<Card>
-				<Col className='col-12'>
-					<Form onSubmit={submitHandler} className="form-control">
-						<Row>
-							<Form.Group as={Col}>
-								<Form.Label>Title</Form.Label>
-								<Input
-									required
-									type="text"
-									value={title}
-									onChange={titleHandler}
-								/>
-								{!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
-							</Form.Group>
-						</Row>
-					<Row>
-						<Form.Group as={Col}>
-							<Form.Label>Description</Form.Label>
-							<Input
-								required
-								type="textarea"
-								placeholder="Enter Description"
-								rows='5'
-								onChange={descHandler}
-								value={desc}
-							/>
-							{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-						</Form.Group>
-					</Row>
-					<Row>
-						<Form.Group as={Col} >
-							<CardGroup className='group'>
-							<Form.Label>Add Image</Form.Label>
-							
-						</CardGroup>
-						</Form.Group>
-					</Row>
-					<Row>
-					<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-							{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
-					</Row>
-					<Button type='submit' className='mt-2'  color='primary'>Update</Button>
-				</Form>
-				</Col>
-		</Card>
-		}
-	</>
-	)
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+              		<h5>Add Image</h5>
+					  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+				</div>
+				<button type='submit' className='btn' color='primary'>Update</button>
+			</form>}
+	</div>)
 }
 
 export default EditTrend

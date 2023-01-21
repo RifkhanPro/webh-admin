@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Card, CardBody, Button } from 'reactstrap'
 import { PlusCircle } from 'react-feather'
 import BlogList  from './BlogList'
-import './ViewBlogs.css'
+import './ViewPostManagements.css'
 import { RotatingLines } from 'react-loader-spinner'
 
 function ViewBlogs() {
@@ -61,27 +61,24 @@ function ViewBlogs() {
   
   console.log(user)
 
-  return <>
-      <Button className='btn mb-2' onClick={routerHandler}>Add Blog <PlusCircle size={12} /></Button>
-  {user ?     
-  <div>
-        <Card className='card'>
-          <CardBody>
-            <Card>
-              {blogs && <BlogList  data = {blogs}/>}
-              {blogs && blogs.length <= 0 && <p>There is no Blogs</p>}
-              {!blogs &&    <RotatingLines className="text-center"
+return <>
+    {user ? <div className="postManagement-container">
+            <div className="postManagement-card">
+              <button className='btn' onClick={routerHandler}>Add Blog</button>
+              <div className="postManagement-card-body">
+                  {blogs && <BlogList  data = {blogs}/>}
+                  {!blogs && <p>There is no blogs</p>}
+                  {!blogs &&    <RotatingLines className="text-center"
                   strokeColor="grey"
                   strokeWidth="5"
                   animationDuration="1"
                   width="96"
                   visible={true}
                 />}
-            </Card>
-          </CardBody>
-      </Card> 
-    </div> : <></>}
-</>
+              </div>
+            </div>
+    </div> : <></> }
+    </>
 }
 
 export default ViewBlogs

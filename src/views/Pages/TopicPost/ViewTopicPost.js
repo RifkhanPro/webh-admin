@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import './ViewSkill.css'
+import './ViewPostManagement.css'
 
 const ViewTopicPost = () => {
     const {id} = useParams()
@@ -56,37 +56,36 @@ const ViewTopicPost = () => {
     sendRequest()
  }, [id])
 
-  return <>
+    return <div className="view-postManagement-container">
+        {!topicPost &&    <RotatingLines className="text-center"
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="1"
+          width="96"
+          visible={true}
+        />}
 
-    {!topicPost &&    <RotatingLines className="text-center"
-      strokeColor="grey"
-      strokeWidth="5"
-      animationDuration="1"
-      width="96"
-      visible={true}
-    />}
-
-    {topicPost &&   <Card className="card">
-          <div className="image">
-              {topicPost && <img src={topicPost.image} />}
-          </div>
+      <div className="view-postManagement-card">
+        {topicPost && <div className="image">
+                <img src={topicPost.image} />
+            </div>}
         {topicPost && <div className="details">
               <h1>{topicPost.category}</h1>
-              <h2>{topicPost.name}</h2>
-              <CardText>{topicPost.desc}</CardText>
+              <h4>{topicPost.name}</h4>
+              <h4>{topicPost.desc}</h4>
           </div>}
 
           {!topicPost && 
-              <CardText className="no-respond">There is no Such TopicPosts</CardText>
+              <p className="no-respond">There is no topicPost</p>
           }
 
-      </Card>}
+        <div className="btns">
+              <button onClick={routeHandler} className='btn'>Edit</button>
+              <button onClick={deleteHandler} className='btn delete'>Delete</button>
+        </div>
+      </div>
 
-          <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-          </div>
-  </>
+    </div>
 }
 
 export default ViewTopicPost

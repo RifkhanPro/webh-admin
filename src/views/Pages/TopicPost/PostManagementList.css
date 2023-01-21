@@ -1,0 +1,12 @@
+.postManagementList{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center !important;
+    align-items: center;
+}
+
+.postManagementList li{
+    margin: 1rem;
+}

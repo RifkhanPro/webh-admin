@@ -3,14 +3,12 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, Card, CardText } from "reactstrap"
-import './ViewSkill.css'
+import './ViewPostManagement.css'
 
 const ViewAdvertisement = () => {
     const {id} = useParams()
     const [trend, setTrend] = useState()
     const navigate = useNavigate()
-    const [spinner, setSpinner] = useState(false)
     
    
     const routeHandler = () => {
@@ -18,7 +16,6 @@ const ViewAdvertisement = () => {
     }
 
     const deleteHandler = async() => {
-      setSpinner(true)
       try {
         const response = await fetch(`http://localhost:8070/advertisement/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
@@ -57,43 +54,36 @@ const ViewAdvertisement = () => {
     sendRequest()
  }, [id])
 
-  return <> {!trend &&    <RotatingLines className="text-center"
-  strokeColor="grey"
-  strokeWidth="5"
-  animationDuration="1"
-  width="96"
-  visible={true}
-/>}
-      <Card className="card">
-     
-          <div className="image">
-              {trend && <img src={trend.image} />}
-          </div>
-        {trend && <div className="details">
-              <h1>{trend.name}</h1>
-              <h1>{trend.expiry}</h1>
-              <CardText>{trend.desc}</CardText>
+      
+    return <div className="view-postManagement-container">
+        {!trend &&    <RotatingLines className="text-center"
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="1"
+          width="96"
+          visible={true}
+        />}
+    <div className="view-postManagement-card">
+      {trend && <div className="image">
+              <img src={trend.image} />
           </div>}
+      {trend && <div className="details">
+            <h1>{trend.name}</h1>
+            <h4>{trend.desc}</h4>
+            <h4>{trend.expiry}</h4>
+        </div>}
 
-          {trend && trend.length === 0 && 
-              <CardText className="no-respond">There is no Such advertisement</CardText>
-          }
-       
+        {!trend && 
+            <p className="no-respond">There is no postManagement</p>
+        }
 
-      </Card>
-        {spinner &&    <RotatingLines className="text-center"
-        strokeColor="grey"
-        strokeWidth="5"
-        animationDuration="1"
-        width="96"
-        visible={true}
-        ariaLabel="Deleting"
-      />}
-          <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-          </div>
-  </>
+      <div className="btns">
+            <button onClick={routeHandler} className='btn'>Edit</button>
+            <button onClick={deleteHandler} className='btn delete'>Delete</button>
+      </div>
+    </div>
+
+    </div>
 }
 
 export default ViewAdvertisement

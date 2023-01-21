@@ -59,7 +59,7 @@ const ViewPostManagement = () => {
               </div>}
 
               {!post && 
-                  <p className="no-respond">There is no Such postManagement</p>
+                  <p className="no-respond">There is no postManagement</p>
               }
 
             <div className="btns">

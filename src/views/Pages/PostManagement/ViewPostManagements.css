@@ -21,6 +21,7 @@
     background-color: white !important;
     padding: 1rem;
     border-radius: 5px;
+
 }
 
 .postManagement-container .postManagement-card{
@@ -30,8 +31,6 @@
 }
 
 .postManagement-container .postManagement-card .postManagement-card-body{
-   display: flex;
-   justify-content: center !important;
-   align-items: center !important;
+  
    margin: auto;
 }
