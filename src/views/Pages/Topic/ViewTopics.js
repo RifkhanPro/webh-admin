@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TopicList from './TopicList'
-import './ViewBlogs.css'
+import './ViewTopics.css'
 import { RotatingLines } from  'react-loader-spinner'
 
 function ViewTopics() {
@@ -57,8 +57,8 @@ function ViewTopics() {
   }
 
   return <>
-      <Button className='btn mb-2' onClick={routerHandler}>Add Topic</Button>
     {user ? <div className='topic-container'>
+      <button className='btn mb-2' onClick={routerHandler}>Add Topic</button>
       <div className='topic-card'>
           <div className='topic-card-body'>
             <div>

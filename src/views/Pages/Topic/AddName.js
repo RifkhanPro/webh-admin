@@ -8,21 +8,12 @@ const AddName = () => {
     const navigate = useNavigate()
 	const {id} = useParams()
 	const [topic, setTitle] = useState()
-	const [name, setName] = useState()
-	const [topicValidate, setTopicValidate] = useState(true)
-	const [nameValidate, setNameValidate] = useState(true)
+	const [name, setName] = useState('')
+	const [nameValidate, setNameValidate] = useState(false)
+	const [nameTouched, setNameTouched] = useState(false)
 
-	const titleHandler = (e) => {
-		if (e.target.value.trim() === '') {
-		  setTopicValidate(false)
-		} else {
-		  setTopicValidate(true)
-		  setTitle(e.target.value)
-	
-		}
-	
-	}
-	const descHandler = (e) => {   
+
+	const nameHandler = (e) => {   
 		if (e.target.value.trim() === '') {
 			setNameValidate(false)
 		} else {
@@ -32,9 +23,15 @@ const AddName = () => {
 	
 	}
 
-	const showNamesHandler = () => {
-		navigate(`/topics/${id}/names`)
+	const clickHandler = () => {
+		if (name.trim() === '') {
+			setNameTouched(true)
+		}
 	}
+
+	// const showNamesHandler = () => {
+	// 	navigate(`/topics/${id}/names`)
+	// }
 	
 	 useEffect(() => {
 		const sendRequest = async () => {
@@ -60,11 +57,7 @@ const AddName = () => {
 	const submitHandler =  async (e) => {
 		e.preventDefault()
     
-		if (topic.trim() === '') {
-			setTopicValidate(false)
-			return
-		}
-		
+	
 		if (name.trim() === '') {
 			setNameValidate(false)
 			return
@@ -94,22 +87,21 @@ const AddName = () => {
 
 	return (<div className='addName-container'>
 		<div className='addName-card'>
-			<form className='addName-form' onSubmit={submitHandler}>
+			<form className='addName-form ' onSubmit={submitHandler}>
 				<h2 className='addName-form-heading'>Add Name</h2>
 				<div className='group'>
-					<h4>Category</h4>
-					<input onChange={titleHandler} value={topic} type='text' disabled/>
-					{!topicValidate && <p>Category should not be Empty</p>}
+					<h3>Category</h3>
+					<input  value={topic}  disabled/>
 				</div>
 	
 				<div className='group'>
 					<h4>Name</h4>
-					<input onChange={descHandler} value={name} type='text'/>
-					{!nameValidate && <p className='input-invalid-feedback'>Name Should not be empty</p>}
+					<input onChange={nameHandler} value={name} type='text' onClick={clickHandler}/>
+					{!nameValidate && nameTouched && <p className='input-invalid-feedback'>Name Should not be empty</p>}
 				</div>
 				<div className='btns'>
-					<button type='submit' className='btn'>Add Name</button>
-					<button type='button' onClick={showNamesHandler} className='btn'>Show Names</button>
+					<button type='submit' className='btn' disabled={!nameValidate}>Add Name</button>
+					{/* <button type='button' onClick={showNamesHandler} className='btn'>Show Names</button> */}
 				</div>
 			</form>
 		</div>

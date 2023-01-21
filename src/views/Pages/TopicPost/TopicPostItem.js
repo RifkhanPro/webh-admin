@@ -2,21 +2,20 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
 import avatar from './../../../assets/images/pages/not_available.jpg'
-import './SkillItem.css'
+import './TopicPostListItem.css'
 const TopicPostItem = (props) => {
 
   const navigate = useNavigate()
-
   const routehandler = () => {
     navigate(`${props.id}`)
   }
   
   return ( 
-          <div className="skill_card" onClick={() => routehandler(props.id)}>
-            <div className="title">{props.category}</div>
-            <div className="title">{props.name}</div>
-            <div className="image">
-            {!props.image && <img src={avatar} alt="" />}
+          <div className="topicPost-list-item-container" onClick={() => routehandler(props.id)}>
+            <div className="topicPost-list-item-container-category">{props.category}</div>
+            <div className="topicPost-list-item-container-name">{props.name}</div>
+            <div className="topicPost-list-item-container-image">
+              {!props.image && <img src={avatar} alt="" />}
               {props.image && <img src={props.image} alt="" />}
             </div>
           </div>
