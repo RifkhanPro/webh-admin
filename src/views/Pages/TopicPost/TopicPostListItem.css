@@ -1,0 +1,45 @@
+.topicPost-list-item-container{
+    width: 250px;
+    min-width: 250px !important;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px black;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 1s;
+    overflow: hidden;
+    margin: auto;
+}
+
+
+
+.topicPost-list-item-container:hover{
+    transform: scale(1.1);
+}
+
+.topicPost-list-item-container-category{
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: .2rem;
+    font-size: 15px !important;
+}
+.topicPost-list-item-container-name{
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: .2rem;
+    font-size: 15px !important;
+}
+
+.topicPost-list-item-container-image{
+    width: 100%;
+    height: 100%;
+}
+
+.topicPost-list-item-container-image img{
+    width: 100% !important;
+    min-height: 200px;
+    height: auto !important;
+}

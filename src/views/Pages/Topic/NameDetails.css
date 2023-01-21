@@ -30,36 +30,20 @@
     margin: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
-.nameDetails-container .nameDetails-card .nameDetails-card-body{
-    display: flex;
-    flex-direction: column;
+.nameDetails-container .nameDetails-card .nameDetails-card-post-list h4{
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center !important;
+    color: red;
 }
 
-.no-respond{
+
+.nameDetails-card .no-respond{
     display: flex;
     justify-content: center;
     align-items: center;
     font: 50px;
-}
-.topic-view-container-btns{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
-.topic-view-container-btns .btn{
-    margin: 1rem;
-    width: 30%;
-}
-
-.topic-view-container-btns .delete{
-    background-color: red !important;
-}
-
-@media (max-width:650px) {
-    .topic-view-container-btns .btn{
-        margin: 1rem;
-        width: 80%;
-    }
-    
 }

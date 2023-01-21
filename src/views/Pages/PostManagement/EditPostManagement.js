@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
+import './EditPostManagement.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -164,31 +164,29 @@ const EditPostManagement = () => {
 	}
 	
 	
-	return (<Card>
-			<form onSubmit={submitHandler} className='col-12 form-control'>
-				<h3>Edit Post</h3>
-				<CardGroup className='group mt-1'>
-					<CardTitle>Name</CardTitle>
-					<Input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
+	return (<div className='edit-postManagement-container'>
+			<form onSubmit={submitHandler} className='edit-postManagement-form'>
+				<h3 >Edit Post</h3>
+				<div className='edit-postManagement-group'>
+					<h5>Name</h5>
+					<input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
 					{!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
-				</CardGroup>
+				</div>
 	
-				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+				<div className='edit-postManagement-group'>
+					<h5>Description</h5>
+					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
 					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-				</CardGroup>
-				
-				<CardGroup className='group'>
-              <CardTitle>Add Skill Image</CardTitle>
-          </CardGroup>
-            <div>
-              <ImageUploader onInput={catchFileDataHandler} image={ image }/>
-              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-            </div>
-			<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
+				</div>
+
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+              		<h5>Add Skill Image</h5>
+					<ImageUploader onInput={catchFileDataHandler} image={ image }/>
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+				</div>
+				<button type='submit' className='btn' color='primary'>Update</button>
 			</form>
-	</Card>)
+	</div>)
 }
 
 export default EditPostManagement

@@ -55,7 +55,7 @@ function ViewPostManagements() {
   return <>
     {user ? <div className="postManagement-container">
             <div className="postManagement-card">
-              <Button className='btn' onClick={routerHandler}>Add postManagement</Button>
+              <button className='btn' onClick={routerHandler}>Add postManagement</button>
               <div className="postManagement-card-body">
                   {posts && <PostManagementList data={posts} />}
                   {!posts && <p>There is no postManagements</p>}

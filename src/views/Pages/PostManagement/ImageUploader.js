@@ -46,7 +46,7 @@ function ImageUploader(props) {
             {previewUrl ? <><img src={previewUrl} alt='preview' /></> : <>{props.image && <img src={props.image} alt='preview' />}</> }
             </div>
 
-            <Button type='button' onClick={pickImageHandler}>Pick Image</Button>
+            <button type='button' onClick={pickImageHandler}>Pick Image</button>
         </div>
     </div>
 

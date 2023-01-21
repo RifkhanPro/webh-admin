@@ -1,0 +1,26 @@
+.topic-list-item-container{
+    min-width: 230px !important;
+    min-height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    margin: 1rem;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.topic-list-item-container:hover{
+    transform: scale(1.1);
+}
+
+.topic-list-item-container .title{
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: .5rem;
+}
+

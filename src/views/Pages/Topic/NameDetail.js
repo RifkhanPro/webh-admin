@@ -56,7 +56,7 @@ const NameDetail = () => {
                 
             <div className="nameDetails-card-post-list">
                 {posts && <TopicPostList data = {posts}/>}
-                {posts && posts.length === 0 && <p>There is no Posts</p>}
+                {posts && posts.length === 0 && <h4 >There is no Posts</h4>}
             </div>
         </div>
     </div>

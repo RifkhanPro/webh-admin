@@ -2,8 +2,7 @@ import React from "react"
 // eslint-disable-next-line no-duplicate-imports
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, Card, CardText } from "reactstrap"
-import './ViewSkill.css'
+import './ViewPostManagement.css'
 
 const ViewPostManagement = () => {
     const {id} = useParams()
@@ -49,28 +48,27 @@ const ViewPostManagement = () => {
       navigate('/postManagements')
     }
 
-  return <>
-      <Card className="card">
-          <div className="image">
-          {post && <img src={post.image} />}
+  return <div className="view-postManagement-container">
+          <div className="view-postManagement-card">
+            {post && <div className="image">
+                    <img src={post.image} />
+                </div>}
+            {post && <div className="details">
+                  <h1>{post.name}</h1>
+                  <h4>{post.description}</h4>
+              </div>}
 
+              {!post && 
+                  <p className="no-respond">There is no Such postManagement</p>
+              }
+
+            <div className="btns">
+                  <button onClick={routeHandler} className='btn'>Edit</button>
+                  <button onClick={deleteHandler} className='btn delete'>Delete</button>
+            </div>
           </div>
-        {post && <div className="details">
-              <h1>{post.name}</h1>
-              <CardText>{post.description}</CardText>
-          </div>}
 
-          {!post && 
-              <CardText className="no-respond">There is no Such postManagement</CardText>
-          }
-
-      </Card>
-
-      <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-          </div>
-  </>
+      </div>
 }
 
 export default ViewPostManagement

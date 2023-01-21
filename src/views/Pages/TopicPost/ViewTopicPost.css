@@ -1,4 +1,5 @@
-.postManagement-container .btn{
+
+.topicpost-container .btn{
     width: 70%;
     margin: auto;
     display: block;
@@ -6,7 +7,7 @@
     color: white;
 }
 
-.postManagement-container .btn:hover{
+.topicpost-container .btn:hover{
     width: 70%;
     margin: auto;
     display: block;
@@ -14,8 +15,7 @@
     color: white;
 }
 
-
-.postManagement-container
+.topicpost-container
 {
     margin-inline:1rem  !important;
     background-color: white !important;
@@ -23,13 +23,13 @@
     border-radius: 5px;
 }
 
-.postManagement-container .postManagement-card{
+.topicpost-container .topicpost-card{
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.postManagement-container .postManagement-card .postManagement-card-body{
+.topicpost-container .topicpost-card .topicpost-card-body{
    display: flex;
    justify-content: center !important;
    align-items: center !important;
