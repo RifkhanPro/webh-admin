@@ -4,6 +4,8 @@
     display: block;
     background-color: gray;
     color: white;
+    margin-top: 1rem !important;
+
 }
 
 .postManagement-container .btn:hover{
@@ -19,7 +21,6 @@
 {
     margin-inline:1rem  !important;
     background-color: white !important;
-    padding: 1rem;
     border-radius: 5px;
 }
 

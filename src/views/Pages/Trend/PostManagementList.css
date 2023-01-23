@@ -3,6 +3,16 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
- 
+    justify-content: center !important;
+    margin-right: 2rem  !important;
+}
+
+@media (max-width:600px) {
+    .postManagementList{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
 }

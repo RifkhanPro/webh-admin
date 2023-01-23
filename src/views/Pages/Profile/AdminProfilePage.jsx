@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 import React, { useEffect, useRef, useState } from 'react'
-import './ProfilePage.css'
+import './AdminProfilePage.css'
 import img1 from '../../../assets/images/users/avatar-1.jpg'
 
 import { Link, useNavigate } from 'react-router-dom'
@@ -93,13 +93,9 @@ function ProfilePage() {
       }
 
   return (
-    <>
-    <Card>
-    <div className="row mb-5">
-            <div className="col-lg-2 pro-left"></div>
-            <div className="col-lg-8 pro-center">
+    <div className='postManagement-container'>
+        <div className="postManagement-card">
                 <div className="profile-line">
-                    <div className="row" style={{ justifyContent:'center' }}>
                         <input type="file" name="" value="" ref={inputFile} style={{display:'none'}} accept='.jpg,.png,.jpeg' onChange={pickHandler} />
                         { !user.profilePicture && !previewUrl && <img  style={{cursor:'pointer'}}  className="profile-page-image" src={ img1} alt="profile-pic" onClick={pickImageHandler}/>}
                         { user.profilePicture && !previewUrl && <img  style={{cursor:'pointer'}}  className="profile-page-image" src={ user.profilePicture} alt="profile-pic" onClick={pickImageHandler}/>}
@@ -108,22 +104,17 @@ function ProfilePage() {
                             <span>FirstName : {user.firstname}</span>
                             <span>LastName : {user.lastname}</span>
                             <div className='btn'>
-                            <button  
+                                <button  
                                 className="edit-profile-button"
                                 onClick={editProfile}>Edit Profile</button>
                                 {file && <button type='submit' className="edit-profile-button image-btn" onClick={imageUploadHandler}>Change Image</button>}
                             </div>
                           
                         </div>
-                    </div>
                 </div>
 
-            </div>
         </div>
-    </Card>
-       
-
-    </>
+    </div>
   )
 }
 

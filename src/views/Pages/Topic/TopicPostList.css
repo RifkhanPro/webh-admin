@@ -1,9 +1,21 @@
 .topicPostList-ul{
-    margin: auto;
+    list-style: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    list-style: none !important;
-    width: 100%;
+    justify-content: center !important;
+    margin-right: 2rem  !important;
+}
+
+
+@media (max-width:600px) {
+
+    .topicPostList-ul{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center !important;
+        margin-left: 1rem  !important;
+    }
 }
