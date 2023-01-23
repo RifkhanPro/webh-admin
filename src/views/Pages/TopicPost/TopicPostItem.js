@@ -12,8 +12,8 @@ const TopicPostItem = (props) => {
   
   return ( 
           <div className="topicPost-list-item-container" onClick={() => routehandler(props.id)}>
-            <div className="topicPost-list-item-container-category">{props.category}</div>
-            <div className="topicPost-list-item-container-name">{props.name}</div>
+         {props.category &&   <div className="topicPost-list-item-container-category">{props.category}</div>}
+         {props.name && <div className="topicPost-list-item-container-name">{props.name}</div>}
             <div className="topicPost-list-item-container-image">
               {!props.image && <img src={avatar} alt="" />}
               {props.image && <img src={props.image} alt="" />}

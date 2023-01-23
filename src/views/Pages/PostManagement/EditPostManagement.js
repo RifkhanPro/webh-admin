@@ -7,6 +7,7 @@ import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios'
+import { RotatingLines } from 'react-loader-spinner'
 
 const EditPostManagement = () => {
     const navigate = useNavigate()
@@ -165,7 +166,14 @@ const EditPostManagement = () => {
 	
 	
 	return (<div className='edit-postManagement-container'>
-			<form onSubmit={submitHandler} className='edit-postManagement-form'>
+		{ !topic && !desc  &&     <RotatingLines className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+			/>}
+			{topic && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Post</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Name</h5>
@@ -185,7 +193,7 @@ const EditPostManagement = () => {
 					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
 				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>
+			</form>}
 	</div>)
 }
 

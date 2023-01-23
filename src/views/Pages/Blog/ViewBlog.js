@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useParams, useNavigate } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import './ViewSkill.css'
+import './ViewPostManagement.css'
 
 const ViewBlog = () => {
     const {id} = useParams()
@@ -53,35 +53,37 @@ const ViewBlog = () => {
 
       navigate('/blogs')
     }
-    return <>
-    {!blog &&    <RotatingLines className="text-center"
+
+    return <div className="view-postManagement-container">
+       {!blog &&    <RotatingLines className="text-center"
       strokeColor="grey"
       strokeWidth="5"
       animationDuration="1"
       width="96"
       visible={true}
     />}
-      <Card className="card">
-          <div className="image">
-               {blog && <img src={blog.image} />}
-          </div>
-        {blog && <div className="details">
-              <h1>{blog.name}</h1>
-              <CardText>{blog.desc}</CardText>
+    <div className="view-postManagement-card">
+      {blog && <div className="image">
+              <img src={blog.image} />
           </div>}
+      {blog && <div className="details">
+            <h1>{blog.name}</h1>
+            <h4>{blog.desc}</h4>
+        </div>}
 
-          {!blog && 
-              <CardText className="no-respond">There is no Such blog</CardText>
-          }
+        {!blog && 
+            <p className="no-respond">There is no Such blog</p>
+        }
 
-      </Card>
-     
       <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-        </div>
+            <button onClick={routeHandler} className='btn'>Edit</button>
+            <button onClick={deleteHandler} className='btn delete'>Delete</button>
+      </div>
+    </div>
 
-    </>
+    </div>
+
+    
 }
 
 export default ViewBlog

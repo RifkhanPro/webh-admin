@@ -127,7 +127,7 @@ function AddPostManagement() {
 
          
 				<div className='edit-postManagement-group edit-postManagement-group-image'>
-              		<h5>Add Skill Image</h5>
+              		<h5>Add Image</h5>
 					<ImageUploader onInput={catchFileDataHandler} />
 					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>

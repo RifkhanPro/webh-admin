@@ -131,7 +131,7 @@ const AllQuestion = lazy(() => import('../../views/Pages/Question/AllQuestion'))
 const ViewQuestion = lazy(() => import('../../views/Pages/Question/ViewQuestion'))
 
 //Profile 
-const Profile = lazy(() => import('../../views/Pages/Profile/ProfilePage.jsx'))
+const Profile = lazy(() => import('../../views/Pages/Profile/AdminProfilePage.jsx'))
 const EditProfile = lazy(() => import('../../views/Pages/Profile/EditProfile.jsx'))
 
 // Posts

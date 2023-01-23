@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import TopicPostList from './TopicPostList'
-import './ViewTopicPost.css'
+import './ViewPostManagements.css'
 
 function ViewTopicPosts() {
   const [topics, setTopics] = useState()
@@ -57,10 +57,10 @@ function ViewTopicPosts() {
   }
 
   return <>
-    {user ? <div className='topicpost-container'>
-      <div className='topicpost-card'>
-        <button className='btn mb-2' onClick={routerHandler}>Add Topic</button>
-          <div className='topicpost-card-body'>
+    {user ? <div className='postManagement-container'>
+      <div className='postManagement-card'>
+        <button className='btn' onClick={routerHandler}>Add Topic Post</button>
+          <div className='postManagement-card-body'>
               {topics && <TopicPostList  data = {topics}/>}
               {topics && topics.length <= 0 && <p>There is no TopicPosts</p>}
               {!topics &&    <RotatingLines className="text-center"

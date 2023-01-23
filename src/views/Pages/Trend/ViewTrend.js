@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import './ViewSkill.css'
+import './ViewPostManagement.css'
 
 const ViewTrend = () => {
     const {id} = useParams()
@@ -54,34 +54,34 @@ const ViewTrend = () => {
     sendRequest()
  }, [id])
 
-  return <>
-      {!trend &&    <RotatingLines className="text-center"
-      strokeColor="grey"
-      strokeWidth="5"
-      animationDuration="1"
-      width="96"
-      visible={true}
-    />}
-      <Card className="card">
-          <div className="image">
-               {trend && <img src={trend.image} />}
-          </div>
-        {trend && <div className="details">
-              <h1>{trend.title}</h1>
-              <CardText>{trend.desc}</CardText>
+    return <div className="view-postManagement-container">
+        {!trend &&    <RotatingLines className="text-center"
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="1"
+          width="96"
+          visible={true}
+        />}
+    <div className="view-postManagement-card">
+      {trend && <div className="image">
+              <img src={trend.image} />
           </div>}
+      {trend && <div className="details">
+            <h1>{trend.title}</h1>
+            <h4>{trend.desc}</h4>
+        </div>}
 
-          {!trend && 
-              <CardText className="no-respond">There is no Such Trend</CardText>
-          }
+        {!trend && 
+            <p className="no-respond">There is no Trend</p>
+        }
 
-      </Card>
+      <div className="btns">
+            <button onClick={routeHandler} className='btn'>Edit</button>
+            <button onClick={deleteHandler} className='btn delete'>Delete</button>
+      </div>
+    </div>
 
-          <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-          </div>
-  </>
+    </div>
 }
 
 export default ViewTrend

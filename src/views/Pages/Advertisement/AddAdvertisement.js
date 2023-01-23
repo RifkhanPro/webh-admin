@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
-
+import './AddPostManagement.css'
 function AddAdvertisement() {
 
   const [name, setName] = useState('')
@@ -125,51 +125,44 @@ function AddAdvertisement() {
     navigate('/advertisements')
   }
 
+
   return (
-    <>
-    {spinner &&    <RotatingLines className="text-center"
+    <div className='edit-postManagement-container'>
+      {spinner &&    <RotatingLines className="text-center"
                   strokeColor="grey"
                   strokeWidth="5"
                   animationDuration="1"
                   width="96"
                   visible={true}
                 />}
-
-    <Card>
-      <form onSubmit={submitHandler} className='form-control col-12'>
+      <form onSubmit={submitHandler}  className='edit-postManagement-form'>
           <h3>Add Advertisement</h3>
-          <CardGroup className='group mt-1'>
-              <CardTitle>Name</CardTitle>
-              <Input onChange={NameHandler} value={name} type='text' placeholder='Enter Name'/>
-              {!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='textarea' placeholder='Enter Description' rows='5'/>
-              {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Expiry Date</CardTitle>
-              <Input onChange={expiryHandler}  value={expiry} type='date'/>
-              {!expiryValidate && <p style={{color:"Red"}}>Expiry Date should not be empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Add Advertisement Image</CardTitle>
-             
-          </CardGroup>
-          <div>
-             <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+          <div className='edit-postManagement-group'>
+            <h5>Name</h5>
+            <input onChange={NameHandler} value={name} type='text' placeholder='Enter Name'/>
+            {!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
           </div>
 
-         <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+          <div className='edit-postManagement-group'>
+            <h5>Description</h5>
+            <input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+            {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				  </div>
+
+        <div className='edit-postManagement-group'>
+            <h5>Expiry Date</h5>
+            <input onChange={expiryHandler} value={expiry} type='date' placeholder='Enter Name'/>
+            {!expiryValidate && <p style={{color:"Red"}}>Expiry Date should not be empty</p>}
+          </div>
+         
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+          <h5>Add Image</h5>
+					<ImageUploader onInput={catchFileDataHandler} />
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+				</div>
+				<button type='submit' className='btn' color='primary'>Add</button>
       </form>
-    </Card>
-    </>
-   
+    </div>
   )
 }
 

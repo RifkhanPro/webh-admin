@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TopicList from './TopicList'
-import './ViewTopics.css'
+import './ViewPostManagements.css'
 import { RotatingLines } from  'react-loader-spinner'
 
 function ViewTopics() {
@@ -56,28 +55,25 @@ function ViewTopics() {
     navigate('/addTopic')
   }
 
+    
   return <>
-    {user ? <div className='topic-container'>
-      <button className='btn mb-2' onClick={routerHandler}>Add Topic</button>
-      <div className='topic-card'>
-          <div className='topic-card-body'>
-            <div>
-              {topics && <TopicList  data = {topics}/>}
-              {topics && topics.length === 0 && <p>There is no topics</p>}
-              {!topics &&    <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
+  {user ? <div className="postManagement-container">
+          <div className="postManagement-card">
+            <button className='btn' onClick={routerHandler}>Add Topic</button>
+            <div className="postManagement-card-body">
+                {topics && <TopicList  data = {topics}/>}
+                {topics && topics.length === 0 && <p>There is no topics</p>}
+                {!topics &&    <RotatingLines className="text-center"
+                    strokeColor="grey"
+                    strokeWidth="5"
+                    animationDuration="1"
+                    width="96"
+                    visible={true}
+                  />}
             </div>
           </div>
-      </div>
-
-
-    </div> : <></> }
+  </div> : <></> }
   </>
-}
+  }
 
 export default ViewTopics

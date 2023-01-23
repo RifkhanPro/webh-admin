@@ -1,7 +1,7 @@
 .topicPost-list-item-container{
     width: 250px;
     min-width: 250px !important;
-    height: 250px;
+    max-height: 250px;
     border-radius: 10px;
     box-shadow: 0 1px 8px black;
     display: flex;
@@ -9,7 +9,7 @@
     cursor: pointer;
     transition: all 1s;
     overflow: hidden;
-    margin: auto;
+    margin: 1rem;
 }
 
 
@@ -21,16 +21,22 @@
 .topicPost-list-item-container-category{
     margin: auto;
     display: block;
+    width: 100%;
     text-align: center;
-    padding: .2rem;
-    font-size: 15px !important;
+    font-size: 20px !important;
+    border-bottom: 1px solid black;
+    line-height: normal;
+    padding: 0.2rem;
 }
 .topicPost-list-item-container-name{
     margin: auto;
     display: block;
     text-align: center;
-    padding: .2rem;
     font-size: 15px !important;
+    padding: 0.5rem;
+    width: 100%;
+    line-height: normal;
+
 }
 
 .topicPost-list-item-container-image{
@@ -40,6 +46,8 @@
 
 .topicPost-list-item-container-image img{
     width: 100% !important;
+    height: 100% !important;
     min-height: 200px;
-    height: auto !important;
+    background-position: center;
+
 }

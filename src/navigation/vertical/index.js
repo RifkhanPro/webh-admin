@@ -48,12 +48,12 @@ export default [
     icon: <User size={20} />,
     navLink: '/user'
   },
-  {
-    id: 'articles',
-    title: 'Article',
-    icon: <Folder size={20} />,
-    navLink: '/articles'
-  },
+  // {
+  //   id: 'articles',
+  //   title: 'Article',
+  //   icon: <Folder size={20} />,
+  //   navLink: '/articles'
+  // },
   {
     id: 'topic',
     title: 'Topic',

@@ -2,10 +2,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
-import './AnalyticsCard.css'
+// import './AnalyticsCard.css'
 
 import './ViewAnalytics.css'
 import Chart from 'react-apexcharts'
+import { ResponsiveContainer } from 'recharts'
 
 function ViewAnalytics() {
 
@@ -213,7 +214,8 @@ function ViewAnalytics() {
     return <>
       <div className="chart-container">
         <div className="chart-card">
-          { user && <Chart options={option} series={series} type="bar" width={1000}  height={500} />}
+          
+          { user && <ResponsiveContainer maxHeight={500}><Chart options={option} series={series} type="bar" width={800}  height={500} /></ResponsiveContainer>}
         </div>
       </div>  
   </>

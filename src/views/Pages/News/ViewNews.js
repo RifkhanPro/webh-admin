@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Card, CardText } from "reactstrap"
-import './ViewSkill.css'
+import './ViewPostManagement.css'
 
 const ViewNews = () => {
     const {id} = useParams()
@@ -50,35 +50,35 @@ const ViewNews = () => {
     sendRequest()
  }, [id])
 
-  return <>
-      {!news &&    <RotatingLines className="text-center"
-      strokeColor="grey"
-      strokeWidth="5"
-      animationDuration="1"
-      width="96"
-      visible={true}
-    />}
-      <Card className="card">
-          <div className="image">
-                           {news && <img src={news.image} />}
 
-          </div>
-          {news && <div className="details">
-              <h1>{news.title}</h1>
-              <CardText>{news.desc}</CardText>
+    return <div className="view-postManagement-container">
+        {!news &&    <RotatingLines className="text-center"
+          strokeColor="grey"
+          strokeWidth="5"
+          animationDuration="1"
+          width="96"
+          visible={true}
+        />}
+    <div className="view-postManagement-card">
+      {news && <div className="image">
+              <img src={news.image} />
           </div>}
+      {news && <div className="details">
+            <h1>{news.title}</h1>
+            <h4>{news.desc}</h4>
+        </div>}
 
-          {!news && 
-              <CardText className="no-respond">There is no Such News</CardText>
-          }
+        {!news && 
+            <p className="no-respond">There is no news</p>
+        }
 
-      </Card>
+      <div className="btns">
+            <button onClick={routeHandler} className='btn'>Edit</button>
+            <button onClick={deleteHandler} className='btn delete'>Delete</button>
+      </div>
+    </div>
 
-          <div className="btns">
-            <Button onClick={routeHandler} className='btn'>Edit</Button>
-            <Button onClick={deleteHandler} className='btn delete'>Delete</Button>
-          </div>
-  </>
+    </div>
 }
 
 export default ViewNews

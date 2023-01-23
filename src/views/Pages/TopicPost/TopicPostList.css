@@ -4,8 +4,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.topicpostlist-ul li{
-    margin: 1rem;
+    margin: auto !important;
 }

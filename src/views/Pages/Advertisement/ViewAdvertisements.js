@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import AdvertisementList from './AdvertisementList'
-import './ViewBlogs.css'
+import './ViewPostManagements.css'
 import { RotatingLines } from  'react-loader-spinner'
 
 function ViewAnalytics() {
@@ -54,14 +54,12 @@ function ViewAnalytics() {
     navigate('/addAdvertisement')
   }
 
-  return <>
-   
-      <Button className='btn mb-2' onClick={routerHandler}>Add Advertisement</Button>
-    {user ? <div>
-      <Card>
-          <CardBody>
-            <Card>
-              {trends && <AdvertisementList  data = {trends}/>}
+return <>
+{user ? <div className="postManagement-container">
+        <div className="postManagement-card">
+          <button className='btn' onClick={routerHandler}>Add Advertisement</button>
+          <div className="postManagement-card-body">
+              {trends && <AdvertisementList data={trends} />}
               {trends && trends.length <= 0 && <p>There is no Advertisement</p>}
               {!trends &&    <RotatingLines className="text-center"
                   strokeColor="grey"
@@ -70,13 +68,10 @@ function ViewAnalytics() {
                   width="96"
                   visible={true}
                 />}
-            </Card>
-          </CardBody>
-      </Card>
-
-
-    </div> : <></> }
-  </>
+          </div>
+        </div>
+</div> : <></> }
+</>
 }
 
 export default ViewAnalytics
