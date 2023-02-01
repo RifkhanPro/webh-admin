@@ -26,8 +26,8 @@ const EditTopicPost = () => {
 		  setCategoryValidate(false)
 		} else {
 		  setCategoryValidate(true)
-		  setCategory(e.target.value)
 		}
+		setCategory(e.target.value)
 	}
 	
 	const nameHandler = (e) => {
@@ -35,17 +35,17 @@ const EditTopicPost = () => {
 		  setNameValidate(false)
 		} else {
 		  setNameValidate(true)
-		  setName(e.target.value)
 		}
-	  }
+		setName(e.target.value)
+	}
 	
 	const descHandler = (e) => {
 		if (e.target.value.trim() === '') {
 		  setDescValidate(false)
 		} else {
 		  setDescValidate(true)
-		  setDesc(e.target.value)
 		}
+		setDesc(e.target.value)
 	}
 	
 	const catchFileDataHandler = (e) => {
@@ -182,7 +182,7 @@ const EditTopicPost = () => {
 					width="96"
 					visible={true}
 			/>}
-			{name && desc && category && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+			<form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit TopicPost</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Category</h5>
@@ -209,7 +209,7 @@ const EditTopicPost = () => {
 
 				</div>
 				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+			</form>
 	</div>)
 }
 

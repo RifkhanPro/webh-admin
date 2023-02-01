@@ -21,24 +21,60 @@ const EditPostManagement = () => {
 	const [descValidate, setDescValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
+
+	const [nameTouched, setNameTouched] = useState(false)
+	const [descTouched, setDescTouched] = useState(false)
+	const [imageTouched, setImageTouched] = useState(false)
+  
+	const [formValidate, setFormValidate] = useState(false)
+  
+	const validName = !topicValidate && nameTouched
+	const validDesc = !descValidate && descTouched
+	const validImage = !imageValidate && imageTouched
+  
+	  useEffect(() => {
+		setFormValidate(topicValidate && descValidate)
+	}, [topicValidate, descValidate])
+  
 	const topicHandler = (e) => {
+		setNameTouched(true)
+	
 		if (e.target.value.trim() === '') {
-		  setTopicValidate(false)
+			setTopicValidate(false)
 		} else {
-		  setTopicValidate(true)
-		  setTitle(e.target.value)
-	
+			setTopicValidate(true)
+		  
 		}
+		setTitle(e.target.value)
 	  }
+	  const descHandler = (e) => {
+		setDescTouched(true)
 	
-	const descHandler = (e) => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
 			setDescValidate(true)
-			setDesc(e.target.value)
+			
 		}
-  	}
+		setDesc(e.target.value)
+	  }
+	  const nameBlurHandler = () => {
+		setNameTouched(true)
+		if (topic.trim() === '') {
+		  setTopicValidate(false)
+		} else {
+		  setTopicValidate(true)
+		}
+	}
+	
+	const descBlurHandler = () => {
+	  setDescTouched(true)
+	  if (desc.trim() === '') {
+		setDescValidate(false)
+	  } else {
+		setDescValidate(true)
+	  }
+	}
 
 	const catchFileDataHandler = (e) => {
 	   
@@ -76,15 +112,9 @@ const EditPostManagement = () => {
 	const submitHandler =  async (e) => {
 		e.preventDefault()
 
-    if (topic.trim() === '') {
-      setTopicValidate(false)
-      return
-    }
-
-    if (desc.trim() === '') {
-		setDescValidate(false)
-      return
-    }
+		setNameTouched(true)
+		setDescTouched(true)
+		setImageTouched(true)
 
 
 	let imageUrl = ''
@@ -173,27 +203,27 @@ const EditPostManagement = () => {
 					width="96"
 					visible={true}
 			/>}
-			{topic && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
+			 <form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Post</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Name</h5>
-					<input onChange={topicHandler} value={topic} type='text' placeholder='Enter Name'/>
-					{!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+					<input onChange={topicHandler} value={topic} onBlur={nameBlurHandler} type='text' placeholder='Enter Name'/>
+					{validName && <p style={{color:"Red"}}>Name should not be Empty</p>}
 				</div>
 	
 				<div className='edit-postManagement-group'>
 					<h5>Description</h5>
-					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
-					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<input onChange={descHandler}  value={desc} onBlur={descBlurHandler} type='textarea' rows='4' placeholder='Enter Description'/>
+					{validDesc && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</div>
 
 				<div className='edit-postManagement-group edit-postManagement-group-image'>
               		<h5>Add Skill Image</h5>
 					<ImageUploader onInput={catchFileDataHandler} image={ image }/>
-					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					{validImage && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
-				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+				<button type='submit' className='btn' color='primary' disabled={!formValidate}>Update</button>
+			</form>
 	</div>)
 }
 

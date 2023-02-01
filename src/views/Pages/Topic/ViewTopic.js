@@ -79,9 +79,9 @@ const ViewTopic = () => {
       </div>
 
         <div className="topic-view-container-btns">
-              <Button onClick={routeHandler} className='btn'>Edit Category</Button>
-              <Button onClick={addNameHandler} className='btn'>Add Name</Button>
-              <Button onClick={deleteHandler} className='btn delete'>Delete Category</Button>
+              <button onClick={routeHandler} className='btn'>Edit Category</button>
+              <button onClick={addNameHandler} className='btn'>Add Name</button>
+              <button onClick={deleteHandler} className='btn delete'>Delete Category</button>
         </div>
     </div>
      

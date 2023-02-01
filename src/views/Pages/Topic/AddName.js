@@ -9,8 +9,7 @@ const AddName = () => {
 	const {id} = useParams()
 	const [topic, setTitle] = useState()
 	const [name, setName] = useState('')
-	const [nameValidate, setNameValidate] = useState(false)
-	const [nameTouched, setNameTouched] = useState(false)
+	const [nameValidate, setNameValidate] = useState(true)
 
 
 	const nameHandler = (e) => {   
@@ -18,16 +17,11 @@ const AddName = () => {
 			setNameValidate(false)
 		} else {
 			setNameValidate(true)
-			setName(e.target.value)
 		}
+		setName(e.target.value)
 	
 	}
 
-	const clickHandler = () => {
-		if (name.trim() === '') {
-			setNameTouched(true)
-		}
-	}
 
 	// const showNamesHandler = () => {
 	// 	navigate(`/topics/${id}/names`)
@@ -96,8 +90,8 @@ const AddName = () => {
 	
 				<div className='group'>
 					<h4>Name</h4>
-					<input onChange={nameHandler} value={name} type='text' onClick={clickHandler}/>
-					{!nameValidate && nameTouched && <p className='input-invalid-feedback'>Name Should not be empty</p>}
+					<input onChange={nameHandler} value={name} type='text' />
+					{!nameValidate && <p className='input-invalid-feedback'>Name Should not be empty</p>}
 				</div>
 				<div className='btns'>
 					<button type='submit' className='btn' disabled={!nameValidate}>Add Name</button>

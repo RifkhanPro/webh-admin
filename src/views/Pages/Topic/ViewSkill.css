@@ -37,6 +37,8 @@
 .topic-view-container-btns .btn{
     margin: 1rem;
     width: 30%;
+    background-color: gray;
+    color: white;
 }
 
 .topic-view-container-btns .delete{

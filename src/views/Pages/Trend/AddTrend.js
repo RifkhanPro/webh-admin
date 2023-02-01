@@ -17,14 +17,31 @@ function AddTrend() {
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState()
 
+  
+  // const [nameTouched, setNameTouched] = useState(false)
+  // const [descTouched, setDescTouched] = useState(false)
+  // const [imageTouched, setImageTouched] = useState(false)
+
+  // const [formValidate, setFormValidate] = useState(false)
+
+  // const [spinner, setSpinner] = useState(false)
+
+  // const validName = !titleValidate && nameTouched
+  // const validDesc = !descValidate && descTouched
+  // const validImage = !imageValidate && imageTouched
+
+//   useEffect(() => {
+//     setFormValidate(nameValidate && descValidate && expiryValidate && imageValidate)
+//  }, [nameValidate, descValidate, expiryValidate, imageValidate])
+
   const titleHandler = (e) => {
     if (e.target.value.trim() === '') {
       setTitleValidate(false)
     } else {
       setTitleValidate(true)
-      setTitle(e.target.value)
-
+      
     }
+    setTitle(e.target.value)
 
   }
   const descHandler = (e) => {
@@ -32,9 +49,9 @@ function AddTrend() {
       setDescValidate(false)
     } else {
       setDescValidate(true)
-      setDesc(e.target.value)
-
+      
     }
+    setDesc(e.target.value)
 
   }
   const catchFileDataHandler = (e) => {

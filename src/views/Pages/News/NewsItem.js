@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import avatar from './../../../assets/images/pages/not_available.jpg'
-import './PostManagementItem.css'
+import './SkillItem.css'
 // import './allNewsMediaQuery.css'
 
 const NewsItem = (props) => {

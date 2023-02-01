@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AddPostManagement.css'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -12,31 +12,47 @@ function AddSkill() {
   const [topic, setTitle] = useState('')
   const [content, setDesc] = useState('')
   const [selectedFile, setSelectedFile] = useState()
-  const [topicValidate, setTopicValidate] = useState(true)
-  const [contentValidate, setContentValidate] = useState(true)
-  const [imageValidate, setImageValidate] = useState(true)
+  const [topicValidate, setTopicValidate] = useState(false)
+  const [contentValidate, setContentValidate] = useState(false)
+  const [imageValidate, setImageValidate] = useState(false)
 
+
+  const [topicTouched, setTopicTouched] = useState(false)
+  const [descTouched, setDescTouched] = useState(false)
+  const [formValidate, setFormValidate] = useState(false)
   
+
+  const validTopic = !topicValidate && topicTouched
+  const validDesc = !contentValidate && descTouched
+
+  useEffect(() => {
+    setFormValidate(topicValidate && contentValidate && imageValidate)
+ }, [topicValidate, contentValidate, imageValidate])
+
+
   const titleHandler = (e) => {
-   
+    setTopicTouched(true)
     if (e.target.value.trim() === '') {
       setTopicValidate(false)
     } else {
       setTopicValidate(true)
-      setTitle(e.target.value)
 
     }
+    setTitle(e.target.value)
 
   }
+
   const descHandler = (e) => {
-    if (e.target.value.trim() === '') {
-      setContentValidate(false)
-    } else {
-      setContentValidate(true)
-      setDesc(e.target.value)
+     setDescTouched(true)
+        if (e.target.value.trim() === '') {
+          setContentValidate(false)
+        } else {
+          setContentValidate(true)
 
-    }
+        }
+        setDesc(e.target.value)
   }
+
   const catchFileDataHandler = (e) => {
 		if (e.name === '') {
 			setImageValidate(false)
@@ -46,25 +62,35 @@ function AddSkill() {
 		}
 	}
 
+  const topicBlurHandler = () => {
+    setTopicTouched(true)
+    if (topic.trim() === '') {
+        setTopicValidate(false)
+    } else {
+      setTopicValidate(true)
+    }
+}
+
+const descBlurHandler = () => {
+  setDescTouched(true)
+  if (content.trim() === '') {
+    setContentValidate(false)
+  } else {
+    setContentValidate(true)
+  }
+}
   const submitHandler =  async (e) => {
     e.preventDefault()
 
-    if (topic.trim() === '') {
-      setTopicValidate(false)
-      return
-    }
+    setTopicTouched(true)
+    setDescTouched(true)
 
-    if (content.trim() === '') {
-      setContentValidate(false)
-      return
-    }
     
     if (selectedFile === undefined) {
       setImageValidate(false)
       return
     }
 
-    console.log('validate')
 
     let image
 
@@ -117,23 +143,23 @@ function AddSkill() {
 
           <div className='edit-postManagement-group'>
             <h5>Name</h5>
-            <input onChange={titleHandler} value={topic} type='text' placeholder='Enter Name'/>
-            {!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+            <input onChange={titleHandler} value={topic} onBlur={topicBlurHandler} type='text' placeholder='Enter Name'/>
+            {validTopic && <p style={{color:"Red"}}>Name should not be Empty</p>}
           </div>
 	
           <div className='edit-postManagement-group'>
 					<h5>Description</h5>
-					<input onChange={descHandler}  value={content} type='textarea' rows='4' placeholder='Enter Description'/>
-					{!contentValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<input onChange={descHandler}  value={content}  onBlur={descBlurHandler} type='textarea' rows='4' placeholder='Enter Description'/>
+					{validDesc && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</div>
 
          
 				<div className='edit-postManagement-group edit-postManagement-group-image'>
           <h5>Add Blog Image</h5>
 					<ImageUploader onInput={catchFileDataHandler} />
-					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					{/* {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>} */}
 				</div>
-				<button type='submit' className='btn' color='primary'>Add</button>
+				<button type='submit' className='btn' color='primary' disabled={!formValidate}>Add</button>
       </form>
     </div>
   )

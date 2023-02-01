@@ -95,12 +95,12 @@ export default [
     icon: <BarChart2 size={20} />,
     navLink: '/analytics'
   },
-  {
-    id: 'recentSearchFeed',
-    title: 'Recent Search Feed',
-    icon: <Search size={20} />,
-    navLink: '/recentSearchFeeds'
-  },
+  // {
+  //   id: 'recentSearchFeed',
+  //   title: 'Recent Search Feed',
+  //   icon: <Search size={20} />,
+  //   navLink: '/recentSearchFeeds'
+  // },
   {
     id: 'feedback',
     title: 'FeedBack',

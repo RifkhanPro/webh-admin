@@ -2,7 +2,7 @@
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
 // import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+import './AddPostManagement.css'
 import { useNavigate } from 'react-router-dom'
 
 function AddTopic() {
@@ -10,7 +10,15 @@ function AddTopic() {
   const navigate = useNavigate()
   const [topic, setTitle] = useState('')
   const [topicValidate, setTopicValidate] = useState(true)
+
+
   const titleHandler = (e) => {
+    if (e.target.value.trim() === '') {
+      setTopicValidate(false)
+    } else {
+      setTopicValidate(true)
+      
+    }
     setTitle(e.target.value)
   }
 
@@ -54,16 +62,16 @@ function AddTopic() {
   }
 
   return (
-    <Card>
-      <form onSubmit={submitHandler} className='form-control col-12'>
-          <CardGroup className='group'>
-              <CardTitle>Category</CardTitle>
-              <Input onChange={titleHandler} value={topic} type='text' placeholder='Enter Category'/>
+    <div className='edit-postManagement-container'>
+      <form onSubmit={submitHandler} className='edit-postManagement-form'>
+          <div className='edit-postManagement-group'>
+              <h5>Category</h5>
+              <input onChange={titleHandler} value={topic} type='text' placeholder='Enter Category'/>
               {!topicValidate && <p style={{color:"Red"}}>Category should not be Empty</p>}
-          </CardGroup>
-          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+          </div>
+          <button type='submit' className='btn' color='primary' >Add</button>
       </form>
-    </Card>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './AddPostManagement.css'
 
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
@@ -12,31 +12,48 @@ function AddNews() {
 
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
-  const [titleValidate, setTitleValidate] = useState(true)
-  const [descValidate, setDescValidate] = useState(true)
-  const [imageValidate, setImageValidate] = useState(true)
+  const [titleValidate, setTitleValidate] = useState(false)
+  const [descValidate, setDescValidate] = useState(false)
+  const [imageValidate, setImageValidate] = useState(false)
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState()
 
-  const titleHandler = (e) => {
 
+  const [titleTouched, setTitleTouched] = useState(false)
+  const [descTouched, setDescTouched] = useState(false)
+  const [imageTouched, setImageTouched] = useState(false)
+
+  const [formValidate, setFormValidate] = useState(false)
+
+  const validTitle = !titleValidate && titleTouched
+  const validDesc = !descValidate && descTouched
+  const validImage = !imageValidate && imageTouched
+
+  useEffect(() => {
+    setFormValidate(titleValidate && descValidate && imageValidate)
+ }, [titleValidate, descValidate, imageValidate])
+
+  const titleHandler = (e) => {
+      setTitleTouched(true)
     if (e.target.value.trim() === '') {
       setTitleValidate(false)
     } else {
       setTitleValidate(true)
-      setTitle(e.target.value)
-
+      
     }
+    setTitle(e.target.value)
   }
+
   const descHandler = (e) => {
+    setDescTouched(true)
     if (e.target.value.trim() === '') {
       setDescValidate(false)
     } else {
       setDescValidate(true)
-      setDesc(e.target.value)
-
     }
+    setDesc(e.target.value)
   }
+
   const catchFileDataHandler = (e) => {
     if (e.name === '') {
       setImageValidate(false)
@@ -46,9 +63,32 @@ function AddNews() {
     }
 	}
 
+  const titleBlurHandler = () => {
+    setTitleTouched(true)
+    if (title.trim() === '') {
+        setTitleValidate(false)
+    } else {
+      setTitleValidate(true)
+    }
+}
+
+  const descBlurHandler = () => {
+    setDescTouched(true)
+    if (desc.trim() === '') {
+        setDescValidate(false)
+    } else {
+      setDescValidate(true)
+    }
+  }
+
+
   const submitHandler =  async (e) => {
     e.preventDefault()
     
+    setTitleTouched(true)
+    setDescTouched(true)
+    setImageTouched(true)
+
     if (title.trim() === '') {
       setTitleValidate(false)
       return
@@ -114,24 +154,24 @@ function AddNews() {
           <h3>Add News</h3>
           <div className='edit-postManagement-group'>
             <h5>Title</h5>
-            <input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
-            {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
+            <input onChange={titleHandler} value={title} type='text' onBlur={titleBlurHandler} placeholder='Enter Title'/>
+            {validTitle && <p style={{color:"Red"}}>Title should not be Empty</p>}
 
           </div>
 	
           <div className='edit-postManagement-group'>
 					<h5>Description</h5>
-					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
-				  {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
+					<input onChange={descHandler}  value={desc} type='textarea' onBlur={descBlurHandler} rows='4' placeholder='Enter Description'/>
+				  {validDesc && <p style={{color:"Red"}}>Description should not be Empty</p>}
 				</div>
 
          
 				<div className='edit-postManagement-group edit-postManagement-group-image'>
               		<h5>Add Skill Image</h5>
 					<ImageUploader onInput={catchFileDataHandler} />
-					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					{validImage && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
-				<button type='submit' className='btn' color='primary'>Add</button>
+				<button type='submit' className='btn' color='primary' disabled={!formValidate}>Add</button>
       </form>
     </div>
   )

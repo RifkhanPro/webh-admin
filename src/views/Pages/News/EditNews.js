@@ -19,34 +19,46 @@ const EditNews = () => {
 	const [selectedFile, setSelectedFile] = useState()
   	const [titleValidate, setTitleValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
-  	const [imageValidate, setImageValidate] = useState(true)
+
+	const [formValidate, setFormValidate] = useState(false)
+
+	const [titleTouched, setTitleTouched] = useState(false)
+	const [descTouched, setDescTouched] = useState(false)
+
+	const validTitle = !titleValidate && titleTouched
+	const validDesc = !descValidate && descTouched
+
+	useEffect(() => {
+		setFormValidate(titleValidate && descValidate)
+	}, [titleValidate, descValidate])
 
 	const titleHandler = (e) => {
-		if (e.target.value.trim() === '') {
-			setTitleValidate(false)
-		} else {
-			setTitleValidate(true)
-			setTitle(e.target.value)
-		}
-  	}
+		setTitleTouched(true)
 
-  	const descHandler = (e) => {
 		if (e.target.value.trim() === '') {
-			setDescValidate(false)
+		setTitleValidate(false)
 		} else {
-			setDescValidate(true)
-			setDesc(e.target.value)
+		setTitleValidate(true)
+		
 		}
-  	}
-
-  	const catchFileDataHandler = (e) => {
-		if (e.name === '') {
-			setImageValidate(false)
-		} else {
-			setImageValidate(true)
-			setSelectedFile(e)
-		}
+		setTitle(e.target.value)
 	}
+
+	const descHandler = (e) => {
+		setDescTouched(true)
+
+		if (e.target.value.trim() === '') {
+		setDescValidate(false)
+		} else {
+		setDescValidate(true)
+		}
+		setDesc(e.target.value)
+	}
+
+	const catchFileDataHandler = (e) => {
+	
+		  setSelectedFile(e)
+		}
 
 	 useEffect(() => {
 		const sendRequest = async () => {
@@ -73,6 +85,24 @@ const EditNews = () => {
 	sendRequest()
 	}, [id])
 
+	const titleBlurHandler = () => {
+		setTitleTouched(true)
+		if (title.trim() === '') {
+			setTitleValidate(false)
+		} else {
+		  setTitleValidate(true)
+		}
+	}
+	
+	  const descBlurHandler = () => {
+		setDescTouched(true)
+		if (desc.trim() === '') {
+			setDescValidate(false)
+		} else {
+		  setDescValidate(true)
+		}
+	  }
+	
 	const submitHandler =  async (e) => {
 		e.preventDefault()
 			if (title.trim() === '') {
@@ -169,12 +199,12 @@ const EditNews = () => {
 					console.log(err)	
 				}
 	
-			navigate('/news')
-			window.location.reload(true)
-
+				
 			}
+		navigate('/news')
+		window.location.reload(true)
 			
-		}
+	}
 
 	
 	return (<div className='edit-postManagement-container'>
@@ -185,28 +215,27 @@ const EditNews = () => {
 				width="96"
 				visible={true}
 		/>}
-		{title && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
+		 <form onSubmit={submitHandler} className='edit-postManagement-form'>
 			<h3 >Edit Post</h3>
 			<div className='edit-postManagement-group'>
 				<h5>Name</h5>
-				<input onChange={titleHandler} value={title} type='text' placeholder='Enter Topic'/>
-				{!titleValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+				<input onChange={titleHandler} value={title} type='text' onBlur={titleBlurHandler} placeholder='Enter Topic'/>
+				{validTitle && <p style={{color:"Red"}}>Name should not be Empty</p>}
 			</div>
 
 			<div className='edit-postManagement-group'>
 				<h5>Description</h5>
-				<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
-				{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				<input onChange={descHandler}  value={desc} type='textarea' onBlur={descBlurHandler} rows='4' placeholder='Enter Description'/>
+				{validDesc && <p style={{color:"Red"}}>Description should not be empty</p>}
 			</div>
 
 			<div className='edit-postManagement-group edit-postManagement-group-image'>
 				  <h5>Add Image</h5>
 				  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
 
-				{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 			</div>
-			<button type='submit' className='btn' color='primary'>Update</button>
-		</form>}
+			<button type='submit' className='btn' color='primary' disabled={!formValidate}>Update</button>
+		</form>
 </div>)
 }
 

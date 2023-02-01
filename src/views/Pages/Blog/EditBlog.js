@@ -17,27 +17,61 @@ const EditSkill = () => {
 	const [selectedFile, setSelectedFile] = useState()
   	const [topicValidate, setTopicValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
-	
-	const titleHandler = (e) => {
-		if (e.target.value.trim() === '') {
-			setTopicValidate(false)
-		} else {
-			setTopicValidate(true)
-			setTitle(e.target.value)
-		}
-  	}
 
-  	const descHandler = (e) => {
+	const [topicTouched, setTopicTouched] = useState(false)
+	const [descTouched, setDescTouched] = useState(false)
+	const [formValidate, setFormValidate] = useState(false)
+
+	const validTopic = !topicValidate && topicTouched
+	const validDesc = !descValidate && descTouched
+
+	useEffect(() => {
+		setFormValidate(topicValidate && descValidate)
+	 }, [topicValidate, descValidate])
+	
+	 const titleHandler = (e) => {
+		setTopicTouched(true)
 		if (e.target.value.trim() === '') {
-			setDescValidate(false)
+		setTopicValidate(false)
 		} else {
-			setDescValidate(true)
-			setDesc(e.target.value)
+		setTopicValidate(true)
+
 		}
-  	}
+		setTitle(e.target.value)
+
+	}
+
+	const descHandler = (e) => {
+		setDescTouched(true)
+		   if (e.target.value.trim() === '') {
+			setDescValidate(false)
+		   } else {
+			setDescValidate(true)
+   
+		   }
+		   setDesc(e.target.value)
+	 }
 
   	const catchFileDataHandler = (e) => {
 			setSelectedFile(e)
+	}
+
+	const topicBlurHandler = () => {
+		setTopicTouched(true)
+		if (topic.trim() === '') {
+			setTopicValidate(false)
+		} else {
+		  setTopicValidate(true)
+		}
+	}
+	
+	const descBlurHandler = () => {
+	  setDescTouched(true)
+	  if (content.trim() === '') {
+		setDescValidate(false)
+	  } else {
+		setDescValidate(true)
+	  }
 	}
 
     useEffect(() => {
@@ -167,26 +201,26 @@ const EditSkill = () => {
                   visible={true}
                 />}
 
-			{ topic && desc && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+			<form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Blog</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Name</h5>
-					<input onChange={titleHandler} value={topic} type='text' placeholder='Enter Name'/>
-					{!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+					<input onChange={titleHandler} value={topic} onBlur={topicBlurHandler} type='text' placeholder='Enter Name'/>
+					{validTopic && <p style={{color:"Red"}}>Name should not be Empty</p>}
 				</div>
 	
 				<div className='edit-postManagement-group'>
 					<h5>Description</h5>
-					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
-					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<input onChange={descHandler}  value={desc} onBlur={descBlurHandler} type='textarea' rows='4' placeholder='Enter Description'/>
+					{validDesc && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</div>
 
 				<div className='edit-postManagement-group edit-postManagement-group-image'>
               		<h5>Add Blog Image</h5>
 					<ImageUploader onInput={catchFileDataHandler} image={ image }/>
 				</div>
-				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+				<button type='submit' className='btn' color='primary' disabled={!formValidate}>Update</button>
+			</form>
 	</div>)
 }
 

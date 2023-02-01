@@ -29,7 +29,7 @@ function AddTopicPost() {
 
                 const responseData = await response.json()
 
-                setCategoryList(responseData)
+                setCategoryList(['Select Category', ...responseData])
                 console.log(responseData)
                 if (!response.ok()) {
                   throw new Error(responseData.message)
@@ -55,7 +55,7 @@ function AddTopicPost() {
               console.log(category)
               console.log(responseData)
     
-              setNames(responseData)
+              setNames(['Select Topic', ...responseData])
     
               if (!response.ok()) {
                 throw new Error(responseData.message)

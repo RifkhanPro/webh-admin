@@ -12,50 +12,95 @@ import './EditPostManagement.css'
 const EditAdvertisement = () => {
 	const {id} = useParams()
     const navigate = useNavigate()
-	const [name, setName] = useState()
-	const [desc, setDesc] = useState()
-	const [expiry, setExpiry] = useState()
+
+	const [name, setName] = useState('')
+	const [desc, setDesc] = useState('')
+	const [expiry, setExpiry] = useState('')
 	const [image, setImage] = useState("")
 	const [selectedFile, setSelectedFile] = useState()
+
   	const [nameValidate, setNameValidate] = useState(true)
   	const [descValidate, setDescValidate] = useState(true)
 	const [expiryValidate, setExpiryValidate] = useState(true)
-  	const [imageValidate, setImageValidate] = useState(true)
 
+	const [nameTouched, setNameTouched] = useState(false)
+	const [expiryTouched, setExpiryTouched] = useState(false)
+	const [descTouched, setDescTouched] = useState(false)
+
+	const validName = !nameValidate && nameTouched
+	const validDesc = !descValidate && descTouched
+	const validExpiry = !expiryValidate && expiryTouched
+
+	const [formValidate, setFormValidate] = useState(false)
+	
+	useEffect(() => {
+		setFormValidate(nameValidate && descValidate && expiryValidate)
+	 }, [nameValidate, descValidate, expiryValidate])
+	
 	const nameHandler = (e) => {
+		setNameTouched(true)
 		if (e.target.value.trim() === '') {
-			setNameValidate(false)
+		   setNameValidate(false)
 		} else {
-			setNameValidate(true)
-			setName(e.target.value)
+		  setNameValidate(true)
+	
 		}
+		setName(e.target.value)
   	}
 
 	const expiryHandler = (e) => {
-		if (e.target.value.trim() === '') {
-			setExpiryValidate(false)
-		} else {
-			setExpiryValidate(true)
-			setExpiry(e.target.value)
-		}
+		setExpiryTouched(true)
+        if (e.target.value.trim() === '') {
+            setExpiryValidate(false)
+        } else {
+          setExpiryValidate(true)
+
+        }
+        setExpiry(e.target.value)
   	}
 
   	const descHandler = (e) => {
-		if (e.target.value.trim() === '') {
-			setDescValidate(false)
-		} else {
-			setDescValidate(true)
-			setDesc(e.target.value)
-		}
-  	}
+		setDescTouched(true)
+        if (e.target.value.trim() === '') {
+            setDescValidate(false)
+        } else {
+          setDescValidate(true)
 
-  	const catchFileDataHandler = (e) => {
-		if (e.name === '') {
-			setImageValidate(false)
+        }
+        setDesc(e.target.value)
+  	}
+	
+	  const nameBlurHandler = () => {
+		setNameTouched(true)
+		if (name.trim() === '') {
+			setNameValidate(false)
 		} else {
-			setImageValidate(true)
-			setSelectedFile(e)
+		  setNameValidate(true)
 		}
+	}
+  
+	const descBlurHandler = () => {
+	  setDescTouched(true)
+	  if (desc.trim() === '') {
+		  setDescValidate(false)
+	  } else {
+		setDescValidate(true)
+	  }
+	}
+  
+	const expiryBlurHandler = () => {
+	  setExpiryTouched(true)
+	  if (expiry.trim() === '') {
+		  setExpiryValidate(false)
+	  } else {
+		setExpiryValidate(true)
+	  }
+	}
+
+	
+  	const catchFileDataHandler = (e) => {
+	
+			setSelectedFile(e)
 	}
 
 
@@ -90,20 +135,10 @@ const EditAdvertisement = () => {
 
 	const submitHandler =  async (e) => {
 		e.preventDefault()
-			if (name.trim() === '') {
-				setNameValidate(false)
-				return
-		  	}
-
-			if (desc.trim() === '') {
-				setDescValidate(false)
-				return
-			}
-			
-			if (expiry.trim() === '') {
-				setExpiryValidate(false)
-				return
-			}
+		
+		setNameTouched(true)
+		setDescTouched(true)
+		setExpiryTouched(true)
 
 		  	console.log('validate')
 			let imageUrl = ''
@@ -198,33 +233,33 @@ const EditAdvertisement = () => {
 					width="96"
 					visible={true}
 			/>}
-			{name && desc && expiry && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+			 <form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Advertisement</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Name</h5>
-					<input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/>
-					{!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+					<input onChange={nameHandler} value={name} type='text' onBlur={nameBlurHandler}  placeholder='Enter Name'/>
+					{validName && <p style={{color:"Red"}}>Name should not be Empty</p>}
 				</div>
 	
 				<div className='edit-postManagement-group'>
 					<h5>Description</h5>
-					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
-					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<input onChange={descHandler}  value={desc} type='textarea' onBlur={descBlurHandler} rows='4' placeholder='Enter Description'/>
+					{validDesc && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</div>
 
 				<div className='edit-postManagement-group'>
 					<h5>Description</h5>
-					<input onChange={expiryHandler}  value={expiry} type='date' rows='4' placeholder='Enter Expiry Date'/>
-					{!expiryValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<input onChange={expiryHandler}  value={expiry} type='date' onBlur={expiryBlurHandler} rows='4' placeholder='Enter Expiry Date'/>
+					{validExpiry && <p style={{color:"Red"}}>Description should not be empty</p>}
 				</div>
 
 				<div className='edit-postManagement-group edit-postManagement-group-image'>
               		<h5>Add Image</h5>
 					  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+					{/* {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>} */}
 				</div>
-				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+				<button type='submit' className='btn' color='primary' disabled={!formValidate}>Update</button>
+			</form>
 	</div>)
 }
 

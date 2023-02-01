@@ -27,8 +27,8 @@ const EditTrend = () => {
 			setTitleValidate(false)
 		} else {
 			setTitleValidate(true)
-			setTitle(e.target.value)
 		}
+		setTitle(e.target.value)
   	}
 
   	const descHandler = (e) => {
@@ -36,9 +36,9 @@ const EditTrend = () => {
 			setDescValidate(false)
 		} else {
 			setDescValidate(true)
-			setDesc(e.target.value)
 		}
-  	}
+		setDesc(e.target.value)
+	}
 
   	const catchFileDataHandler = (e) => {
 		if (e.name === '') {
@@ -168,7 +168,7 @@ const EditTrend = () => {
 					width="96"
 					visible={true}
 			/>}
-			{title && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
+		 <form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Trend</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Title</h5>
@@ -188,7 +188,7 @@ const EditTrend = () => {
 					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
 				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+			</form>
 	</div>)
 }
 
