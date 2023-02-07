@@ -52,7 +52,7 @@ const EditArticle = () => {
  	useEffect(() => {
 		const sendRequest = async () => {
 		try {
-			const response = await fetch(`http://localhost:8070/article/${id}`)
+			const response = await fetch(`http://68.178.164.166:8070/article/${id}`)
 
 			const responseData = await response.json()
 
@@ -112,7 +112,7 @@ const EditArticle = () => {
 			  if (imageUrl !== '') {
 
 				try {
-					const response = await fetch(`http://localhost:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title:topic,
 						image:imageUrl
@@ -137,7 +137,7 @@ const EditArticle = () => {
 
 			  } else {
 				try {
-					const response = await fetch(`http://localhost:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://68.178.164.166:8070/article/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title:topic,
 						image

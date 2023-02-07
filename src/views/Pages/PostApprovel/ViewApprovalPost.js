@@ -8,7 +8,7 @@ function ViewApprovalPost() {
     // const {id} = useParams()
 
     // useEffect(() => {
-    //     fetch(`http://localhost:8070/post/${id}`).then((res) => {
+    //     fetch(`http://68.178.164.166:8070/post/${id}`).then((res) => {
     //         return res.json()
     //     }).then((resp) => {
     //         setPost(resp.post)
@@ -21,7 +21,7 @@ function ViewApprovalPost() {
 
     // useEffect(() => {
     //     if (userId) {
-    //         fetch(`http://localhost:8070/user/${userId}`).then((res) => {
+    //         fetch(`http://68.178.164.166:8070/user/${userId}`).then((res) => {
     //             return res.json()
     //         }).then((resp) => {
     //             console.log(resp.result)

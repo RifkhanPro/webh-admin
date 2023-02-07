@@ -12,7 +12,7 @@ function ViewPostReport() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		fetch(`http://localhost:8070/post/${id}`)
+		fetch(`http://68.178.164.166:8070/post/${id}`)
 			.then((res) => {
 				return res.json()
 			})
@@ -28,7 +28,7 @@ function ViewPostReport() {
 
 	useEffect(() => {
 		if (userId) {
-			fetch(`http://localhost:8070/user/${userId}`)
+			fetch(`http://68.178.164.166:8070/user/${userId}`)
 				.then((res) => {
 					return res.json()
 				})
@@ -45,7 +45,7 @@ function ViewPostReport() {
 	const approveHandler = async () => {
 		console.log(id)
         try {
-            const response = await fetch(`http://localhost:8070/post/${id}/report`, {method:"PUT", 
+            const response = await fetch(`http://68.178.164.166:8070/post/${id}/report`, {method:"PUT", 
             headers : {"Content-Type":"application/json"}})
 
             const responseData = await response.json()
@@ -64,7 +64,7 @@ function ViewPostReport() {
 	const deleteHandler = async () => {
        
         try {
-            const response = await fetch(`http://localhost:8070/post/${id}`, {method:"DELETE"})
+            const response = await fetch(`http://68.178.164.166:8070/post/${id}`, {method:"DELETE"})
 
             const responseData = await response.json()
 
