@@ -1,5 +1,5 @@
-import React from "react";
-import { useEffect } from "react";
+import React from "react"
+import { useEffect } from "react"
 
 const AddName = () => {
     const [topic, setTitle] = useState()
@@ -19,7 +19,7 @@ const AddName = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch('http://44.202.187.100:8070/topic/topics')
+			 const response = await fetch('http://localhost:8070/topic/topics')
 	
 			 const responseData = await response.json()
 	
@@ -40,7 +40,7 @@ const AddName = () => {
       e.preventDefault()
   
       try {
-              const response = await fetch(`http://44.202.187.100:8070/topic/${}/create`, {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+              const response = await fetch(`http://localhost:8070/topic/${}/create`, {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
                       name:content
                   })
               })
@@ -85,4 +85,4 @@ const AddName = () => {
   }
 
 
-export default AddName;
+export default AddName

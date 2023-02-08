@@ -36,7 +36,7 @@ const AddName = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch(`http://localhost:8070/topic/${id}`)
+			 const response = await fetch(`http://44.202.187.100:8070/topic/${id}`)
 	
 			 const responseData = await response.json()
 	
@@ -64,7 +64,7 @@ const AddName = () => {
 		}
 	
 		try {
-				const response = await fetch(`http://localhost:8070/topic/${id}/create`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+				const response = await fetch(`http://44.202.187.100:8070/topic/${id}/create`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name
 					})
 				})
