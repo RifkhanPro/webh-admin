@@ -31,7 +31,7 @@ const AllComments = () => {
     useEffect(() => {
         const sendRequest = async () => {
             try {
-                const response = await fetch(`http://localhost:8070/post`)
+                const response = await fetch(`http://44.202.187.100:8070/post`)
        
                 const responseData = await response.json()
        

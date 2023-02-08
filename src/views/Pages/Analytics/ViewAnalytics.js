@@ -81,7 +81,7 @@ function ViewAnalytics() {
 
   // Post Count
   useEffect(() => {
-    fetch("http://localhost:8070/postManagement/posts").then((res) => {
+    fetch("http://44.202.187.100:8070/postManagement/posts").then((res) => {
         return res.json()
     }).then((resp) => {
         setPostDataChange(resp)
@@ -97,7 +97,7 @@ function ViewAnalytics() {
   
   // Blog Count
   useEffect(() => {
-    fetch("http://localhost:8070/blog").then((res) => {
+    fetch("http://44.202.187.100:8070/blog").then((res) => {
         return res.json()
     }).then((resp) => {
         setBlogDataChange(resp)
@@ -113,7 +113,7 @@ function ViewAnalytics() {
 
   // Article Count
   useEffect(() => {
-    fetch("http://localhost:8070/article").then((res) => {
+    fetch("http://44.202.187.100:8070/article").then((res) => {
         return res.json()
     }).then((resp) => {
         setArticleDataChange(resp)
@@ -129,7 +129,7 @@ function ViewAnalytics() {
 
   // Topic Count
   useEffect(() => {
-    fetch("http://localhost:8070/topic/topics").then((res) => {
+    fetch("http://44.202.187.100:8070/topic/topics").then((res) => {
         return res.json()
     }).then((resp) => {
         setTopicDataChange(resp)
@@ -145,7 +145,7 @@ function ViewAnalytics() {
 
   // Topic Count
   useEffect(() => {
-    fetch("http://localhost:8070/topicPost/topicPosts").then((res) => {
+    fetch("http://44.202.187.100:8070/topicPost/topicPosts").then((res) => {
         return res.json()
     }).then((resp) => {
         setTopicPostDataChange(resp)
@@ -161,7 +161,7 @@ function ViewAnalytics() {
 
   // Advertistment Count
   useEffect(() => {
-    fetch("http://localhost:8070/advertisement").then((res) => {
+    fetch("http://44.202.187.100:8070/advertisement").then((res) => {
         return res.json()
     }).then((resp) => {
         setAdvDataChange(resp)
@@ -177,7 +177,7 @@ function ViewAnalytics() {
 
   // News Count
   useEffect(() => {
-    fetch("http://localhost:8070/news").then((res) => {
+    fetch("http://44.202.187.100:8070/news").then((res) => {
         return res.json()
     }).then((resp) => {
         setNewsChange(resp)
@@ -192,7 +192,7 @@ function ViewAnalytics() {
 
   // User Count
   useEffect(() => {
-    fetch("http://localhost:8070/user").then((res) => {
+    fetch("http://44.202.187.100:8070/user").then((res) => {
         return res.json()
     }).then((resp) => {
         userDataChange(resp)

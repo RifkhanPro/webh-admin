@@ -52,7 +52,7 @@ const EditAddRecentSearchFeed = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			const response = await fetch(`http://localhost:8070/recentSearchFeed/${id}`)
+			const response = await fetch(`http://44.202.187.100:8070/recentSearchFeed/${id}`)
 	
 			const responseData = await response.json()
 	
@@ -113,7 +113,7 @@ const EditAddRecentSearchFeed = () => {
 			
 			if (imageUrl !== '') {
 				try {
-					const response = await fetch(`http://localhost:8070/recentSearchFeed/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://44.202.187.100:8070/recentSearchFeed/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title:topic,
 						image:imageUrl
@@ -141,7 +141,7 @@ const EditAddRecentSearchFeed = () => {
 
 			} else {
 				try {
-					const response = await fetch(`http://localhost:8070/recentSearchFeed/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://44.202.187.100:8070/recentSearchFeed/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title:topic,
 						image
