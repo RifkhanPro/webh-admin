@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
 import axios from 'axios'
 import { RotatingLines } from 'react-loader-spinner'
-
+import './EditPostManagement.css'
 
 const EditNews = () => {
 
@@ -176,61 +176,38 @@ const EditNews = () => {
 			
 		}
 
-	return (
-		<>
-			{ !title && !desc  &&     <RotatingLines className="text-center"
-					strokeColor="grey"
-					strokeWidth="5"
-					animationDuration="1"
-					width="96"
-					visible={true}
-			/>}
-		{title && desc && <Card>
-			<Col className='col-12'>
-				<Form onSubmit={submitHandler} className="form-control">
-					<h3>Edit News</h3>
-					<Row>
-						<Form.Group as={Col}>
-							<CardTitle className='mt-1'>Topic</CardTitle>
-							<Input
-								required
-								type="text"
-								value={title}
-								onChange={titleHandler}
-								placeholder='Enter Topic'
-							/>
-							{!titleValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
-						</Form.Group>
-					</Row>
-					<Row>
-						<Form.Group as={Col} controlId="validationCustom02">
-							<CardTitle className='mt-1'>Description</CardTitle>
-							<Input
-								required
-								type="textarea"
-								placeholder="Enter Description"
-								rows='5'
-								onChange={descHandler}
-								value={desc}
-							/>
-							{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-						</Form.Group>
-					</Row>
-					<Row>
-						<Form.Group as={Col} >
-							<CardGroup className='group'>
-							</CardGroup>
-						</Form.Group>
-								<CardTitle className='mt-1'>Add Image</CardTitle>
-					</Row>
-								<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
-								{!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
-					<Button type='submit' className='mt-2'  color='primary'>Submit</Button>
-				</Form>
-			</Col>
-		</Card>}
-		</>
-	)
+	
+	return (<div className='edit-postManagement-container'>
+	{ !title && !desc  &&     <RotatingLines className="text-center"
+				strokeColor="grey"
+				strokeWidth="5"
+				animationDuration="1"
+				width="96"
+				visible={true}
+		/>}
+		{title && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
+			<h3 >Edit Post</h3>
+			<div className='edit-postManagement-group'>
+				<h5>Name</h5>
+				<input onChange={titleHandler} value={title} type='text' placeholder='Enter Topic'/>
+				{!titleValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+			</div>
+
+			<div className='edit-postManagement-group'>
+				<h5>Description</h5>
+				<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+				{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+			</div>
+
+			<div className='edit-postManagement-group edit-postManagement-group-image'>
+				  <h5>Add Image</h5>
+				  <ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image} />
+
+				{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+			</div>
+			<button type='submit' className='btn' color='primary'>Update</button>
+		</form>}
+</div>)
 }
 
 export default EditNews

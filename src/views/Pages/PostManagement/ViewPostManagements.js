@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import PostManagementList from './PostManagementList'
-import './ViewBlogs.css'
+import './ViewPostManagements.css'
 
 function ViewPostManagements() {
   const [posts, setPosts] = useState()
@@ -53,20 +53,16 @@ function ViewPostManagements() {
   }
 
   return <>
-      <Button className='btn mb-2' onClick={routerHandler}>Add postManagement</Button>
-    {user ? <div>
-      <Card>
-          <CardBody>
-            <Card>
-              {posts && <PostManagementList data={posts} />}
-              {!posts && <p>There is no postManagements</p>}
-            </Card>
-          </CardBody>
-      </Card>
-
-
+    {user ? <div className="postManagement-container">
+            <div className="postManagement-card">
+              <button className='btn' onClick={routerHandler}>Add postManagement</button>
+              <div className="postManagement-card-body">
+                  {posts && <PostManagementList data={posts} />}
+                  {!posts && <p>There is no postManagements</p>}
+              </div>
+            </div>
     </div> : <></> }
-  </>
+    </>
 }
 
 export default ViewPostManagements

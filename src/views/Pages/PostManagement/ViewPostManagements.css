@@ -1,0 +1,35 @@
+.postManagement-container .btn{
+    width: 70%;
+    display: block;
+    background-color: gray;
+    color: white;
+    margin: auto;
+    margin-top: 1rem !important;
+    
+}
+
+.postManagement-container .btn:hover{
+    width: 70%;
+    margin: auto;
+    display: block;
+    background-color: red;
+    color: white;
+}
+
+
+.postManagement-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    border-radius: 5px;
+}
+
+.postManagement-container .postManagement-card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.postManagement-container .postManagement-card .postManagement-card-body{
+   margin: auto;
+}

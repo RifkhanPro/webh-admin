@@ -1,31 +1,26 @@
-
-.card{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.topic-view-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
 }
 
-.image{
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 48%;
+.topic-view-container .topic-view-card{
+    margin: auto !important;
+}
+.topic-view-container .topic-view-card .topic-view-card-category{
+    text-align: left;
+    padding: .5rem;
+}
+.topic-view-container .topic-view-card .topic-view-card-name-list{
     margin: auto;
+    display: flex;
+    align-items: center;
 }
-
-.image img{
-    width: 90%;
-    height: 90%;
-}
-
-.details{
+.topic-view-container .topic-view-card .topic-view-card-body{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 48%;
-
 }
 
 .no-respond{
@@ -34,15 +29,24 @@
     align-items: center;
     font: 50px;
 }
-.btns{
+.topic-view-container-btns{
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
-
-.btns .btn{
+.topic-view-container-btns .btn{
+    margin: 1rem;
     width: 30%;
 }
 
-.btns .delete{
+.topic-view-container-btns .delete{
     background-color: red !important;
+}
+
+@media (max-width:650px) {
+    .topic-view-container-btns .btn{
+        margin: 1rem;
+        width: 80%;
+    }
+    
 }

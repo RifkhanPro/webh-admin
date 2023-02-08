@@ -1,29 +1,57 @@
-form{
+.edit-topic-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.edit-topic-container .edit-topic-card{
+    margin: auto !important;
+}
+
+.edit-topic-card-form{
     margin: auto;
     width: 80%;
     display: flex;
     justify-content: center !important;
     align-items: center;
     flex-direction: column;
-    padding: 2rem;
 }
 
-form .group{
+.edit-topic-card-form .group{
     display: flex;
     flex-direction: column;
     width: 80%;
     margin-bottom: 2rem !important;
+    justify-content: center;
 }
 
-.btns{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
+.edit-topic-card-form .group .input-invalid-feedback
+{
+    color: red;
+    padding: 0.5rem;
 }
-.btns .show{
-    background-color: blue !important;
+
+.edit-topic-card-form .group h2{
+    font-weight: bold;
 }
-.btn{
+.edit-topic-card-form .group input{
+    padding: 1rem;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid blue;
+    margin-top: 1rem;
+}
+
+.edit-topic-card-form  .btn{
     width: 40%;
+    background-color: gray;
+    color: white;
+    transition: all 0.5s;
+}
+.edit-topic-card-form  .btn:hover{
+    background-color: blue;
+    color: white;
 }
 

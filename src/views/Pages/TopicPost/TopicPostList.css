@@ -1,0 +1,8 @@
+.topicpostlist-ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto !important;
+}

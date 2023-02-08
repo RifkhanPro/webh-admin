@@ -13,7 +13,7 @@ function ShowNames() {
              const responseData = await response.json()
     
              setNames(responseData.names)
-             console.log(names)
+             console.log(responseData)
              if (!response.ok()) {
                throw new Error(responseData.message)
            }

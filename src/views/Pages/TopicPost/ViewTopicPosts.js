@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TopicPostList from './TopicPostList'
-import './ViewBlogs.css'
+import './ViewPostManagements.css'
 
 function ViewTopicPosts() {
   const [topics, setTopics] = useState()
@@ -58,11 +57,10 @@ function ViewTopicPosts() {
   }
 
   return <>
-      <Button className='btn mb-2' onClick={routerHandler}>Add Topic</Button>
-    {user ? <div>
-      <Card>
-          <CardBody>
-            <Card>
+    {user ? <div className='postManagement-container'>
+      <div className='postManagement-card'>
+        <button className='btn' onClick={routerHandler}>Add Topic Post</button>
+          <div className='postManagement-card-body'>
               {topics && <TopicPostList  data = {topics}/>}
               {topics && topics.length <= 0 && <p>There is no TopicPosts</p>}
               {!topics &&    <RotatingLines className="text-center"
@@ -72,9 +70,8 @@ function ViewTopicPosts() {
                   width="96"
                   visible={true}
                 />}
-            </Card>
-          </CardBody>
-      </Card>
+          </div>
+      </div>
 
 
     </div> : <></> }

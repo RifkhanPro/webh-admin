@@ -1,0 +1,37 @@
+.postManagementItem{
+    width: 250px;
+    min-width: 250px !important;
+    min-height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px black;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 1s;
+    overflow: hidden;
+    margin: 1rem;
+}
+
+
+
+.postManagementItem:hover{
+    transform: scale(1.1);
+}
+
+.title{
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: .5rem;
+    font-size: 15px !important;
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+}
+
+.image img{
+    width: 100% !important;
+    height: 200px !important;
+}

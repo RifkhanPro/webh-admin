@@ -1,14 +1,14 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import './AddSkill.css'
+// import { Link, useNavigate } from "react-router-dom"
+import './AllFeedback.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { Edit, Delete, Info, PlusCircle } from 'react-feather'
 
 const AllFeedback = () => {
   const [feedbackData, feedbackDataChange] = useState()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
 
@@ -31,9 +31,9 @@ const AllFeedback = () => {
 
   console.log(user, isSignedIn)
 
-  const LoadDetail = (_id) => {
-        navigate(`${_id}`)
-  }
+  // const viewHandler = (_id) => {
+  //       navigate(`${_id}`)
+  // }
 
    useEffect(() => {
     fetch("http://44.202.187.100:8070/feedback/")
@@ -48,6 +48,7 @@ const AllFeedback = () => {
       })
   }, [])
 
+<<<<<<< HEAD
   const Removefunction = (_id) => {
     if (window.confirm('Do you want to remove?')) {
         fetch(`http://44.202.187.100:8070/feedback/${_id}`, {
@@ -61,14 +62,29 @@ const AllFeedback = () => {
         })
     }
 }
+=======
+  // const Removefunction = (_id) => {
+  //   if (window.confirm('Do you want to remove?')) {
+  //       fetch(`http://localhost:8070/feedback/${_id}`, {
+  //           method: "DELETE"
+  //       }).then((res) => {
+  //           console.log(res)
+  //           alert('Removed successfully.')
+  //           window.location.reload()
+  //       }).catch((err) => {
+  //           console.log(err.message)
+  //       })
+  //   }
+// }
+>>>>>>> b715c7a9ca8e09db31449f43d5b61154eadda1ba
 
   return <>
-    {user ? <div className="container">
-    <div className="card">
+    {user ? <div className="feedback-container">
+    <div className="feedback-card">
         <div className="card-title">
             <h2 className="m-2">All Feedbacks</h2>
         </div>
-        <div className="table-responsive card-body">
+        <div className="table-responsive feedback-card-body">
             <table class="table">
             <thead className="primary">
                 <tr>
@@ -78,13 +94,12 @@ const AllFeedback = () => {
                 <th scope="col">Email</th>
                 <th scope="col">Industry</th>
                 <th scope="col">Message</th>
-                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 {feedbackData &&
                         feedbackData.feedbacks.map(item => (
-                            <tr key={item._id}>
+                            <tr key={item._id} >
                                 {/* <td>{}</td> */}
                                 <td>{item.firstName}</td>
                                 <td>{item.lastName}</td>
@@ -93,10 +108,10 @@ const AllFeedback = () => {
                                 <td>{item.message}</td>
                                 {/* <td></td> */}
                                 {/* <td>{item.image}</td> */}
-                                 <td>
+                                 {/* <td>
                                     <a onClick={() => { Removefunction(item._id) }} className="btn btn-danger"><Delete size={12} /><i class="fas fa-trash-alt"></i> </a>  | 
                                     <a onClick={() => { LoadDetail(item._id) }} className="btn btn-info"><Info size={12} /></a>
-                                </td>
+                                </td> */}
                             </tr>
                         ))
                     } 

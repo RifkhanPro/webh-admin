@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import './AllQuestion.css'
 const ViewQuestion = () => {
   const { id } = useParams()
@@ -7,6 +7,7 @@ const ViewQuestion = () => {
 
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [user, setUser] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
     //check whether user has signed in
@@ -26,7 +27,21 @@ const ViewQuestion = () => {
   }, [])
 
   console.log(user, isSignedIn)
+   const Removefunction = (_id) => {
+      if (window.confirm('Do you want to remove?')) {
+          fetch(`http://localhost:8070/question/${_id}`, {
+              method: "DELETE"
+          }).then((res) => {
+              console.log(res)
+              alert('Removed successfully.')
+              window.location.reload()
+          }).catch((err) => {
+              console.log(err.message)
+          })
+      }
 
+      navigate('/questions')
+  }
 
     useEffect(() => {
         const sendRequest = async () => {
@@ -51,22 +66,23 @@ const ViewQuestion = () => {
 
   return <>
     {user ? <div className="question-container">
-        <div className="question-card row" style={{ textAlign: "left" }}>
+        <div className="question-card" >
+          <h3 >Question Details</h3>
      
           {question && (
-            <div className="m-2">
-              <h2 className="mb-3">
-                <b>{question.firstname} {question.lastname}</b> 
-              </h2>
-              <h3 className="mb-2">Question Details</h3>
-              <h5>Question : {question.question}</h5>
-              <h5>Email : {question.email}</h5>
-              <h5>Mobile : {question.mobile}</h5>
-               
-              <div><img src={question.image} style={{ width:'20%', marginBottom: '1rem' }} /></div>
-              <Link className="btn btn-primary mb-3" to="/questions">
-                All Questions
-              </Link>
+            <div className="question-card-div">
+              <div className="question-card-div-img"><img src={question.image}  /></div>
+             
+              <div className="question-card-div-div">
+                  <h3><b>Question</b>  : {question.question}</h3>
+                  <h3><b>Email</b> : {question.email}</h3>
+                  <h3><b>Mobile</b> : {question.mobile}</h3>
+              </div>
+
+                 
+              <div className="question-card-div-btn">
+                  <button type="button" onClick={() => Removefunction(question._id)}>Delete</button>
+              </div>
             </div>
           )}
         </div>

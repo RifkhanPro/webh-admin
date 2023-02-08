@@ -1,7 +1,8 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState } from 'react'
-// import './AddSkill.css'
+import './AddPostManagement.css'
+
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -108,35 +109,31 @@ function AddNews() {
   }
 
   return (
-    <Card>
-      <form onSubmit={submitHandler} className='form-control col-12'>
+    <div className='edit-postManagement-container'>
+      <form onSubmit={submitHandler}  className='edit-postManagement-form'>
           <h3>Add News</h3>
-          <CardGroup className='group mt-1'>
-              <CardTitle>Title</CardTitle>
-              <Input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
-              {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
-          </CardGroup>
-
-          <CardGroup className='group'>
-              <CardTitle>Description</CardTitle>
-              <Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
-              {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
-          </CardGroup>
-
-          
-          <CardGroup className='group'>
-              <CardTitle>Add Skill Image</CardTitle>
-          </CardGroup>
-
-          <div>
-          <ImageUploader onInput={catchFileDataHandler}/>
-              {!imageValidate && <p style={{color:"Red"}}>image should be selected</p>}
+          <div className='edit-postManagement-group'>
+            <h5>Title</h5>
+            <input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
+            {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
 
           </div>
+	
+          <div className='edit-postManagement-group'>
+					<h5>Description</h5>
+					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+				  {!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
+				</div>
 
-          <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
+         
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+              		<h5>Add Skill Image</h5>
+					<ImageUploader onInput={catchFileDataHandler} />
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+				</div>
+				<button type='submit' className='btn' color='primary'>Add</button>
       </form>
-    </Card>
+    </div>
   )
 }
 export default AddNews

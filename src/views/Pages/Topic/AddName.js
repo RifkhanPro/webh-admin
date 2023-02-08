@@ -1,29 +1,19 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-import './AddSkill.css'
-import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
+import './AddName.css'
 import { useNavigate, useParams} from 'react-router-dom'
 
 const AddName = () => {
     const navigate = useNavigate()
 	const {id} = useParams()
 	const [topic, setTitle] = useState()
-	const [name, setName] = useState()
-	const [topicValidate, setTopicValidate] = useState(true)
-	const [nameValidate, setNameValidate] = useState(true)
+	const [name, setName] = useState('')
+	const [nameValidate, setNameValidate] = useState(false)
+	const [nameTouched, setNameTouched] = useState(false)
 
-	const titleHandler = (e) => {
-		if (e.target.value.trim() === '') {
-		  setTopicValidate(false)
-		} else {
-		  setTopicValidate(true)
-		  setTitle(e.target.value)
-	
-		}
-	
-	}
-	const descHandler = (e) => {   
+
+	const nameHandler = (e) => {   
 		if (e.target.value.trim() === '') {
 			setNameValidate(false)
 		} else {
@@ -33,9 +23,15 @@ const AddName = () => {
 	
 	}
 
-	const showNamesHandler = () => {
-		navigate(`/topics/${id}/names`)
+	const clickHandler = () => {
+		if (name.trim() === '') {
+			setNameTouched(true)
+		}
 	}
+
+	// const showNamesHandler = () => {
+	// 	navigate(`/topics/${id}/names`)
+	// }
 	
 	 useEffect(() => {
 		const sendRequest = async () => {
@@ -61,11 +57,7 @@ const AddName = () => {
 	const submitHandler =  async (e) => {
 		e.preventDefault()
     
-		if (topic.trim() === '') {
-			setTopicValidate(false)
-			return
-		}
-		
+	
 		if (name.trim() === '') {
 			setNameValidate(false)
 			return
@@ -93,26 +85,28 @@ const AddName = () => {
 			navigate(`/topics/${id}`)
 	  }
 
-	return (<Card>
-			<form onSubmit={submitHandler}>
-				<CardTitle>Add Name</CardTitle>
-				<CardGroup className='group'>
-					<CardTitle>Category</CardTitle>
-					<Input onChange={titleHandler} value={topic} type='text' disabled/>
-					{!topicValidate && <p>Category should not be Empty</p>}
-				</CardGroup>
+	return (<div className='addName-container'>
+		<div className='addName-card'>
+			<form className='addName-form ' onSubmit={submitHandler}>
+				<h2 className='addName-form-heading'>Add Name</h2>
+				<div className='group'>
+					<h3>Category</h3>
+					<input  value={topic}  disabled/>
+				</div>
 	
-				<CardGroup className='group'>
-					<CardTitle>Name</CardTitle>
-					<Input onChange={descHandler} value={name} type='text'/>
-					{!nameValidate && <p>Name Should not be empty</p>}
-				</CardGroup>
+				<div className='group'>
+					<h4>Name</h4>
+					<input onChange={nameHandler} value={name} type='text' onClick={clickHandler}/>
+					{!nameValidate && nameTouched && <p className='input-invalid-feedback'>Name Should not be empty</p>}
+				</div>
 				<div className='btns'>
-					<Button type='submit' className='btn'>Add Name</Button>
-					<Button type='button' onClick={showNamesHandler} className='btn'>Show Names</Button>
+					<button type='submit' className='btn' disabled={!nameValidate}>Add Name</button>
+					{/* <button type='button' onClick={showNamesHandler} className='btn'>Show Names</button> */}
 				</div>
 			</form>
-	</Card>)
+		</div>
+			
+	</div>)
 }
 
 export default AddName

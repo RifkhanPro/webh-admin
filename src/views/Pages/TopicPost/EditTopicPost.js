@@ -1,7 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect  } from 'react'
-// import './AddSkill.css'
+import './EditPostManagement.css'
 import { Button, Card, CardGroup, CardTitle, FormGroup, Input } from 'reactstrap'
 import { useNavigate, useParams} from 'react-router-dom'
 import ImageUploader from './ImageUploader'
@@ -99,34 +99,17 @@ const EditTopicPost = () => {
       return
     }
 
-    if (selectedFile === undefined) {
-      setImageValidate(false)
-      return
-    }
-
+	let imageUrl = ''
 
     console.log('validate')
 
-    let image
-    const formData = new FormData()
-    formData.append("file", selectedFile)
-    formData.append("upload_preset", "feed_images")
+	if (selectedFile !== undefined) {
+		const formData = new FormData()
+		formData.append("file", selectedFile)
+		formData.append("upload_preset", "feed_images")
 
-    try {
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-          formData
-        )
-        .then((res) => {
-          
-          image = res.data.secure_url
-        })
-    } catch (error) {
-      alert(error)
-    }
-	
 		try {
+<<<<<<< HEAD
 				const response = await fetch(`http://44.202.187.100:8070/topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						category,
 						name,
@@ -146,64 +129,110 @@ const EditTopicPost = () => {
 	
 		  setDesc('')
 		  setTitle('')
+=======
+			await axios
+			  .post(
+				"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
+				formData
+			  )
+			  .then((res) => {
+				imageUrl = res.data.secure_url
+			  })
+		} catch (error) {
+			alert(error)
+		}
+	}
+>>>>>>> b715c7a9ca8e09db31449f43d5b61154eadda1ba
 
-			} catch (err) { 
-		  			//
+	if (imageUrl !== '') {
+		try {
+			const response = await fetch(`http://localhost:8070/topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					category,
+					name,
+					desc,
+					image:imageUrl
+				})
+			})
+
+			const responseData = await response.json()
+
+	  console.log(responseData)
+
+			if (!response.ok) {
+				throw new Error(responseData.message)
 			}
 
-			navigate('/topicPosts')
-	  }
 
-	return (
-		<>
-			{
-			!name && !desc && !category &&     <RotatingLines className="text-center"
+		} catch (err) { 
+				  //
+		}
+
+		navigate('/topicPosts')
+	} else {
+		try {
+			const response = await fetch(`http://localhost:8070/topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					category,
+					name,
+					desc,
+					image
+				})
+			})
+
+			const responseData = await response.json()
+
+	  console.log(responseData)
+
+			if (!response.ok) {
+				throw new Error(responseData.message)
+			}
+
+
+		} catch (err) { 
+				  //
+		}
+
+		navigate('/topicPosts')
+	}
+		
+}
+	
+	return (<div className='edit-postManagement-container'>
+		{!name && !desc && !category &&        <RotatingLines className="text-center"
 					strokeColor="grey"
 					strokeWidth="5"
 					animationDuration="1"
 					width="96"
 					visible={true}
-					/>
-				}
-
-		{name && desc && category &&
-			<Card>
-				<form onSubmit={submitHandler} className='form-control col-12'>
-					<CardGroup className='group'>
-					<CardTitle>Category</CardTitle>
-					<Input onChange={categoryHandler} value={category} type='text' placeholder='Enter Category'/>
+			/>}
+			{name && desc && category && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+				<h3 >Edit TopicPost</h3>
+				<div className='edit-postManagement-group'>
+					<h5>Category</h5>
+					<input onChange={categoryHandler} disabled value={category} type='text' placeholder='Enter Category'/>
 					{!categoryValidate && <p style={{color:"Red"}}>Category should not be Empty</p>}
-				</CardGroup>
-
-				<CardGroup className='group'>
-					<CardTitle>Name</CardTitle>
-					<Input onChange={nameHandler} value={name} type='text' placeholder='Enter Name'/>
-					{!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
-				</CardGroup>
-
-				<CardGroup className='group'>
-					<CardTitle>Description</CardTitle>
-					<Input onChange={descHandler}  value={desc} type='text' placeholder='Enter Description' rows='5'/>
-					{!descValidate && <p style={{color:"Red"}}>Description should not be Empty</p>}
-				</CardGroup>
-
-				<CardGroup className='group'>
-				<CardTitle>Add Image</CardTitle>
-					
-				</CardGroup>
-				<div>
-				<ImageUploader onInput={catchFileDataHandler} image={image}/>
-					{!imageValidate && <p style={{color:"Red"}}>Image should not be Empty</p>}
 				</div>
-						
-				<Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
-					</form>
-			</Card>
-		}
-		</>
+
+				<div className='edit-postManagement-group'>
+					<h5>Name</h5>
+					<input onChange={nameHandler} disabled value={name} type='text' placeholder='Enter Name'/>
+					{!nameValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+				</div>
 	
-	
-	)
+				<div className='edit-postManagement-group'>
+					<h5>Description</h5>
+					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				</div>
+
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+              		<h5>Add Image</h5>
+					<ImageUploader onInput={catchFileDataHandler} image={ image }/>
+					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
+
+				</div>
+				<button type='submit' className='btn' color='primary'>Update</button>
+			</form>}
+	</div>)
 }
 
 export default EditTopicPost

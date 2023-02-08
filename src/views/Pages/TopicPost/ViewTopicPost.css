@@ -1,0 +1,37 @@
+
+.topicpost-container .btn{
+    width: 70%;
+    margin: auto;
+    display: block;
+    background-color: gray;
+    color: white;
+}
+
+.topicpost-container .btn:hover{
+    width: 70%;
+    margin: auto;
+    display: block;
+    background-color: red;
+    color: white;
+}
+
+.topicpost-container
+{
+    margin-inline:1rem  !important;
+    background-color: white !important;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.topicpost-container .topicpost-card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.topicpost-container .topicpost-card .topicpost-card-body{
+   display: flex;
+   justify-content: center !important;
+   align-items: center !important;
+   margin: auto;
+}

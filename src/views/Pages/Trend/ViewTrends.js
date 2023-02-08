@@ -3,7 +3,7 @@ import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink, Button } from 'reactstrap'
 import TrendList from './TrendList'
-import './ViewBlogs.css'
+import './ViewPostManagements.css'
 
 function ViewTrends() {
   const [trends, setTrends] = useState()
@@ -55,27 +55,24 @@ function ViewTrends() {
     navigate('/addTrend')
   }
 
+
   return <>
-      <Button className='btn mb-2' onClick={routerHandler}>Add Trend</Button>
-    {user ? <div>
-      <Card>
-          <CardBody>
-            <Card>
-              {trends && <TrendList  data = {trends}/>}
-              {trends  && trends.length <= 0 && <p>There is no Trends</p>}
-              {!trends &&    <RotatingLines className="text-center"
+  {user ? <div className="postManagement-container">
+          <div className="postManagement-card">
+            <button className='btn' onClick={routerHandler}>Add Trend</button>
+            <div className="postManagement-card-body">
+                {trends && <TrendList data={trends} />}
+                {trends  && trends.length <= 0 && <p>There is no Trends</p>}
+                {!trends &&    <RotatingLines className="text-center"
                   strokeColor="grey"
                   strokeWidth="5"
                   animationDuration="1"
                   width="96"
                   visible={true}
                 />}
-            </Card>
-          </CardBody>
-      </Card>
-
-
-    </div> : <></> }
+            </div>
+          </div>
+  </div> : <></> }
   </>
 }
 

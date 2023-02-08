@@ -1,17 +1,33 @@
-.card{
+.post-details-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    margin: auto;
 }
 
-.details{
+.post-details-container .post-details-card-details{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 48%;
 
+}
+.post-details-container .post-details-card-details h1{
+    display: block;
+    margin: 1rem;
+}
+
+.post-details-container .post-details-card-details h3{
+    display: block;
+    margin-inline: 1rem;
+}
+.post-details-comment-list{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 1rem;
+    width: 90%;
 }
 
 .no-respond{
@@ -21,8 +37,7 @@
     font: 50px;
 }
 
-.comment{
-    width: 100%;
-    text-decoration: underline;
-    float: left;
+.post-details-comment-heading{
+    display: block;
+    text-align: center;
 }

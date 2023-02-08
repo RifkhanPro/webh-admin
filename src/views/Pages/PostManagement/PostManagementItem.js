@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
 import avatar from './../../../assets/images/pages/not_available.jpg'
-import './SkillItem.css'
+import './PostManagementItem.css'
 
 const PostManagementItem = (props) => {
   const navigate = useNavigate()
@@ -12,7 +12,7 @@ const PostManagementItem = (props) => {
   }
   
   return ( 
-          <div className="skill_card" onClick={() => routehandler(props.id)}>
+          <div className="postManagementItem" onClick={() => routehandler(props.id)}>
             <div className="title">{props.name}</div>
             <div className="image">
             {!props.image && <img src={avatar} alt="" />}

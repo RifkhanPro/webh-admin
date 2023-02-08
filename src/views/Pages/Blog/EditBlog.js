@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import ImageUploader from './ImageUploader'
 import { RotatingLines } from 'react-loader-spinner'
-
+import './EditPostManagement.css'
 const EditSkill = () => {
     
 	const {id}  = useParams()
@@ -156,8 +156,9 @@ const EditSkill = () => {
 			
 		}
   
-	return (
-		<>
+
+	return (<div className='edit-postManagement-container'>
+
 			{ !topic && !desc &&    <RotatingLines className="text-center"
                   strokeColor="grey"
                   strokeWidth="5"
@@ -166,34 +167,27 @@ const EditSkill = () => {
                   visible={true}
                 />}
 
-				{ topic && desc &&
-					  <Card>
-					  <form onSubmit={submitHandler} className='form-control col-12'>
-						  <h3>Edit Blog</h3>
-						  <CardGroup className='group mt-1'>
-							  <CardTitle>Title</CardTitle>
-							  <Input onChange={titleHandler} value={topic} type='text'/>
-							  {!topicValidate && <p style={{color:"Red"}}>Topic should not be Empty</p>}
-						  </CardGroup>
-				
-						  <CardGroup className='group'>
-							  <CardTitle>Description</CardTitle>
-							  <Input onChange={descHandler}  value={desc} type='textarea' rows='5'/>
-							  {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-						  </CardGroup>
-				
-						  <CardGroup className='group'>
-							<CardTitle>Add Image</CardTitle>
-							<ImageUploader onInput={catchFileDataHandler} value={selectedFile} image={image}/>
-							</CardGroup>
-			  
-							<Button type='submit' className='me-1 mt-1' color='primary'>Update</Button>
-					  </form>
-					</Card>
-				}
-		</>
+			{ topic && desc && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+				<h3 >Edit Blog</h3>
+				<div className='edit-postManagement-group'>
+					<h5>Name</h5>
+					<input onChange={titleHandler} value={topic} type='text' placeholder='Enter Name'/>
+					{!topicValidate && <p style={{color:"Red"}}>Name should not be Empty</p>}
+				</div>
 	
-	)
+				<div className='edit-postManagement-group'>
+					<h5>Description</h5>
+					<input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+					{!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
+				</div>
+
+				<div className='edit-postManagement-group edit-postManagement-group-image'>
+              		<h5>Add Blog Image</h5>
+					<ImageUploader onInput={catchFileDataHandler} image={ image }/>
+				</div>
+				<button type='submit' className='btn' color='primary'>Update</button>
+			</form>}
+	</div>)
 }
 
 export default EditSkill

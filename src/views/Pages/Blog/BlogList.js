@@ -1,11 +1,11 @@
 /* eslint-disable no-tabs */
 import React from "react"
 import BlogItem from "./BlogItem"
-import './Skill_Card.css'
+import './PostManagementList.css'
 
 const BlogList = (props) => {
 	return <>
-			<ul>
+			<ul className="postManagementList">
 				{props.data.map((item) => (
 					<li key={item._id}>
 						<BlogItem id={item._id} name={item.name} image={item.image} desc={item.desc} />
