@@ -109,27 +109,6 @@ const EditTopicPost = () => {
 		formData.append("upload_preset", "feed_images")
 
 		try {
-<<<<<<< HEAD
-				const response = await fetch(`http://44.202.187.100:8070/topicPost/${id}/update`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-						category,
-						name,
-						desc,
-						image
-					})
-				})
-	
-				const responseData = await response.json()
-	
-		  console.log(responseData)
-	
-				if (!response.ok) {
-					throw new Error(responseData.message)
-				}
-	
-	
-		  setDesc('')
-		  setTitle('')
-=======
 			await axios
 			  .post(
 				"https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
@@ -142,7 +121,6 @@ const EditTopicPost = () => {
 			alert(error)
 		}
 	}
->>>>>>> b715c7a9ca8e09db31449f43d5b61154eadda1ba
 
 	if (imageUrl !== '') {
 		try {
@@ -204,7 +182,7 @@ const EditTopicPost = () => {
 					width="96"
 					visible={true}
 			/>}
-			{name && desc && category && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+		 <form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit TopicPost</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Category</h5>
@@ -231,7 +209,7 @@ const EditTopicPost = () => {
 
 				</div>
 				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+			</form>
 	</div>)
 }
 

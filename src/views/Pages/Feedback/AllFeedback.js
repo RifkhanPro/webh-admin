@@ -36,7 +36,7 @@ const AllFeedback = () => {
   // }
 
    useEffect(() => {
-    fetch("http://44.202.187.100:8070/feedback/")
+    fetch("http://localhost:8070/feedback/")
       .then((res) => {
         return res.json()
       })
@@ -48,21 +48,7 @@ const AllFeedback = () => {
       })
   }, [])
 
-<<<<<<< HEAD
-  const Removefunction = (_id) => {
-    if (window.confirm('Do you want to remove?')) {
-        fetch(`http://44.202.187.100:8070/feedback/${_id}`, {
-            method: "DELETE"
-        }).then((res) => {
-            console.log(res)
-            alert('Removed successfully.')
-            window.location.reload()
-        }).catch((err) => {
-            console.log(err.message)
-        })
-    }
-}
-=======
+
   // const Removefunction = (_id) => {
   //   if (window.confirm('Do you want to remove?')) {
   //       fetch(`http://localhost:8070/feedback/${_id}`, {
@@ -76,7 +62,6 @@ const AllFeedback = () => {
   //       })
   //   }
 // }
->>>>>>> b715c7a9ca8e09db31449f43d5b61154eadda1ba
 
   return <>
     {user ? <div className="feedback-container">

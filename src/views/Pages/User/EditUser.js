@@ -23,7 +23,7 @@ const { id } = useParams()
     }
 
     useEffect(() => {
-        fetch(`http://44.202.187.100:8070/user/${id}`).then((res) => {
+        fetch(`http://localhost:8070/user/${id}`).then((res) => {
             return res.json()
         }).then((resp) => {
             // idchange(resp.id)
@@ -49,7 +49,7 @@ const { id } = useParams()
         const userData = {points}
         
   
-        fetch(`http://44.202.187.100:8070/user/${id}/changePoints`, {
+        fetch(`http://localhost:8070/user/${id}/changePoints`, {
           method:"PUT",
           headers:{"content-type":"application/json"},
           body:JSON.stringify(userData)

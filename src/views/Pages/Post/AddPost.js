@@ -80,7 +80,7 @@ function AddPost() {
     }
 
     try {
-      const response = await fetch('http://44.202.187.100:8070/postManagement/create', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+      const response = await fetch('http://localhost:8070/postManagement/create', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
           name,
           description,
           image
@@ -102,7 +102,7 @@ function AddPost() {
 
   navigate('/postManagements')
 }
-    // fetch("http://44.202.187.100:8070/postManagement/create", {
+    // fetch("http://localhost:8070/postManagement/create", {
     //     method:"POST",
     //     headers:{"content-type":"application/json"}, 
     //     body:JSON.stringify(postData)
