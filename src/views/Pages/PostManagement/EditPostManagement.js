@@ -26,9 +26,9 @@ const EditPostManagement = () => {
 		  setTopicValidate(false)
 		} else {
 		  setTopicValidate(true)
-		  setTitle(e.target.value)
-	
+		  
 		}
+		setTitle(e.target.value)
 	  }
 	
 	const descHandler = (e) => {
@@ -36,8 +36,8 @@ const EditPostManagement = () => {
 			setDescValidate(false)
 		} else {
 			setDescValidate(true)
-			setDesc(e.target.value)
 		}
+		setDesc(e.target.value)
   	}
 
 	const catchFileDataHandler = (e) => {
@@ -173,7 +173,7 @@ const EditPostManagement = () => {
 					width="96"
 					visible={true}
 			/>}
-			{topic && desc  &&  <form onSubmit={submitHandler} className='edit-postManagement-form'>
+			 <form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Post</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Name</h5>
@@ -193,7 +193,7 @@ const EditPostManagement = () => {
 					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
 				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+			</form>
 	</div>)
 }
 

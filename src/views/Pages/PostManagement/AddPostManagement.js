@@ -22,18 +22,18 @@ function AddPostManagement() {
       setTopicValidate(false)
     } else {
       setTopicValidate(true)
-      setTopic(e.target.value)
-
+	  
     }
+	setTopic(e.target.value)
   }
   const contentHandler = (e) => {
     if (e.target.value.trim() === '') {
       setcontentValidate(false)
     } else {
       setcontentValidate(true)
-      setDesc(e.target.value)
-
+	  
     }
+	setDesc(e.target.value)
   }
   const catchFileDataHandler = (e) => {
    

@@ -27,17 +27,17 @@ const EditAdvertisement = () => {
 			setNameValidate(false)
 		} else {
 			setNameValidate(true)
-			setName(e.target.value)
 		}
-  	}
+		setName(e.target.value)
+	}
 
 	const expiryHandler = (e) => {
 		if (e.target.value.trim() === '') {
 			setExpiryValidate(false)
 		} else {
 			setExpiryValidate(true)
-			setExpiry(e.target.value)
 		}
+		setExpiry(e.target.value)
   	}
 
   	const descHandler = (e) => {
@@ -45,8 +45,8 @@ const EditAdvertisement = () => {
 			setDescValidate(false)
 		} else {
 			setDescValidate(true)
-			setDesc(e.target.value)
 		}
+		setDesc(e.target.value)
   	}
 
   	const catchFileDataHandler = (e) => {
@@ -191,14 +191,8 @@ const EditAdvertisement = () => {
 
 	
 	return (<div className='edit-postManagement-container'>
-		{ !name && !desc && !expiry &&   <RotatingLines className="text-center"
-					strokeColor="grey"
-					strokeWidth="5"
-					animationDuration="1"
-					width="96"
-					visible={true}
-			/>}
-			{name && desc && expiry && <form onSubmit={submitHandler} className='edit-postManagement-form'>
+
+			<form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Advertisement</h3>
 				<div className='edit-postManagement-group'>
 					<h5>Name</h5>
@@ -224,7 +218,7 @@ const EditAdvertisement = () => {
 					{!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
 				</div>
 				<button type='submit' className='btn' color='primary'>Update</button>
-			</form>}
+			</form>
 	</div>)
 }
 

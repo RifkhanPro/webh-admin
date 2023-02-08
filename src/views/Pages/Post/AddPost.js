@@ -20,18 +20,18 @@ function AddPost() {
       setNameValidate(false)
     } else {
       setNameValidate(true)
-      setName(e.target.value)
-
+	  
     }
+	setName(e.target.value)
   }
   const descHandler = (e) => {
     if (e.target.value.trim() === '') {
       setDescValidate(false)
     } else {
       setDescValidate(true)
-      setDescription(e.target.value)
-
+	  
     }
+	setDescription(e.target.value)
   }
   const catchFileDataHandler = (e) => {
    

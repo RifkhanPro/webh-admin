@@ -17,7 +17,6 @@ function AddAdvertisement() {
   const [expiryValidate, setExpiryValidate] = useState(true)
   const [imageValidate, setImageValidate] = useState(true)
   const [selectedFile, setSelectedFile] = useState()
-  const [spinner, setSpinner] = useState(false)
   const navigate = useNavigate()
 
   const NameHandler = (e) => {
@@ -25,8 +24,8 @@ function AddAdvertisement() {
       setNameValidate(false)
     } else {
       setNameValidate(true)
-      setName(e.target.value)
     }
+	setName(e.target.value)
   }
 
   const descHandler = (e) => {
@@ -34,9 +33,9 @@ function AddAdvertisement() {
       setDescValidate(false)
     } else {
       setDescValidate(true)
-      setDesc(e.target.value)
-
+	  
     }
+	setDesc(e.target.value)
   }
 
   const expiryHandler = (e) => {
@@ -44,8 +43,8 @@ function AddAdvertisement() {
       setExpiryValidate(false)
     } else {
       setExpiryValidate(true)
-      setExpiry(e.target.value)
     }
+	setExpiry(e.target.value)
   }
   const catchFileDataHandler = (e) => {  
     
@@ -59,7 +58,6 @@ function AddAdvertisement() {
 
   const submitHandler =  async (e) => {
     e.preventDefault()
-    setSpinner(true)
     
     if (name.trim() === '') {
       setNameValidate(false)
@@ -128,13 +126,7 @@ function AddAdvertisement() {
 
   return (
     <div className='edit-postManagement-container'>
-      {spinner &&    <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
+
       <form onSubmit={submitHandler}  className='edit-postManagement-form'>
           <h3>Add Advertisement</h3>
           <div className='edit-postManagement-group'>
@@ -145,7 +137,7 @@ function AddAdvertisement() {
 
           <div className='edit-postManagement-group'>
             <h5>Description</h5>
-            <input onChange={descHandler}  value={desc} type='textarea' rows='4' placeholder='Enter Description'/>
+            <input onChange={descHandler}  value={desc} type='textarea'  placeholder='Enter Description'/>
             {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
 				  </div>
 
