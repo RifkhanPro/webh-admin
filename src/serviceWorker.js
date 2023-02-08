@@ -11,7 +11,7 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
-const is44.202.187.100 = Boolean(
+const isPort = Boolean(
   window.location.hostname === '44.202.187.100' ||
     // [::1] is the IPv6 44.202.187.100 address.
     window.location.hostname === '[::1]' ||
@@ -33,7 +33,7 @@ export function register(config) {
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
 
-      if (is44.202.187.100) {
+      if (isPort) {
         // This is running on 44.202.187.100. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config)
 
