@@ -17,7 +17,7 @@ const ViewRecentSearchFeed = () => {
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://localhost:8070/recentSearchFeed/${id}`)
+         const response = await fetch(`http://44.202.187.100:8070/recentSearchFeed/${id}`)
 
          const responseData = await response.json()
 
@@ -40,7 +40,7 @@ const ViewRecentSearchFeed = () => {
 
    const deleteHandler = async() => {
         try {
-          const response = await fetch(`http://localhost:8070/recentSearchFeed/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+          const response = await fetch(`http://44.202.187.100:8070/recentSearchFeed/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
           const responseData = await response.json()
 

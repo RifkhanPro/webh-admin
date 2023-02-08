@@ -51,7 +51,7 @@ const EditTrend = () => {
 	 useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			const response = await fetch(`http://localhost:8070/trend/${id}`)
+			const response = await fetch(`http://44.202.187.100:8070/trend/${id}`)
 	
 			const responseData = await response.json()
 	
@@ -111,7 +111,7 @@ const EditTrend = () => {
 
 			if (imageUrl !== '') {
 				try {
-					const response = await fetch(`http://localhost:8070/trend/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://44.202.187.100:8070/trend/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title,
 						image:imageUrl
@@ -134,7 +134,7 @@ const EditTrend = () => {
 
 			} else {
 				try {
-					const response = await fetch(`http://localhost:8070/trend/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://44.202.187.100:8070/trend/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						desc,
 						title,
 						image
