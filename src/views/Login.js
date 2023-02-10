@@ -35,7 +35,7 @@ const Login = () => {
       
       try {
           //getting data from backend
-          const {data} = await axios.post("http://44.202.187.100:8070/user/admin-signin", {email, password}, config)
+          const {data} = await axios.post("http://localhost:8070/user/admin-signin", {email, password}, config)
 
           //setting the user authorization token
           localStorage.setItem("userAuthToken", `User ${data.token}`)
@@ -90,14 +90,15 @@ const Login = () => {
                   <Label className='form-label' for='login-password'>
                     Password
                   </Label>
-                  <Link to='/forgot-password'>
-                    <small>Forgot Password?</small>
-                  </Link>
+                
                 </div>
                 <InputPasswordToggle className='input-group-merge' id='login-password' name="password"
                         onChange={ (event) => { setPassword(event.target.value) }}
                         // handleShowPassword={handleshowpassword}
                         />
+                  <Link to='/forgot-password'>
+                    <small style={{float:'right'}}>Forgot Password?</small>
+                  </Link>
               </div>
               <div className='form-check mb-1'>
                 <Input type='checkbox' id='remember-me' />
@@ -112,12 +113,12 @@ const Login = () => {
                 {/* { showPassword ? "ok" : "not" } */}
               </Button>
             </Form>
-            <p className='text-center mt-2'>
+            {/* <p className='text-center mt-2'>
               <span className='me-25'>New on our platform?</span>
               <Link to='/register'>
                 <span>Create an account</span>
               </Link>
-            </p>
+            </p> */}
           </Col>
         </Col>
       </Row>

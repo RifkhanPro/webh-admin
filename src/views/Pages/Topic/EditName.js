@@ -20,7 +20,7 @@ const EditName = () => {
 		e.preventDefault()
 	
 		try {
-				const response = await fetch('http://44.202.187.100:8070/topicPost/changeName', {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+				const response = await fetch('http://localhost:8070/topicPost/changeName', {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						category,
                         name,
                         newName

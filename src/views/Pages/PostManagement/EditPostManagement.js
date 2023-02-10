@@ -89,7 +89,7 @@ const EditPostManagement = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 		 try {
-			 const response = await fetch(`http://44.202.187.100:8070/postManagement/posts/${id}`)
+			 const response = await fetch(`http://localhost:8070/postManagement/posts/${id}`)
 	
 			 const responseData = await response.json()
 	
@@ -140,7 +140,7 @@ const EditPostManagement = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+				const response = await fetch(`http://localhost:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
 						description:desc,
 						image:imageUrl
@@ -166,7 +166,7 @@ const EditPostManagement = () => {
 
 			} else {
 				try {
-					const response = await fetch(`http://44.202.187.100:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://localhost:8070/postManagement/updatePost/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 							name:topic,
 							description:desc,
 							image

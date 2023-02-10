@@ -3,7 +3,7 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'Vuexy',
+    appName: 'WEBH',
     appLogoImage: require('@src/assets/images/logo/webh_logo.png').default
   },
   layout: {

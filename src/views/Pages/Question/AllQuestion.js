@@ -35,7 +35,7 @@ const AllQuestion = () => {
   }
 
    useEffect(() => {
-    fetch("http://44.202.187.100:8070/question")
+    fetch("http://localhost:8070/question")
       .then((res) => {
         return res.json()
       })
@@ -49,7 +49,7 @@ const AllQuestion = () => {
 
   //   const Removefunction = (_id) => {
   //     if (window.confirm('Do you want to remove?')) {
-  //         fetch(`http://44.202.187.100:8070/question/${_id}`, {
+  //         fetch(`http://localhost:8070/question/${_id}`, {
   //             method: "DELETE"
   //         }).then((res) => {
   //             console.log(res)

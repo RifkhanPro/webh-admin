@@ -7,7 +7,7 @@ import axios from 'axios'
 import ImageUploader from './ImageUploader'
 import { RotatingLines } from 'react-loader-spinner'
 import './EditPostManagement.css'
-const EditSkill = () => {
+const EditBlog = () => {
     
 	const {id}  = useParams()
 	const navigate = useNavigate()
@@ -67,7 +67,7 @@ const EditSkill = () => {
 	
 	const descBlurHandler = () => {
 	  setDescTouched(true)
-	  if (content.trim() === '') {
+	  if (desc.trim() === '') {
 		setDescValidate(false)
 	  } else {
 		setDescValidate(true)
@@ -77,7 +77,7 @@ const EditSkill = () => {
     useEffect(() => {
 		const sendRequest = async () => {
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/blog/${id}`)
+			const response = await fetch(`http://localhost:8070/blog/${id}`)
 
 			const responseData = await response.json()
 
@@ -136,7 +136,7 @@ const EditSkill = () => {
 
 			  if (imageUrl !== '') {
 				try {
-					const response = await fetch(`http://44.202.187.100:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://localhost:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
 						desc,
 						image:imageUrl
@@ -162,7 +162,7 @@ const EditSkill = () => {
 
 			  } else {
 				try {
-					const response = await fetch(`http://44.202.187.100:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
+					const response = await fetch(`http://localhost:8070/blog/${id}`, {method:"PUT", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
 						name:topic,
 						desc,
 						image
@@ -193,13 +193,6 @@ const EditSkill = () => {
 
 	return (<div className='edit-postManagement-container'>
 
-			{ !topic && !desc &&    <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
 
 			<form onSubmit={submitHandler} className='edit-postManagement-form'>
 				<h3 >Edit Blog</h3>
@@ -224,4 +217,4 @@ const EditSkill = () => {
 	</div>)
 }
 
-export default EditSkill
+export default EditBlog

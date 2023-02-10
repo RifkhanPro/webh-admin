@@ -137,6 +137,7 @@ const EditProfile = lazy(() => import('../../views/Pages/Profile/EditProfile.jsx
 // Posts
 const PostReport = lazy(() => import('../../views/Pages/PostReport/PostsReport'))
 const ViewPostReport = lazy(() => import('../../views/Pages/PostReport/ViewPostReport'))
+const ResetCredential = lazy(() => import('../../views/Pages/Profile/ResetCredential.jsx'))
 
 // ** Merge Routes
 const Routes = [
@@ -150,6 +151,12 @@ const Routes = [
    {
     path:'/postReport',
     element: <PostReport />
+  },  
+   //ResetCredential
+  
+  {
+    path:'/resetAdmin',
+    element: <ResetCredential />
   },
 
   //view postReport

@@ -25,6 +25,11 @@ const UserDropdown = () => {
     navigate('/login')
   }
 
+  const reset = (e) => {
+    e.preventDefault()
+   
+    navigate('/resetAdmin')
+  }
   const routerHandler = () => {
     navigate('/profile')
   }
@@ -67,9 +72,9 @@ const UserDropdown = () => {
         </DropdownItem>
 
         <DropdownItem divider />
-        <DropdownItem tag={Link} to='/pages/' onClick={e => e.preventDefault()}>
+        <DropdownItem tag={Link} to='/pages/' onClick={reset}>
           <Settings size={14} className='me-75' />
-          <span className='align-middle'>Settings</span>
+          <span className='align-middle'>Reset Credential</span>
         </DropdownItem>
       
         <DropdownItem tag={Link} to='/home' onClick={logout}>
