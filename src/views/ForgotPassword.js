@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 // ** Custom Hooks
 import { useSkin } from '@hooks/useSkin'
-
+import './ForgotPassword.css'
 // ** Icons Imports
 import { ChevronLeft } from 'react-feather'
 
@@ -12,14 +12,59 @@ import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'react
 
 // ** Styles
 import '@styles/react/pages/page-authentication.scss'
+import { useRef } from 'react'
+import swal from 'sweetalert'
 
 const ForgotPassword = () => {
   // ** Hooks
   const { skin } = useSkin()
+  const email = useRef()
+
 
   const illustration = skin === 'dark' ? 'forgot-password-v2-dark.svg' : 'forgot-password-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
 
+    const reset = () => {
+      // setImage(null);
+      email.current.value = ""
+  }
+    const submitHandler = async (e) => {
+       e.preventDefault()
+
+       const forgot = { email: email.current.value}
+
+       if (email.current.value !== '' && email.current.value.includes('@')) {
+         try {
+              const response = await fetch('http://44.202.187.100:8070/user/admin-forgot-password', {method:"POST", 
+              headers : {"Content-Type":"application/json"}, 
+              body :JSON.stringify({
+                forgot
+              })
+            })
+
+            const responseData = await response.json()
+            if (!response.ok) {
+              throw new Error(responseData.message)
+            }
+
+          reset()
+          swal("Email sent!", "Please check your email address!", "success")
+
+          } catch (e) {
+              if (e.message === 'No user with this email') {
+                  swal("User does not exist!", "Check your email again!", "error")
+              } else if (e.message === 'Email could not be sent') {
+                  swal("Something went wrong!", "Check your network connection!", "error")
+              }
+          }
+       } else {
+          swal("Something went wrong!", "Enter Valid Email Address")
+
+       }
+    
+    }
+
+   
   return (
     <div className='auth-wrapper auth-cover'>
       <Row className='auth-inner m-0'>
@@ -72,7 +117,7 @@ const ForgotPassword = () => {
               </g>
             </g>
           </svg>
-          <h2 className='brand-text text-primary ms-1'>Vuexy</h2>
+          <h2 className='brand-text text-primary ms-1'>WEBH</h2>
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
@@ -87,12 +132,12 @@ const ForgotPassword = () => {
             <CardText className='mb-2'>
               Enter your email and we'll send you instructions to reset your password
             </CardText>
-            <Form className='auth-forgot-password-form mt-2' onSubmit={e => e.preventDefault()}>
+            <Form className='auth-forgot-password-form mt-2' onSubmit={submitHandler}>
               <div className='mb-1'>
                 <Label className='form-label' for='login-email'>
                   Email
                 </Label>
-                <Input type='email' id='login-email' placeholder='john@example.com' autoFocus />
+                <input className='forgot-password-input' type='email' id='login-email' ref={email} placeholder='john@example.com' autoFocus />
               </div>
               <Button color='primary' block>
                 Send reset link

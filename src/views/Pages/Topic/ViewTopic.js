@@ -1,91 +1,104 @@
-import React from "react"
+/* eslint-disable no-tabs */
+import React from 'react'
 // eslint-disable-next-line no-duplicate-imports
-import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { Button, Card, CardText } from "reactstrap"
-import NameList from "./NameList"
-import { RotatingLines } from "react-loader-spinner"
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Card, CardText } from 'reactstrap'
+import NameList from './NameList'
+import { RotatingLines } from 'react-loader-spinner'
 
 import './ViewSkill.css'
 
 const ViewTopic = () => {
-    const {id} = useParams()
-    const [skill, setSkill] = useState()
-    const navigate = useNavigate()
-   
-    const routeHandler = () => {
-      navigate(`/topics/edit/${id}`)
-    }
+	const { id } = useParams()
+	const [skill, setSkill] = useState()
+	const navigate = useNavigate()
 
-    const addNameHandler = () => {
-      navigate(`/topics/${id}/AddName`)
-    }
+	const routeHandler = () => {
+		navigate(`/topics/edit/${id}`)
+	}
 
-  useEffect(() => {
-    const sendRequest = async () => {
-     try {
-         const response = await fetch(`http://localhost:8070/topic/${id}`)
+	const addNameHandler = () => {
+		navigate(`/topics/${id}/AddName`)
+	}
 
-         const responseData = await response.json()
+	useEffect(() => {
+		const sendRequest = async () => {
+			try {
+				const response = await fetch(`http://44.202.187.100:8070/topic/${id}`)
 
-         setSkill(responseData)
-         if (!response.ok()) {
-           throw new Error(responseData.message)
-       }
+				const responseData = await response.json()
 
-     } catch (err) {
-     }
-    } 
+				setSkill(responseData)
+				if (!response.ok()) {
+					throw new Error(responseData.message)
+				}
+			} catch (err) {}
+		}
 
-    sendRequest()
- }, [id])
+		sendRequest()
+	}, [id])
 
-   const deleteHandler = async() => {
-        try {
-          const response = await fetch(`http://localhost:8070/topic/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+	const deleteHandler = async () => {
+		try {
+			const response = await fetch(`http://44.202.187.100:8070/topic/${id}`, {
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' }
+			})
 
-          const responseData = await response.json()
+			const responseData = await response.json()
 
-          if (!response.ok()) {
-            throw new Error(responseData.message)
-        }
+			if (!response.ok()) {
+				throw new Error(responseData.message)
+			}
+		} catch (err) {}
 
-      } catch (err) {
-      }
+		navigate('/topics')
+	}
 
-      navigate('/topics')
-    }
+	return (
+		<>
+			{!skill && (
+				<RotatingLines
+					className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+				/>
+			)}
+			<div className="topic-view-container">
+				<div className="topic-view-card">
+					{skill && (
+						<h1 className="topic-view-card-category">{skill.category}</h1>
+					)}
 
-  return <>
-      {!skill &&    <RotatingLines className="text-center"
-      strokeColor="grey"
-      strokeWidth="5"
-      animationDuration="1"
-      width="96"
-      visible={true}
-    />}
-    <div className="topic-view-container">
-      <div className="topic-view-card">
-            {skill && <h1 className="topic-view-card-category">{skill.category}</h1>}
+					{skill && (
+						<div className="topic-view-card-name-list">
+							<NameList category={skill.category} data={skill.names} />
+						</div>
+					)}
 
-          {skill && <div className="topic-view-card-name-list">
-                <NameList category={skill.category} data = {skill.names} />
-            </div>}
+					{skill && skill.length === 0 && (
+						<p className="no-respond">There is no Such Skill</p>
+					)}
+				</div>
 
-            {skill && skill.length === 0 && 
-                <p className="no-respond">There is no Such Skill</p>
-            }
-
-      </div>
-
-        <div className="topic-view-container-btns">
-              <button onClick={routeHandler} className='btn'>Edit Category</button>
-              <button onClick={addNameHandler} className='btn'>Add Name</button>
-              <button onClick={deleteHandler} className='btn delete'>Delete Category</button>
-        </div>
-    </div>
-     
-  </>
+				<div className="topic-view-container-btns">
+					<button onClick={routeHandler} className="btn">
+						Edit Category
+					</button>
+					<button onClick={addNameHandler} className="btn">
+						Add Name
+					</button>
+					<button onClick={deleteHandler} className="btn delete">
+						Delete Category
+					</button>
+				</div>
+			</div>
+		</>
+	)
 }
 
 export default ViewTopic

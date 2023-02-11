@@ -34,7 +34,7 @@ function ResetCredential() {
 
         const emailHandler = (e) => {
             setEmailTouched(true)
-                if (e.target.value.trim() === '' || !e.target.value.includes('@')) {
+                if (e.target.value.trim() === '' || !e.target.value.length < 9) {
                     setEmailValidate(false)
                 } else {
                     setEmailValidate(true)
@@ -55,7 +55,7 @@ function ResetCredential() {
 
         const emailBlurHandler = () => {
             setEmailTouched(true)
-            if (email.trim() === '' || !email.includes('@')) {
+            if (email.trim() === '' || !email.trim().length < 9) {
                 setEmailValidate(false)
             } else {
                 setEmailValidate(true)
@@ -102,19 +102,19 @@ function ResetCredential() {
                 } catch (err) { 
                 console.log(err)
                 }
-                navigate('/profile')
+                navigate('/login')
             }
     
         return <div  className='edit-postManagement-container'>
                 <form onSubmit={submitHandler}  className='edit-postManagement-form'>
                     <div className='edit-postManagement-group'>
-                        <h5>Email</h5>
-                        <input  onChange={emailHandler} onBlur={emailBlurHandler} value={email}  type='text' placeholder='Enter Email'/>
+                        <h5>New Password</h5>
+                        <input  onChange={emailHandler} onBlur={emailBlurHandler} value={email}  type='password' placeholder='Enter New Password'/>
                         {validEmail && <p style={{color:"Red"}}>Email should not be Empty</p>}
                     </div>
                     <div className='edit-postManagement-group'>
-                        <h5>New Password</h5>
-                        <input onChange={passwordHandler}  onBlur={passwordBlurHandler}    type='password' placeholder='Enter Password'/>
+                        <h5>Confirm Password</h5>
+                        <input onChange={passwordHandler}  onBlur={passwordBlurHandler}    type='password' placeholder='Enter Confirm Password'/>
                         {validPassword && <p style={{color:"Red"}}>Password should not be Empty and has atleast 9 letters</p>}
                     </div>
                     <button type='submit' className='btn' color='primary' disabled={!formValidate}>Update</button>

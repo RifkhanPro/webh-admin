@@ -1,41 +1,42 @@
+/* eslint-disable no-tabs */
 // import React, { useEffect, useState } from 'react'
 // import { useParams } from 'react-router-dom'
 
 function ViewApprovalPost() {
-    // const [post, setPost] = useState()
-    // const [userId, setUserId] = useState()
-    // const [user, setUser] = useState()
-    // const {id} = useParams()
+	// const [post, setPost] = useState()
+	// const [userId, setUserId] = useState()
+	// const [user, setUser] = useState()
+	// const {id} = useParams()
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:8070/post/${id}`).then((res) => {
-    //         return res.json()
-    //     }).then((resp) => {
-    //         setPost(resp.post)
-    //         setUserId(resp.post.userId)
-    //         console.log(resp.post.userId)
-    //     }).catch((err) => {
-    //         console.log(err.message)
-    //     })
-    // }, [])
+	// useEffect(() => {
+	//     fetch(`http://44.202.187.100:8070/post/${id}`).then((res) => {
+	//         return res.json()
+	//     }).then((resp) => {
+	//         setPost(resp.post)
+	//         setUserId(resp.post.userId)
+	//         console.log(resp.post.userId)
+	//     }).catch((err) => {
+	//         console.log(err.message)
+	//     })
+	// }, [])
 
-    // useEffect(() => {
-    //     if (userId) {
-    //         fetch(`http://localhost:8070/user/${userId}`).then((res) => {
-    //             return res.json()
-    //         }).then((resp) => {
-    //             console.log(resp.result)
-    //             setUser(resp.result)
-    //         }).catch((err) => {
-    //             console.log(err.message)
-    //         })
-    //     }
-      
-    // }, [userId])
+	// useEffect(() => {
+	//     if (userId) {
+	//         fetch(`http://44.202.187.100:8070/user/${userId}`).then((res) => {
+	//             return res.json()
+	//         }).then((resp) => {
+	//             console.log(resp.result)
+	//             setUser(resp.result)
+	//         }).catch((err) => {
+	//             console.log(err.message)
+	//         })
+	//     }
 
-   
-    return <>
-        {/* <div className="container">
+	// }, [userId])
+
+	return (
+		<>
+			{/* <div className="container">
             <div className="card">
                
                 <div className="card-body">
@@ -73,8 +74,8 @@ function ViewApprovalPost() {
                 </div>
             </div>
         </div>  */}
-    </>
+		</>
+	)
 }
-
 
 export default ViewApprovalPost

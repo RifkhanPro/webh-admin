@@ -9,148 +9,170 @@ import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 
 function AddAnalytic() {
+	const [title, setTitle] = useState('')
+	const [desc, setDesc] = useState('')
+	const [selectedFile, setSelectedFile] = useState()
+	const [titleValidate, setTitleValidate] = useState(true)
+	const [descValidate, setDescValidate] = useState(true)
+	const [imageValidate, setImageValidate] = useState(true)
+	const navigate = useNavigate()
+	const [spinner, setSpinner] = useState(false)
 
-  const [title, setTitle] = useState('')
-  const [desc, setDesc] = useState('')
-  const [selectedFile, setSelectedFile] = useState()
-  const [titleValidate, setTitleValidate] = useState(true)
-  const [descValidate, setDescValidate] = useState(true)
-  const [imageValidate, setImageValidate] = useState(true)
-  const navigate = useNavigate()
-  const [spinner, setSpinner] = useState(false)
-
-  const titleHandler = (e) => {
-    if (e.target.value.trim() === '') {
-      setTitleValidate(false)
-    } else {
-      setTitleValidate(true)
-      setTitle(e.target.value)
-
-    }
-  }
-  const descHandler = (e) => {
-    if (e.target.value.trim() === '') {
-      setDescValidate(false)
-    } else {
-      setDescValidate(true)
-      setDesc(e.target.value)
-
-    }
-  }
-  const catchFileDataHandler = (e) => {
-   
-    if (e.name === '') {
-      setImageValidate(false)
-    } else {
-      setImageValidate(true)
-      setSelectedFile(e)
-    }
+	const titleHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setTitleValidate(false)
+		} else {
+			setTitleValidate(true)
+			setTitle(e.target.value)
+		}
+	}
+	const descHandler = (e) => {
+		if (e.target.value.trim() === '') {
+			setDescValidate(false)
+		} else {
+			setDescValidate(true)
+			setDesc(e.target.value)
+		}
+	}
+	const catchFileDataHandler = (e) => {
+		if (e.name === '') {
+			setImageValidate(false)
+		} else {
+			setImageValidate(true)
+			setSelectedFile(e)
+		}
 	}
 
-  const submitHandler =  async (e) => {
-    e.preventDefault()
-    setSpinner(true)
-
-    if (title.trim() === '') {
-      setTitleValidate(false)
-      return
-    }
-
-    if (desc.trim() === '') {
-      setDescValidate(false)
-      return
-    }
-
-    if (selectedFile === undefined) {
-      setImageValidate(false)
-      return
-    }
-
-    let image
-
-    const formData = new FormData()
-    formData.append("file", selectedFile)
-    formData.append("upload_preset", "feed_images")
-    console.log('validate')
-
-    try {
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-          formData
-        )
-        .then((res) => {
-          image = res.data.secure_url
-        })
-    } catch (error) {
-      alert(error)
-    }
-
-      try {
-        const response = await fetch('http://localhost:8070/analytics', {method:"POST", headers : {"Content-Type":"application/json"}, body :JSON.stringify({
-            title,
-            desc,
-            image
-          })
-        })
-
-        const responseData = await response.json()
-
-        if (!response.ok) {
-          throw new Error(responseData.message)
-        }
-
-
-        setDesc('')
-        setTitle('')
-      } catch (err) { 
-        //
-      }
-
-    navigate('/analytics')
-  }
-  // setValidated(true)
-
-
-  return (
-    <>
-     {spinner &&    <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
-                  {!spinner && <Card>
-                <Col className='col-12'>
-          <form onSubmit={submitHandler} className='form-control'>
-                <CardGroup className='group'>
-                    <Label>Title</Label>
-                    <Input onChange={titleHandler} value={title} type='text' placeholder='Enter Title'/>
-                    {!titleValidate && <p style={{color:"Red"}}>Title should not be Empty</p>}
-                </CardGroup>
-
-                <CardGroup className='group'>
-                    <Label>Description</Label>
-                    <Input onChange={descHandler}  value={desc} type='textarea' rows='5' placeholder='Enter Description'/>
-                    {!descValidate && <p style={{color:"Red"}}>Description should not be empty</p>}
-                </CardGroup>
-                
-                <CardGroup className='group'>
-                    <Label>Add Analytic Image</Label>
-                </CardGroup>
-                <div>
-                <ImageUploader onInput={catchFileDataHandler}/>
-                    {!imageValidate && <p style={{color:"Red"}}>Image should be selected</p>}
-                </div>
-
-                <Button type='submit' className='me-1 mt-1' color='primary'>Submit</Button>
-            </form>
-          </Col>
-        </Card>}
-      </>
+	const submitHandler = async (e) => {
+		e.preventDefault()
+		setSpinner(true)
  
-  )
+		if (title.trim() === '') {
+			setTitleValidate(false)
+			return
+		}
+
+		if (desc.trim() === '') {
+			setDescValidate(false)
+			return
+		}
+
+		if (selectedFile === undefined) {
+			setImageValidate(false)
+			return
+		}
+
+		let image
+
+		const formData = new FormData()
+		formData.append('file', selectedFile)
+		formData.append('upload_preset', 'feed_images')
+		console.log('validate')
+
+		try {
+			await axios
+				.post(
+					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
+					formData
+				)
+				.then((res) => {
+					image = res.data.secure_url
+				})
+		} catch (error) {
+			alert(error)
+		}
+
+		try {
+			const response = await fetch('http://44.202.187.100:8070/analytics', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					title,
+					desc,
+					image
+				})
+			})
+
+			const responseData = await response.json()
+
+			if (!response.ok) {
+				throw new Error(responseData.message)
+			}
+
+			setDesc('')
+			setTitle('')
+		} catch (err) {
+			//
+		}
+
+		navigate('/analytics')
+	}
+	// setValidated(true)
+
+	return (
+		<>
+			{spinner && (
+				<RotatingLines
+					className="text-center"
+					strokeColor="grey"
+					strokeWidth="5"
+					animationDuration="1"
+					width="96"
+					visible={true}
+				/>
+			)}
+			{!spinner && (
+				<Card>
+					<Col className="col-12">
+						<form onSubmit={submitHandler} className="form-control">
+							<CardGroup className="group">
+								<Label>Title</Label>
+								<Input
+									onChange={titleHandler}
+									value={title}
+									type="text"
+									placeholder="Enter Title"
+								/>
+								{!titleValidate && (
+									<p style={{ color: 'Red' }}>Title should not be Empty</p>
+								)}
+							</CardGroup>
+
+							<CardGroup className="group">
+								<Label>Description</Label>
+								<Input
+									onChange={descHandler}
+									value={desc}
+									type="textarea"
+									rows="5"
+									placeholder="Enter Description"
+								/>
+								{!descValidate && (
+									<p style={{ color: 'Red' }}>
+										Description should not be empty
+									</p>
+								)}
+							</CardGroup>
+
+							<CardGroup className="group">
+								<Label>Add Analytic Image</Label>
+							</CardGroup>
+							<div>
+								<ImageUploader onInput={catchFileDataHandler} />
+								{!imageValidate && (
+									<p style={{ color: 'Red' }}>Image should be selected</p>
+								)}
+							</div>
+
+							<Button type="submit" className="me-1 mt-1" color="primary">
+								Submit
+							</Button>
+						</form>
+					</Col>
+				</Card>
+			)}
+		</>
+	)
 }
 
 export default AddAnalytic

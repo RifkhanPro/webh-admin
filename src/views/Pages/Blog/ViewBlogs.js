@@ -1,84 +1,93 @@
+/* eslint-disable no-tabs */
 /* eslint-disable multiline-ternary */
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardBody, Button } from 'reactstrap'
 import { PlusCircle } from 'react-feather'
-import BlogList  from './BlogList'
+import BlogList from './BlogList'
 import './ViewPostManagements.css'
 import { RotatingLines } from 'react-loader-spinner'
 
 function ViewBlogs() {
-  const [blogs, setBlogs] = useState()
-  const navigate = useNavigate()
+	const [blogs, setBlogs] = useState()
+	const navigate = useNavigate()
 
-  const [isSignedIn, setIsSignedIn] = useState(false)
-  const [user, setUser] = useState("")
+	const [isSignedIn, setIsSignedIn] = useState(false)
+	const [user, setUser] = useState('')
 
-  useEffect(() => {
-    //check whether user has signed in
-    if (localStorage.getItem("userAuthToken")) {
-        setIsSignedIn(true)
-        console.log(isSignedIn)
+	useEffect(() => {
+		//check whether user has signed in
+		if (localStorage.getItem('userAuthToken')) {
+			setIsSignedIn(true)
+			console.log(isSignedIn)
 
-        //get user data
-        if (localStorage.getItem("user")) {
-            setUser(JSON.parse(localStorage.getItem('user')))
-            console.log(user)
-        }
+			//get user data
+			if (localStorage.getItem('user')) {
+				setUser(JSON.parse(localStorage.getItem('user')))
+				console.log(user)
+			}
+		} else {
+			setIsSignedIn(false)
+		}
+	}, [])
 
-    } else {
-      setIsSignedIn(false)
-    }
-  }, [])
+	console.log(user, isSignedIn)
 
-  console.log(user, isSignedIn)
+	useEffect(() => {
+		const sendRequest = async () => {
+			try {
+				const response = await fetch('http://44.202.187.100:8070/blog')
 
-  useEffect(() => {
-     const sendRequest = async () => {
-      try {
-          const response = await fetch('http://localhost:8070/blog')
+				const responseData = await response.json()
 
-          const responseData = await response.json()
- 
-          console.log(responseData)
+				console.log(responseData)
 
-          setBlogs(responseData)
-             
-          if (!response.ok()) {
-            throw new Error(responseData.message)
-        }
+				setBlogs(responseData)
 
-      } catch (err) {
-      }
-     } 
+				if (!response.ok()) {
+					throw new Error(responseData.message)
+				}
+			} catch (err) {}
+		}
 
-     sendRequest()
-  }, [])
+		sendRequest()
+	}, [])
 
-  const routerHandler = () => {
-    navigate('/addBlog')
-  }
-  
-  console.log(user)
+	const routerHandler = () => {
+		navigate('/addBlog')
+	}
 
-return <>
-    {user ? <div className="postManagement-container">
-            <div className="postManagement-card">
-              <button className='btn' onClick={routerHandler}>Add Blog</button>
-              <div className="postManagement-card-body">
-                  {blogs && <BlogList  data = {blogs}/>}
-                  {!blogs && <p>There is no blogs</p>}
-                  {!blogs &&    <RotatingLines className="text-center"
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="1"
-                  width="96"
-                  visible={true}
-                />}
-              </div>
-            </div>
-    </div> : <></> }
-    </>
+	console.log(user)
+
+	return (
+		<>
+			{user ? (
+				<div className="postManagement-container">
+					<div className="postManagement-card">
+						<button className="btn" onClick={routerHandler}>
+							Add Blog
+						</button>
+						<div className="postManagement-card-body">
+							{blogs && <BlogList data={blogs} />}
+							{!blogs && <p>There is no blogs</p>}
+							{!blogs && (
+								<RotatingLines
+									className="text-center"
+									strokeColor="grey"
+									strokeWidth="5"
+									animationDuration="1"
+									width="96"
+									visible={true}
+								/>
+							)}
+						</div>
+					</div>
+				</div>
+			) : (
+				<></>
+			)}
+		</>
+	)
 }
 
 export default ViewBlogs

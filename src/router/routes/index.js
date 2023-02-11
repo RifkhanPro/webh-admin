@@ -138,6 +138,8 @@ const EditProfile = lazy(() => import('../../views/Pages/Profile/EditProfile.jsx
 const PostReport = lazy(() => import('../../views/Pages/PostReport/PostsReport'))
 const ViewPostReport = lazy(() => import('../../views/Pages/PostReport/ViewPostReport'))
 const ResetCredential = lazy(() => import('../../views/Pages/Profile/ResetCredential.jsx'))
+const ResetPassword = lazy(() => import('../../views/Pages/ResetPassword/ResetCredential'))
+const PasswordReset = lazy(() => import('../../views/RestPassword'))
 
 // ** Merge Routes
 const Routes = [
@@ -266,6 +268,20 @@ const Routes = [
   {
     path: '/forgot-password',
     element: <ForgotPassword />,
+    meta: {
+      layout: 'blank'
+    }
+  },
+  // {
+  //   path: '/reset-password',
+  //   element: <ForgotPassword />,
+  //   meta: {
+  //     layout: 'blank'
+  //   }
+  // },
+  {
+    path: '/password-reset/:token',
+    element: <PasswordReset />,
     meta: {
       layout: 'blank'
     }

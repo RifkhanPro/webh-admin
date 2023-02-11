@@ -9,179 +9,200 @@ import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 
 function AddPostManagement() {
-  const [topic, setTopic] = useState('')
-  const [content, setDesc] = useState('')
-  const [selectedFile, setSelectedFile] = useState()
-  const [topicValidate, setTopicValidate] = useState(false)
-  const [contentValidate, setcontentValidate] = useState(false)
-  const [imageValidate, setImageValidate] = useState(false)
-  const navigate = useNavigate()
+	const [topic, setTopic] = useState('')
+	const [content, setDesc] = useState('')
+	const [selectedFile, setSelectedFile] = useState()
+	const [topicValidate, setTopicValidate] = useState(false)
+	const [contentValidate, setcontentValidate] = useState(false)
+	const [imageValidate, setImageValidate] = useState(false)
+	const navigate = useNavigate()
 
-  
-  const [nameTouched, setNameTouched] = useState(false)
-  const [descTouched, setDescTouched] = useState(false)
-  const [imageTouched, setImageTouched] = useState(false)
+	const [nameTouched, setNameTouched] = useState(false)
+	const [descTouched, setDescTouched] = useState(false)
+	const [imageTouched, setImageTouched] = useState(false)
 
-  const [formValidate, setFormValidate] = useState(false)
+	const [formValidate, setFormValidate] = useState(false)
 
-  const validName = !topicValidate && nameTouched
-  const validDesc = !contentValidate && descTouched
-  const validImage = !imageValidate && imageTouched
+	const validName = !topicValidate && nameTouched
+	const validDesc = !contentValidate && descTouched
+	const validImage = !imageValidate && imageTouched
 
-    useEffect(() => {
-      setFormValidate(topicValidate && contentValidate && imageValidate)
-  }, [topicValidate, contentValidate, imageValidate])
+	useEffect(() => {
+		setFormValidate(topicValidate && contentValidate && imageValidate)
+	}, [topicValidate, contentValidate, imageValidate])
 
+	const topicHandler = (e) => {
+		setNameTouched(true)
 
-  const topicHandler = (e) => {
-    setNameTouched(true)
+		if (e.target.value.trim() === '') {
+			setTopicValidate(false)
+		} else {
+			setTopicValidate(true)
+		}
+		setTopic(e.target.value)
+	}
+	const contentHandler = (e) => {
+		setDescTouched(true)
 
-    if (e.target.value.trim() === '') {
-      setTopicValidate(false)
-    } else {
-      setTopicValidate(true)
-      
-    }
-    setTopic(e.target.value)
-  }
-  const contentHandler = (e) => {
-    setDescTouched(true)
-
-    if (e.target.value.trim() === '') {
-      setcontentValidate(false)
-    } else {
-      setcontentValidate(true)
-      setDesc(e.target.value)
-
-    }
-  }
-  const nameBlurHandler = () => {
-    setNameTouched(true)
-    if (topic.trim() === '') {
-      setTopicValidate(false)
-    } else {
-      setTopicValidate(true)
-    }
-}
-
-const descBlurHandler = () => {
-  setDescTouched(true)
-  if (content.trim() === '') {
-    setcontentValidate(false)
-  } else {
-    setcontentValidate(true)
-  }
-}
-  const catchFileDataHandler = (e) => {
-   
-    if (e.name === '') {
-      setImageValidate(false)
-    } else {
-      setImageValidate(true)
-      setSelectedFile(e)
-    }
+		if (e.target.value.trim() === '') {
+			setcontentValidate(false)
+		} else {
+			setcontentValidate(true)
+			setDesc(e.target.value)
+		}
+	}
+	const nameBlurHandler = () => {
+		setNameTouched(true)
+		if (topic.trim() === '') {
+			setTopicValidate(false)
+		} else {
+			setTopicValidate(true)
+		}
 	}
 
-  const submitHandler =  async (e) => {
-    e.preventDefault()
-    setNameTouched(true)
-    setDescTouched(true)
-    setImageTouched(true)
-    if (topic.trim() === '') {
-      setTopicValidate(false)
-      return
-    }
+	const descBlurHandler = () => {
+		setDescTouched(true)
+		if (content.trim() === '') {
+			setcontentValidate(false)
+		} else {
+			setcontentValidate(true)
+		}
+	}
+	const catchFileDataHandler = (e) => {
+		if (e.name === '') {
+			setImageValidate(false)
+		} else {
+			setImageValidate(true)
+			setSelectedFile(e)
+		}
+	}
 
-    if (content.trim() === '') {
-      setcontentValidate(false)
-      return
-    }
+	const submitHandler = async (e) => {
+		e.preventDefault()
+		setNameTouched(true)
+		setDescTouched(true)
+		setImageTouched(true)
+		if (topic.trim() === '') {
+			setTopicValidate(false)
+			return
+		}
 
-    if (selectedFile === undefined) {
-      setImageValidate(false)
-      return
-    }
+		if (content.trim() === '') {
+			setcontentValidate(false)
+			return
+		}
 
-    let image
+		if (selectedFile === undefined) {
+			setImageValidate(false)
+			return
+		}
 
-    const formData = new FormData()
-    formData.append("file", selectedFile)
-    formData.append("upload_preset", "feed_images")
-    console.log('validate')
+		let image
 
-    try {
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/movie-reservation/image/upload",
-          formData
-        )
-        .then((res) => {
-          image = res.data.secure_url
-        })
-    } catch (error) {
-      alert(error)
-    }
+		const formData = new FormData()
+		formData.append('file', selectedFile)
+		formData.append('upload_preset', 'feed_images')
+		console.log('validate')
 
-      try {
-        const response = await fetch('http://localhost:8070/postManagement/create', 
-        {
-          method:"POST", headers : {
-            "Content-Type":"application/json"
-          }, body :JSON.stringify({
-            name:topic,
-            description:content,
-            image
-          })
-        })
+		try {
+			await axios
+				.post(
+					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
+					formData
+				)
+				.then((res) => {
+					image = res.data.secure_url
+				})
+		} catch (error) {
+			alert(error)
+		}
 
-        const responseData = await response.json()
-        console.log(responseData)
-        if (!response.ok) {
-          throw new Error(responseData.message)
-        }
+		try {
+			const response = await fetch(
+				'http://44.202.187.100:8070/postManagement/create',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						name: topic,
+						description: content,
+						image
+					})
+				}
+			)
 
-       setTopic('')
-       setDesc('')
-      } catch (err) { 
-        console.log(err)
-      }
-      navigate('/postManagements')
-    }
+			const responseData = await response.json()
+			console.log(responseData)
+			if (!response.ok) {
+				throw new Error(responseData.message)
+			}
 
-  return (
-    <div className='edit-postManagement-container'>
-      <form onSubmit={submitHandler}  className='edit-postManagement-form'>
-          <h3>Add Post</h3>
-          <div className='edit-postManagement-group'>
-            <h5>Name</h5>
-            <input onChange={topicHandler} value={topic} onBlur={nameBlurHandler} type='text' placeholder='Enter Name'/>
-            {validName && <p style={{color:"Red"}}>Name should not be Empty</p>}
-          </div>
-	
-          <div className='edit-postManagement-group'>
+			setTopic('')
+			setDesc('')
+		} catch (err) {
+			console.log(err)
+		}
+		navigate('/postManagements')
+	}
+
+	return (
+		<div className="edit-postManagement-container">
+			<form onSubmit={submitHandler} className="edit-postManagement-form">
+				<h3>Add Post</h3>
+				<div className="edit-postManagement-group">
+					<h5>Name</h5>
+					<input
+						onChange={topicHandler}
+						value={topic}
+						onBlur={nameBlurHandler}
+						type="text"
+						placeholder="Enter Name"
+					/>
+					{validName && (
+						<p style={{ color: 'Red' }}>Name should not be Empty</p>
+					)}
+				</div>
+
+				<div className="edit-postManagement-group">
 					<h5>Description</h5>
-					<input onChange={contentHandler}  value={content} onBlur={descBlurHandler} type='textarea' rows='4' placeholder='Enter Description'/>
-					{validDesc && <p style={{color:"Red"}}>Description should not be empty</p>}
+					<input
+						onChange={contentHandler}
+						value={content}
+						onBlur={descBlurHandler}
+						type="textarea"
+						rows="4"
+						placeholder="Enter Description"
+					/>
+					{validDesc && (
+						<p style={{ color: 'Red' }}>Description should not be empty</p>
+					)}
 				</div>
 
-         
-				<div className='edit-postManagement-group edit-postManagement-group-image'>
-              		<h5>Add Image</h5>
+				<div className="edit-postManagement-group edit-postManagement-group-image">
+					<h5>Add Image</h5>
 					<ImageUploader onInput={catchFileDataHandler} />
-					{validImage && <p style={{color:"Red"}}>Image should be selected</p>}
+					{validImage && (
+						<p style={{ color: 'Red' }}>Image should be selected</p>
+					)}
 				</div>
-				<button type='submit' className='btn' color='primary' disabled={!formValidate}>Add</button>
-      </form>
-    </div>
-  )
-
-
+				<button
+					type="submit"
+					className="btn"
+					color="primary"
+					disabled={!formValidate}>
+					Add
+				</button>
+			</form>
+		</div>
+	)
 }
 
 export default AddPostManagement
 /* <Form onSubmit={submitHandler} className="form-control"> */
-        
-        /* <Row>
+
+/* <Row>
           <Form.Group as={Col} controlId="validationCustom01">
             <Form.Label className='mt-2'>Topic</Form.Label>
             <Input
