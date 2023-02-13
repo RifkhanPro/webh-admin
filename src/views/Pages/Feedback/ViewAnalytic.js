@@ -1,63 +1,58 @@
 /* eslint-disable semi */
 /* eslint-disable no-tabs */
-import React from 'react';
+import React from 'react'
 // eslint-disable-next-line no-duplicate-imports
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Card, CardText } from 'reactstrap';
-import avatar from './../../../assets/images/users/avatar-1.jpg';
-import './ViewSkill.css';
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Card, CardText } from 'reactstrap'
+import avatar from './../../../assets/images/users/avatar-1.jpg'
+import './ViewSkill.css'
 
 const ViewAnalytic = () => {
-	const { id } = useParams();
-	const [trend, setTrend] = useState();
-	const navigate = useNavigate();
+	const { id } = useParams()
+	const [trend, setTrend] = useState()
+	const navigate = useNavigate()
 
 	const routeHandler = () => {
-		navigate(`/analytics/edit/${id}`);
-	};
+		navigate(`/analytics/edit/${id}`)
+	}
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(
-				`http://44.202.187.100:8070/analytics/${id}`,
-				{
-					method: 'DELETE',
-					headers: { 'Content-Type': 'application/json' }
-				}
-			);
+			const response = await fetch(`http://localhost:8070/analytics/${id}`, {
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' }
+			})
 
-			const responseData = await response.json();
+			const responseData = await response.json()
 
-			setTrend(responseData);
+			setTrend(responseData)
 
 			if (!response.ok()) {
-				throw new Error(responseData.message);
+				throw new Error(responseData.message)
 			}
 		} catch (err) {}
 
-		navigate('/analytics');
-	};
+		navigate('/analytics')
+	}
 
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`
-				);
+				const response = await fetch(`http://localhost:8070/analytics/${id}`)
 
-				const responseData = await response.json();
+				const responseData = await response.json()
 
-				setTrend(responseData);
+				setTrend(responseData)
 
 				if (!response.ok()) {
-					throw new Error(responseData.message);
+					throw new Error(responseData.message)
 				}
 			} catch (err) {}
-		};
+		}
 
-		sendRequest();
-	}, [id]);
+		sendRequest()
+	}, [id])
 
 	return (
 		<>
@@ -86,7 +81,7 @@ const ViewAnalytic = () => {
 				</Button>
 			</div>
 		</>
-	);
-};
+	)
+}
 
-export default ViewAnalytic;
+export default ViewAnalytic

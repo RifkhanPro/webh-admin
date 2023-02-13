@@ -28,7 +28,7 @@ const EditTopicPost = () => {
 	const [categoryValidate, setCategoryValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
-	const categoryHandler = (e) => {
+	const categoryHandler = e => {
 		if (e.target.value.trim() === '') {
 			setCategoryValidate(false)
 		} else {
@@ -37,7 +37,7 @@ const EditTopicPost = () => {
 		setCategory(e.target.value)
 	}
 
-	const nameHandler = (e) => {
+	const nameHandler = e => {
 		if (e.target.value.trim() === '') {
 			setNameValidate(false)
 		} else {
@@ -46,7 +46,7 @@ const EditTopicPost = () => {
 		setName(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
@@ -55,7 +55,7 @@ const EditTopicPost = () => {
 		setDesc(e.target.value)
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -68,7 +68,7 @@ const EditTopicPost = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/topicPost/${id}/viewPost`
+					`http://localhost:8070/topicPost/${id}/viewPost`
 				)
 
 				const responseData = await response.json()
@@ -89,7 +89,7 @@ const EditTopicPost = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (category.trim() === '') {
@@ -121,7 +121,7 @@ const EditTopicPost = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -132,7 +132,7 @@ const EditTopicPost = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/topicPost/${id}/update`,
+					`http://localhost:8070/topicPost/${id}/update`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -160,7 +160,7 @@ const EditTopicPost = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/topicPost/${id}/update`,
+					`http://localhost:8070/topicPost/${id}/update`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

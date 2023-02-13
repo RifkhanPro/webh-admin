@@ -35,7 +35,7 @@ const ForgotPassword = () => {
 
        if (email.current.value !== '' && email.current.value.includes('@')) {
          try {
-              const response = await fetch('http://44.202.187.100:8070/user/admin-forgot-password', {method:"POST", 
+              const response = await fetch('http://localhost:8070/user/admin-forgot-password', {method:"POST", 
               headers : {"Content-Type":"application/json"}, 
               body :JSON.stringify({
                 forgot

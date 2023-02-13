@@ -36,26 +36,26 @@ const AllQuestion = () => {
 
 	console.log(user, isSignedIn)
 
-	const viewHandler = (_id) => {
+	const viewHandler = _id => {
 		navigate(`${_id}`)
 	}
 
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/question')
-			.then((res) => {
+		fetch('http://localhost:8070/question')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				questionDataChange(resp)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	//   const Removefunction = (_id) => {
 	//     if (window.confirm('Do you want to remove?')) {
-	//         fetch(`http://44.202.187.100:8070/question/${_id}`, {
+	//         fetch(`http://localhost:8070/question/${_id}`, {
 	//             method: "DELETE"
 	//         }).then((res) => {
 	//             console.log(res)
@@ -87,7 +87,7 @@ const AllQuestion = () => {
 								</thead>
 								<tbody>
 									{questionData &&
-										questionData.map((item) => (
+										questionData.map(item => (
 											<tr key={item._id} onClick={() => viewHandler(item._id)}>
 												<td>{item.email}</td>
 												<td>{item.mobile}</td>

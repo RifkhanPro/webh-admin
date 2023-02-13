@@ -27,17 +27,17 @@ const ViewQuestion = () => {
 	}, [])
 
 	console.log(user, isSignedIn)
-	const Removefunction = (_id) => {
+	const Removefunction = _id => {
 		if (window.confirm('Do you want to remove?')) {
-			fetch(`http://44.202.187.100:8070/question/${_id}`, {
+			fetch(`http://localhost:8070/question/${_id}`, {
 				method: 'DELETE'
 			})
-				.then((res) => {
+				.then(res => {
 					console.log(res)
 					alert('Removed successfully.')
 					window.location.reload()
 				})
-				.catch((err) => {
+				.catch(err => {
 					console.log(err.message)
 				})
 		}
@@ -48,7 +48,7 @@ const ViewQuestion = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/question/${id}`)
+				const response = await fetch(`http://localhost:8070/question/${id}`)
 
 				const responseData = await response.json()
 

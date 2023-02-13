@@ -10,35 +10,35 @@ const EditPost = () => {
 	const [description, descriptionChange] = useState('')
 
 	useEffect(() => {
-		fetch(`http://44.202.187.100:8070/postManagement/posts/${id}`)
-			.then((res) => {
+		fetch(`http://localhost:8070/postManagement/posts/${id}`)
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				nameChange(resp.post.name)
 				descriptionChange(resp.post.description)
 				console.log(resp)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
-	const handlesubmit = (e) => {
+	const handlesubmit = e => {
 		e.preventDefault()
 		const postData = { name, description }
 
-		fetch(`http://44.202.187.100:8070/postManagement/updatePost/${id}`, {
+		fetch(`http://localhost:8070/postManagement/updatePost/${id}`, {
 			method: 'PUT',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(postData)
 		})
-			.then((res) => {
+			.then(res => {
 				console.log(res)
 				alert('Updated successfully.')
 				navigate('/posts')
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}
@@ -51,7 +51,7 @@ const EditPost = () => {
 				<CardGroup className="group">
 					<Label>Name</Label>
 					<Input
-						onChange={(e) => nameChange(e.target.value)}
+						onChange={e => nameChange(e.target.value)}
 						value={name}
 						type="text"
 					/>
@@ -60,7 +60,7 @@ const EditPost = () => {
 				<CardGroup className="group">
 					<Label>Description</Label>
 					<Input
-						onChange={(e) => descriptionChange(e.target.value)}
+						onChange={e => descriptionChange(e.target.value)}
 						value={description}
 						type="text"
 					/>

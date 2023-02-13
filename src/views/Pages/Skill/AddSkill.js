@@ -11,7 +11,7 @@ function AddSkill() {
 	const [contentValidate, setContentValidate] = useState(true)
 	const navigate = useNavigate()
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -19,7 +19,7 @@ function AddSkill() {
 			setTitle(e.target.value)
 		}
 	}
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setContentValidate(false)
 		} else {
@@ -28,7 +28,7 @@ function AddSkill() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (topic.trim() === '') {
@@ -44,7 +44,7 @@ function AddSkill() {
 		console.log('validate')
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/skill', {
+			const response = await fetch('http://localhost:8070/skill', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

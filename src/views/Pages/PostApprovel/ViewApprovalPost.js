@@ -9,7 +9,7 @@ function ViewApprovalPost() {
 	// const {id} = useParams()
 
 	// useEffect(() => {
-	//     fetch(`http://44.202.187.100:8070/post/${id}`).then((res) => {
+	//     fetch(`http://localhost:8070/post/${id}`).then((res) => {
 	//         return res.json()
 	//     }).then((resp) => {
 	//         setPost(resp.post)
@@ -22,7 +22,7 @@ function ViewApprovalPost() {
 
 	// useEffect(() => {
 	//     if (userId) {
-	//         fetch(`http://44.202.187.100:8070/user/${userId}`).then((res) => {
+	//         fetch(`http://localhost:8070/user/${userId}`).then((res) => {
 	//             return res.json()
 	//         }).then((resp) => {
 	//             console.log(resp.result)

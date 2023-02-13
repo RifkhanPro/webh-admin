@@ -29,17 +29,17 @@ const EditUser = () => {
 	const min = 0
 	const max = 100
 
-	const pointsChangeHandler = (event) => {
+	const pointsChangeHandler = event => {
 		const value = Math.max(min, Math.min(max, Number(event.target.value)))
 		pointsChange(value)
 	}
 
 	useEffect(() => {
-		fetch(`http://44.202.187.100:8070/user/${id}`)
-			.then((res) => {
+		fetch(`http://localhost:8070/user/${id}`)
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				// idchange(resp.id)
 				fnamechange(resp.result.firstname)
 				lnamechange(resp.result.lastname)
@@ -49,7 +49,7 @@ const EditUser = () => {
 				// pointsChange(resp.result.points)
 				console.log(resp.result)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
@@ -58,21 +58,21 @@ const EditUser = () => {
 
 	const navigate = useNavigate()
 
-	const handlesubmit = (e) => {
+	const handlesubmit = e => {
 		e.preventDefault()
 		const userData = { points }
 
-		fetch(`http://44.202.187.100:8070/user/${id}/changePoints`, {
+		fetch(`http://localhost:8070/user/${id}/changePoints`, {
 			method: 'PUT',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(userData)
 		})
-			.then((res) => {
+			.then(res => {
 				console.log(res)
 				alert('Updated successfully.')
 				navigate('/user')
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}
@@ -83,7 +83,7 @@ const EditUser = () => {
 				<CardGroup className="group">
 					<CardTitle>First Name</CardTitle>
 					<Input
-						onChange={(e) => fnamechange(e.target.value)}
+						onChange={e => fnamechange(e.target.value)}
 						value={firstname}
 						disabled
 						type="text"
@@ -93,7 +93,7 @@ const EditUser = () => {
 				<CardGroup className="group">
 					<CardTitle>Last Name</CardTitle>
 					<Input
-						onChange={(e) => lnamechange(e.target.value)}
+						onChange={e => lnamechange(e.target.value)}
 						value={lastname}
 						type="text"
 						disabled
@@ -103,7 +103,7 @@ const EditUser = () => {
 				<CardGroup className="group">
 					<CardTitle>Email</CardTitle>
 					<Input
-						onChange={(e) => emailchange(e.target.value)}
+						onChange={e => emailchange(e.target.value)}
 						value={email}
 						type="email"
 						disabled
@@ -113,7 +113,7 @@ const EditUser = () => {
 				<CardGroup className="group">
 					<CardTitle>Phone</CardTitle>
 					<Input
-						onChange={(e) => phonechange(e.target.value)}
+						onChange={e => phonechange(e.target.value)}
 						value={phone}
 						type="text"
 						disabled
@@ -132,7 +132,7 @@ const EditUser = () => {
 				<CardGroup className="group">
 					<CardTitle>Status</CardTitle>
 					<Input
-						onChange={(e) => statuschange(e.target.value)}
+						onChange={e => statuschange(e.target.value)}
 						value={status}
 						type="text"
 						disabled

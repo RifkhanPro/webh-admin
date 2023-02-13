@@ -18,7 +18,7 @@ const ViewPostManagement = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/posts/${id}`
+					`http://localhost:8070/postManagement/posts/${id}`
 				)
 
 				const responseData = await response.json()
@@ -36,7 +36,7 @@ const ViewPostManagement = () => {
 	const deleteHandler = async () => {
 		try {
 			const response = await fetch(
-				`http://44.202.187.100:8070/postManagement/deletePost/${id}`,
+				`http://localhost:8070/postManagement/deletePost/${id}`,
 				{ method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
 			)
 

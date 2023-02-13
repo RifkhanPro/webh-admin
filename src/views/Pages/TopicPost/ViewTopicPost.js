@@ -10,7 +10,7 @@ import './ViewPostManagement.css'
 const ViewTopicPost = () => {
 	const { id } = useParams()
 	const [topicPost, setTopicPost] = useState()
-	const navigate = useNavigate() 
+	const navigate = useNavigate()
 
 	const routeHandler = () => {
 		navigate(`/topicPosts/edit/${id}`)
@@ -18,7 +18,7 @@ const ViewTopicPost = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/topicPost/${id}`, {
+			const response = await fetch(`http://localhost:8070/topicPost/${id}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			})
@@ -40,7 +40,7 @@ const ViewTopicPost = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/topicPost/${id}/viewPost`
+					`http://localhost:8070/topicPost/${id}/viewPost`
 				)
 
 				const responseData = await response.json()

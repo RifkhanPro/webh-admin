@@ -42,21 +42,21 @@ const AllFeedback = () => {
 	// }
 
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/feedback/')
-			.then((res) => {
+		fetch('http://localhost:8070/feedback/')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				feedbackDataChange(resp)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// const Removefunction = (_id) => {
 	//   if (window.confirm('Do you want to remove?')) {
-	//       fetch(`http://44.202.187.100:8070/feedback/${_id}`, {
+	//       fetch(`http://localhost:8070/feedback/${_id}`, {
 	//           method: "DELETE"
 	//       }).then((res) => {
 	//           console.log(res)
@@ -90,7 +90,7 @@ const AllFeedback = () => {
 								</thead>
 								<tbody>
 									{feedbackData &&
-										feedbackData.feedbacks.map((item) => (
+										feedbackData.feedbacks.map(item => (
 											<tr key={item._id}>
 												{/* <td>{}</td> */}
 												<td>{item.firstName}</td>

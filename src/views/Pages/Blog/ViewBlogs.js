@@ -36,7 +36,7 @@ function ViewBlogs() {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch('http://44.202.187.100:8070/blog')
+				const response = await fetch('http://localhost:8070/blog')
 
 				const responseData = await response.json()
 

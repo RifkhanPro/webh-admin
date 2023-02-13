@@ -1,15 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect } from 'react'
-import {
-	Button,
-	Card,
-	CardGroup,
-	Row,
-	CardTitle,
-	Col,
-	Input
-} from 'reactstrap'
+import { Button, Card, CardGroup, Row, CardTitle, Col, Input } from 'reactstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
@@ -39,7 +31,7 @@ const EditNews = () => {
 		setFormValidate(titleValidate && descValidate)
 	}, [titleValidate, descValidate])
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTitleTouched(true)
 
 		if (e.target.value.trim() === '') {
@@ -50,7 +42,7 @@ const EditNews = () => {
 		setTitle(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		setDescTouched(true)
 
 		if (e.target.value.trim() === '') {
@@ -61,14 +53,14 @@ const EditNews = () => {
 		setDesc(e.target.value)
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		setSelectedFile(e)
 	}
 
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/news/${id}`)
+				const response = await fetch(`http://localhost:8070/news/${id}`)
 
 				const responseData = await response.json()
 
@@ -107,7 +99,7 @@ const EditNews = () => {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		if (title.trim() === '') {
 			setTitleValidate(false)
@@ -135,7 +127,7 @@ const EditNews = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -145,7 +137,7 @@ const EditNews = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/news/${id}`, {
+				const response = await fetch(`http://localhost:8070/news/${id}`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json'
@@ -175,7 +167,7 @@ const EditNews = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/news/${id}`, {
+				const response = await fetch(`http://localhost:8070/news/${id}`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json'

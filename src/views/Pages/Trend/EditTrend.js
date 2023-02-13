@@ -30,7 +30,7 @@ const EditTrend = () => {
 	const [descValidate, setDescValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTitleValidate(false)
 		} else {
@@ -39,7 +39,7 @@ const EditTrend = () => {
 		setTitle(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
@@ -48,7 +48,7 @@ const EditTrend = () => {
 		setDesc(e.target.value)
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -59,7 +59,7 @@ const EditTrend = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/trend/${id}`)
+				const response = await fetch(`http://localhost:8070/trend/${id}`)
 
 				const responseData = await response.json()
 
@@ -79,7 +79,7 @@ const EditTrend = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		if (title.trim() === '') {
 			setTitleValidate(false)
@@ -106,7 +106,7 @@ const EditTrend = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -116,7 +116,7 @@ const EditTrend = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/trend/${id}`, {
+				const response = await fetch(`http://localhost:8070/trend/${id}`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -140,7 +140,7 @@ const EditTrend = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/trend/${id}`, {
+				const response = await fetch(`http://localhost:8070/trend/${id}`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

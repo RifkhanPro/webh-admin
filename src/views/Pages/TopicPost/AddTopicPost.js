@@ -31,7 +31,7 @@ function AddTopicPost() {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch('http://44.202.187.100:8070/topic')
+				const response = await fetch('http://localhost:8070/topic')
 
 				const responseData = await response.json()
 
@@ -49,7 +49,7 @@ function AddTopicPost() {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch('http://44.202.187.100:8070/topic/topicNames', {
+				const response = await fetch('http://localhost:8070/topic/topicNames', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -72,15 +72,15 @@ function AddTopicPost() {
 		sendRequest()
 	}, [category])
 
-	const categoryHandler = (e) => {
+	const categoryHandler = e => {
 		setCategory(e.target.value)
 	}
 
-	const nameHandler = (e) => {
+	const nameHandler = e => {
 		setName(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
@@ -89,7 +89,7 @@ function AddTopicPost() {
 		}
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -98,7 +98,7 @@ function AddTopicPost() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (category.trim() === '') {
@@ -134,7 +134,7 @@ function AddTopicPost() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
@@ -142,7 +142,7 @@ function AddTopicPost() {
 		}
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/topicPost', {
+			const response = await fetch('http://localhost:8070/topicPost', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

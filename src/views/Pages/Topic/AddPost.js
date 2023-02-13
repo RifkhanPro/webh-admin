@@ -21,14 +21,14 @@ function AddPost() {
 	const [desc, setDesc] = useState()
 	const navigate = useNavigate()
 
-	const categoryHandler = (e) => {
+	const categoryHandler = e => {
 		setTitle(e.target.value)
 	}
 
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/topic/${id}`)
+				const response = await fetch(`http://localhost:8070/topic/${id}`)
 
 				const responseData = await response.json()
 
@@ -43,11 +43,11 @@ function AddPost() {
 
 		sendRequest()
 	})
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/topic', {
+			const response = await fetch('http://localhost:8070/topic', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

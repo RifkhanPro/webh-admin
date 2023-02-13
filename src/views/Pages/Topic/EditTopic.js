@@ -11,7 +11,7 @@ const EditTopic = () => {
 	const [topic, setTopic] = useState('')
 	const [valid, setValid] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTopic(e.target.value)
 		console.log(e.target.value)
 		if (e.target.value.trim().length === 0) {
@@ -25,7 +25,7 @@ const EditTopic = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/topic/${id}`)
+				const response = await fetch(`http://localhost:8070/topic/${id}`)
 
 				const responseData = await response.json()
 
@@ -40,14 +40,14 @@ const EditTopic = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (!valid) {
 			return
 		}
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/topic/${id}`, {
+			const response = await fetch(`http://localhost:8070/topic/${id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

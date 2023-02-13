@@ -24,21 +24,17 @@ import logo from '../../src/assets/images/logo/webh_logo.png'
 import { GoogleLogin } from '@leecheuk/react-google-login'
 import {gapi} from 'gapi-script'
 
-const Login = () => {
+const GoogleValidation = () => {
 	const { skin } = useSkin()
-	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+    const email = JSON.parse(localStorage.getItem('userData')).email
+    const tokenId = JSON.parse(localStorage.getItem('userData')).result
 	const navigate = useNavigate()
-	const [user, setUser] = useState({email:'', password:'', err:''})
-	// const [showPassword, setShowPassword] = useState()
+	const [user, setUser] = useState({password:'', err:''})
 
 	const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
 		source = require(`@src/assets/images/pages/${illustration}`).default
 
-	//show hide password
-	// function handleshowpassword () {
-	//     setShowPassword((prevShowPassword) => !prevShowPassword)
-	// }
 
 	async function signIn(event) {
 		event.preventDefault()
@@ -52,16 +48,20 @@ const Login = () => {
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://localhost:8070/user/admin-signin',
-				{ email, password },
-				config
+				'http://localhost:8070/user/google_login/validation',
+				{password, tokenId}
 			)
 
 			//setting the user authorization token
-			localStorage.setItem('userAuthToken', `User ${data.token}`)
-			//setting user
-			localStorage.setItem('user', JSON.stringify(data.result))
-			navigate('/home')
+
+            console.log(data.loggedIn)
+            if (data.loggedIn) {
+                localStorage.setItem('userAuthToken', `User ${data.token}`)
+                //setting user
+                localStorage.setItem('user', JSON.stringify(data.result))
+                navigate('/home')
+            }
+		
 		} catch (error) {
 			if (error.response.status === 404) {
 				swal(
@@ -84,65 +84,6 @@ const Login = () => {
 			}
 		}
 	}
-	const googleAuthHandler = e => {
-		e.preventDefault()
-		window.open('/http:localhost:8070/user/google/callback', '_self')
-	}
-
-	useEffect(() => {
-		gapi.load("client:auth2", () => {
-			gapi.auth2.init({clientId:'395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com'})
-		})
-	})
-
-	const responseGoogle = async (response) => {
-		try {
-			const res = await axios.post('http://localhost:8070/user/google_login', {tokenId:response.tokenId})
-			//setting the user authorization token
-
-			if (res.data.loggedIn) {
-				console.log(res.data.loggedIn)
-				localStorage.setItem('userAuthToken', `User ${res.data.token}`)
-				//setting user
-				localStorage.setItem('user', JSON.stringify(res.data.result))
-				navigate('/home')
-			} else if (!res.data.loggedIn) {
-				localStorage.setItem('userData', JSON.stringify(res.data))
-				navigate('/google-check')
-
-			}
-			
-			console.log(res)
-
-		} catch (error) {
-			console.log(error)
-			if (error.response.status === 404) {
-				swal(
-					'User cannot find by email!',
-					'Check the email and password!',
-					'error'
-				)
-			} else if (error.response.status === 400) {
-				swal(
-					'Your Cant Access this Site!',
-					'Check the email and password!',
-					'error'
-				)
-			} else if (error.response.status === 401) {
-				swal(
-					'Incorrect Email or Password!',
-					'Check the email and password!',
-					'error'
-				)
-			} else {
-				swal(
-					'Incorrect Email or Password!',
-					'Check the email and password!',
-					'error'
-				)
-			}
-		}
-	  }
 
 	return (
 		<div className="auth-wrapper auth-cover">
@@ -174,25 +115,21 @@ const Login = () => {
 							Welcome to WebH Admin Panel! 👋
 						</CardTitle>
 						<CardText className="mb-2">
-							Please sign-in to your account as an admin
+							Please give the password
 						</CardText>
 						<Form
 							className="auth-login-form mt-2"
 							// onSubmit={e => e.preventDefault()}
 							onSubmit={signIn}>
 							<div className="mb-1">
-								<Label className="form-label" for="login-email">
+								<Label className="form-label" for="login-email" disabled={true}>
 									Email
 								</Label>
 								<Input
 									type="email"
 									id="login-email"
-									placeholder="john@example.com"
-									name="email"
-									autoFocus
-									onChange={event => {
-										setEmail(event.target.value)
-									}}
+									disabled={true}
+                                    value={email}
 								/>
 							</div>
 							<div className="mb-1">
@@ -208,11 +145,8 @@ const Login = () => {
 									onChange={event => {
 										setPassword(event.target.value)
 									}}
-									// handleShowPassword={handleshowpassword}
 								/>
-								<Link to="/forgot-password">
-									<small style={{ float: 'right' }}>Forgot Password?</small>
-								</Link>
+							
 							</div>
 							<div className="form-check mb-1">
 								<Input type="checkbox" id="remember-me" />
@@ -228,16 +162,7 @@ const Login = () => {
 								Sign in
 								{/* { showPassword ? "ok" : "not" } */}
 							</Button>
-							<div className='login-with-google'>
-								<GoogleLogin
-									clientId="395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com" 
-									buttonText="Login with google"
-									onSuccess={responseGoogle}
-									onFailure={responseGoogle}
-									cookiePolicy={'single_host_origin'}
-								/>
-							</div>
-							
+						
 						</Form>
 					</Col>
 				</Col>
@@ -246,4 +171,4 @@ const Login = () => {
 	)
 }
 
-export default Login
+export default GoogleValidation

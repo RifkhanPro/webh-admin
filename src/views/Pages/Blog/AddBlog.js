@@ -26,7 +26,7 @@ function AddSkill() {
 		setFormValidate(topicValidate && contentValidate && imageValidate)
 	}, [topicValidate, contentValidate, imageValidate])
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTopicTouched(true)
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
@@ -36,7 +36,7 @@ function AddSkill() {
 		setTitle(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		setDescTouched(true)
 		if (e.target.value.trim() === '') {
 			setContentValidate(false)
@@ -46,7 +46,7 @@ function AddSkill() {
 		setDesc(e.target.value)
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -72,7 +72,7 @@ function AddSkill() {
 			setContentValidate(true)
 		}
 	}
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		setTopicTouched(true)
@@ -95,7 +95,7 @@ function AddSkill() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
@@ -103,7 +103,7 @@ function AddSkill() {
 		}
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/blog', {
+			const response = await fetch('http://localhost:8070/blog', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

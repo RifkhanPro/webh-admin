@@ -2,15 +2,7 @@
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect } from 'react'
 // import './AddSkill.css'
-import {
-	Button,
-	Card,
-	Row,
-	Col,
-	CardGroup,
-	CardTitle,
-	Input
-} from 'reactstrap'
+import { Button, Card, Row, Col, CardGroup, CardTitle, Input } from 'reactstrap'
 import { useParams, useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
@@ -29,7 +21,7 @@ const EditArticle = () => {
 	const [descValidate, setDescValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -38,7 +30,7 @@ const EditArticle = () => {
 		}
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
@@ -47,7 +39,7 @@ const EditArticle = () => {
 		}
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -59,9 +51,7 @@ const EditArticle = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/article/${id}`
-				)
+				const response = await fetch(`http://localhost:8070/article/${id}`)
 
 				const responseData = await response.json()
 
@@ -82,7 +72,7 @@ const EditArticle = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		if (topic.trim() === '') {
 			setTopicValidate(false)
@@ -108,7 +98,7 @@ const EditArticle = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -117,18 +107,15 @@ const EditArticle = () => {
 		}
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/article/${id}`,
-					{
-						method: 'PUT',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							desc,
-							title: topic,
-							image: imageUrl
-						})
-					}
-				)
+				const response = await fetch(`http://localhost:8070/article/${id}`, {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						desc,
+						title: topic,
+						image: imageUrl
+					})
+				})
 
 				const responseData = await response.json()
 				console.log(responseData)
@@ -147,18 +134,15 @@ const EditArticle = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/article/${id}`,
-					{
-						method: 'PUT',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							desc,
-							title: topic,
-							image
-						})
-					}
-				)
+				const response = await fetch(`http://localhost:8070/article/${id}`, {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						desc,
+						title: topic,
+						image
+					})
+				})
 
 				const responseData = await response.json()
 				console.log(responseData)

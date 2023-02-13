@@ -38,7 +38,7 @@ function AddNews() {
 		setFormValidate(titleValidate && descValidate && imageValidate)
 	}, [titleValidate, descValidate, imageValidate])
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTitleTouched(true)
 		if (e.target.value.trim() === '') {
 			setTitleValidate(false)
@@ -48,7 +48,7 @@ function AddNews() {
 		setTitle(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		setDescTouched(true)
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
@@ -58,7 +58,7 @@ function AddNews() {
 		setDesc(e.target.value)
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -85,7 +85,7 @@ function AddNews() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		setTitleTouched(true)
@@ -118,14 +118,14 @@ function AddNews() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
 			alert(error)
 		}
 		try {
-			const response = await fetch('http://44.202.187.100:8070/news', {
+			const response = await fetch('http://localhost:8070/news', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

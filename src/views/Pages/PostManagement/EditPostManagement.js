@@ -42,7 +42,7 @@ const EditPostManagement = () => {
 		setFormValidate(topicValidate && descValidate)
 	}, [topicValidate, descValidate])
 
-	const topicHandler = (e) => {
+	const topicHandler = e => {
 		setNameTouched(true)
 
 		if (e.target.value.trim() === '') {
@@ -52,7 +52,7 @@ const EditPostManagement = () => {
 		}
 		setTitle(e.target.value)
 	}
-	const descHandler = (e) => {
+	const descHandler = e => {
 		setDescTouched(true)
 
 		if (e.target.value.trim() === '') {
@@ -80,7 +80,7 @@ const EditPostManagement = () => {
 		}
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -93,7 +93,7 @@ const EditPostManagement = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/posts/${id}`
+					`http://localhost:8070/postManagement/posts/${id}`
 				)
 
 				const responseData = await response.json()
@@ -112,7 +112,7 @@ const EditPostManagement = () => {
 	}, [id])
 
 	//  function
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		setNameTouched(true)
@@ -132,7 +132,7 @@ const EditPostManagement = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -143,7 +143,7 @@ const EditPostManagement = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/updatePost/${id}`,
+					`http://localhost:8070/postManagement/updatePost/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -172,7 +172,7 @@ const EditPostManagement = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/updatePost/${id}`,
+					`http://localhost:8070/postManagement/updatePost/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

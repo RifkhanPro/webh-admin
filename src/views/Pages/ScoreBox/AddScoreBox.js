@@ -23,7 +23,7 @@ function AddScoreBox() {
 	const [imageValidate, setImageValidate] = useState(true)
 	const navigate = useNavigate()
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -32,7 +32,7 @@ function AddScoreBox() {
 		}
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setContentValidate(false)
 		} else {
@@ -41,7 +41,7 @@ function AddScoreBox() {
 		}
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -50,7 +50,7 @@ function AddScoreBox() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (topic.trim() === '') {
@@ -81,14 +81,14 @@ function AddScoreBox() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
 			alert(error)
 		}
 		try {
-			const response = await fetch('http://44.202.187.100:8070/scoreBox', {
+			const response = await fetch('http://localhost:8070/scoreBox', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

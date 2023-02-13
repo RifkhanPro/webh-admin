@@ -26,7 +26,7 @@ const EditScoreBox = () => {
 	const [contentValidate, setContentValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -35,7 +35,7 @@ const EditScoreBox = () => {
 		}
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setContentValidate(false)
 		} else {
@@ -44,7 +44,7 @@ const EditScoreBox = () => {
 		}
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -56,7 +56,7 @@ const EditScoreBox = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/scoreBox/${id}`)
+				const response = await fetch(`http://localhost:8070/scoreBox/${id}`)
 
 				const responseData = await response.json()
 
@@ -75,7 +75,7 @@ const EditScoreBox = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (topic.trim() === '') {
@@ -102,7 +102,7 @@ const EditScoreBox = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -112,7 +112,7 @@ const EditScoreBox = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/scoreBox/${id}`, {
+				const response = await fetch(`http://localhost:8070/scoreBox/${id}`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -140,7 +140,7 @@ const EditScoreBox = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/scoreBox/${id}`, {
+				const response = await fetch(`http://localhost:8070/scoreBox/${id}`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

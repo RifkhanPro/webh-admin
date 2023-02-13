@@ -26,37 +26,37 @@ const AddUser = () => {
 
 	const navigate = useNavigate()
 
-	const nameHandler = (e) => {
+	const nameHandler = e => {
 		setFirstName(e.target.value)
 	}
-	const lastNameHandler = (e) => {
+	const lastNameHandler = e => {
 		setlastName(e.target.value)
 	}
-	const emailHandler = (e) => {
+	const emailHandler = e => {
 		setEmail(e.target.value)
 	}
-	const phoneHandler = (e) => {
+	const phoneHandler = e => {
 		setPhone(e.target.value)
 	}
-	const passwordHandler = (e) => {
+	const passwordHandler = e => {
 		setPassword(e.target.value)
 	}
 
-	const handlesubmit = async (e) => {
+	const handlesubmit = async e => {
 		e.preventDefault()
 		const postData = { firstName, lastname, email, phone, password, status }
 
-		fetch('http://44.202.187.100:8070/user/signup', {
+		fetch('http://localhost:8070/user/signup', {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(postData)
 		})
-			.then((res) => {
+			.then(res => {
 				alert('Saved successfully.')
 				console.log(res)
 				navigate('/')
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}

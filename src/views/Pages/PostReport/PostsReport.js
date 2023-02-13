@@ -30,7 +30,7 @@ const AllComments = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/post`)
+				const response = await fetch(`http://localhost:8070/post`)
 
 				const responseData = await response.json()
 
@@ -47,7 +47,7 @@ const AllComments = () => {
 		sendRequest()
 	}, [])
 
-	const viewHandler = async (postId) => {
+	const viewHandler = async postId => {
 		navigate(`/postReport/${postId}`)
 	}
 
@@ -71,7 +71,7 @@ const AllComments = () => {
 								</thead>
 								<tbody>
 									{posts &&
-										posts.map((item) => (
+										posts.map(item => (
 											<tr
 												key={item.id}
 												className="tr"

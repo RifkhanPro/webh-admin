@@ -30,7 +30,7 @@ const ViewUser = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/user/${id}`)
+				const response = await fetch(`http://localhost:8070/user/${id}`)
 
 				const responseData = await response.json()
 
@@ -52,7 +52,7 @@ const ViewUser = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/post/${id}/userPosts`
+					`http://localhost:8070/post/${id}/userPosts`
 				)
 
 				const responseData = await response.json()
@@ -105,7 +105,7 @@ const ViewUser = () => {
 									<div className="user-view-card-div user-view-card-posts">
 										<h2 className="mb-1">Posts</h2>
 										<div className="user-view-card-posts-list">
-											{posts.map((post) => (
+											{posts.map(post => (
 												<img src={post.image} alt="" className="post-image" />
 											))}
 										</div>
@@ -115,7 +115,7 @@ const ViewUser = () => {
 									<div className="user-view-card-div user-view-card-interests">
 										<h2 className="mb-1">Interests</h2>
 										<div className="user-view-card-skill-list">
-											{userData.interests.map((interest) => (
+											{userData.interests.map(interest => (
 												<p>{interest.name}</p>
 											))}
 										</div>
@@ -125,7 +125,7 @@ const ViewUser = () => {
 									<div className="user-view-card-div user-view-card-skills">
 										<h2 className="mb-1">Skills</h2>
 										<div className="user-view-card-skill-list">
-											{userData.skills.map((skill) => (
+											{userData.skills.map(skill => (
 												<p>{skill.name}</p>
 											))}
 										</div>

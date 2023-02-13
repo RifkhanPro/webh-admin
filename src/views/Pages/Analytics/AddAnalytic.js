@@ -18,7 +18,7 @@ function AddAnalytic() {
 	const navigate = useNavigate()
 	const [spinner, setSpinner] = useState(false)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTitleValidate(false)
 		} else {
@@ -26,7 +26,7 @@ function AddAnalytic() {
 			setTitle(e.target.value)
 		}
 	}
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
@@ -34,7 +34,7 @@ function AddAnalytic() {
 			setDesc(e.target.value)
 		}
 	}
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -43,10 +43,10 @@ function AddAnalytic() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		setSpinner(true)
- 
+
 		if (title.trim() === '') {
 			setTitleValidate(false)
 			return
@@ -75,7 +75,7 @@ function AddAnalytic() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
@@ -83,7 +83,7 @@ function AddAnalytic() {
 		}
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/analytics', {
+			const response = await fetch('http://localhost:8070/analytics', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

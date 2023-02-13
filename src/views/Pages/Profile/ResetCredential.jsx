@@ -77,7 +77,7 @@ function ResetCredential() {
             setEmailTouched(true)
             setPasswordTouched(true)
                 try {
-                const response = await fetch(`http://44.202.187.100:8070/user/${JSON.parse(localStorage.getItem('user'))._id}/resetAdminCredential`, 
+                const response = await fetch(`http://localhost:8070/user/${JSON.parse(localStorage.getItem('user'))._id}/resetAdminCredential`, 
                 { method:"PUT", 
                     headers : {
                     "Content-Type":"application/json"

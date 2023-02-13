@@ -10,7 +10,7 @@ function AddTopic() {
 	const [topic, setTitle] = useState('')
 	const [topicValidate, setTopicValidate] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -28,7 +28,7 @@ function AddTopic() {
 	//   }
 	// }
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (topic.trim() === '') {
@@ -37,7 +37,7 @@ function AddTopic() {
 		}
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/topic', {
+			const response = await fetch('http://localhost:8070/topic', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

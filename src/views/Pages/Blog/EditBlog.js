@@ -28,7 +28,7 @@ const EditBlog = () => {
 		setFormValidate(topicValidate && descValidate)
 	}, [topicValidate, descValidate])
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTopicTouched(true)
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
@@ -38,7 +38,7 @@ const EditBlog = () => {
 		setTitle(e.target.value)
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		setDescTouched(true)
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
@@ -48,7 +48,7 @@ const EditBlog = () => {
 		setDesc(e.target.value)
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		setSelectedFile(e)
 	}
 
@@ -73,7 +73,7 @@ const EditBlog = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/blog/${id}`)
+				const response = await fetch(`http://localhost:8070/blog/${id}`)
 
 				const responseData = await response.json()
 
@@ -94,7 +94,7 @@ const EditBlog = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		if (topic.trim() === '') {
 			setTopicValidate(false)
@@ -121,7 +121,7 @@ const EditBlog = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -131,7 +131,7 @@ const EditBlog = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/blog/${id}`, {
+				const response = await fetch(`http://localhost:8070/blog/${id}`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -159,7 +159,7 @@ const EditBlog = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/blog/${id}`, {
+				const response = await fetch(`http://localhost:8070/blog/${id}`, {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

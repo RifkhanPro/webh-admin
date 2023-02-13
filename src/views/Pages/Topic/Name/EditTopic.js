@@ -17,14 +17,14 @@ const EditTopic = () => {
 	const { id } = useParams()
 	const [topic, setTitle] = useState()
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTitle(e.target.value)
 	}
 
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/topic/${id}`)
+				const response = await fetch(`http://localhost:8070/topic/${id}`)
 
 				const responseData = await response.json()
 
@@ -41,11 +41,11 @@ const EditTopic = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/topic/${id}`, {
+			const response = await fetch(`http://localhost:8070/topic/${id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

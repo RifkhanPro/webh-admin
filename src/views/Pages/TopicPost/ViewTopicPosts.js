@@ -10,7 +10,7 @@ function ViewTopicPosts() {
 	const navigate = useNavigate()
 	const [isSignedIn, setIsSignedIn] = useState(false)
 	const [user, setUser] = useState('')
- 
+
 	useEffect(() => {
 		//check whether user has signed in
 		if (localStorage.getItem('userAuthToken')) {
@@ -33,7 +33,7 @@ function ViewTopicPosts() {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					'http://44.202.187.100:8070/topicPost/topicPosts'
+					'http://localhost:8070/topicPost/topicPosts'
 				)
 
 				const responseData = await response.json()

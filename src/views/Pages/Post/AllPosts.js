@@ -15,37 +15,37 @@ const ViewPosts = () => {
 	const [postsData, postDataChange] = useState()
 	//   const [postDataChange] = useState()
 	const navigate = useNavigate()
-	const LoadDetail = (_id) => {
+	const LoadDetail = _id => {
 		navigate(`${_id}`)
 	}
-	const LoadEdit = (_id) => {
+	const LoadEdit = _id => {
 		navigate(`edit/${_id}`)
 	}
 
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/postManagement/posts')
-			.then((res) => {
+		fetch('http://localhost:8070/postManagement/posts')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				postDataChange(resp)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
-	const Removefunction = (_id) => {
+	const Removefunction = _id => {
 		if (window.confirm('Do you want to remove?')) {
-			fetch(`http://44.202.187.100:8070/postManagement/deletePost/${_id}`, {
+			fetch(`http://localhost:8070/postManagement/deletePost/${_id}`, {
 				method: 'DELETE'
 			})
-				.then((res) => {
+				.then(res => {
 					console.log(res)
 					alert('Removed successfully.')
 					window.location.reload()
 				})
-				.catch((err) => {
+				.catch(err => {
 					console.log(err.message)
 				})
 		}
@@ -73,7 +73,7 @@ const ViewPosts = () => {
 						</thead>
 						<tbody>
 							{postsData &&
-								postsData.map((item) => (
+								postsData.map(item => (
 									<tr key={item._id}>
 										<td></td>
 										<td>{item.name}</td>

@@ -14,6 +14,7 @@ import PublicRoute from '@components/routes/PublicRoute'
 // ** Utils
 import { isObjEmpty } from '@utils'
 import Test from '../../views/Pages/Post/Test'
+import GoogleValidation from '../../views/GoogleValidation'
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -254,6 +255,13 @@ const Routes = [
   {
     path: '/login',
     element: <Login />,
+    meta: {
+      layout: 'blank'
+    }
+  },
+  {
+    path: '/google-check',
+    element: <GoogleValidation />,
     meta: {
       layout: 'blank'
     }

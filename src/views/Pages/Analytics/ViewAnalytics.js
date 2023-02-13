@@ -88,11 +88,11 @@ function ViewAnalytics() {
 
 	// Post Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/postManagement/posts')
-			.then((res) => {
+		fetch('http://localhost:8070/postManagement/posts')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setPostDataChange(resp)
 				setAllPostData(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[2] = Object.keys(resp).length)])
@@ -100,18 +100,18 @@ function ViewAnalytics() {
 				console.log(allPostData)
 				console.log(allPost)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// Blog Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/blog')
-			.then((res) => {
+		fetch('http://localhost:8070/blog')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setBlogDataChange(resp)
 				setAllPClogCount(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[5] = Object.keys(resp).length)])
@@ -119,18 +119,18 @@ function ViewAnalytics() {
 				console.log(allBlogCount)
 				console.log(allBlog)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// Article Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/article')
-			.then((res) => {
+		fetch('http://localhost:8070/article')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setArticleDataChange(resp)
 				setAllArticleCount(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[6] = Object.keys(resp).length)])
@@ -138,18 +138,18 @@ function ViewAnalytics() {
 				console.log(allArticleCount)
 				console.log(allArticle)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// Topic Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/topic/topics')
-			.then((res) => {
+		fetch('http://localhost:8070/topic/topics')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setTopicDataChange(resp)
 				setAllTopicCount(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[1] = Object.keys(resp).length)])
@@ -157,18 +157,18 @@ function ViewAnalytics() {
 				console.log(allTopicCount)
 				console.log(allTopic)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// Topic Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/topicPost/topicPosts')
-			.then((res) => {
+		fetch('http://localhost:8070/topicPost/topicPosts')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setTopicPostDataChange(resp)
 				setAllTopicPostCount(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[7] = Object.keys(resp).length)])
@@ -176,18 +176,18 @@ function ViewAnalytics() {
 				console.log(allTopicPostCount)
 				console.log(allTopicPost)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// Advertistment Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/advertisement')
-			.then((res) => {
+		fetch('http://localhost:8070/advertisement')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setAdvDataChange(resp)
 				setAllAdvCount(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[4] = Object.keys(resp).length)])
@@ -195,43 +195,43 @@ function ViewAnalytics() {
 				console.log(allAdvCount)
 				console.log(allAdvPost)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// News Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/news')
-			.then((res) => {
+		fetch('http://localhost:8070/news')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setNewsChange(resp)
 				setAllNewsCount(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[3] = Object.keys(resp).length)])
 
 				console.log(allNews)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	// User Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/user')
-			.then((res) => {
+		fetch('http://localhost:8070/user')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				userDataChange(resp)
 				setAllData(Object.keys(resp).length)
 				setSeries([...series, (series[0].data[0] = Object.keys(resp).length)])
 
 				console.log(userData)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 

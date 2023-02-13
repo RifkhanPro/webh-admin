@@ -18,16 +18,16 @@ const EditName = () => {
 	const { name, category } = useParams()
 	const [newName, setNewName] = useState()
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setNewName(e.target.value)
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		try {
 			const response = await fetch(
-				'http://44.202.187.100:8070/topicPost/changeName',
+				'http://localhost:8070/topicPost/changeName',
 				{
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },

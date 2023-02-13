@@ -1,6 +1,7 @@
-import React from "react"
 // eslint-disable-next-line no-duplicate-imports
-import { useState, useEffect } from "react"
+/* eslint-disable no-tabs */
+
+import React, { useState, useEffect } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
 import './ViewPostManagement.css'
@@ -17,7 +18,7 @@ const ViewAdvertisement = () => {
  
     const deleteHandler = async() => {
       try {
-        const response = await fetch(`http://44.202.187.100:8070/advertisement/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
+        const response = await fetch(`http://localhost:8070/advertisement/${id}`, {method:"DELETE", headers : {"Content-Type":"application/json"}})
 
         const responseData = await response.json()
 
@@ -37,7 +38,7 @@ const ViewAdvertisement = () => {
   useEffect(() => {
     const sendRequest = async () => {
      try {
-         const response = await fetch(`http://44.202.187.100:8070/advertisement/${id}`)
+         const response = await fetch(`http://localhost:8070/advertisement/${id}`)
 
          const responseData = await response.json()
           console.log(responseData)

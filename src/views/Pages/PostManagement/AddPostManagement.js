@@ -31,7 +31,7 @@ function AddPostManagement() {
 		setFormValidate(topicValidate && contentValidate && imageValidate)
 	}, [topicValidate, contentValidate, imageValidate])
 
-	const topicHandler = (e) => {
+	const topicHandler = e => {
 		setNameTouched(true)
 
 		if (e.target.value.trim() === '') {
@@ -41,7 +41,7 @@ function AddPostManagement() {
 		}
 		setTopic(e.target.value)
 	}
-	const contentHandler = (e) => {
+	const contentHandler = e => {
 		setDescTouched(true)
 
 		if (e.target.value.trim() === '') {
@@ -68,7 +68,7 @@ function AddPostManagement() {
 			setcontentValidate(true)
 		}
 	}
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -77,7 +77,7 @@ function AddPostManagement() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		setNameTouched(true)
 		setDescTouched(true)
@@ -110,7 +110,7 @@ function AddPostManagement() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
@@ -119,7 +119,7 @@ function AddPostManagement() {
 
 		try {
 			const response = await fetch(
-				'http://44.202.187.100:8070/postManagement/create',
+				'http://localhost:8070/postManagement/create',
 				{
 					method: 'POST',
 					headers: {

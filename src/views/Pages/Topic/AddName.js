@@ -11,7 +11,7 @@ const AddName = () => {
 	const [name, setName] = useState('')
 	const [nameValidate, setNameValidate] = useState(true)
 
-	const nameHandler = (e) => {
+	const nameHandler = e => {
 		if (e.target.value.trim() === '') {
 			setNameValidate(false)
 		} else {
@@ -27,7 +27,7 @@ const AddName = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/topic/${id}`)
+				const response = await fetch(`http://localhost:8070/topic/${id}`)
 
 				const responseData = await response.json()
 
@@ -42,7 +42,7 @@ const AddName = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (name.trim() === '') {
@@ -51,7 +51,7 @@ const AddName = () => {
 		}
 
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/topic/${id}/create`, {
+			const response = await fetch(`http://localhost:8070/topic/${id}/create`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

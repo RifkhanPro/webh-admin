@@ -36,7 +36,7 @@ const AllUsers = () => {
 
 	console.log(user, isSignedIn)
 
-	const LoadDetail = (_id) => {
+	const LoadDetail = _id => {
 		navigate(`${_id}`)
 	}
 
@@ -45,7 +45,7 @@ const AllUsers = () => {
 	// }
 	// const Removefunction = (_id) => {
 	//     if (window.confirm('Do you want to Change the Status?')) {
-	//         fetch(`http://44.202.187.100:8070/user/${_id}/activation`, {
+	//         fetch(`http://localhost:8070/user/${_id}/activation`, {
 	//             method: "PUT"
 	//         }).then((res) => {
 	//             console.log(res)
@@ -58,17 +58,17 @@ const AllUsers = () => {
 	// }
 
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/user')
-			.then((res) => {
+		fetch('http://localhost:8070/user')
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				userDataChange(resp)
 				console.log(resp)
 				setAllData(Object.keys(resp).length)
 				console.log(allData)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
@@ -95,7 +95,7 @@ const AllUsers = () => {
 
 								<tbody style={{ textAlign: 'left' }}>
 									{userData &&
-										userData.map((item) => (
+										userData.map(item => (
 											<tr key={item._id} onClick={() => LoadDetail(item._id)}>
 												<td>{item.firstname}</td>
 												<td>{item.lastname}</td>

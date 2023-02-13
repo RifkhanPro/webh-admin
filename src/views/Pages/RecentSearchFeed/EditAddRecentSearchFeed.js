@@ -27,7 +27,7 @@ const EditAddRecentSearchFeed = () => {
 	const [contentValidate, setContentValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTopicValidate(false)
 		} else {
@@ -36,7 +36,7 @@ const EditAddRecentSearchFeed = () => {
 		}
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setContentValidate(false)
 		} else {
@@ -45,7 +45,7 @@ const EditAddRecentSearchFeed = () => {
 		}
 	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -58,7 +58,7 @@ const EditAddRecentSearchFeed = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/recentSearchFeed/${id}`
+					`http://localhost:8070/recentSearchFeed/${id}`
 				)
 
 				const responseData = await response.json()
@@ -78,7 +78,7 @@ const EditAddRecentSearchFeed = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (topic.trim() === '') {
@@ -106,7 +106,7 @@ const EditAddRecentSearchFeed = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -117,7 +117,7 @@ const EditAddRecentSearchFeed = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/recentSearchFeed/${id}`,
+					`http://localhost:8070/recentSearchFeed/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -148,7 +148,7 @@ const EditAddRecentSearchFeed = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/recentSearchFeed/${id}`,
+					`http://localhost:8070/recentSearchFeed/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

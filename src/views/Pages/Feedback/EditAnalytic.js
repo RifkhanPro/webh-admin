@@ -18,16 +18,16 @@ const EditAnalytic = () => {
 	const [title, setTitle] = useState()
 	const [desc, setDesc] = useState()
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		setTitle(e.target.value)
 	}
-	const descHandler = (e) => {
+	const descHandler = e => {
 		setDesc(e.target.value)
 	}
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/analytics/${id}`)
+				const response = await fetch(`http://localhost:8070/analytics/${id}`)
 
 				const responseData = await response.json()
 
@@ -45,11 +45,11 @@ const EditAnalytic = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/analytics/${id}`, {
+			const response = await fetch(`http://localhost:8070/analytics/${id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

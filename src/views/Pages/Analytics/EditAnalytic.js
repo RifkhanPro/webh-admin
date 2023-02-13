@@ -1,15 +1,7 @@
 /* eslint-disable no-tabs */
 /* eslint-disable object-property-newline */
 import React, { useState, useEffect } from 'react'
-import {
-	Button,
-	Card,
-	CardGroup,
-	Row,
-	CardTitle,
-	Col,
-	Input
-} from 'reactstrap'
+import { Button, Card, CardGroup, Row, CardTitle, Col, Input } from 'reactstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import ImageUploader from './ImageUploader'
@@ -27,7 +19,7 @@ const EditAnalytic = () => {
 	const [descValidate, setDescValidate] = useState(true)
 	const [imageValidate, setImageValidate] = useState(true)
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTitleValidate(false)
 		} else {
@@ -36,16 +28,16 @@ const EditAnalytic = () => {
 		}
 	}
 
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
 			setDescValidate(true)
 			setDesc(e.target.value)
 		}
-	} 
+	}
 
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -56,9 +48,7 @@ const EditAnalytic = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`
-				)
+				const response = await fetch(`http://localhost:8070/analytics/${id}`)
 
 				const responseData = await response.json()
 
@@ -79,7 +69,7 @@ const EditAnalytic = () => {
 		sendRequest()
 	}, [id])
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 		if (title.trim() === '') {
 			setTitleValidate(false)
@@ -111,7 +101,7 @@ const EditAnalytic = () => {
 						'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 						formData
 					)
-					.then((res) => {
+					.then(res => {
 						imageUrl = res.data.secure_url
 					})
 			} catch (error) {
@@ -121,18 +111,15 @@ const EditAnalytic = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`,
-					{
-						method: 'PUT',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							desc,
-							title,
-							image: imageUrl
-						})
-					}
-				)
+				const response = await fetch(`http://localhost:8070/analytics/${id}`, {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						desc,
+						title,
+						image: imageUrl
+					})
+				})
 				const responseData = await response.json()
 
 				if (!response.ok) {
@@ -149,18 +136,15 @@ const EditAnalytic = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`,
-					{
-						method: 'PUT',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							desc,
-							title,
-							image
-						})
-					}
-				)
+				const response = await fetch(`http://localhost:8070/analytics/${id}`, {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						desc,
+						title,
+						image
+					})
+				})
 				const responseData = await response.json()
 
 				if (!response.ok) {

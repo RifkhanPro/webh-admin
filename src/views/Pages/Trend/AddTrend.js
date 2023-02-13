@@ -39,7 +39,7 @@ function AddTrend() {
 	//     setFormValidate(nameValidate && descValidate && expiryValidate && imageValidate)
 	//  }, [nameValidate, descValidate, expiryValidate, imageValidate])
 
-	const titleHandler = (e) => {
+	const titleHandler = e => {
 		if (e.target.value.trim() === '') {
 			setTitleValidate(false)
 		} else {
@@ -47,7 +47,7 @@ function AddTrend() {
 		}
 		setTitle(e.target.value)
 	}
-	const descHandler = (e) => {
+	const descHandler = e => {
 		if (e.target.value.trim() === '') {
 			setDescValidate(false)
 		} else {
@@ -55,7 +55,7 @@ function AddTrend() {
 		}
 		setDesc(e.target.value)
 	}
-	const catchFileDataHandler = (e) => {
+	const catchFileDataHandler = e => {
 		if (e.name === '') {
 			setImageValidate(false)
 		} else {
@@ -64,7 +64,7 @@ function AddTrend() {
 		}
 	}
 
-	const submitHandler = async (e) => {
+	const submitHandler = async e => {
 		e.preventDefault()
 
 		if (title.trim() === '') {
@@ -95,14 +95,14 @@ function AddTrend() {
 					'https://api.cloudinary.com/v1_1/movie-reservation/image/upload',
 					formData
 				)
-				.then((res) => {
+				.then(res => {
 					image = res.data.secure_url
 				})
 		} catch (error) {
 			alert(error)
 		}
 		try {
-			const response = await fetch('http://44.202.187.100:8070/trend', {
+			const response = await fetch('http://localhost:8070/trend', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

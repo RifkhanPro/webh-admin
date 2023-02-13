@@ -12,31 +12,31 @@ function ViewPostReport() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		fetch(`http://44.202.187.100:8070/post/${id}`)
-			.then((res) => {
+		fetch(`http://localhost:8070/post/${id}`)
+			.then(res => {
 				return res.json()
 			})
-			.then((resp) => {
+			.then(resp => {
 				setUserId(resp.post.userId)
 				setPost(resp.post)
 				console.log(resp.post)
 			})
-			.catch((err) => {
+			.catch(err => {
 				console.log(err.message)
 			})
 	}, [])
 
 	useEffect(() => {
 		if (userId) {
-			fetch(`http://44.202.187.100:8070/user/${userId}`)
-				.then((res) => {
+			fetch(`http://localhost:8070/user/${userId}`)
+				.then(res => {
 					return res.json()
 				})
-				.then((resp) => {
+				.then(resp => {
 					console.log(resp.result)
 					setUser(resp.result)
 				})
-				.catch((err) => {
+				.catch(err => {
 					console.log(err.message)
 				})
 		}
@@ -45,7 +45,7 @@ function ViewPostReport() {
 	const approveHandler = async () => {
 		console.log(id)
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/post/${id}/report`, {
+			const response = await fetch(`http://localhost:8070/post/${id}/report`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' }
 			})
@@ -63,7 +63,7 @@ function ViewPostReport() {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/post/${id}`, {
+			const response = await fetch(`http://localhost:8070/post/${id}`, {
 				method: 'DELETE'
 			})
 
