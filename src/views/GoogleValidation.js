@@ -3,7 +3,7 @@
 /* eslint-disable no-tabs */
 import { useSkin } from '@hooks/useSkin'
 import { Link, useNavigate } from 'react-router-dom'
-import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
+
 import InputPasswordToggle from '@components/input-password-toggle'
 import './Login.css'
 import {
@@ -21,8 +21,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import swal from 'sweetalert'
 import logo from '../../src/assets/images/logo/webh_logo.png'
-import { GoogleLogin } from '@leecheuk/react-google-login'
-import {gapi} from 'gapi-script'
+
 
 const GoogleValidation = () => {
 	const { skin } = useSkin()
@@ -39,22 +38,15 @@ const GoogleValidation = () => {
 	async function signIn(event) {
 		event.preventDefault()
 
-		const config = {
-			headers: {
-				'content-Type': 'application/json'
-			}
-		}
-
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://localhost:8070/user/google_login/validation',
+				'http://localhost:8070/user/admin_google_login/validation',
 				{password, tokenId}
 			)
 
 			//setting the user authorization token
 
-            console.log(data.loggedIn)
             if (data.loggedIn) {
                 localStorage.setItem('userAuthToken', `User ${data.token}`)
                 //setting user

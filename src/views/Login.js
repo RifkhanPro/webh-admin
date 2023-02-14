@@ -96,52 +96,55 @@ const Login = () => {
 	})
 
 	const responseGoogle = async (response) => {
-		try {
-			const res = await axios.post('http://localhost:8070/user/google_login', {tokenId:response.tokenId})
-			//setting the user authorization token
-
-			if (res.data.loggedIn) {
-				console.log(res.data.loggedIn)
-				localStorage.setItem('userAuthToken', `User ${res.data.token}`)
-				//setting user
-				localStorage.setItem('user', JSON.stringify(res.data.result))
-				navigate('/home')
-			} else if (!res.data.loggedIn) {
-				localStorage.setItem('userData', JSON.stringify(res.data))
-				navigate('/google-check')
-
-			}
-			
-			console.log(res)
-
-		} catch (error) {
-			console.log(error)
-			if (error.response.status === 404) {
-				swal(
-					'User cannot find by email!',
-					'Check the email and password!',
-					'error'
-				)
-			} else if (error.response.status === 400) {
-				swal(
-					'Your Cant Access this Site!',
-					'Check the email and password!',
-					'error'
-				)
-			} else if (error.response.status === 401) {
-				swal(
-					'Incorrect Email or Password!',
-					'Check the email and password!',
-					'error'
-				)
-			} else {
-				swal(
-					'Incorrect Email or Password!',
-					'Check the email and password!',
-					'error'
-				)
+		if (response) {
+			try {
+				const res = await axios.post('http://localhost:8070/user/admin_google_login', {tokenId:response.tokenId})
+				//setting the user authorization token
+	
+				if (res.data.loggedIn) {
+					console.log(res.data.loggedIn)
+					localStorage.setItem('userAuthToken', `User ${res.data.token}`)
+					//setting user
+					localStorage.setItem('user', JSON.stringify(res.data.result))
+					navigate('/home')
+				} else if (!res.data.loggedIn) {
+					localStorage.setItem('userData', JSON.stringify(res.data))
+					navigate('/google-check')
+	
+				}
+				
+				console.log(res)
+	
+			} catch (error) {
+				console.log(error)
+				if (error.response.status === 404) {
+					swal(
+						'User cannot find by email!',
+						'Check the email and password!',
+						'error'
+					)
+				} else if (error.response.status === 400) {
+					swal(
+						'Your Cant Access this Site!',
+						'Check the email and password!',
+						'error'
+					)
+				} else if (error.response.status === 401) {
+					swal(
+						'Incorrect Email or Password!',
+						'Check the email and password!',
+						'error'
+					)
+				} else {
+					swal(
+						'Incorrect Email or Password!',
+						'Check the email and password!',
+						'error'
+					)
+				}
 			}
 		}
+		
 	  }
 
 	return (
@@ -233,7 +236,6 @@ const Login = () => {
 									clientId="395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com" 
 									buttonText="Login with google"
 									onSuccess={responseGoogle}
-									onFailure={responseGoogle}
 									cookiePolicy={'single_host_origin'}
 								/>
 							</div>
