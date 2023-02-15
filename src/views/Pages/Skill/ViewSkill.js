@@ -18,7 +18,7 @@ const ViewSkill = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://localhost:8070/skill/${id}`)
+				const response = await fetch(`http://44.202.187.100:8070/skill/${id}`)
 
 				const responseData = await response.json()
 
@@ -37,7 +37,7 @@ const ViewSkill = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://localhost:8070/skill/${id}`, {
+			const response = await fetch(`http://44.202.187.100:8070/skill/${id}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			})

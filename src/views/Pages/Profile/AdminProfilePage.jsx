@@ -70,7 +70,7 @@ function ProfilePage() {
         try {
             console.log(image)
        
-			const response = await fetch(`http://localhost:8070/user/${user._id}/profilePic`, {method:"PUT",
+			const response = await fetch(`http://44.202.187.100:8070/user/${user._id}/profilePic`, {method:"PUT",
              headers : {"Content-Type":"application/json"},
               body :JSON.stringify({
                     image

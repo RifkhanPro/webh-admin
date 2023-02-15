@@ -22,18 +22,16 @@ import { useState, useEffect } from 'react'
 import swal from 'sweetalert'
 import logo from '../../src/assets/images/logo/webh_logo.png'
 
-
 const GoogleValidation = () => {
 	const { skin } = useSkin()
 	const [password, setPassword] = useState('')
-    const email = JSON.parse(localStorage.getItem('userData')).email
-    const tokenId = JSON.parse(localStorage.getItem('userData')).result
+	const email = JSON.parse(localStorage.getItem('userData')).email
+	const tokenId = JSON.parse(localStorage.getItem('userData')).result
 	const navigate = useNavigate()
-	const [user, setUser] = useState({password:'', err:''})
+	const [user, setUser] = useState({ password: '', err: '' })
 
 	const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
 		source = require(`@src/assets/images/pages/${illustration}`).default
-
 
 	async function signIn(event) {
 		event.preventDefault()
@@ -41,19 +39,18 @@ const GoogleValidation = () => {
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://localhost:8070/user/admin_google_login/validation',
-				{password, tokenId}
+				'http://44.202.187.100:8070/user/admin_google_login/validation',
+				{ password, tokenId }
 			)
 
 			//setting the user authorization token
 
-            if (data.loggedIn) {
-                localStorage.setItem('userAuthToken', `User ${data.token}`)
-                //setting user
-                localStorage.setItem('user', JSON.stringify(data.result))
-                navigate('/home')
-            }
-		
+			if (data.loggedIn) {
+				localStorage.setItem('userAuthToken', `User ${data.token}`)
+				//setting user
+				localStorage.setItem('user', JSON.stringify(data.result))
+				navigate('/home')
+			}
 		} catch (error) {
 			if (error.response.status === 404) {
 				swal(
@@ -106,9 +103,7 @@ const GoogleValidation = () => {
 						<CardTitle tag="h2" className="fw-bold mb-1">
 							Welcome to WebH Admin Panel! 👋
 						</CardTitle>
-						<CardText className="mb-2">
-							Please give the password
-						</CardText>
+						<CardText className="mb-2">Please give the password</CardText>
 						<Form
 							className="auth-login-form mt-2"
 							// onSubmit={e => e.preventDefault()}
@@ -121,7 +116,7 @@ const GoogleValidation = () => {
 									type="email"
 									id="login-email"
 									disabled={true}
-                                    value={email}
+									value={email}
 								/>
 							</div>
 							<div className="mb-1">
@@ -138,7 +133,6 @@ const GoogleValidation = () => {
 										setPassword(event.target.value)
 									}}
 								/>
-							
 							</div>
 							<div className="form-check mb-1">
 								<Input type="checkbox" id="remember-me" />
@@ -154,7 +148,6 @@ const GoogleValidation = () => {
 								Sign in
 								{/* { showPassword ? "ok" : "not" } */}
 							</Button>
-						
 						</Form>
 					</Col>
 				</Col>

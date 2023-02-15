@@ -23,7 +23,7 @@ const ViewPosts = () => {
 	}
 
 	useEffect(() => {
-		fetch('http://localhost:8070/postManagement/posts')
+		fetch('http://44.202.187.100:8070/postManagement/posts')
 			.then(res => {
 				return res.json()
 			})
@@ -37,7 +37,7 @@ const ViewPosts = () => {
 
 	const Removefunction = _id => {
 		if (window.confirm('Do you want to remove?')) {
-			fetch(`http://localhost:8070/postManagement/deletePost/${_id}`, {
+			fetch(`http://44.202.187.100:8070/postManagement/deletePost/${_id}`, {
 				method: 'DELETE'
 			})
 				.then(res => {

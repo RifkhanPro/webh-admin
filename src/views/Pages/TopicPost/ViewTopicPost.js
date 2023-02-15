@@ -18,10 +18,13 @@ const ViewTopicPost = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://localhost:8070/topicPost/${id}`, {
-				method: 'DELETE',
-				headers: { 'Content-Type': 'application/json' }
-			})
+			const response = await fetch(
+				`http://44.202.187.100:8070/topicPost/${id}`,
+				{
+					method: 'DELETE',
+					headers: { 'Content-Type': 'application/json' }
+				}
+			)
 
 			const responseData = await response.json()
 
@@ -40,7 +43,7 @@ const ViewTopicPost = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://localhost:8070/topicPost/${id}/viewPost`
+					`http://44.202.187.100:8070/topicPost/${id}/viewPost`
 				)
 
 				const responseData = await response.json()

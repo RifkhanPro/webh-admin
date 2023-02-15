@@ -10,7 +10,7 @@ const EditPost = () => {
 	const [description, descriptionChange] = useState('')
 
 	useEffect(() => {
-		fetch(`http://localhost:8070/postManagement/posts/${id}`)
+		fetch(`http://44.202.187.100:8070/postManagement/posts/${id}`)
 			.then(res => {
 				return res.json()
 			})
@@ -28,7 +28,7 @@ const EditPost = () => {
 		e.preventDefault()
 		const postData = { name, description }
 
-		fetch(`http://localhost:8070/postManagement/updatePost/${id}`, {
+		fetch(`http://44.202.187.100:8070/postManagement/updatePost/${id}`, {
 			method: 'PUT',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(postData)

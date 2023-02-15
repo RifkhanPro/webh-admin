@@ -10,7 +10,7 @@ const ViewPost = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://localhost:8070/postManagement/posts/${id}`
+					`http://44.202.187.100:8070/postManagement/posts/${id}`
 				)
 
 				const responseData = await response.json()

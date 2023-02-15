@@ -52,7 +52,7 @@ const Login = () => {
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://localhost:8070/user/admin-signin',
+				'http://44.202.187.100:8070/user/admin-signin',
 				{ email, password },
 				config
 			)
@@ -86,7 +86,7 @@ const Login = () => {
 	}
 	const googleAuthHandler = e => {
 		e.preventDefault()
-		window.open('/http:localhost:8070/user/google/callback', '_self')
+		window.open('/http:44.202.187.100:8070/user/google/callback', '_self')
 	}
 
 	useEffect(() => {
@@ -98,7 +98,7 @@ const Login = () => {
 	const responseGoogle = async (response) => {
 		if (response) {
 			try {
-				const res = await axios.post('http://localhost:8070/user/admin_google_login', {tokenId:response.tokenId})
+				const res = await axios.post('http://44.202.187.100:8070/user/admin_google_login', {tokenId:response.tokenId})
 				//setting the user authorization token
 	
 				if (res.data.loggedIn) {

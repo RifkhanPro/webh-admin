@@ -48,7 +48,9 @@ const EditAnalytic = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://localhost:8070/analytics/${id}`)
+				const response = await fetch(
+					`http://44.202.187.100:8070/analytics/${id}`
+				)
 
 				const responseData = await response.json()
 
@@ -111,15 +113,18 @@ const EditAnalytic = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`http://localhost:8070/analytics/${id}`, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						desc,
-						title,
-						image: imageUrl
-					})
-				})
+				const response = await fetch(
+					`http://44.202.187.100:8070/analytics/${id}`,
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							desc,
+							title,
+							image: imageUrl
+						})
+					}
+				)
 				const responseData = await response.json()
 
 				if (!response.ok) {
@@ -136,15 +141,18 @@ const EditAnalytic = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`http://localhost:8070/analytics/${id}`, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						desc,
-						title,
-						image
-					})
-				})
+				const response = await fetch(
+					`http://44.202.187.100:8070/analytics/${id}`,
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							desc,
+							title,
+							image
+						})
+					}
+				)
 				const responseData = await response.json()
 
 				if (!response.ok) {

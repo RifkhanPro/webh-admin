@@ -26,7 +26,7 @@ const AllPosts = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://localhost/:8070/post`)
+				const response = await fetch(`http://44.202.187.100/:8070/post`)
 
 				const responseData = await response.json()
 
@@ -45,10 +45,13 @@ const AllPosts = () => {
 
 	const approveHandler = async id => {
 		try {
-			const response = await fetch(`http://localhost:8070/post/${id}/report`, {
-				method: 'PUT',
-				headers: { 'Content-Type': 'application/json' }
-			})
+			const response = await fetch(
+				`http://44.202.187.100:8070/post/${id}/report`,
+				{
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' }
+				}
+			)
 
 			const responseData = await response.json()
 
@@ -63,9 +66,12 @@ const AllPosts = () => {
 
 	const deleteHandler = async postId => {
 		try {
-			const response = await fetch(`http://localhost:8070/post/${postId}`, {
-				method: 'DELETE'
-			})
+			const response = await fetch(
+				`http://44.202.187.100:8070/post/${postId}`,
+				{
+					method: 'DELETE'
+				}
+			)
 
 			const responseData = await response.json()
 

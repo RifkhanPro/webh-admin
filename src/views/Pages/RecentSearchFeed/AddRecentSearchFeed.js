@@ -87,15 +87,18 @@ function AddRecentSearchFeed() {
 			alert(error)
 		}
 		try {
-			const response = await fetch('http://localhost:8070/recentSearchFeed', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					title: topic,
-					desc: content,
-					image
-				})
-			})
+			const response = await fetch(
+				'http://44.202.187.100:8070/recentSearchFeed',
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						title: topic,
+						desc: content,
+						image
+					})
+				}
+			)
 
 			const responseData = await response.json()
 
