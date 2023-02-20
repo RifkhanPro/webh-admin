@@ -85,7 +85,7 @@ const Home = () => {
 	console.log(user, isSignedIn)
 	// Post Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/postManagement/posts')
+		fetch('http://18.205.10.114:8070/postManagement/posts')
 			.then(res => {
 				return res.json()
 			})
@@ -104,7 +104,7 @@ const Home = () => {
 
 	// Blog Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/blog')
+		fetch('http://18.205.10.114:8070/blog')
 			.then(res => {
 				return res.json()
 			})
@@ -122,7 +122,7 @@ const Home = () => {
 
 	// Article Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/article')
+		fetch('http://18.205.10.114:8070/article')
 			.then(res => {
 				return res.json()
 			})
@@ -140,7 +140,7 @@ const Home = () => {
 
 	// Topic Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/topic/topics')
+		fetch('http://18.205.10.114:8070/topic/topics')
 			.then(res => {
 				return res.json()
 			})
@@ -158,7 +158,7 @@ const Home = () => {
 
 	// Topic Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/topicPost/topicPosts')
+		fetch('http://18.205.10.114:8070/topicPost/topicPosts')
 			.then(res => {
 				return res.json()
 			})
@@ -176,7 +176,7 @@ const Home = () => {
 
 	// Advertistment Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/advertisement')
+		fetch('http://18.205.10.114:8070/advertisement')
 			.then(res => {
 				return res.json()
 			})
@@ -194,7 +194,7 @@ const Home = () => {
 
 	// News Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/news')
+		fetch('http://18.205.10.114:8070/news')
 			.then(res => {
 				return res.json()
 			})
@@ -212,7 +212,7 @@ const Home = () => {
 
 	// User Count
 	useEffect(() => {
-		fetch('http://44.202.187.100:8070/user')
+		fetch('http://18.205.10.114:8070/user')
 			.then(res => {
 				return res.json()
 			})

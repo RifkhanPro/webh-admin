@@ -93,7 +93,7 @@ const EditPostManagement = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/posts/${id}`
+					`http://18.205.10.114:8070/postManagement/posts/${id}`
 				)
 
 				const responseData = await response.json()
@@ -143,7 +143,7 @@ const EditPostManagement = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/updatePost/${id}`,
+					`http://18.205.10.114:8070/postManagement/updatePost/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -172,7 +172,7 @@ const EditPostManagement = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/postManagement/updatePost/${id}`,
+					`http://18.205.10.114:8070/postManagement/updatePost/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

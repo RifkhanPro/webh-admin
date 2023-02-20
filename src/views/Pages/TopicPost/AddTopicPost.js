@@ -31,7 +31,7 @@ function AddTopicPost() {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch('http://44.202.187.100:8070/topic')
+				const response = await fetch('http://18.205.10.114:8070/topic')
 
 				const responseData = await response.json()
 
@@ -50,7 +50,7 @@ function AddTopicPost() {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					'http://44.202.187.100:8070/topic/topicNames',
+					'http://18.205.10.114:8070/topic/topicNames',
 					{
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
@@ -145,7 +145,7 @@ function AddTopicPost() {
 		}
 
 		try {
-			const response = await fetch('http://44.202.187.100:8070/topicPost', {
+			const response = await fetch('http://18.205.10.114:8070/topicPost', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

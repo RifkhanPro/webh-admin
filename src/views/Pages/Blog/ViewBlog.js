@@ -19,7 +19,7 @@ const ViewBlog = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://44.202.187.100:8070/blog/${id}`)
+				const response = await fetch(`http://18.205.10.114:8070/blog/${id}`)
 
 				const responseData = await response.json()
 
@@ -38,7 +38,7 @@ const ViewBlog = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://44.202.187.100:8070/blog/${id}`, {
+			const response = await fetch(`http://18.205.10.114:8070/blog/${id}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			})

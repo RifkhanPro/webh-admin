@@ -22,14 +22,14 @@ import { useState, useEffect } from 'react'
 import swal from 'sweetalert'
 import logo from '../../src/assets/images/logo/webh_logo.png'
 import { GoogleLogin } from '@leecheuk/react-google-login'
-import {gapi} from 'gapi-script'
+import { gapi } from 'gapi-script'
 
 const Login = () => {
 	const { skin } = useSkin()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const navigate = useNavigate()
-	const [user, setUser] = useState({email:'', password:'', err:''})
+	const [user, setUser] = useState({ email: '', password: '', err: '' })
 	// const [showPassword, setShowPassword] = useState()
 
 	const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
@@ -52,7 +52,7 @@ const Login = () => {
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://44.202.187.100:8070/user/admin-signin',
+				'http://18.205.10.114:8070/user/admin-signin',
 				{ email, password },
 				config
 			)
@@ -86,21 +86,27 @@ const Login = () => {
 	}
 	const googleAuthHandler = e => {
 		e.preventDefault()
-		window.open('/http:44.202.187.100:8070/user/google/callback', '_self')
+		window.open('/http:18.205.10.114:8070/user/google/callback', '_self')
 	}
 
 	useEffect(() => {
-		gapi.load("client:auth2", () => {
-			gapi.auth2.init({clientId:'395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com'})
+		gapi.load('client:auth2', () => {
+			gapi.auth2.init({
+				clientId:
+					'395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com'
+			})
 		})
 	})
 
-	const responseGoogle = async (response) => {
+	const responseGoogle = async response => {
 		if (response) {
 			try {
-				const res = await axios.post('http://44.202.187.100:8070/user/admin_google_login', {tokenId:response.tokenId})
+				const res = await axios.post(
+					'http://18.205.10.114:8070/user/admin_google_login',
+					{ tokenId: response.tokenId }
+				)
 				//setting the user authorization token
-	
+
 				if (res.data.loggedIn) {
 					console.log(res.data.loggedIn)
 					localStorage.setItem('userAuthToken', `User ${res.data.token}`)
@@ -110,11 +116,9 @@ const Login = () => {
 				} else if (!res.data.loggedIn) {
 					localStorage.setItem('userData', JSON.stringify(res.data))
 					navigate('/google-check')
-	
 				}
-				
+
 				console.log(res)
-	
 			} catch (error) {
 				console.log(error)
 				if (error.response.status === 404) {
@@ -144,8 +148,7 @@ const Login = () => {
 				}
 			}
 		}
-		
-	  }
+	}
 
 	return (
 		<div className="auth-wrapper auth-cover">
@@ -231,15 +234,14 @@ const Login = () => {
 								Sign in
 								{/* { showPassword ? "ok" : "not" } */}
 							</Button>
-							<div className='login-with-google'>
+							<div className="login-with-google">
 								<GoogleLogin
-									clientId="395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com" 
+									clientId="395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com"
 									buttonText="Login with google"
 									onSuccess={responseGoogle}
 									cookiePolicy={'single_host_origin'}
 								/>
 							</div>
-							
 						</Form>
 					</Col>
 				</Col>

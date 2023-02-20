@@ -58,7 +58,7 @@ const EditAddRecentSearchFeed = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/recentSearchFeed/${id}`
+					`http://18.205.10.114:8070/recentSearchFeed/${id}`
 				)
 
 				const responseData = await response.json()
@@ -117,7 +117,7 @@ const EditAddRecentSearchFeed = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/recentSearchFeed/${id}`,
+					`http://18.205.10.114:8070/recentSearchFeed/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -148,7 +148,7 @@ const EditAddRecentSearchFeed = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/recentSearchFeed/${id}`,
+					`http://18.205.10.114:8070/recentSearchFeed/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

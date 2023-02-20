@@ -46,7 +46,7 @@ const AddUser = () => {
 		e.preventDefault()
 		const postData = { firstName, lastname, email, phone, password, status }
 
-		fetch('http://44.202.187.100:8070/user/signup', {
+		fetch('http://18.205.10.114:8070/user/signup', {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(postData)

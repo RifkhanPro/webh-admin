@@ -49,7 +49,7 @@ const EditAnalytic = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`
+					`http://18.205.10.114:8070/analytics/${id}`
 				)
 
 				const responseData = await response.json()
@@ -114,7 +114,7 @@ const EditAnalytic = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`,
+					`http://18.205.10.114:8070/analytics/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -142,7 +142,7 @@ const EditAnalytic = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`http://44.202.187.100:8070/analytics/${id}`,
+					`http://18.205.10.114:8070/analytics/${id}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

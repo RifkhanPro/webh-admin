@@ -17,9 +17,7 @@ const ViewScoreBox = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(
-					`http://44.202.187.100:8070/scoreBox/${id}`
-				)
+				const response = await fetch(`http://18.205.10.114:8070/scoreBox/${id}`)
 
 				const responseData = await response.json()
 
@@ -38,13 +36,10 @@ const ViewScoreBox = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(
-				`http://44.202.187.100:8070/scoreBox/${id}`,
-				{
-					method: 'DELETE',
-					headers: { 'Content-Type': 'application/json' }
-				}
-			)
+			const response = await fetch(`http://18.205.10.114:8070/scoreBox/${id}`, {
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' }
+			})
 
 			const responseData = await response.json()
 

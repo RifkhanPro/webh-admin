@@ -97,7 +97,7 @@ const ResetPassword = () => {
         if (formValidate) {
             console.log(validConfirmPassword)
             try {
-                const response = await fetch(`http://44.202.187.100:8070/user/reset-password/${token}`, {method:"PUT", 
+                const response = await fetch(`http://18.205.10.114:8070/user/reset-password/${token}`, {method:"PUT", 
                 headers : {"Content-Type":"application/json"}, 
                 body :JSON.stringify({
                     password
