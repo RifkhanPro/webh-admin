@@ -9,7 +9,7 @@ const themeConfig = {
   layout: {
     isRTL: false,
     skin: 'light', // light, dark, bordered, semi-dark
-    routerTransition: 'fadeIn', // fadeIn, fadeInLeft, zoomIn, none or check this for more transition https://animate.style/
+    routerTransition: 'fadeIn', // fadeIn, fadeInLeft, zoomIn, none or check this for more transition httpss://animate.style/
     type: 'vertical', // vertical, horizontal
     contentWidth: 'boxed', // full, boxed
     menu: {
