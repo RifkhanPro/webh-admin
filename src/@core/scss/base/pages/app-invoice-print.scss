@@ -5,7 +5,7 @@
 //  Item Name: Vuexy HTML Admin Template
 //  Version: 1.0
 //  Author: PIXINVENT
-//  Author URL: http://www.themeforest.net/user/pixinvent
+//  Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -36,14 +36,17 @@ body {
   .invoice-total-wrapper {
     width: 100%;
     max-width: 12rem;
+
     .invoice-total-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       .invoice-total-title {
         // width: 92px;
         margin-bottom: 0.35rem;
       }
+
       .invoice-total-amount {
         margin-bottom: 0.35rem;
         font-weight: 600;
@@ -62,15 +65,18 @@ body {
   .invoice-print {
     padding: 0px !important;
   }
+
   .invoice-header {
     border-bottom: 1px solid $border-color;
     flex-direction: row !important;
     margin-bottom: 3rem;
     padding-right: 5rem;
   }
+
   .table-responsive {
     overflow-x: hidden;
   }
+
   hr {
     display: none;
   }

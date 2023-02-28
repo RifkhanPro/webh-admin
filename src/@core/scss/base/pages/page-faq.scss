@@ -4,7 +4,7 @@
 //  ----------------------------------------------------------------------------------------------
 //  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //  Author: PIXINVENT
-//  Author URL: http://www.themeforest.net/user/pixinvent
+//  Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -14,8 +14,10 @@
 .faq-search {
   background-size: cover;
   background-color: rgba($primary, 0.12) !important;
+
   .faq-search-input {
     .input-group {
+
       // remove input group box shadow on inside focus
       &:focus-within {
         box-shadow: none;
@@ -50,6 +52,7 @@
 }
 
 @include media-breakpoint-up(md) {
+
   // faq search input width fixed for medium up screen
   .faq-search {
     .faq-search-input {
@@ -59,6 +62,7 @@
       }
     }
   }
+
   // faq navigation fix the navigation section so that vector image not move as per collapse
   .faq-navigation {
     height: 550px;

@@ -4,7 +4,7 @@
 // 	----------------------------------------------------------------------------------------------
 // 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 // 	Author: PIXINVENT
-// 	Author URL: http://www.themeforest.net/user/pixinvent
+// 	Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -12,6 +12,7 @@
 
 // User profile Scss
 #user-profile {
+
   /*-------------profile header section---------*/
   .profile-header {
     overflow: hidden;
@@ -43,8 +44,10 @@
         .navbar-toggler {
           line-height: 0;
         }
+
         .profile-tabs {
           .nav-item {
+
             i,
             svg {
               margin-right: 0;
@@ -57,12 +60,14 @@
 
   /*-------- profile info section --------*/
   #profile-info {
+
     // profile star icons
     .profile-star {
       color: $gray-100;
 
       i,
       svg {
+
         // filled star icons
         &.profile-favorite {
           fill: $warning;
@@ -88,10 +93,12 @@
   //profile-latest-img - hover effect
   .profile-latest-img {
     transition: all 0.2s ease-in-out;
+
     &:hover {
       transform: translateY(-4px) scale(1.2);
       z-index: 10;
     }
+
     img {
       margin-top: 1.28rem;
     }
@@ -117,6 +124,7 @@
 }
 
 @include media-breakpoint-up(md) {
+
   // navbar tabs pills
   .profile-header-nav {
     .profile-tabs {
@@ -135,6 +143,7 @@
           height: 100px;
           width: 100px;
         }
+
         .profile-title {
           h2 {
             font-size: 1.5rem;

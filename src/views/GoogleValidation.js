@@ -39,7 +39,7 @@ const GoogleValidation = () => {
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://18.205.10.114:8070/user/admin_google_login/validation',
+				'https://localhost:8070/user/admin_google_login/validation',
 				{ password, tokenId }
 			)
 

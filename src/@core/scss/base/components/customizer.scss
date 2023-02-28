@@ -4,7 +4,7 @@
 	----------------------------------------------------------------------------------------
 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 	Author: PIXINVENT
-	Author URL: http://www.themeforest.net/user/pixinvent
+	Author URL: https://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 .customizer {
@@ -42,6 +42,7 @@
     width: auto;
     z-index: 10;
     color: $headings-color;
+
     i,
     svg {
       font-size: 1.5rem;
@@ -76,6 +77,7 @@
     border-radius: 0.5rem;
     cursor: pointer;
     position: relative;
+
     &.selected {
       &:after {
         content: '';
@@ -87,6 +89,7 @@
         position: absolute;
         border-radius: 0.5rem;
       }
+
       &.border {
         &:after {
           top: -4px;

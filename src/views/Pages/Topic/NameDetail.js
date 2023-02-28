@@ -14,17 +14,14 @@ const NameDetail = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(
-					'http://18.205.10.114:8070/topicPost/post',
-					{
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							name,
-							category
-						})
-					}
-				)
+				const response = await fetch('https://localhost:8070/topicPost/post', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						name,
+						category
+					})
+				})
 
 				const responseData = await response.json()
 				console.log(responseData)

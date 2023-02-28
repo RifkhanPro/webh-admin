@@ -4,7 +4,7 @@
   ----------------------------------------------------------------------------------------------
   Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
   Author: PIXINVENT
-  Author URL: http://www.themeforest.net/user/pixinvent
+  Author URL: https://www.themeforest.net/user/pixinvent
 ================================================================================================*/
 
 // Inline list style with pipeline separator
@@ -13,9 +13,10 @@ ul.list-inline {
   li {
     display: inline-block;
   }
+
   // used in search page
   &.list-inline-pipe {
-    > li + li:before {
+    >li+li:before {
       content: ' | ';
       padding-right: 2px;
     }
@@ -26,21 +27,31 @@ ul.list-inline {
 .list-group {
   .list-group-item {
     line-height: 1.5;
+
     i,
     svg {
       position: relative;
     }
   }
+
   .list-group-item-action {
     &:focus {
       outline: 0;
     }
+
     &.active,
-    &:active{
-      h1,h2,h3,h4,h5,h6{
+    &:active {
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         color: $white;
       }
     }
+
     small {
       color: $text-muted !important;
     }
@@ -49,10 +60,12 @@ ul.list-inline {
   // List group with circle for pages like knowledge base
   &.list-group-circle {
     border: none;
+
     .list-group-item {
       border: none;
       position: relative;
       padding-left: 1.5rem;
+
       &:after {
         content: ' ';
         background-image: url(str-replace(str-replace($circle, 'currentColor', $body-color), '#', '%23'));
@@ -66,6 +79,7 @@ ul.list-inline {
         top: 1.15rem;
         left: 0;
       }
+
       &:hover {
         background-color: transparent;
       }

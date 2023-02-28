@@ -88,7 +88,7 @@ function AddArticle() {
 			alert(error)
 		}
 		try {
-			const response = await fetch('http://18.205.10.114:8070/article', {
+			const response = await fetch('https://localhost:8070/article', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

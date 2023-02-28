@@ -4,7 +4,7 @@
 //   ----------------------------------------------------------------------------------------------
 //   Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //   Author: PIXINVENT
-//   Author URL: http://www.themeforest.net/user/pixinvent
+//   Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -23,20 +23,24 @@ $chat-widget-height: 390px;
 
 // User chat window css
 .chat-app-window {
+
   // User chats
   .user-chats {
     background-color: $chat-image-back-color;
     padding: 1rem;
     position: relative;
     height: calc(100% - #{$chat-head-footer-height} - #{$chat-head-footer-height});
+
     .avatar {
       img {
         border: 2px solid $white;
       }
     }
   }
+
   .active-chat {
     height: inherit;
+
     .chat-header {
       display: flex;
       justify-content: space-between;
@@ -52,10 +56,12 @@ $chat-widget-height: 390px;
     .chat-avatar {
       float: right;
     }
+
     .chat-body {
       display: block;
       margin: 10px 30px 0 0;
       overflow: hidden;
+
       .chat-content {
         float: right;
         padding: 0.7rem 1rem;
@@ -66,16 +72,19 @@ $chat-widget-height: 390px;
         border-radius: $border-radius;
         box-shadow: 0 4px 8px 0 rgba($black, 0.12);
         max-width: 75%;
+
         p {
           margin: 0;
         }
       }
     }
+
     // Chat area left css
     .chat-left {
       .chat-avatar {
         float: left;
       }
+
       .chat-body {
         .chat-content {
           float: left;
@@ -87,6 +96,7 @@ $chat-widget-height: 390px;
       }
     }
   }
+
   // Chat form of user area
   .chat-app-form {
     height: $chat-head-footer-height;
@@ -104,22 +114,27 @@ $chat-widget-height: 390px;
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
   }
+
   .chat-app-window {
+
     // User chats
     .user-chats {
       background-color: $body-bg;
       height: $chat-widget-height;
     }
+
     .chat-app-form {
       border-top: 0;
       border-bottom-left-radius: $border-radius;
       border-bottom-right-radius: $border-radius;
       height: $chat-widget-head-footer-height;
+
       .input-group-text,
       .message {
         border: 0;
         padding-left: 0;
       }
+
       .input-group:not(.bootstrap-touchspin):focus-within {
         box-shadow: none;
       }

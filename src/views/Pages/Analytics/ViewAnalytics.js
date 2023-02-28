@@ -88,7 +88,7 @@ function ViewAnalytics() {
 
 	// Post Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/postManagement/posts')
+		fetch('https://localhost:8070/postManagement/posts')
 			.then(res => {
 				return res.json()
 			})
@@ -107,7 +107,7 @@ function ViewAnalytics() {
 
 	// Blog Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/blog')
+		fetch('https://localhost:8070/blog')
 			.then(res => {
 				return res.json()
 			})
@@ -126,7 +126,7 @@ function ViewAnalytics() {
 
 	// Article Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/article')
+		fetch('https://localhost:8070/article')
 			.then(res => {
 				return res.json()
 			})
@@ -145,7 +145,7 @@ function ViewAnalytics() {
 
 	// Topic Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/topic/topics')
+		fetch('https://localhost:8070/topic/topics')
 			.then(res => {
 				return res.json()
 			})
@@ -164,7 +164,7 @@ function ViewAnalytics() {
 
 	// Topic Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/topicPost/topicPosts')
+		fetch('https://localhost:8070/topicPost/topicPosts')
 			.then(res => {
 				return res.json()
 			})
@@ -183,7 +183,7 @@ function ViewAnalytics() {
 
 	// Advertistment Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/advertisement')
+		fetch('https://localhost:8070/advertisement')
 			.then(res => {
 				return res.json()
 			})
@@ -202,7 +202,7 @@ function ViewAnalytics() {
 
 	// News Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/news')
+		fetch('https://localhost:8070/news')
 			.then(res => {
 				return res.json()
 			})
@@ -220,7 +220,7 @@ function ViewAnalytics() {
 
 	// User Count
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/user')
+		fetch('https://localhost:8070/user')
 			.then(res => {
 				return res.json()
 			})

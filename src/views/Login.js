@@ -52,7 +52,7 @@ const Login = () => {
 		try {
 			//getting data from backend
 			const { data } = await axios.post(
-				'http://18.205.10.114:8070/user/admin-signin',
+				'https://localhost:8070/user/admin-signin',
 				{ email, password },
 				config
 			)
@@ -86,14 +86,14 @@ const Login = () => {
 	}
 	const googleAuthHandler = e => {
 		e.preventDefault()
-		window.open('/http:18.205.10.114:8070/user/google/callback', '_self')
+		window.open('/https:localhost:8070/user/google/callback', '_self')
 	}
 
 	useEffect(() => {
 		gapi.load('client:auth2', () => {
 			gapi.auth2.init({
 				clientId:
-					'395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com'
+					'266665356257-hegodqq6j6ivro28ml8bta1tgmlbqnq8.apps.googleusercontent.com'
 			})
 		})
 	})
@@ -102,7 +102,7 @@ const Login = () => {
 		if (response) {
 			try {
 				const res = await axios.post(
-					'http://18.205.10.114:8070/user/admin_google_login',
+					'https://localhost:8070/user/admin_google_login',
 					{ tokenId: response.tokenId }
 				)
 				//setting the user authorization token
@@ -236,7 +236,8 @@ const Login = () => {
 							</Button>
 							<div className="login-with-google">
 								<GoogleLogin
-									clientId="395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com"
+									// clientId= "395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com"
+									clientId="266665356257-hegodqq6j6ivro28ml8bta1tgmlbqnq8.apps.googleusercontent.com"
 									buttonText="Login with google"
 									onSuccess={responseGoogle}
 									cookiePolicy={'single_host_origin'}

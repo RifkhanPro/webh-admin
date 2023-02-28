@@ -4,7 +4,7 @@
 // 	----------------------------------------------------------------------------------------------
 // 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 // 	Author: PIXINVENT
-// 	Author URL: http://www.themeforest.net/user/pixinvent
+// 	Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 // Content helpers
@@ -15,8 +15,9 @@
   padding-left: 10px;
   margin-left: 0;
   list-style: none;
-  > li svg,
-  > li i {
+
+  >li svg,
+  >li i {
     margin-right: 6px;
   }
 }
@@ -37,10 +38,12 @@
   display: inline-block;
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -50,10 +53,12 @@
   display: inline-block;
   animation: spin-reverse 1s linear infinite;
 }
+
 @keyframes spin-reverse {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(-360deg);
   }
@@ -65,14 +70,17 @@
   height: 1rem;
   border-radius: 50%;
   display: inline-block;
+
   &.bullet-xs {
     width: 0.5rem;
     height: 0.5rem;
   }
+
   &.bullet-sm {
     width: 0.714rem;
     height: 0.714rem;
   }
+
   &.bullet-lg {
     width: 1.25rem;
     height: 1.25rem;
@@ -95,11 +103,11 @@
 
 // Card match height
 .match-height {
-  > [class*='col'] {
+  >[class*='col'] {
     display: flex;
     flex-flow: column;
 
-    > .card {
+    >.card {
       flex: 1 1 auto;
     }
   }

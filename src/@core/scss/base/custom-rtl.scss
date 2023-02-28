@@ -4,7 +4,7 @@
 //  ----------------------------------------------------------------------------------------------
 //  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //  Author: PIXINVENT
-//  Author URL: http://www.themeforest.net/user/pixinvent
+//  Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 // Variables
@@ -19,24 +19,27 @@ kbd,
 samp {
   direction: ltr;
 }
+
 // Align icons position
 .main-menu {
-  .navigation li > a > svg,
-  .navigation li > a > i,
+
+  .navigation li>a>svg,
+  .navigation li>a>i,
   .dropdown-menu svg,
   .dropdown-menu i,
-  .dropdown-user > a > svg,
-  .dropdown-user > a > i,
-  .navigation > li > a > svg,
-  .navigation > li > a > i {
+  .dropdown-user>a>svg,
+  .dropdown-user>a>i,
+  .navigation>li>a>svg,
+  .navigation>li>a>i {
     float: right;
   }
 
-  .navigation > li ul li > a {
+  .navigation>li ul li>a {
     display: flex;
     align-items: center;
   }
 }
+
 [type='tel'],
 [type='url'],
 [type='email'],
@@ -45,15 +48,12 @@ samp {
 }
 
 // Transformed menu icons
-.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:after,
-.vertical-layout.vertical-overlay-menu.menu-open .main-menu .navigation li.has-sub > a:after {
+.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub>a:after,
+.vertical-layout.vertical-overlay-menu.menu-open .main-menu .navigation li.has-sub>a:after {
   transform: rotate(180deg);
 }
-.vertical-layout.vertical-menu-modern.menu-expanded
-  .main-menu
-  .navigation
-  li.has-sub.open:not(.menu-item-closing)
-  > a:after {
+
+.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub.open:not(.menu-item-closing)>a:after {
   transform: rotate(90deg);
 }
 
@@ -72,6 +72,7 @@ samp {
 }
 
 .header-navbar {
+
   .dropdown,
   .dropup {
     .dropdown-menu.dropdown-menu-end::before {
@@ -105,6 +106,7 @@ samp {
       background-image: url(str-replace(str-replace($chevron-right, 'currentColor', $white), '#', '%23')) !important;
     }
   }
+
   .dropdown-menu {
     margin-right: $dropdown_spacing !important;
   }
@@ -116,6 +118,7 @@ samp {
       background-image: url(str-replace(str-replace($chevron-left, 'currentColor', $white), '#', '%23')) !important;
     }
   }
+
   .dropdown-menu {
     left: 0 !important;
     margin-left: $dropdown_spacing !important;
@@ -131,12 +134,15 @@ samp {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   left: 1px;
 }
+
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
   float: right;
 }
+
 .select2-search__field {
   direction: rtl;
 }
+
 .select2,
 .select2-container {
   text-align: right;
@@ -155,6 +161,7 @@ samp {
 div.dataTables_wrapper div.dataTables_filter {
   text-align: left !important;
 }
+
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:before {
@@ -169,17 +176,21 @@ table.dataTable thead .sorting_desc:before {
 
 // Avatar group
 .avatar-group {
+
   // Avatar Group Sizings
   .avatar {
     margin-right: -0.785rem;
     margin-left: 0;
   }
+
   .avatar-sm {
     margin-right: -0.65rem;
   }
+
   .avatar-lg {
     margin-right: -1.5rem;
   }
+
   .avatar-xl {
     margin-right: -1.85rem;
   }
@@ -188,7 +199,7 @@ table.dataTable thead .sorting_desc:before {
 // Breadcrumb
 .breadcrumb:not([class*='breadcrumb-']),
 .breadcrumb.breadcrumb-chevron {
-  .breadcrumb-item + .breadcrumb-item {
+  .breadcrumb-item+.breadcrumb-item {
     &:before {
       transform: rotate(180deg);
     }
@@ -197,6 +208,7 @@ table.dataTable thead .sorting_desc:before {
 
 // Pagination
 .pagination .page-item {
+
   &.prev-item,
   &.prev,
   &.previous {
@@ -204,6 +216,7 @@ table.dataTable thead .sorting_desc:before {
       &:before {
         transform: rotate(180deg);
       }
+
       &:hover,
       &:active {
         &:before {
@@ -211,6 +224,7 @@ table.dataTable thead .sorting_desc:before {
         }
       }
     }
+
     &.disabled {
       .page-link {
         &:before {
@@ -226,6 +240,7 @@ table.dataTable thead .sorting_desc:before {
       &:after {
         transform: rotate(180deg);
       }
+
       &:hover,
       &:active {
         &:after {
@@ -233,6 +248,7 @@ table.dataTable thead .sorting_desc:before {
         }
       }
     }
+
     &.disabled {
       .page-link {
         &:before {
@@ -249,6 +265,7 @@ pre[class*='language-'] {
 }
 
 @media print {
+
   code[class*='language-'],
   pre[class*='language-'] {
     text-shadow: none;
@@ -272,15 +289,18 @@ pre[class*='language-'] {
   border-left-color: $tooltip-bg;
   left: -1px;
 }
+
 .bs-tooltip-start .tooltip-arrow::before {
   left: -6px;
 }
-.bs-popover-start > .popover-arrow::after,
-.bs-tooltip-start > .tooltip-arrow::after {
+
+.bs-popover-start>.popover-arrow::after,
+.bs-tooltip-start>.tooltip-arrow::after {
   left: -1px;
   border-width: 0.4rem 0 0.4rem 0.4rem;
   border-left-color: $tooltip-color;
 }
+
 .bs-popover-start .popover-arrow,
 .bs-tooltip-start .tooltip-arrow,
 .bs-popover-auto[data-popper-placement^='left'] .popover-arrow {
@@ -295,15 +315,18 @@ pre[class*='language-'] {
   border-right-color: $tooltip-bg;
   right: -1px;
 }
+
 .bs-tooltip-end .tooltip-arrow::before {
   right: -6px;
 }
-.bs-popover-end > .popover-arrow::after,
-.bs-tooltip-end > .tooltip-arrow::after {
+
+.bs-popover-end>.popover-arrow::after,
+.bs-tooltip-end>.tooltip-arrow::after {
   right: -1px;
   border-width: 0.4rem 0.4rem 0.4rem 0;
   border-right-color: $tooltip-color;
 }
+
 .bs-popover-end .popover-arrow,
 .bs-tooltip-end .tooltip-arrow,
 .bs-popover-auto[data-popper-placement^='right'] .popover-arrow {
@@ -332,6 +355,7 @@ body .ps__rail-y {
 .kanban-application {
   .kanban-container {
     .kanban-item {
+
       i,
       svg {
         margin-right: 0 !important;
@@ -359,7 +383,7 @@ body .ps__rail-y {
 .file-manager-application {
   .sidebar-file-manager {
     .sidebar-inner {
-      .my-drive .jstree-node.jstree-closed > .jstree-icon {
+      .my-drive .jstree-node.jstree-closed>.jstree-icon {
         transform: rotate(180deg);
       }
     }

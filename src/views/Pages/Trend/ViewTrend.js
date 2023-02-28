@@ -18,7 +18,7 @@ const ViewTrend = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://18.205.10.114:8070/trend/${id}`, {
+			const response = await fetch(`https://localhost:8070/trend/${id}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			})
@@ -38,7 +38,7 @@ const ViewTrend = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://18.205.10.114:8070/trend/${id}`)
+				const response = await fetch(`https://localhost:8070/trend/${id}`)
 
 				const responseData = await response.json()
 

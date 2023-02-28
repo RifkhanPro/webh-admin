@@ -4,7 +4,7 @@
 //   ----------------------------------------------------------------------------------------
 //   Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //   Author: PIXINVENT
-//   Author URL: http://www.themeforest.net/user/pixinvent
+//   Author URL: https://www.themeforest.net/user/pixinvent
 // ==========================================================================================
 
 // Component: custom options
@@ -18,6 +18,7 @@
     color: $secondary;
     background-color: $custom-options-bg-color;
     border: 1px solid $border-color;
+
     .custom-option-item-title {
       color: $secondary;
     }
@@ -29,10 +30,11 @@
   clip: rect(0, 0, 0, 0);
 
   &:checked {
-    + .custom-option-item {
+    +.custom-option-item {
       color: $primary;
       background-color: rgba($primary, 0.12);
       border-color: $primary;
+
       .custom-option-item-title {
         color: $primary;
       }

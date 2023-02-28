@@ -4,7 +4,7 @@
 	----------------------------------------------------------------------------------------
 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 	Author: PIXINVENT
-	Author URL: http://www.themeforest.net/user/pixinvent
+	Author URL: https://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 .navbar-container {
@@ -66,12 +66,14 @@
       padding-left: 0;
       border-radius: $border-radius;
       display: none;
+
       @media only screen and (min-device-width: 320px) and (max-device-width: 875px) and (orientation: landscape) {
         max-height: 250px;
       }
 
       &.search-list-bookmark {
         height: auto !important;
+
         i,
         svg {
           font-size: 1.2rem;
@@ -112,6 +114,7 @@
           display: flex;
           align-items: center;
           cursor: pointer;
+
           &:hover,
           &.current_item {
             background-color: $body-bg;
@@ -207,9 +210,9 @@
   }
 }
 
-.navbar-dark
-// .navbar-semi-light
-{
+.navbar-dark // .navbar-semi-light
+
+  {
   .search-input {
     .input {
       color: #f5f7fa;

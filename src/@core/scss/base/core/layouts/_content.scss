@@ -4,7 +4,7 @@
 //     ----------------------------------------------------------------------------------------------
 //     Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //     Author: PIXINVENT
-//     Authuseror URL: http://www.themeforest.net//pixinvent
+//     Authuseror URL: https://www.themeforest.net//pixinvent
 // ================================================================================================
 
 // Contest margin left for expanded & collapsed stats width & margin left
@@ -16,15 +16,18 @@ html {
   font-size: $base-font-size;
   height: 100%;
   letter-spacing: 0.01rem;
+
   body {
     height: 100%;
     background-color: $body-bg;
     direction: $body-direction;
+
     // paragraph line-height
     p {
       line-height: 1.5rem;
     }
   }
+
   .content {
     padding: 0;
     position: relative;
@@ -32,17 +35,21 @@ html {
     backface-visibility: hidden;
     min-height: calc(100% - #{$footer-height});
     margin-left: $menu-expanded-width;
+
     &.app-content {
       padding: calc(#{$content-padding} + #{$navbar-height} + #{$floating-nav-margin}) #{$content-padding} 0;
+
       &.show-overlay {
         .content-overlay {
           z-index: 10;
           opacity: 1;
-          ~ .header-navbar-shadow {
+
+          ~.header-navbar-shadow {
             display: none;
           }
         }
       }
+
       .content-overlay {
         position: fixed;
         opacity: 0;
@@ -57,16 +64,19 @@ html {
         transition: all 0.7s, z-index 0s;
         z-index: -1;
       }
+
       .content-area-wrapper {
         display: flex;
         position: relative;
         overflow: hidden; // Required in apps
+
         .content-wrapper,
         .content-body {
           height: 100%;
         }
       }
     }
+
     .body-content-overlay {
       top: 0;
       left: 0;
@@ -78,6 +88,7 @@ html {
       visibility: hidden;
       opacity: 0;
       transition: all 0.3s ease;
+
       &.show {
         visibility: visible;
         transition: all 0.3s ease;
@@ -86,6 +97,7 @@ html {
         border-radius: $border-radius/2;
       }
     }
+
     .content-wrapper {
       .content-header-title {
         font-weight: 500;
@@ -93,18 +105,22 @@ html {
         padding-right: $spacer;
         border-right: 1px solid lighten($gray-600, 10%);
       }
+
       .content-header-right {
         .dropdown-toggle {
           &::after {
             display: none;
           }
+
           i,
           svg {
             margin-right: 0;
           }
         }
+
         .btn-icon {
           padding: 0.8rem;
+
           i,
           svg {
             height: $font-size-base;
@@ -120,44 +136,43 @@ html {
   .navbar-floating {
     &.footer-static {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
-          @include content-area-wrapper-height(
-            #{$content-padding},
+          @include content-area-wrapper-height(#{$content-padding},
             #{$navbar-height},
             #{$footer-height},
-            #{$floating-nav-margin}
-          );
+            #{$floating-nav-margin});
         }
       }
     }
+
     &.footer-hidden {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
-          @include content-area-wrapper-height(
-            #{$content-padding},
+          @include content-area-wrapper-height(#{$content-padding},
             #{$navbar-height},
             0rem,
             #{$floating-nav-margin},
             0rem,
-            2
-          );
+            2);
         }
       }
     }
+
     &.footer-fixed {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
-          @include content-area-wrapper-height(
-            #{$content-padding},
+          @include content-area-wrapper-height(#{$content-padding},
             #{$navbar-height},
             #{$footer-height},
             #{$floating-nav-margin},
             0rem,
-            2
-          );
+            2);
         }
       }
     }
@@ -168,24 +183,30 @@ html {
     .app-content {
       padding: #{$content-padding} #{$content-padding} 0 #{$content-padding} !important;
     }
+
     &.footer-static {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, 0rem, #{$footer-height});
         }
       }
     }
+
     &.footer-hidden {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, 0rem, 0rem, 0rem, 0rem, 2);
         }
       }
     }
+
     &.footer-fixed {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, 0rem, #{$footer-height}, 0rem, 0rem, 2);
@@ -199,40 +220,46 @@ html {
     .main-menu {
       top: 0;
     }
+
     .content {
       min-height: calc(100% - calc(#{$navbar-height} + #{$footer-height}));
     }
+
     .app-content {
       padding: #{$content-padding} #{$content-padding} 0 #{$content-padding};
     }
+
     &.footer-static {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, #{$navbar-height}, #{$footer-height});
         }
       }
     }
+
     &.footer-hidden {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, #{$navbar-height}, 0rem, 0rem, 0rem, 2);
         }
       }
     }
+
     &.footer-fixed {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
-          @include content-area-wrapper-height(
-            #{$content-padding},
+          @include content-area-wrapper-height(#{$content-padding},
             #{$navbar-height},
             #{$footer-height},
             0rem,
             0rem,
-            2
-          );
+            2);
         }
       }
     }
@@ -243,34 +270,38 @@ html {
     .app-content {
       padding: calc(#{$content-padding} + #{$navbar-height}) #{$content-padding} 0 #{$content-padding};
     }
+
     &.footer-static {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, #{$navbar-height}, #{$footer-height});
         }
       }
     }
+
     &.footer-hidden {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
           @include content-area-wrapper-height(#{$content-padding}, #{$navbar-height}, 0rem, 0rem, 0rem, 2);
         }
       }
     }
+
     &.footer-fixed {
       .app-content {
+
         .content-area-wrapper,
         .kanban-wrapper {
-          @include content-area-wrapper-height(
-            #{$content-padding},
+          @include content-area-wrapper-height(#{$content-padding},
             #{$navbar-height},
             #{$footer-height},
             0rem,
             0rem,
-            2
-          );
+            2);
         }
       }
     }
@@ -283,6 +314,7 @@ html {
       .navbar-container {
         padding-left: 1.6rem;
         padding-right: 1.6rem;
+
         .search-input {
           .search-list {
             &.show {
@@ -307,15 +339,16 @@ html {
   //Remove left margin for 1 column layout
   [data-col='1-column'] {
     .header-navbar {
+
       // Custom width for floating nav
       &.floating-nav {
-        width: calc(
-          100vw - (100vw - 100%) - calc(#{$content-padding} * 2)
-        ) !important; // ? override all navbar type width
+        width: calc(100vw - (100vw - 100%) - calc(#{$content-padding} * 2)) !important; // ? override all navbar type width
       }
+
       width: 100%; // Full width for other nav options
       left: 0 !important;
     }
+
     .content,
     .footer {
       margin-left: 0px !important;
@@ -326,13 +359,14 @@ html {
       .header-navbar {
         width: 100% !important;
       }
+
       .app-content {
         padding: calc(#{$content-padding} + #{$navbar-height} + #{$floating-nav-margin}) #{$content-padding} 0 #{$content-padding} !important; // ? need to check all navbar types case
       }
+
       &.footer-fixed {
         .app-content {
-          padding: calc(#{$content-padding} + #{$navbar-height} + #{$floating-nav-margin}) #{$content-padding} #{$footer-height}
-            #{$content-padding} !important; // ? need to check all navbar types case
+          padding: calc(#{$content-padding} + #{$navbar-height} + #{$floating-nav-margin}) #{$content-padding} #{$footer-height} #{$content-padding} !important; // ? need to check all navbar types case
         }
       }
     }
@@ -345,21 +379,25 @@ html {
   .blank-page {
     .content {
       margin-left: 0; // not using in both cases
+
       // overflow-x hidden, overflow for y in sm screen issue resolved default
       &.app-content {
         overflow: overlay;
         overflow-x: hidden;
         padding: 0 !important;
         transition: none;
+
         // remove white space on top by header-navbar-shadow class
         .header-navbar-shadow {
           display: none;
         }
       }
     }
+
     // blank page content-wrapper
     .content-wrapper {
       padding: 0 !important;
+
       // content to be in center horizontally and vertically
       .flexbox-container {
         display: flex;
@@ -388,34 +426,42 @@ html {
 
 @include media-breakpoint-up(lg) {
   body {
+
     // Normal sidebar
     .content-right {
       width: calc(100vw - (100vw - 100%) - #{$sidebar-width});
       float: right;
     }
+
     .content-left {
       width: calc(100vw - (100vw - 100%) - #{$sidebar-width});
       float: left;
     }
+
     // Detached sidebar
     .content-detached {
       width: 100%;
+
       &.content-right {
         float: right;
         margin-left: -$sidebar-width;
+
         .content-body {
           margin-left: calc(#{$sidebar-width} + #{$content-padding});
         }
       }
+
       &.content-left {
         float: left;
         margin-right: -$sidebar-width;
+
         .content-body {
           margin-right: calc(#{$sidebar-width} + #{$content-padding});
         }
       }
     }
   }
+
   .sidebar-right.sidebar-sticky {
     float: right !important;
     margin-left: -$sidebar-width;
@@ -426,8 +472,7 @@ html {
 
 @include media-breakpoint-down(md) {
   html body .app-content {
-    padding: calc(#{$content-padding} - 0.8rem + #{$navbar-height} + #{$floating-nav-margin})
-      calc(#{$content-padding} - 0.8rem) 0 calc(#{$content-padding} - 0.8rem) !important; // - 0.8rem to reduce padding in small screen
+    padding: calc(#{$content-padding} - 0.8rem + #{$navbar-height} + #{$floating-nav-margin}) calc(#{$content-padding} - 0.8rem) 0 calc(#{$content-padding} - 0.8rem) !important; // - 0.8rem to reduce padding in small screen
   }
 
   // For static navbar
@@ -437,8 +482,7 @@ html {
 
   // For sticky navbar
   html body.navbar-sticky .app-content {
-    padding: calc(#{$content-padding} - 0.8rem + #{$navbar-height}) calc(#{$content-padding} - 0.8rem) 0
-      calc(#{$content-padding} - 0.8rem) !important; // - 0.8rem to reduce padding in small screen
+    padding: calc(#{$content-padding} - 0.8rem + #{$navbar-height}) calc(#{$content-padding} - 0.8rem) 0 calc(#{$content-padding} - 0.8rem) !important; // - 0.8rem to reduce padding in small screen
   }
 
   // For Hidden navbar
@@ -448,6 +492,7 @@ html {
 }
 
 @include media-breakpoint-down(md) {
+
   .navbar-static,
   .navbar-sticky {
     .app-content {
@@ -462,9 +507,11 @@ html {
 }
 
 // For Fullscreen IE
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
   html.full-screen {
     width: 100%;
+
     .content.app-content {
       height: 100%;
       overflow: scroll;

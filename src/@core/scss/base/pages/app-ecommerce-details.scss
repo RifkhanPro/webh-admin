@@ -4,7 +4,7 @@
 //  ----------------------------------------------------------------------------------------------
 //  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //  Author: PIXINVENT
-//  Author URL: http://www.themeforest.net/user/pixinvent
+//  Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -16,8 +16,10 @@
     .product-img {
       width: 600px;
     }
+
     // ratings style
     .ratings-list-item {
+
       svg,
       i {
         font-size: 1.286rem;
@@ -25,11 +27,13 @@
         width: 1.286rem;
       }
     }
+
     .filled-star {
       fill: $warning;
       stroke: $warning;
       color: $warning;
     }
+
     .unfilled-star {
       stroke: $gray-100;
       color: $gray-100;
@@ -39,6 +43,7 @@
     .item-price {
       color: $primary;
     }
+
     // Common for list-view, checkout and wishlist
     .item-company {
       display: inline-flex;
@@ -55,7 +60,9 @@
     .product-features {
       margin-top: 1.5rem;
       margin-bottom: 1.5rem;
+
       li {
+
         svg,
         i {
           height: 1.4rem;
@@ -63,9 +70,11 @@
           font-size: 1.4rem;
           margin-right: 0.75rem;
         }
+
         display: flex;
         align-items: center;
         margin-bottom: 1rem;
+
         span {
           font-weight: $font-weight-bolder;
         }
@@ -76,23 +85,27 @@
       margin-top: 1.5rem;
       margin-bottom: 1.2rem;
     }
+
     .btn-wishlist {
       .text-danger {
         color: $danger;
         fill: $danger;
       }
     }
+
     .btn-share {
       .btn-icon {
-        ~ .dropdown-menu {
+        ~.dropdown-menu {
           min-width: 3rem;
         }
       }
     }
+
     .item-features {
       background-color: $body-bg;
       padding-top: 5.357rem;
       padding-bottom: 5.357rem;
+
       i,
       svg {
         font-size: 2.5rem;
@@ -111,6 +124,7 @@
         background-color: $body-bg;
         padding: 1.5rem 3rem;
         border-radius: $card-border-radius;
+
         .img-container {
           display: flex;
           align-items: center;
@@ -212,9 +226,11 @@
 
     // selected
     .selected {
+
       // these use for border color only page specific
       .b-primary {
         border-color: $primary;
+
         .filloption {
           box-shadow: 0 2px 4px 0 rgba($primary, 0.4);
         }
@@ -222,6 +238,7 @@
 
       .b-success {
         border-color: $success;
+
         .filloption {
           box-shadow: 0 2px 4px 0 rgba($success, 0.4);
         }
@@ -229,6 +246,7 @@
 
       .b-danger {
         border-color: $danger;
+
         .filloption {
           box-shadow: 0 2px 4px 0 rgba($danger, 0.4);
         }
@@ -236,6 +254,7 @@
 
       .b-warning {
         border-color: $warning;
+
         .filloption {
           box-shadow: 0 2px 4px 0 rgba($warning, 0.4);
         }
@@ -243,23 +262,29 @@
 
       .b-info {
         border-color: $info;
+
         .filloption {
           box-shadow: 0 2px 4px 0 rgba($info, 0.4);
         }
       }
     }
+
     .b-primary .filloption {
       box-shadow: 0 2px 4px 0 rgba($primary, 0.4);
     }
+
     .b-success .filloption {
       box-shadow: 0 2px 4px 0 rgba($success, 0.4);
     }
+
     .b-danger .filloption {
       box-shadow: 0 2px 4px 0 rgba($danger, 0.4);
     }
+
     .b-warning .filloption {
       box-shadow: 0 2px 4px 0 rgba($warning, 0.4);
     }
+
     .b-info .filloption {
       box-shadow: 0 2px 4px 0 rgba($info, 0.4);
     }
@@ -271,11 +296,14 @@
     padding: 1rem;
   }
 }
+
 @include media-breakpoint-down(md) {
   .ecommerce-application {
     .app-ecommerce-details {
+
       // ratings style
       .ratings-list-item {
+
         svg,
         i {
           font-size: 1rem;

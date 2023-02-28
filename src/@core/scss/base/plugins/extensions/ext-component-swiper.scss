@@ -4,7 +4,7 @@
     ----------------------------------------------------------------------------------------
     Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
+    Author URL: https://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 @import '../../bootstrap-extended/include'; // Bootstrap includes
@@ -21,11 +21,13 @@
 
 // swiper pagination
 .swiper-pagination {
+
   // bullet pagination
   .swiper-pagination-bullet {
     &:focus {
       outline: none;
     }
+
     &.swiper-pagination-bullet-active {
       background-color: $primary;
     }
@@ -61,11 +63,13 @@
       }
     }
   }
+
   .swiper-button-next {
     &:after {
       background-image: url(str-replace(str-replace($chevron-right, 'currentColor', $white), '#', '%23'));
     }
   }
+
   .swiper-button-prev {
     &:after {
       background-image: url(str-replace(str-replace($chevron-left, 'currentColor', $white), '#', '%23'));
@@ -94,6 +98,7 @@
         background-image: url(str-replace(str-replace($chevron-left, 'currentColor', $white), '#', '%23'));
       }
     }
+
     .swiper-button-prev {
       &:after {
         background-image: url(str-replace(str-replace($chevron-right, 'currentColor', $white), '#', '%23'));
@@ -262,10 +267,12 @@
 
 // Media query for medium screen
 @media only screen and (max-width: 768px) {
+
   //navigation button custom boxicons
   .swiper-button-prev {
     font-size: $h4-font-size;
     top: 55%;
+
     &:after {
       height: 28px;
       width: 28px;
@@ -276,11 +283,14 @@
   .swiper-button-next {
     font-size: $h4-font-size;
     top: 55%;
+
     &:after {
       background-size: 24px;
     }
   }
+
   .swiper-centered-slides {
+
     .swiper-button-next,
     .swiper-button-prev {
       &:after {
@@ -290,6 +300,7 @@
       }
     }
   }
+
   // parallax
   .swiper-parallax {
     .swiper-slide {
@@ -304,6 +315,7 @@
 
 // Media query for small screen
 @media only screen and (max-width: 576px) {
+
   // centered slides option-1
   .swiper-centered-slides {
     &.swiper-container {
@@ -353,11 +365,13 @@
         background-color: $theme-dark-body-bg;
       }
     }
+
     &.swiper-centered-slides {
       .swiper-slide {
         background-color: $theme-dark-card-bg;
       }
     }
+
     &.swiper-parallax {
       .swiper-slide * {
         color: $body-color;

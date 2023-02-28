@@ -4,7 +4,7 @@
 //   ----------------------------------------------------------------------------------------------
 //   Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //   Author: PIXINVENT
-//   Author URL: http://www.themeforest.net/user/pixinvent
+//   Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -17,6 +17,7 @@
   }
 
   @include media-breakpoint-down(lg) {
+
     .card-header,
     .statistics-body {
       padding: 1.5rem !important;
@@ -29,6 +30,7 @@
   thead th {
     border: 0;
   }
+
   td {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -50,6 +52,7 @@
     &:first-child {
       margin-top: 0;
     }
+
     &:not(:first-child) {
       margin-top: 1.7rem;
     }

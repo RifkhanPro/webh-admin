@@ -25,7 +25,7 @@ const EditTopic = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`http://18.205.10.114:8070/topic/${id}`)
+				const response = await fetch(`https://localhost:8070/topic/${id}`)
 
 				const responseData = await response.json()
 
@@ -47,7 +47,7 @@ const EditTopic = () => {
 			return
 		}
 		try {
-			const response = await fetch(`http://18.205.10.114:8070/topic/${id}`, {
+			const response = await fetch(`https://localhost:8070/topic/${id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

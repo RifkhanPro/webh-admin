@@ -33,7 +33,7 @@ function ViewTopicPosts() {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					'http://18.205.10.114:8070/topicPost/topicPosts'
+					'https://localhost:8070/topicPost/topicPosts'
 				)
 
 				const responseData = await response.json()

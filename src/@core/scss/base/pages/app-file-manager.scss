@@ -4,17 +4,20 @@
 // 	----------------------------------------------------------------------------------------------
 // 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 // 	Author: PIXINVENT
-// 	Author URL: http://www.themeforest.net/user/pixinvent
+// 	Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
 @import '../components/include'; // Components includes
 
 $file-manager-logo-height: 7.5rem;
-$file-manager-fs-xl: ($font-size-base + 0.5);
+$file-manager-fs-xl: (
+  $font-size-base + 0.5
+);
 
 // file manager app container
 .file-manager-application {
+
   // file manager sidebar styles
   .sidebar-file-manager {
     width: $sidebar-width;
@@ -43,8 +46,9 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
       }
 
       .add-file-btn {
-        & ~ .dropdown-menu {
+        &~.dropdown-menu {
           width: 85%;
+
           &:before {
             display: none;
           }
@@ -55,32 +59,37 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
       .sidebar-list {
         position: relative;
         height: calc(100% - 85px); // search section height 85px
+
         .my-drive {
           padding: 0.58rem 0;
+
           .jstree-node {
             .jstree-icon {
               background-position: 0.5rem;
               background-size: 1.3rem;
             }
-            .jstree-anchor > .jstree-themeicon {
+
+            .jstree-anchor>.jstree-themeicon {
               margin-right: 0.5rem;
             }
+
             &.jstree-closed {
-              > .jstree-icon {
+              >.jstree-icon {
                 background-image: url(str-replace(
-                  str-replace($chevron-right, 'currentColor', $headings-color),
+ str-replace($chevron-right, 'currentColor', $headings-color),
                   '#',
                   '%23'
-                ));
+                  ));
               }
             }
+
             &.jstree-open {
-              > .jstree-icon {
+              >.jstree-icon {
                 background-image: url(str-replace(
-                  str-replace($chevron-down, 'currentColor', $headings-color),
+ str-replace($chevron-down, 'currentColor', $headings-color),
                   '#',
                   '%23'
-                ));
+                  ));
               }
             }
           }
@@ -97,13 +106,16 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
           border: 0;
           border-radius: 0;
           border-left: 2px solid transparent;
+
           &:hover {
             z-index: 0 !important;
           }
-          + .list-group-item.active {
+
+          +.list-group-item.active {
             margin-top: 0;
           }
         }
+
         .active {
           background-color: transparent;
           border-color: $primary;
@@ -163,9 +175,11 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
         padding: 1.5rem 1.5rem 0;
         height: calc(100% - 50px); // search area height
         background-color: $white;
+
         .view-container {
           display: flex;
           flex-wrap: wrap;
+
           .file-manager-item {
             border: 1px solid $border-color;
             margin-bottom: 1.6rem;
@@ -187,6 +201,7 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
               padding: 1rem;
               height: $file-manager-logo-height;
               background-color: $body-bg;
+
               .feather-folder {
                 stroke: $gray-100;
               }
@@ -194,6 +209,7 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
 
             .dropdown-menu {
               transform: none;
+
               &:before {
                 display: none;
               }
@@ -237,6 +253,7 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
             .files-section-title {
               display: none;
             }
+
             .files-header {
               display: flex;
               justify-content: space-between;
@@ -260,6 +277,7 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
               max-width: 100%;
               margin-bottom: 0.75rem;
               margin-right: 0;
+
               .file-logo-wrapper {
                 padding-right: 0;
                 width: auto;
@@ -281,6 +299,7 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
                   right: 1rem;
                 }
               }
+
               .form-check {
                 margin: 0 0.4rem 0 1.75rem;
               }
@@ -295,6 +314,7 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
                 margin-bottom: 0;
               }
             }
+
             .folder {
               &.level-up {
                 .file-logo-wrapper {
@@ -317,23 +337,29 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
               .file-date {
                 display: none;
               }
+
               .file-size {
                 color: $text-muted;
                 font-size: 85%;
               }
+
               &:not(.selected):not(:hover) {
+
                 .form-check,
                 .toggle-dropdown {
                   opacity: 0;
                 }
               }
+
               .feather-folder {
                 height: 32px;
                 width: 35px;
               }
+
               &.folder.level-up {
                 display: none !important;
               }
+
               .form-check {
                 position: absolute;
                 top: 1rem;
@@ -353,9 +379,11 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
     .content-right {
       width: 100%;
     }
+
     .content-body {
       margin-left: 0 !important;
     }
+
     .content-area-wrapper {
       .file-manager-main-content {
         border-left: 0;
@@ -401,12 +429,15 @@ $file-manager-fs-xl: ($font-size-base + 0.5);
           }
         }
       }
+
       .view-container {
         .file-manager-item {
           flex: 0 0 100%;
           max-width: 100%;
         }
+
         &.list-view {
+
           .file-date,
           .file-last-modified,
           .file-size,

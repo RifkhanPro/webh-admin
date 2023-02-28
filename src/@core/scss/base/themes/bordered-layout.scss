@@ -4,7 +4,7 @@
 // 	----------------------------------------------------------------------------------------------
 // 	Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 // 	Author: PIXINVENT
-// 	Author URL: http://www.themeforest.net/user/pixinvent
+// 	Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -14,35 +14,43 @@
   .header-navbar {
     box-shadow: none;
     border: 1px solid $border-color;
+
     &.floating-nav {
       border: 1px solid $border-color;
     }
+
     &.fixed-top {
       border-bottom: 1px solid $border-color;
       background: $body-bg;
       box-shadow: none !important;
     }
   }
+
   .main-menu {
     border-right: 1px solid $border-color;
     box-shadow: none;
-    &.menu-light .navigation > li {
+
+    &.menu-light .navigation>li {
+
       &.open:not(.menu-item-closing),
       &.sidebar-group-active {
-        > a {
+        >a {
           background: darken($white, 7%);
         }
       }
     }
   }
+
   .dropdown-menu {
     border: 1px solid $border-color !important;
     box-shadow: none;
   }
+
   .main-menu .navigation,
   .main-menu {
     background: $body-bg;
   }
+
   .card,
   .bs-stepper:not(.wizard-modern):not(.checkout-tab-steps),
   .bs-stepper.wizard-modern .bs-stepper-content {
@@ -53,6 +61,7 @@
   .footer {
     box-shadow: none !important;
   }
+
   .footer-fixed {
     .footer {
       border-top: 1px solid $border-color;

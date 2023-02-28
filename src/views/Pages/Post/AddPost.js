@@ -117,7 +117,7 @@ function AddPost() {
 
 		try {
 			const response = await fetch(
-				'http://18.205.10.114:8070/postManagement/create',
+				'https://localhost:8070/postManagement/create',
 				{
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },

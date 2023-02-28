@@ -4,7 +4,7 @@
 //  ----------------------------------------------------------------------------------------------
 //  Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //  Author: PIXINVENT
-//  Author URL: http://www.themeforest.net/user/pixinvent
+//  Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 @import '../bootstrap-extended/include'; // Bootstrap includes
@@ -12,6 +12,7 @@
 
 // blog list
 .blog-list-wrapper {
+
   // Truncate blog titles with 2 lines
   .blog-title-truncate {
     display: -webkit-box;
@@ -42,6 +43,7 @@
     img {
       object-fit: cover;
     }
+
     // below scss is written because recent blog posts' titles are links to other pages
     .text-body-heading:hover {
       color: $link-hover-color !important;

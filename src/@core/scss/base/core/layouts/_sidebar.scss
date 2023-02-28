@@ -4,7 +4,7 @@
     ----------------------------------------------------------------------------------------
     Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
     Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
+    Author URL: https://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
 // Sidebar base
@@ -21,6 +21,7 @@
     vertical-align: top;
   }
 }
+
 .sidebar-fixed {
   position: fixed;
   height: 100%;
@@ -39,6 +40,7 @@
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s ease;
+
   &.show {
     opacity: 1;
     visibility: visible;
@@ -65,6 +67,7 @@
   .sidebar-left {
     float: left;
   }
+
   .sidebar-right {
     float: right;
   }

@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 // ** React Imports
 import ReactDOM from 'react-dom'
 import { Suspense, lazy } from 'react'
@@ -45,17 +46,20 @@ import * as serviceWorker from './serviceWorker'
 // ** Lazy load app
 const LazyApp = lazy(() => import('./App'))
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <Suspense fallback={<Spinner />}>
-        <ThemeContext>
-          <LazyApp />
-          <Toaster position={themeConfig.layout.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-        </ThemeContext>
-      </Suspense>
-    </Provider>
-  </BrowserRouter>,
-  document.getElementById('root')
+	<BrowserRouter>
+		<Provider store={store}>
+			<Suspense fallback={<Spinner />}>
+				<ThemeContext>
+					<LazyApp />
+					<Toaster
+						position={themeConfig.layout.toastPosition}
+						toastOptions={{ className: 'react-hot-toast' }}
+					/>
+				</ThemeContext>
+			</Suspense>
+		</Provider>
+	</BrowserRouter>,
+	document.getElementById('root')
 )
 
 // If you want your app to work offline and load faster, you can change

@@ -45,7 +45,7 @@ const AllUsers = () => {
 	// }
 	// const Removefunction = (_id) => {
 	//     if (window.confirm('Do you want to Change the Status?')) {
-	//         fetch(`http://18.205.10.114:8070/user/${_id}/activation`, {
+	//         fetch(`https://localhost:8070/user/${_id}/activation`, {
 	//             method: "PUT"
 	//         }).then((res) => {
 	//             console.log(res)
@@ -58,7 +58,7 @@ const AllUsers = () => {
 	// }
 
 	useEffect(() => {
-		fetch('http://18.205.10.114:8070/user')
+		fetch('https://localhost:8070/user')
 			.then(res => {
 				return res.json()
 			})

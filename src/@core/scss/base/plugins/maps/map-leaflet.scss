@@ -4,7 +4,7 @@
 //     ----------------------------------------------------------------------------------------------
 //     Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //     Author: PIXINVENT
-//     Author URL: http://www.themeforest.net/user/pixinvent
+//     Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 
 .leaflet-map {
@@ -18,15 +18,18 @@ html[data-textdirection='rtl'] {
       .leaflet-left {
         left: 0;
         right: unset;
+
         .leaflet-control-zoom,
         .leaflet-control-layers {
           margin-right: 0;
           margin-left: 10px;
         }
       }
+
       .leaflet-right {
         right: 0;
         left: unset;
+
         .leaflet-control-zoom,
         .leaflet-control-layers {
           margin-right: 10px;

@@ -19,13 +19,10 @@ const ViewAnalytic = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(
-				`http://18.205.10.114:8070/analytics/${id}`,
-				{
-					method: 'DELETE',
-					headers: { 'Content-Type': 'application/json' }
-				}
-			)
+			const response = await fetch(`https://localhost:8070/analytics/${id}`, {
+				method: 'DELETE',
+				headers: { 'Content-Type': 'application/json' }
+			})
 
 			const responseData = await response.json()
 
@@ -42,9 +39,7 @@ const ViewAnalytic = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(
-					`http://18.205.10.114:8070/analytics/${id}`
-				)
+				const response = await fetch(`https://localhost:8070/analytics/${id}`)
 
 				const responseData = await response.json()
 

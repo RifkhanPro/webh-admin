@@ -27,7 +27,7 @@ const EditName = () => {
 
 		try {
 			const response = await fetch(
-				'http://18.205.10.114:8070/topicPost/changeName',
+				'https://localhost:8070/topicPost/changeName',
 				{
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },

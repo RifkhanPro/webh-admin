@@ -83,7 +83,7 @@ function AddAnalytic() {
 		}
 
 		try {
-			const response = await fetch('http://18.205.10.114:8070/analytics', {
+			const response = await fetch('https://localhost:8070/analytics', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

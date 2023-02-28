@@ -4,26 +4,31 @@
 //     ----------------------------------------------------------------------------------------------
 //     Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
 //     Author: PIXINVENT
-//     Author URL: http://www.themeforest.net/user/pixinvent
+//     Author URL: https://www.themeforest.net/user/pixinvent
 // ================================================================================================
 table.dataTable {
   // table width & collapse border
   width: 100% !important;
   border-collapse: collapse !important;
+
   &.table-responsive:not(.datatables-ajax) {
     display: block; // For responsive data-table of BS5
   }
+
   td,
   th {
     padding: $table-cell-padding-y 1.5rem;
     vertical-align: middle;
   }
+
   thead {
+
     // Sorting Icons Change
     .sorting,
     .sorting_asc,
     .sorting_desc {
       padding-right: inherit;
+
       &:before {
         background-image: url(str-replace(str-replace($chevron-up, 'currentColor', $table-head-color), '#', '%23'));
         background-repeat: no-repeat;
@@ -36,6 +41,7 @@ table.dataTable {
         right: 0.3rem;
         top: 0.5rem;
       }
+
       &:after {
         background-image: url(str-replace(str-replace($chevron-down, 'currentColor', $table-head-color), '#', '%23'));
         background-repeat: no-repeat;
@@ -55,11 +61,13 @@ table.dataTable {
 // Export button dropdown UI
 div.dataTables_wrapper .dt-button-collection {
   background-color: $dropdown-bg;
-  > div[role='menu'] {
+
+  >div[role='menu'] {
     text-align: left;
     box-shadow: 0px 5px 16px -8px;
     min-width: 8rem;
   }
+
   [class*='buttons-']:focus {
     outline: 0;
   }
@@ -67,8 +75,8 @@ div.dataTables_wrapper .dt-button-collection {
 
 // Custom responsive style for BS5
 // Responsive table area '+' icon position
-table.dataTable.dtr-column > tbody > tr > td.control:before,
-table.dataTable.dtr-column > tbody > tr > th.control:before {
+table.dataTable.dtr-column>tbody>tr>td.control:before,
+table.dataTable.dtr-column>tbody>tr>th.control:before {
   line-height: 0.8em;
 }
 
@@ -84,8 +92,9 @@ table.dataTable.dtr-column > tbody > tr > th.control:before {
   .modal-body {
     padding: 0;
   }
+
   .table {
-    tr:last-child > td {
+    tr:last-child>td {
       border-bottom: 0;
     }
   }
@@ -93,6 +102,7 @@ table.dataTable.dtr-column > tbody > tr > th.control:before {
 
 // data table search, labels and
 div.dataTables_wrapper {
+
   // data table search, labels
   div.dataTables_filter,
   div.dataTables_length {
@@ -100,6 +110,7 @@ div.dataTables_wrapper {
       margin-top: 1rem;
       margin-bottom: 0.5rem;
     }
+
     // for datatable length select
     select {
       background-position: calc(100% - 3px) 11px, calc(100% - 20px) 13px, 100% 0;
@@ -108,6 +119,7 @@ div.dataTables_wrapper {
       margin: 0 0.5rem;
     }
   }
+
   div.dataTables_filter input {
     margin-left: 0.75rem;
   }
@@ -140,6 +152,7 @@ tr.group {
     }
   }
 }
+
 // pagination in center
 @media only screen and (max-width: 768px) {
   div.dataTables_wrapper {
@@ -153,15 +166,18 @@ tr.group {
   div.dataTables_wrapper div.dataTables_info {
     white-space: inherit;
   }
+
   // small screen button spacing in bottom
   div.dt-buttons {
     justify-content: center;
     margin-top: 1rem;
+
     button {
       margin-bottom: 0.5rem;
     }
   }
 }
+
 @include media-breakpoint-down(sm) {
   .dtr-bs-modal {
     .modal-body {
@@ -169,17 +185,21 @@ tr.group {
       padding-right: 0;
       overflow-x: scroll;
     }
+
     .table.dtr-details {
       margin: 0 auto 1rem;
+
       td {
         padding-left: 0;
         padding-right: 0;
       }
+
       tr td:first-child {
         padding-left: 0.75rem;
       }
     }
   }
+
   div.dataTables_wrapper {
     overflow: scroll;
   }

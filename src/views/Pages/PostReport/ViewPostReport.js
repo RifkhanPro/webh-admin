@@ -12,7 +12,7 @@ function ViewPostReport() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		fetch(`http://18.205.10.114:8070/post/${id}`)
+		fetch(`https://localhost:8070/post/${id}`)
 			.then(res => {
 				return res.json()
 			})
@@ -28,7 +28,7 @@ function ViewPostReport() {
 
 	useEffect(() => {
 		if (userId) {
-			fetch(`http://18.205.10.114:8070/user/${userId}`)
+			fetch(`https://localhost:8070/user/${userId}`)
 				.then(res => {
 					return res.json()
 				})
@@ -45,13 +45,10 @@ function ViewPostReport() {
 	const approveHandler = async () => {
 		console.log(id)
 		try {
-			const response = await fetch(
-				`http://18.205.10.114:8070/post/${id}/report`,
-				{
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' }
-				}
-			)
+			const response = await fetch(`https://localhost:8070/post/${id}/report`, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' }
+			})
 
 			const responseData = await response.json()
 
@@ -66,7 +63,7 @@ function ViewPostReport() {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`http://18.205.10.114:8070/post/${id}`, {
+			const response = await fetch(`https://localhost:8070/post/${id}`, {
 				method: 'DELETE'
 			})
 
