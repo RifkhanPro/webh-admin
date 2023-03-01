@@ -84,16 +84,16 @@ const Login = () => {
 			}
 		}
 	}
-	const googleAuthHandler = e => {
-		e.preventDefault()
-		window.open('/https:18.205.10.114:8070/user/google/callback', '_self')
-	}
+	// const googleAuthHandler = e => {
+	// 	e.preventDefault()
+	// 	window.open('/https:18.205.10.114:8070/user/google/callback', '_self')
+	// }
 
 	useEffect(() => {
 		gapi.load('client:auth2', () => {
 			gapi.auth2.init({
 				clientId:
-					'266665356257-hegodqq6j6ivro28ml8bta1tgmlbqnq8.apps.googleusercontent.com'
+					'395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com'
 			})
 		})
 	})
@@ -237,7 +237,7 @@ const Login = () => {
 							<div className="login-with-google">
 								<GoogleLogin
 									// clientId= "395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com"
-									clientId="266665356257-hegodqq6j6ivro28ml8bta1tgmlbqnq8.apps.googleusercontent.com"
+									clientId="395423356530-p3dcv116o61fa80d2rsv8sivettc562k.apps.googleusercontent.com"
 									buttonText="Login with google"
 									onSuccess={responseGoogle}
 									cookiePolicy={'single_host_origin'}
