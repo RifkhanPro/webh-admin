@@ -88,7 +88,7 @@ function AddScoreBox() {
 			alert(error)
 		}
 		try {
-			const response = await fetch('https://localhost:8070/scoreBox', {
+			const response = await fetch('https://18.205.10.114:8070/scoreBox', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

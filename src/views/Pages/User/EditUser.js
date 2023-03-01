@@ -35,7 +35,7 @@ const EditUser = () => {
 	}
 
 	useEffect(() => {
-		fetch(`https://localhost:8070/user/${id}`)
+		fetch(`https://18.205.10.114:8070/user/${id}`)
 			.then(res => {
 				return res.json()
 			})
@@ -62,7 +62,7 @@ const EditUser = () => {
 		e.preventDefault()
 		const userData = { points }
 
-		fetch(`https://localhost:8070/user/${id}/changePoints`, {
+		fetch(`https://18.205.10.114:8070/user/${id}/changePoints`, {
 			method: 'PUT',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(userData)

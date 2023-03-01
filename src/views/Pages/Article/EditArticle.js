@@ -51,7 +51,7 @@ const EditArticle = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`https://localhost:8070/article/${id}`)
+				const response = await fetch(`https://18.205.10.114:8070/article/${id}`)
 
 				const responseData = await response.json()
 
@@ -107,15 +107,18 @@ const EditArticle = () => {
 		}
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`https://localhost:8070/article/${id}`, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						desc,
-						title: topic,
-						image: imageUrl
-					})
-				})
+				const response = await fetch(
+					`https://18.205.10.114:8070/article/${id}`,
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							desc,
+							title: topic,
+							image: imageUrl
+						})
+					}
+				)
 
 				const responseData = await response.json()
 				console.log(responseData)
@@ -134,15 +137,18 @@ const EditArticle = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`https://localhost:8070/article/${id}`, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						desc,
-						title: topic,
-						image
-					})
-				})
+				const response = await fetch(
+					`https://18.205.10.114:8070/article/${id}`,
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							desc,
+							title: topic,
+							image
+						})
+					}
+				)
 
 				const responseData = await response.json()
 				console.log(responseData)

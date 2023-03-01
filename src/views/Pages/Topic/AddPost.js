@@ -28,7 +28,7 @@ function AddPost() {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`https://localhost:8070/topic/${id}`)
+				const response = await fetch(`https://18.205.10.114:8070/topic/${id}`)
 
 				const responseData = await response.json()
 
@@ -47,7 +47,7 @@ function AddPost() {
 		e.preventDefault()
 
 		try {
-			const response = await fetch('https://localhost:8070/topic', {
+			const response = await fetch('https://18.205.10.114:8070/topic', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

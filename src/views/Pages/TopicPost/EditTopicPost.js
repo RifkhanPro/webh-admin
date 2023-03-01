@@ -68,7 +68,7 @@ const EditTopicPost = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`https://localhost:8070/topicPost/${id}/viewPost`
+					`https://18.205.10.114:8070/topicPost/${id}/viewPost`
 				)
 
 				const responseData = await response.json()
@@ -132,7 +132,7 @@ const EditTopicPost = () => {
 		if (imageUrl !== '') {
 			try {
 				const response = await fetch(
-					`https://localhost:8070/topicPost/${id}/update`,
+					`https://18.205.10.114:8070/topicPost/${id}/update`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -160,7 +160,7 @@ const EditTopicPost = () => {
 		} else {
 			try {
 				const response = await fetch(
-					`https://localhost:8070/topicPost/${id}/update`,
+					`https://18.205.10.114:8070/topicPost/${id}/update`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

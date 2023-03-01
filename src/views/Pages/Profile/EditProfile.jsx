@@ -74,7 +74,7 @@ function EditProfile() {
             setLastNameTouched(true)
             // /:id/updateAdmin
                 try {
-                const response = await fetch(`https://localhost:8070/user/${JSON.parse(localStorage.getItem('user'))._id}/updateAdmin`, 
+                const response = await fetch(`https://18.205.10.114:8070/user/${JSON.parse(localStorage.getItem('user'))._id}/updateAdmin`, 
                 { method:"PUT", 
                     headers : {
                     "Content-Type":"application/json"

@@ -18,7 +18,7 @@ const ViewNews = () => {
 
 	const deleteHandler = async () => {
 		try {
-			const response = await fetch(`https://localhost:8070/news/${id}`, {
+			const response = await fetch(`https://18.205.10.114:8070/news/${id}`, {
 				method: 'DELETE',
 				headers: { 'Content-Type': 'application/json' }
 			})
@@ -35,7 +35,7 @@ const ViewNews = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`https://localhost:8070/news/${id}`)
+				const response = await fetch(`https://18.205.10.114:8070/news/${id}`)
 
 				const responseData = await response.json()
 

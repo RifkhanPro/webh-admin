@@ -44,7 +44,7 @@ function AddSkill() {
 		console.log('validate')
 
 		try {
-			const response = await fetch('https://localhost:8070/skill', {
+			const response = await fetch('https://18.205.10.114:8070/skill', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

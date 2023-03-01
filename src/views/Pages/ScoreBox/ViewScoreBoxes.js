@@ -40,7 +40,7 @@ function ViewScoreBoxes() {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch('https://localhost:8070/scoreBox')
+				const response = await fetch('https://18.205.10.114:8070/scoreBox')
 
 				const responseData = await response.json()
 

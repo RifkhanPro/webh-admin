@@ -135,7 +135,7 @@ const ResetPassword = () => {
 			console.log(validConfirmPassword)
 			try {
 				const response = await fetch(
-					`https://localhost:8070/user/reset-password/${token}`,
+					`https://18.205.10.114:8070/user/reset-password/${token}`,
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },

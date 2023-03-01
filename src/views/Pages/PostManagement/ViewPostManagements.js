@@ -41,7 +41,7 @@ function ViewPostManagements() {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					'https://localhost:8070/postManagement/posts'
+					'https://18.205.10.114:8070/postManagement/posts'
 				)
 				const responseData = await response.json()
 				setPosts(responseData)

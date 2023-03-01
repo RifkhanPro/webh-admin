@@ -103,7 +103,7 @@ function AddSkill() {
 		}
 
 		try {
-			const response = await fetch('https://localhost:8070/blog', {
+			const response = await fetch('https://18.205.10.114:8070/blog', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

@@ -56,7 +56,9 @@ const EditScoreBox = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`https://localhost:8070/scoreBox/${id}`)
+				const response = await fetch(
+					`https://18.205.10.114:8070/scoreBox/${id}`
+				)
 
 				const responseData = await response.json()
 
@@ -112,15 +114,18 @@ const EditScoreBox = () => {
 
 		if (imageUrl !== '') {
 			try {
-				const response = await fetch(`https://localhost:8070/scoreBox/${id}`, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						desc,
-						title: topic,
-						image: imageUrl
-					})
-				})
+				const response = await fetch(
+					`https://18.205.10.114:8070/scoreBox/${id}`,
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							desc,
+							title: topic,
+							image: imageUrl
+						})
+					}
+				)
 
 				const responseData = await response.json()
 
@@ -140,15 +145,18 @@ const EditScoreBox = () => {
 			window.location.reload(true)
 		} else {
 			try {
-				const response = await fetch(`https://localhost:8070/scoreBox/${id}`, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						desc,
-						title: topic,
-						image
-					})
-				})
+				const response = await fetch(
+					`https://18.205.10.114:8070/scoreBox/${id}`,
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							desc,
+							title: topic,
+							image
+						})
+					}
+				)
 
 				const responseData = await response.json()
 

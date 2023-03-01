@@ -30,7 +30,7 @@ const ViewUser = () => {
 	useEffect(() => {
 		const sendRequest = async () => {
 			try {
-				const response = await fetch(`https://localhost:8070/user/${id}`)
+				const response = await fetch(`https://18.205.10.114:8070/user/${id}`)
 
 				const responseData = await response.json()
 
@@ -52,7 +52,7 @@ const ViewUser = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`https://localhost:8070/post/${id}/userPosts`
+					`https://18.205.10.114:8070/post/${id}/userPosts`
 				)
 
 				const responseData = await response.json()

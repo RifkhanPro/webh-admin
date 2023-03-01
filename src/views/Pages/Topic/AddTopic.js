@@ -37,7 +37,7 @@ function AddTopic() {
 		}
 
 		try {
-			const response = await fetch('https://localhost:8070/topic', {
+			const response = await fetch('https://18.205.10.114:8070/topic', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

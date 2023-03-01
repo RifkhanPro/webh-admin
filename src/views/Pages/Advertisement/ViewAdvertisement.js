@@ -18,7 +18,7 @@ const ViewAdvertisement = () => {
 	const deleteHandler = async () => {
 		try {
 			const response = await fetch(
-				`https://localhost:8070/advertisement/${id}`,
+				`https://18.205.10.114:8070/advertisement/${id}`,
 				{ method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
 			)
 
@@ -38,7 +38,7 @@ const ViewAdvertisement = () => {
 		const sendRequest = async () => {
 			try {
 				const response = await fetch(
-					`https://localhost:8070/advertisement/${id}`
+					`https://18.205.10.114:8070/advertisement/${id}`
 				)
 
 				const responseData = await response.json()
